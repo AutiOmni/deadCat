@@ -21,6 +21,7 @@ body {
     background-color: var(--main-background);
     color: var(--light-text-color);
     overflow-x: hidden;
+    line-height: 1.5;
 }
 
 section {
@@ -31,8 +32,15 @@ nav {
     background-color: var(--main-background);
 }
 
+.nav-link {
+    color: var(--light-text-color) !important;
+}
+
+
+
 .nav-link:hover {
-    color: var(--light-text-color)
+    color: var(--main-cat-color) !important;
+    transform: scale(.98);
 }
 
 .hero {
