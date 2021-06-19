@@ -3,12 +3,14 @@
 }
 
 :root {
-    --main-background: #414451;
+    --main-background: #2f313b;
     --bear-market-color: #e66666;
     --bull-market-color: #59e48b;
     --main-cat-color: #575b6d;
      --light-text-color: #eeefee;
 }
+
+
 
 html  {
     width: 100%;
