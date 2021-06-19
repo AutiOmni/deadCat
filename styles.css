@@ -11,9 +11,33 @@
     --notification-color: #0a58ca;
 }
 
-#circle-notifications {
-    fill: #0a58ca;
+html  {
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
 }
+
+body {
+    background-color: var(--main-background);
+    color: var(--light-text-color);
+    overflow-x: hidden;
+    line-height: 1.5;
+}
+
+section {
+    scroll-margin-top: 100px;
+}
+
+.display-1 {
+    font-size: 10vw;
+}
+.display-4 {
+    font-size: 2.5vw;
+}
+
+/* ------------------------------------------------------ SVG CHANGES */
+
 
 /* ------------------------------------------------------ MAN OUTFIT */
 
@@ -37,6 +61,10 @@
     fill: var(--light-text-color);
 }
 
+#circle-notifications {
+    fill: #0a58ca;
+}
+
 /* ------------------------------------------------------ GIRL OUTFIT */
 
 #g-hair {
@@ -55,25 +83,7 @@
     fill: var(--main-cat-color);
 }
 
-
-
-html  {
-    width: 100%;
-    height: 100%;
-    margin: 0px;
-    padding: 0px;
-}
-
-body {
-    background-color: var(--main-background);
-    color: var(--light-text-color);
-    overflow-x: hidden;
-    line-height: 1.5;
-}
-
-section {
-    scroll-margin-top: 100px;
-  }
+/* ------------------------------------------------------ NAV */
 
 nav {
     background-color: var(--main-background);
@@ -83,12 +93,12 @@ nav {
     color: var(--light-text-color) !important;
 }
 
-
-
 .nav-link:hover {
     color: var(--main-cat-color) !important;
     transform: scale(.98);
 }
+
+/* ------------------------------------------------------ HERO */
 
 .hero {
    min-height: 100vh;
@@ -104,16 +114,14 @@ nav {
     padding-bottom: 20px;
 }
 
+
+/* ------------------------------------------------------ DEADCAT EXPLAINED */
+
 .explain-p {
     margin-top: -20px;
 }
 
-.display-1 {
-    font-size: 10vw;
-}
-.display-4 {
-    font-size: 2.5vw;
-}
+/* ------------------------------------------------------ INFO HUH */
 
 .huh {
     font-size: 2.5vw;
@@ -140,6 +148,9 @@ nav {
     top:-200%;
     color: var(--bear-market-color);
 }
+
+
+/* ------------------------------------------------------ INFO CHOICE */
 
 .choice {
     font-size: 2.5vw;
