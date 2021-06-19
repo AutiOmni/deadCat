@@ -163,7 +163,7 @@ while (j < 4) {
     const {symbol, changesPercentage, price, change} = combinedStockDrop[j]
 
     const litterBox = document.createElement('div')
-    litterBox.classList.add('col-3', 'p-3', 'border', 'text-center')
+    litterBox.classList.add('col-lg-6', 'p-3', 'border', 'text-center')
     litterBox.innerHTML = `<h2 id="ticker">${symbol}</h2>
     <h3 id="percentage-down">Down: ${changesPercentage}%</h3>
     <h3 id="share-price-change">Share Price Change: $${change}</h3>
