@@ -7,7 +7,52 @@
     --bear-market-color: #e66666;
     --bull-market-color: #59e48b;
     --main-cat-color: #575b6d;
-     --light-text-color: #eeefee;
+    --light-text-color: #eeefee;
+    --notification-color: #0a58ca;
+}
+
+#circle-notifications {
+    fill: #0a58ca;
+}
+
+/* ------------------------------------------------------ MAN OUTFIT */
+
+#hair {
+    fill: var(--main-cat-color);
+}
+
+#jacket {
+    fill: var(--bear-market-color);
+}
+
+#pants {
+    fill: var(--main-cat-color);
+}
+
+#sock {
+    fill: var(--main-background)
+}
+
+#shoe {
+    fill: var(--light-text-color);
+}
+
+/* ------------------------------------------------------ GIRL OUTFIT */
+
+#g-hair {
+    fill: var(--main-cat-color);
+}
+
+#g-jacket {
+    fill: var(--bull-market-color);
+}
+
+#g-pants {
+    fill: var(--main-cat-color);
+}
+
+#g-shoe {
+    fill: var(--main-cat-color);
 }
 
 
@@ -122,8 +167,8 @@ nav {
     color: var(--bear-market-color);
 }
 
-.chart-alert-text {
-    color: var(--bear-market-color)
+#chart-alert-text {
+   font-size: 25px;
 }
 
 #pick {
