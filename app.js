@@ -1,20 +1,47 @@
 const rowOne = document.getElementById('rowOne')
 const rowTwo = document.getElementById('rowTwo')
 
-let ticker = []
+let tickers = []
+let myStocksNyse = []
+let myStocksNas = []
 
-const url = 'https://financialmodelingprep.com/api/v3/losers?apikey=4d4593bc9e6bc106ee9d1cbd6400b218'
 
-async function derpy() {
-    try {
-        const res = await fetch(url)
-        const data = await res.json()
-        
-    } catch {
-        console.log('Error')
+let j = 0
+let nyseHolder = []
+let nasdaqHolder = []
+let combinedStockDrop = []
+
+let tickersLength = 23485
+async function apr() {
+    const res = await fetch('https://financialmodelingprep.com/api/v3/available-traded/list?apikey=4d4593bc9e6bc106ee9d1cbd6400b218')
+    const data = await res.json()
+    tickers.push(data)
+    for (let i = 0; i < tickersLength; i++) {
+        if (tickers[0][i].exchange === 'New York Stock Exchange') {
+            myStocksNyse.push(tickers[0][i].symbol)
+        } else if (tickers[0][i].exchange === 'Nasdaq Global Select') {
+            myStocksNas.push(tickers[0][i].symbol)
+        }
     }
+  console.log(myStocksNyse, myStocksNas)
 }
 
+apr()
+
+/*
+async function getNyseB() {
+   
+    const res = await fetch('http://api.marketstack.com/v1?access_key=639c314e89747310d83acee2912614dc');
+    const data = await res.json();
+    console.log(data)
+    
+}
+
+
+
+    getNyseB() 
+
+*/
 /*
 
 derpy()
@@ -80,100 +107,105 @@ createFeed()
 */ 
 
 
+function generateStocks() {
+
+
 
 /* ---------------------- NYSE DROP ------------------------- */
 
-let NyseHolder = []
 
 async function getNyseBottom() {
 
-   
-    
     const res = await fetch('https://financialmodelingprep.com/api/v3/quotes/nyse?apikey=4d4593bc9e6bc106ee9d1cbd6400b218')
     const data = await res.json()
 
     function pushItNye() {
 
     for (let i = 0; i < data.length; i++) {
-        if (data[i].changesPercentage < -10) {
-      NyseHolder.push(data[i])
+        if (data[i].changesPercentage < -10 && myStocksNyse.indexOf(data[i].symbol) > 0) {
+      nyseHolder.push(data[i])
         }
     }
-console.log(NyseHolder)
+    console.log(nyseHolder)
 }
 
 pushItNye()
-   
 }
 
 getNyseBottom()
 
-
 /* ---------------------- NASDAQ DROP ------------------------- */
-
-let NasdaqHolder = []
 
 async function getNasdaqBottom() {
 
-
-    
     const res = await fetch('https://financialmodelingprep.com/api/v3/quotes/nasdaq?apikey=4d4593bc9e6bc106ee9d1cbd6400b218')
     const data = await res.json()
 
     function pushItNas() {
 
     for (let i = 0; i < data.length; i++) {
-        if (data[i].changesPercentage < -10) {
-      NasdaqHolder.push(data[i])
+        if(data[i].changesPercentage < -10 && myStocksNas.indexOf(data[i].symbol) > 0) {
+      nasdaqHolder.push(data[i])
         }
     }
-console.log(NasdaqHolder)
+console.log(nasdaqHolder)
 }
 
 pushItNas()
-   
 }
 
 getNasdaqBottom()
 
 
-/* ---------------------- COMBINE AND SORT LARGEST DROP ------------------------- */
 
-
-let combinedStockDrop = []
-
-setTimeout(() => {
-
-    rowOne.innerHTML = ''
-
-    combinedStockDrop = combinedStockDrop.concat(NasdaqHolder, NyseHolder)
-
-    for (let i = 0; i < combinedStockDrop.length; i++) {
-    combinedStockDrop.sort((a,b) => {
-        return a.changesPercentage - b.changesPercentage
-    })
 }
 
-let j = 0
+setTimeout(generateStocks, 2500)
 
 
+
+function makeIt() {
+
+
+/* ---------------------- COMBINE AND SORT LARGEST DROP ------------------------- */
+
+rowOne.innerHTML = ''
+
+combinedStockDrop = combinedStockDrop.concat(nasdaqHolder, nyseHolder)
+
+for (let i = 0; i < combinedStockDrop.length; i++) {
+combinedStockDrop.sort((a,b) => {
+    return a.changesPercentage - b.changesPercentage
+    })
+}
 
 while (j < 4) {
 
     const {symbol, changesPercentage, price, change} = combinedStockDrop[j]
 
+    changesPercentagePositive = changesPercentage * -1
+
     const litterBox = document.createElement('div')
     litterBox.classList.add('col-lg-6', 'p-3', 'border', 'text-center')
-    litterBox.innerHTML = `<h2 id="ticker">${symbol}</h2>
-    <h3 id="percentage-down">Down: ${changesPercentage}%</h3>
-    <h3 id="share-price-change">Share Price Change: $${change}</h3>
-    <h3 id="current-price">Current Price: $${price}</h3>`
+    litterBox.innerHTML = `<div class="row">
+    <h2 id="symbol">${symbol}</h2>
+    <h3><i class="fas fa-long-arrow-alt-down mx-2" id="percentage-down"></i>${changesPercentagePositive}%</h3>
+    </div>
+    <div class="row">
+    <h3 class="col-6" id="share-price-change">Share Price Loss
+    <span class="d-block"> $ ${change}</span></h3>
+    <h3 class="col-6" id="current-price">Current Price 
+    <span class="d-block"> $ ${price}</span></h3>
+    </div>`
     rowOne.appendChild(litterBox)
 
-j++
+    j++
+
+}
+console.log(combinedStockDrop)
 }
 
-console.log(j)
-console.log(combinedStockDrop)
 
-}, 1000)
+setTimeout(makeIt, 5000)
+
+/*console.log(combinedStockDrop)*/

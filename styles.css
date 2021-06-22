@@ -30,7 +30,7 @@ section {
 }
 
 .display-1 {
-    font-size: 11vw;
+    font-size: 10vw;
 }
 .display-4 {
     font-size: 2.5vw;
@@ -105,7 +105,7 @@ nav {
 }
 
 #deadCat {
-    max-width: 500px;
+    max-width: 650px;
 }
 
 #bounce {
@@ -128,6 +128,7 @@ nav {
     position: absolute;
     top: 5px;
     right: 40px;
+    text-shadow: 0px 0px 10px var(--main-background);
 }
 
 .huh::before {
@@ -155,8 +156,9 @@ nav {
 .choice {
     font-size: 2.5vw;
     position: absolute;
-    top: 0px;
+    top: -10px;
     left: 50px;
+    text-shadow: 0px 0px 10px var(--main-background);
 }
 
 .choice::before {
@@ -193,4 +195,22 @@ nav {
     border-top: none;
     border-left: none;
     border-right: none;
+}
+
+/* ------------------------------------------------------ STOCK DROPS CUSTOMIZE */
+  
+#percentage-down {
+    color: var(--bear-market-color);
+}
+
+#share-price-change {
+
+}
+
+#current-price {
+
+}
+
+#symbol {
+
 }
