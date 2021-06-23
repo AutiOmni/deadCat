@@ -122,24 +122,30 @@ finalChart.sort((a,b) => {
 
 //this is what builds to page
 
-let derp = []
-let derpy = []
-
-while (j < 4) {
+let tempVWAP = []
+let finalVWApArr = []
+let dateTimeLength = []
+let x = 0
+while (j < 6) {
     
     const {symbol, changesPercentage, price, change, dayHigh, dayLow, avgVolume, volume} = finalChart[j]
     
-
+    // VWAP FUNCTION 
             async function vwap() {
                 const res = await fetch(`https://financialmodelingprep.com/api/v3/historical-chart/5min/${symbol}?apikey=4d4593bc9e6bc106ee9d1cbd6400b218`)
                 const data = await res.json()
             
                 let tpvCul = 0
                 let volumeCul = 0
-            
-                for (let i = 0; i < 78; i++) {
+                //THIS IS FOR GETTING THE DAY LENGTH
+                while (data[x].date.slice(0,10) === todayDate) {
+                    dateTimeLength.push('interval')
+                    x++
+                }
+               //THIS IS FOR CALCULATING THE VWAP AND PUSHING TO 
+                for (let i = 0; i < dateTimeLength.length; i++) {
 
-                    const {volume, high, close, low, date } = data[i];   
+                    const {volume, high, close, low, date} = data[i];   
                     const tpv = (high + low + close) / 3;
             
                     if (date.slice(0,10) === todayDate) {
@@ -147,15 +153,15 @@ while (j < 4) {
                     volumeCul += volume
                     }
                     vwapFinal = tpvCul / volumeCul //THIS IS VWAP!!!!!!!!
-                    derp.push(vwapFinal.toFixed(2))
+                    tempVWAP.push(vwapFinal.toFixed(2))
                 }
-
-                derpy.push(derp[0])
-                console.log(derpy)
-                derp = []
+                console.log(dateTimeLength)
+                finalVWApArr.push(tempVWAP[0])
+                console.log(finalVWApArr)
+                tempVWAP = []
             };
 
-           await vwap()
+           await vwap() // AWAITING VWAP CALC
     
     
     changesPercentagePositive = changesPercentage * -1
@@ -177,7 +183,7 @@ while (j < 4) {
     <span class="d-block"> ${volume}</span></h3>
     <h3 class="col-6" id="current-price">Average Daily Volume
     <span class="d-block">${avgVolume}</span></h3>
-    <span class="d-block">Five Minute VWAP: $${derpy[j]}</span></h3>
+    <span class="d-block">Five Minute VWAP: $${finalVWApArr[j]}</span></h3>
     </div>
     `
     rowOne.appendChild(litterBox)
