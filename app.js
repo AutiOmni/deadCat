@@ -153,7 +153,7 @@ while (j < 6) {
                     volumeCul += volume
                     }
                     vwapFinal = tpvCul / volumeCul //THIS IS VWAP!!!!!!!!
-                    tempVWAP.push(vwapFinal.toFixed(2))
+                    tempVWAP.unshift(vwapFinal.toFixed(2))
                 }
                 console.log(dateTimeLength)
                 finalVWApArr.push(tempVWAP[0])
