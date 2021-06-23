@@ -5,14 +5,31 @@ let tickers = []
 let myStocksNyse = []
 let myStocksNas = []
 
-regex = /A-Z/g
-
 let j = 0
+
 let nyseHolder = []
 let nasdaqHolder = []
 let combinedStockDrop = []
 
 let tickersLength = 23485
+
+ /// date
+
+const today = new Date
+const year = today.getFullYear()
+let date = today.getDate()
+if (date < 10) {
+    date = `0${month}`
+}
+let month = today.getMonth() + 1
+if (month < 10) {
+    month = `0${month}`
+}
+const hour = today.getHours()
+const min = today.getMinutes()
+
+const todayDate = `${year}-${month}-${date}`
+
 
 async function tradableSymbols() {
 
@@ -38,7 +55,7 @@ async function tradableSymbols() {
 }
 
 
-/* ---------------------- NYSE DROP ------------------------- */
+// ---------------------- NYSE DROP ------------------------- 
 
 async function getNyseBottom() {
     try {
@@ -59,7 +76,7 @@ async function getNyseBottom() {
 }
 
 
-/* ---------------------- NASDAQ DROP ------------------------- */
+//---------------------- NASDAQ DROP ------------------------- 
 
 async function getNasdaqBottom() {
     try {
@@ -79,8 +96,9 @@ async function getNasdaqBottom() {
 
 
 
-/* ---------------------- COMBINE AND SORT LARGEST DROP ------------------------- */
-function compileStocks() {
+//---------------------- COMBINE AND SORT LARGEST DROP ------------------------- 
+async function compileStocks() {
+
 
 rowOne.innerHTML = ''
 
@@ -90,9 +108,9 @@ rowOne.innerHTML = ''
 combinedStockDrop = combinedStockDrop.concat(nasdaqHolder, nyseHolder)
 console.log(combinedStockDrop)
 
-const keys = /[\W\d]/g
+const keys = /^[A-Z]{1,4}$/g
 finalChart = combinedStockDrop.filter(stock => {
-    return !stock.symbol.match(keys)
+    return stock.symbol.match(keys)
 })
 console.log(finalChart)
 
@@ -102,10 +120,44 @@ finalChart.sort((a,b) => {
     })
 }
 
+//this is what builds to page
+
+let derp = []
+let derpy = []
+
 while (j < 4) {
+    
+    const {symbol, changesPercentage, price, change, dayHigh, dayLow, avgVolume, volume} = finalChart[j]
+    
 
-    const {symbol, changesPercentage, price, change} = finalChart[j]
+            async function vwap() {
+                const res = await fetch(`https://financialmodelingprep.com/api/v3/historical-chart/5min/${symbol}?apikey=4d4593bc9e6bc106ee9d1cbd6400b218`)
+                const data = await res.json()
+            
+                let tpvCul = 0
+                let volumeCul = 0
+            
+                for (let i = 0; i < 78; i++) {
 
+                    const {volume, high, close, low, date } = data[i];   
+                    const tpv = (high + low + close) / 3;
+            
+                    if (date.slice(0,10) === todayDate) {
+                    tpvCul += (tpv * volume)
+                    volumeCul += volume
+                    }
+                    vwapFinal = tpvCul / volumeCul //THIS IS VWAP!!!!!!!!
+                    derp.push(vwapFinal.toFixed(2))
+                }
+
+                derpy.push(derp[0])
+                console.log(derpy)
+                derp = []
+            };
+
+           await vwap()
+    
+    
     changesPercentagePositive = changesPercentage * -1
 
     const litterBox = document.createElement('div')
@@ -114,23 +166,31 @@ while (j < 4) {
     <h2 id="symbol">${symbol}</h2>
     <h3><i class="fas fa-long-arrow-alt-down mx-2" id="percentage-down"></i>${changesPercentagePositive}%</h3>
     </div>
-    <div class="row">
+    <div class="row mt-3">
     <h3 class="col-6" id="share-price-change">Share Price Loss
-    <span class="d-block"> $ ${change}</span></h3>
+    <span class="d-block"> $ ${change.toFixed(2)}</span></h3>
     <h3 class="col-6" id="current-price">Current Price 
-    <span class="d-block"> $ ${price}</span></h3>
-    </div>`
+    <span class="d-block"> $ ${price.toFixed(2)}</span></h3>
+    </div>
+    <div class="row mt-3">
+    <h3 class="col-6" id="share-price-change">Today's Volume
+    <span class="d-block"> ${volume}</span></h3>
+    <h3 class="col-6" id="current-price">Average Daily Volume
+    <span class="d-block">${avgVolume}</span></h3>
+    <span class="d-block">Five Minute VWAP: $${derpy[j]}</span></h3>
+    </div>
+    `
     rowOne.appendChild(litterBox)
-
     j++
 
-  }
- 
-}
+  } // LOOP END
+ derpy = []
+} // FUNCTION END
 
-/*----- BUILD TO PAGE -----*/
+//----- BUILD TO PAGE -----
 
 async function buildToPage() {
+
     try {
 
     await tradableSymbols()
@@ -139,9 +199,54 @@ async function buildToPage() {
    
     compileStocks()
 
-    } catch {
-        console.log('Build To Page Error')
+    } catch(e) {
+        console.log('Build-To-Page Error'(e))
     }
+            // -------------------- RESET HOLDERS
+            tickers = []
+            myStocksNyse = []
+            myStocksNas = []
+
+            j = 0
+
+            nyseHolder = []
+            nasdaqHolder = []
+            combinedStockDrop = []
 }
 
 buildToPage()
+
+//setInterval(buildToPage, 10000)
+
+// --------------------- DATE FOR GETTING HISTORICAL DATA
+
+
+/*
+// ------------- TPV FORMULA ------------------------------
+let vwapHolder = []
+
+async function vwap() {
+    const res = await fetch(`https://financialmodelingprep.com/api/v3/historical-chart/5min/AHT?apikey=4d4593bc9e6bc106ee9d1cbd6400b218`)
+    const data = await res.json()
+
+    let tpvCul = 0
+    let volumeCul = 0
+
+    for (let i = 0; i < 78; i++) {
+
+        const {volume, high, close, low, date } = data[i];   
+        const tpv = (high + low + close) / 3;
+
+        if (date.slice(0,10) === todayDate) {
+           tpvCul += (tpv * volume)
+           volumeCul += volume
+        }
+        vwapFinal = tpvCul / volumeCul //THIS IS VWAP!!!!!!!!
+        vwapHolder.push(vwapFinal.toFixed(2))
+       
+    }
+    console.log(vwapHolder)
+}
+
+
+vwap()*/
