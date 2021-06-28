@@ -20,6 +20,17 @@ const marketDay = today.getDay()
 } else if (marketDay === 6) {
     date = date - 1
 }
+const hour = today.getHours()
+const min = today.getMinutes()
+const time = `${hour}${min}`
+const timeNum = parseInt(time)
+// THIS IS TO CHECK FOR MARKET DAY OPEN BEFORE MONDAY
+if (marketDay === 1 && timeNum < 830) {
+    date = date - 3
+} else if (marketDay >=2 && marketDay < 6 && timeNum < 830) {
+    date = date - 1
+}
+
 const todayDate = `${year}-${month}-${date}` // DATE CHECK VARIBLE FOR DATA PERIOD PULLS
 
 // ------------------- TRADABLE STOCK TICKERS --------------------------------------------------------------------------------------------------
@@ -80,31 +91,37 @@ async function filterTradableSymbols(arr1, arr2, compileCallback) {
 
 //---------------------- COMBINE AND SORT LARGEST DROP ------------------------- 
 
+let finalChartFat = [] // THIS HOLDS COMPILED AND SORTED STOCK TO GET TECHNICAL INDICATORS FROM AND MUTATE OBJECTS ! MOST IMPORTANT
 let finalChart = [] // THIS HOLDS COMPILED AND SORTED STOCK TO GET TECHNICAL INDICATORS FROM AND MUTATE OBJECTS ! MOST IMPORTANT
 
 function compileStocks(arr1, arr2) {
 
-/* ------- THIS IS A FILTER FOR WEIRD STOCK SYMBOLS THAT SLIP IN ----------*/ 
+// ------- THIS IS A FILTER FOR WEIRD STOCK SYMBOLS THAT SLIP IN ----------
 
 let combinedStockDrop = []
 combinedStockDrop = combinedStockDrop.concat(arr1, arr2)
 
 const keys = /^[A-Z]{1,4}$/g
-finalChart = combinedStockDrop.filter(stock => {
+finalChartFat = combinedStockDrop.filter(stock => {
     return stock.symbol.match(keys) && !stock.symbol.match('GIX') // ! HAD TO ADD GIX BECAUSE ITS NOT TRADABLE BUT STILL ON LIST
 })
 
-for (let i = 0; i < finalChart.length; i++) {
-finalChart.sort((a,b) => {
+for (let i = 0; i < finalChartFat.length; i++) {
+finalChartFat.sort((a,b) => {
     return a.changesPercentage - b.changesPercentage
     })
+  }
+// SLIM CHAT DOWN SO IT'S NOT BLOATED
+  let slimChart = 9
+  while (slimChart >= 0) {
+    finalChart.unshift(finalChartFat[slimChart])
+    slimChart--
   }
 } 
 
 // ---------------------- FILL WITH TECHNICAL INDICATORS ---------------------------------------------------------------------
 
 async function technicalIndicators() {
-let tempVWAP = [] // HOLD VWAP PERIOD - TAKES FROM 0 INDEX FOR MOST CURRENT
 let j = 0
 
 while (j < 10) { // VWAP LOOP
@@ -203,107 +220,140 @@ while (j < 10) { // VWAP LOOP
 
     // EMA ------------------------------------------------------------------------------------------------------------------------------------------       
     
-    let emaTwelve = 11
-    let emaTwentySix = 25
-    let emaFifty = 49
-    let emaTwoHun = 199
+    let emaTwelve = 23
+    let emaTwentySix = 53
+    let emaFifty = 99
+    let emaTwoHun = 399
     let prevDayEmaSub = 0
-                    // EMA TWELVE -------------------------------------------------------------------------
-                    if (dataSMA.historical.length <= 12) {
-                        finalChart[j].emaTwelve = 'Insufficient Data'
+    let arrEma = []
+    let macdTwelve = []
+    let macdTwentySix = []
+                    // EMA TWELVE ------------------------------------------------------------------------- 
+                    if (dataSMA.historical.length <= 24) {
+                        finalChart[j].emaTwelve = 'Insufficient Data Available'
                     } else {
-                    while (emaTwelve >= 5) {
+                    while (emaTwelve >= 12) {
                         prevDayEmaSub += dataSMA.historical[emaTwelve].close
                         emaTwelve--
                         } //CALCULATE EMA HERE TO GET PREVIOUS DAY EMA FOR ACCURATE CURRENT EMA
-                        const subEMA = prevDayEmaSub / 7
+                        const subEMA = prevDayEmaSub / 12
                         //THIS GETS AN EMA USING SMA AS PREV EMA ----------------------------
-                        const finalSubEma = (2/9) * (dataSMA.historical[emaTwelve].close - subEMA) + subEMA
+                        const finalSubEma = (2/13) * (dataSMA.historical[emaTwelve].close - subEMA) + subEMA
+                        arrEma.unshift(finalSubEma)
                         emaTwelve--
-                        // BALANCE OUT THE EMA FROM SUBBING SMA ON FIRST ONE ------------------------------
-                        const finalSubEmaTwo = (2/10) * (dataSMA.historical[emaTwelve].close - finalSubEma) + finalSubEma
-                        emaTwelve--
-                        const finalSubEmaThree = (2/11) * (dataSMA.historical[emaTwelve].close - finalSubEmaTwo) + finalSubEmaTwo
-                        emaTwelve--
-                        const finalSubEmaFour = (2/12) * (dataSMA.historical[emaTwelve].close - finalSubEmaThree) + finalSubEmaThree
-                        emaTwelve--
-                        //FINAL EMA -------------------------------
-                        const ema = (2/13) * (dataSMA.historical[emaTwelve].close - finalSubEmaFour) + finalSubEmaFour
-                        finalChart[j].emaTwelve = ema.toFixed(2) 
-                        prevDayEmaSub = 0
+                        while (emaTwelve >= 0) {
+                            let derp = (2/13) * (dataSMA.historical[emaTwelve].close - arrEma[0]) + arrEma[0]
+                            arrEma.unshift(derp)
+                            arrEma.pop()
+                            if (emaTwelve < 10 && emaTwelve > 0) { //THIS IF STATEMENT IS TO STORE VARIABLES FOR LATER MACD SIGNAL LINE
+                                macdTwelve.unshift(derp)
+                            }
+                            emaTwelve--
+                        }
+                        finalChart[j].emaTwelve = arrEma[0].toFixed(2) 
+                        arrEma.pop()
+                        prevDayEmaSub = 0 
                     }
                     // EMA TWENTY SIX ----------------------------------------------------------------------
-                    if (dataSMA.historical.length <= 26) {
-                        finalChart[j].emaTwentySix = 'Insufficient Data'
+                    if (dataSMA.historical.length <= 54) {
+                        finalChart[j].emaTwentySix = 'Insufficient Data Available'
                     } else {
-                    while (emaTwentySix >= 5) {
+                    while (emaTwentySix >= 26) {
                         prevDayEmaSub += dataSMA.historical[emaTwentySix].close
                         emaTwentySix--
                         } //CALCULATE EMA HERE TO GET PREVIOUS DAY EMA FOR ACCURATE CURRENT EMA
-                        const subEMA = prevDayEmaSub / 21
+                        const subEMA = prevDayEmaSub / 26
                         //THIS GETS AN EMA USING SMA AS PREV EMA ----------------------------
-                        const finalSubEma = (2/23) * (dataSMA.historical[emaTwentySix].close - subEMA) + subEMA
+                        const finalSubEma = (2/27) * (dataSMA.historical[emaTwentySix].close - subEMA) + subEMA
+                        arrEma.unshift(finalSubEma)
                         emaTwentySix--
-                        // BALANCE OUT THE EMA FROM SUBBING SMA ON FIRST ONE ------------------------------
-                        const finalSubEmaTwo = (2/24) * (dataSMA.historical[emaTwentySix].close - finalSubEma) + finalSubEma
-                        emaTwentySix--
-                        const finalSubEmaThree = (2/25) * (dataSMA.historical[emaTwentySix].close - finalSubEmaTwo) + finalSubEmaTwo
-                        emaTwentySix--
-                        const finalSubEmaFour = (2/26) * (dataSMA.historical[emaTwentySix].close - finalSubEmaThree) + finalSubEmaThree
-                        emaTwentySix--
-                        //FINAL EMA -------------------------------
-                        const ema = (2/27) * (dataSMA.historical[emaTwentySix].close - finalSubEmaFour) + finalSubEmaFour
-                        finalChart[j].emaTwentySix = ema.toFixed(2) 
+                        while (emaTwentySix >= 0) {
+                            let derp = (2/27) * (dataSMA.historical[emaTwentySix].close - arrEma[0]) + arrEma[0]
+                            arrEma.unshift(derp)
+                            arrEma.pop()
+                            if (emaTwentySix < 10 && emaTwentySix > 0) { //THIS IF STATEMENT IS TO STORE VARIABLES FOR LATER MACD SIGNAL LINE
+                                macdTwentySix.unshift(derp)
+                            }
+                            emaTwentySix--
+                        }
+                        finalChart[j].emaTwentySix = arrEma[0].toFixed(2) 
+                        arrEma.pop() 
                         prevDayEmaSub = 0
-                    }
+                    }   
                     // EMA FIFTY -----------------------------------------------------------------------------
-                    if (dataSMA.historical.length <= 50) {
-                        finalChart[j].emaFifty = 'Insufficient Data'
+                    if (dataSMA.historical.length <= 100) {
+                        finalChart[j].emaFifty = 'Insufficient Data Available'
                     } else {
-                    while (emaFifty >= 5) {
+                    while (emaFifty >= 50) {
                         prevDayEmaSub += dataSMA.historical[emaFifty].close
                         emaFifty--
                         } //CALCULATE EMA HERE TO GET PREVIOUS DAY EMA FOR ACCURATE CURRENT EMA
-                        const subEMA = prevDayEmaSub / 45
+                        const subEMA = prevDayEmaSub / 50
                         //THIS GETS AN EMA USING SMA AS PREV EMA ----------------------------
-                        const finalSubEma = (2/47) * (dataSMA.historical[emaFifty].close - subEMA) + subEMA
+                        const finalSubEma = (2/51) * (dataSMA.historical[emaFifty].close - subEMA) + subEMA
+                        arrEma.unshift(finalSubEma)
                         emaFifty--
-                        // BALANCE OUT THE EMA FROM SUBBING SMA ON FIRST ONE ------------------------------
-                        const finalSubEmaTwo = (2/48) * (dataSMA.historical[emaFifty].close - finalSubEma) + finalSubEma
-                        emaFifty--
-                        const finalSubEmaThree = (2/49) * (dataSMA.historical[emaFifty].close - finalSubEmaTwo) + finalSubEmaTwo
-                        emaFifty--
-                        const finalSubEmaFour = (2/50) * (dataSMA.historical[emaFifty].close - finalSubEmaThree) + finalSubEmaThree
-                        emaFifty--
-                        //FINAL EMA -------------------------------
-                        const ema = (2/51) * (dataSMA.historical[emaFifty].close - finalSubEmaFour) + finalSubEmaFour
-                        finalChart[j].emaFifty = ema.toFixed(2) 
+                        while (emaFifty >= 0) {
+                            let derp = (2/51) * (dataSMA.historical[emaFifty].close - arrEma[0]) + arrEma[0]
+                            arrEma.unshift(derp)
+                            arrEma.pop()
+                            emaFifty--
+                        }
+                        finalChart[j].emaFifty = arrEma[0].toFixed(2) 
+                        arrEma.pop() 
                         prevDayEmaSub = 0
                     }
                     // EMA TWO HUNDRED -----------------------------------------------------------------------------
-                    if (dataSMA.historical.length <= 200) {
-                        finalChart[j].emaTwoHun = 'Insufficient Data'
+                    if (dataSMA.historical.length <= 400) {
+                        finalChart[j].emaTwoHun = 'Insufficient Data Available'
                     } else {
-                    while (emaTwoHun >= 5) {
+                    while (emaTwoHun >= 200) {
                         prevDayEmaSub += dataSMA.historical[emaTwoHun].close
                         emaTwoHun--
                         } //CALCULATE EMA HERE TO GET PREVIOUS DAY EMA FOR ACCURATE CURRENT EMA
-                        const subEMA = prevDayEmaSub / 195
+                        const subEMA = prevDayEmaSub / 200
                         //THIS GETS AN EMA USING SMA AS PREV EMA ----------------------------
-                        const finalSubEma = (2/197) * (dataSMA.historical[emaTwoHun].close - subEMA) + subEMA
+                        const finalSubEma = (2/201) * (dataSMA.historical[emaTwoHun].close - subEMA) + subEMA
+                        arrEma.unshift(finalSubEma)
                         emaTwoHun--
-                        // BALANCE OUT THE EMA FROM SUBBING SMA ON FIRST ONE ------------------------------
-                        const finalSubEmaTwo = (2/198) * (dataSMA.historical[emaTwoHun].close - finalSubEma) + finalSubEma
-                        emaTwoHun--
-                        const finalSubEmaThree = (2/199) * (dataSMA.historical[emaTwoHun].close - finalSubEmaTwo) + finalSubEmaTwo
-                        emaTwoHun--
-                        const finalSubEmaFour = (2/200) * (dataSMA.historical[emaTwoHun].close - finalSubEmaThree) + finalSubEmaThree
-                        emaTwoHun--
-                        //FINAL EMA -------------------------------
-                        const ema = (2/201) * (dataSMA.historical[emaTwoHun].close - finalSubEmaFour) + finalSubEmaFour
-                        finalChart[j].emaTwoHun = ema.toFixed(2) 
+                        while (emaTwoHun >= 0) {
+                            let derp = (2/201) * (dataSMA.historical[emaTwoHun].close - arrEma[0]) + arrEma[0]
+                            arrEma.unshift(derp)
+                            arrEma.pop()
+                            emaTwoHun--
+                        }
+                        finalChart[j].emaTwoHun = arrEma[0].toFixed(2) 
+                        arrEma.pop() 
                         prevDayEmaSub = 0
                     }
+
+    // MACD ------------------------------------------------------------------------------------------------------------------------------
+
+    const macd = finalChart[j].emaTwelve - finalChart[j].emaTwentySix
+    finalChart[j].macd = macd.toFixed(2)
+    // CALCULATE SIGNAL LINE ----------------
+    let averageMacd = []
+    let iMacd = 8
+    while (iMacd >= 0) {
+        averageMacd.unshift(macdTwelve[iMacd] - macdTwentySix[iMacd])
+        iMacd--
+    }
+    let n = averageMacd.reduce((a,b) => a + b)
+    let finalAverageMacd = n / 9
+    let macdSignalLine = (2/9) * (finalChart[j].macd - finalAverageMacd) + finalAverageMacd
+    finalChart[j].macdSignalLine = macdSignalLine.toFixed(2)
+    // HISTORGRAM CALC ------------------------------------- IF HISTOGRAM GOES FROM NEGATIVE TO POSITIVE IT IS BULLISH
+    let histogram = finalChart[j].macd - finalChart[j].macdSignalLine
+    finalChart[j].histogram = histogram.toFixed(2)
+    if (finalChart[j].histogram === 'NaN') {
+        finalChart[j].histogram = 'Insufficient Data Available'
+    }
+    if (finalChart[j].macd === 'NaN') {
+        finalChart[j].macd = 'Insufficient Data Available'
+    }
+    if (finalChart[j].macdSignalLine === 'NaN') {
+        finalChart[j].macdSignalLine = 'Insufficient Data Available'
+    }
 
     // RSI ------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -343,18 +393,16 @@ while (j < 10) { // VWAP LOOP
                     let rsi = 100 - (100 / (1 + pastUpPeriod/pastDownPeriod))
                     finalChart[j].rsi = rsi.toFixed(2)
 
-
-
-    
     // ------------------------------ VWAP ------------------------------------------------------------------------------------
 
           const resVWAP = await  fetch(`https://financialmodelingprep.com/api/v3/historical-chart/5min/${symbol}?apikey=4d4593bc9e6bc106ee9d1cbd6400b218`)
           const dataVWAP = await resVWAP.json()
 
-            // -----------ENTIRE VWAP CALUC -------------------------------------------
+            // ----------- VWAP CALUC -------------------------------------------
                 let dayLengthPeriod = 0
                 let tpvCul = 0
                 let volumeCul = 0
+                let tempVWAP = [] // HOLD VWAP PERIOD - TAKES FROM 0 INDEX FOR MOST CURRENT
 
                 // -------------THIS IS FOR GETTING THE DAY LENGTH FOR VWAP
                 while (dataVWAP[dayLengthPeriod].date.slice(0,10) == todayDate) { 
@@ -366,7 +414,6 @@ while (j < 10) { // VWAP LOOP
 
                     const {volume, high, close, low, date} = dataVWAP[i];   
                     let tpv = (high + low + close) / 3;
-
                     if (date.slice(0,10) == todayDate) {
                     tpvCul += tpv * volume
                     volumeCul += volume
@@ -379,10 +426,9 @@ while (j < 10) { // VWAP LOOP
                 j++
             } // END OF J LOOP
 
-            // ------------------ EMA FUNCTION --------------------------------
-            const resEMA =  await fetch(`https://financialmodelingprep.com/api/v3/technical_indicator/daily/AHT?period=10&type=ema&apikey=4d4593bc9e6bc106ee9d1cbd6400b218`)
-            const dataEMA = await resEMA.json() 
-         
+            
+
+
             console.log(finalChart)
         }
     
@@ -433,6 +479,7 @@ async function buildToPage() {
     
     await technicalIndicators()
 
+
     buildIt()
 
     } catch (e){
@@ -443,29 +490,3 @@ async function buildToPage() {
 buildToPage()
 
 //setInterval(buildToPage, 10000)
-
-// --------------------- DATE FOR GETTING HISTORICAL DATA
-
-
-/*
-// ------------- TPV FORMULA ------------------------------
-let vwapHolder = []
-async function vwap() {
-    const res = await fetch(`https://financialmodelingprep.com/api/v3/historical-chart/5min/AHT?apikey=4d4593bc9e6bc106ee9d1cbd6400b218`)
-    const data = await res.json()
-    let tpvCul = 0
-    let volumeCul = 0
-    for (let i = 0; i < 78; i++) {
-        const {volume, high, close, low, date } = data[i];   
-        const tpv = (high + low + close) / 3;
-        if (date.slice(0,10) === todayDate) {
-           tpvCul += (tpv * volume)
-           volumeCul += volume
-        }
-        vwapFinal = tpvCul / volumeCul //THIS IS VWAP!!!!!!!!
-        vwapHolder.push(vwapFinal.toFixed(2))
-       
-    }
-    console.log(vwapHolder)
-}
-vwap()*/
