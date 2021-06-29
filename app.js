@@ -65,16 +65,24 @@ async function tradableSymbols() {
 // ---------------------- FILTERS TRADABLE SYMBOLS THAT HAVE DROPPED BELOW THE THRESHOLD -------------------------------------
 
 async function filterTradableSymbols(arr1, arr2, compileCallback) {
-    let nyseHolder = [] //THESE ARRS NEED TO BE ACCESSIBLE TO COMPILE CALLBACK
-    let nasdaqHolder = []
+    let nyseHolderDown = [] //THESE ARRS NEED TO BE ACCESSIBLE TO COMPILE CALLBACK
+    let nyseHolderUp = [] //THESE ARRS NEED TO BE ACCESSIBLE TO COMPILE CALLBACK
+    let nasdaqHolderDown = []
+    let nasdaqHolderUp = []
     try {
 // ------ FETCH NYSE
     const res = await fetch('https://financialmodelingprep.com/api/v3/quotes/nyse?apikey=4d4593bc9e6bc106ee9d1cbd6400b218')
     const dataNyse = await res.json()
     // ----- FILTER TRADABLE SYMBOLS ON NYSE THAT HAVE DROPPED
     for (let i = 0; i < dataNyse.length; i++) {
-        if (dataNyse[i].changesPercentage < -5 && arr1.indexOf(dataNyse[i].symbol) > 0 && dataNyse[i].price > 1) {
-      nyseHolder.push(dataNyse[i])
+        if (dataNyse[i].changesPercentage < -7.5 && arr1.indexOf(dataNyse[i].symbol) > 0 && dataNyse[i].price > 1) {
+      nyseHolderDown.push(dataNyse[i])
+        }
+    }
+
+    for (let i = 0; i < dataNyse.length; i++) {
+        if (dataNyse[i].changesPercentage > 7.5 && arr1.indexOf(dataNyse[i].symbol) > 0 && dataNyse[i].price > 1) {
+      nyseHolderUp.push(dataNyse[i])
         }
     }
 // ------ FETCH NASDAQ
@@ -82,8 +90,14 @@ async function filterTradableSymbols(arr1, arr2, compileCallback) {
     const dataNas = await resTwo.json()
 // ----- FILTER TRADABLE SYMBOLS ON NASDAQ THAT HAVE DROPPED
     for (let i = 0; i < dataNas.length; i++) {
-        if(dataNas[i].changesPercentage < -5 && arr2.indexOf(dataNas[i].symbol) > 0 && dataNas[i].price > 1) {
-      nasdaqHolder.push(dataNas[i])
+        if (dataNas[i].changesPercentage < -7.5 && arr2.indexOf(dataNas[i].symbol) > 0 && dataNas[i].price > 1) {
+      nasdaqHolderDown.push(dataNas[i])
+        }
+    }
+
+    for (let i = 0; i < dataNas.length; i++) {
+        if (dataNas[i].changesPercentage > 7.5 && arr2.indexOf(dataNas[i].symbol) > 0 && dataNas[i].price > 1) {
+      nasdaqHolderUp.push(dataNas[i])
         }
     }
 //--------- CATCH
@@ -91,36 +105,56 @@ async function filterTradableSymbols(arr1, arr2, compileCallback) {
         console.log(e)
     }
 
-    compileCallback(nasdaqHolder, nyseHolder) // CALLBACK FOR STOCK FILTER
+    compileCallback(nasdaqHolderDown, nyseHolderDown, nyseHolderUp, nasdaqHolderUp) // CALLBACK FOR STOCK FILTER
 }
 
 //---------------------- COMBINE AND SORT LARGEST DROP ------------------------- 
 
-let finalChartFat = [] // THIS HOLDS COMPILED AND SORTED STOCK TO GET TECHNICAL INDICATORS FROM AND MUTATE OBJECTS ! MOST IMPORTANT
+let finalChartFatDown = [] // THIS HOLDS COMPILED AND SORTED STOCK TO GET TECHNICAL INDICATORS FROM AND MUTATE OBJECTS ! MOST IMPORTANT
+let finalChartFatUp = [] // THIS HOLDS COMPILED AND SORTED STOCK TO GET TECHNICAL INDICATORS FROM AND MUTATE OBJECTS ! MOST IMPORTANT
 let finalChart = [] // THIS HOLDS COMPILED AND SORTED STOCK TO GET TECHNICAL INDICATORS FROM AND MUTATE OBJECTS ! MOST IMPORTANT
 
-function compileStocks(arr1, arr2) {
+function compileStocks(arr1, arr2, arr3, arr4) {
 
 // ------- THIS IS A FILTER FOR WEIRD STOCK SYMBOLS THAT SLIP IN ----------
 
 let combinedStockDrop = []
 combinedStockDrop = combinedStockDrop.concat(arr1, arr2)
 
+let combinedStockUp = []
+combinedStockUp = combinedStockUp.concat(arr3, arr4)
+
 const keys = /^[A-Z]{1,4}$/g
-finalChartFat = combinedStockDrop.filter(stock => {
+finalChartFatDown = combinedStockDrop.filter(stock => {
     return stock.symbol.match(keys) && !stock.symbol.match('GIX') // ! HAD TO ADD GIX BECAUSE ITS NOT TRADABLE BUT STILL ON LIST
 })
 
-for (let i = 0; i < finalChartFat.length; i++) {
-finalChartFat.sort((a,b) => {
+finalChartFatUp = combinedStockUp.filter(stock => {
+    return stock.symbol.match(keys) && !stock.symbol.match('GIX') // ! HAD TO ADD GIX BECAUSE ITS NOT TRADABLE BUT STILL ON LIST
+})
+
+for (let i = 0; i < finalChartFatDown.length; i++) {
+finalChartFatDown.sort((a,b) => {
     return a.changesPercentage - b.changesPercentage
     })
   }
+
+for (let i = 0; i < finalChartFatUp.length; i++) {
+finalChartFatUp.sort((a,b) => {
+    return b.changesPercentage - a.changesPercentage 
+    })
+  }
 // SLIM CHAT DOWN SO IT'S NOT BLOATED
-  let slimChart = 9
-  while (slimChart >= 0) {
-    finalChart.unshift(finalChartFat[slimChart])
-    slimChart--
+  let slimChartDown = 4
+  while (slimChartDown >= 0) {
+    finalChart.unshift(finalChartFatDown[slimChartDown])
+    slimChartDown--
+  }
+
+  let slimChartUp = 4
+  while (slimChartUp >= 0) {
+    finalChart.unshift(finalChartFatUp[slimChartUp])
+    slimChartUp--
   }
 } 
 
@@ -138,7 +172,7 @@ while (j < 10) { // LOOP FOR TECHNICAL SYMBOL
 
     const resSMA = await  fetch(`https://financialmodelingprep.com/api/v3/historical-price-full/${symbol}?apikey=4d4593bc9e6bc106ee9d1cbd6400b218`)
     const dataSMA = await resSMA.json() // SMA PULL USED FOR OTHER CALCS
-    console.log(dataSMA)
+
         let culSMA = 0
 
         // ------- SMA INDEX IS - 1 FROM TOTAL BECAUSE OF 0 INDEX = 1 -------------------- 
@@ -442,14 +476,24 @@ while (j < 10) { // LOOP FOR TECHNICAL SYMBOL
         }
     
 // ------------------BUILD OUT HTML
-async function buildIt() {
+function buildIt() {
         let j = 0
         rowOne.innerHTML = ''
+        let stocksUp = []
+        let stocksDown = []
         while (j < 10) {
 
-        const {symbol, changesPercentage, price, change, dayHigh, dayLow, avgVolume, volume, vwap} = finalChart[j]
+        const {symbol, changesPercentage, price, change, avgVolume, volume, vwap} = finalChart[j]
     
-    changesPercentagePositive = changesPercentage * -1
+    if (changesPercentage > 0) {
+        stocksUp.push(finalChart[j])
+    } else {
+        stocksDown.push(finalChart[j])
+    }
+
+// YOURE GOING TO HAVE TO MAKE ANOTHER LOOP THAT GOES THROUGH THESE TWO ARRAY AT THE SAME TIME JUST LIKE YOU DID WITH FINALCHART[J]. 
+// AND PLACES THEM SELECTIVELY INTO A NEW RESTYLED HTML ELEMENT. ONE SIDE DOWN ONE SIDE UP
+
 
     let volChange = (volume / avgVolume) * 100 // this little function can help change color for up and down
     let volChangeFixedBear = volChange.toFixed(2)
@@ -466,7 +510,7 @@ async function buildIt() {
     litterBox.classList.add('col-lg-6', 'p-3', 'border', 'text-center')
     litterBox.innerHTML = `<div class="row">
     <h2 id="symbol">${symbol}</h2>
-    <h3><i class="fas fa-long-arrow-alt-down mx-2" id="percentage-down"></i>${changesPercentagePositive}%</h3>
+    <h3><i class="fas fa-long-arrow-alt-down mx-2" id="percentage-down"></i>${changesPercentage}%</h3>
     </div>
     <div class="row mt-3">
     <h3 class="col-6" id="share-price-change">Share Price Loss
@@ -485,6 +529,8 @@ async function buildIt() {
     rowOne.appendChild(litterBox)
             j++
         }
+
+        console.log(stocksDown, stocksUp)
 
 }
 //----- BUILD TO PAGE ----- // ------- AT SOME POINT THE FUNCTION WILL BE SET IN AN INTERVAL - HAVING THE ARRs CLEAR IS NOT A BAD IDEA
