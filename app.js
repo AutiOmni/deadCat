@@ -1,5 +1,5 @@
 const rowOne = document.getElementById('rowOne')
-const rowTwo = document.getElementById('rowTwo')
+const rowTwo = document.getElementById('rowTwo') 
 
  /// DATE REFERENCE FOR MARKET DATA PULLS ----------------------------------------
 
@@ -13,21 +13,26 @@ let month = today.getMonth() + 1
 if (month < 10) {
     month = `0${month}`
 }
+
 const marketDay = today.getDay()
  // CHECK FOR MARKET OPEN - ADJUST DATE SO VWAP STILL PULLS DATA FROM LAST DAY
- if (marketDay === 0) {
+ if (marketDay == 0) {
     date = date - 2
-} else if (marketDay === 6) {
+} else if (marketDay == 6) {
     date = date - 1
 }
+
 const hour = today.getHours()
-const min = today.getMinutes()
+let min = today.getMinutes()
+if (min < 10) {
+    min = `0${min}`
+}
 const time = `${hour}${min}`
 const timeNum = parseInt(time)
 // THIS IS TO CHECK FOR MARKET DAY OPEN BEFORE MONDAY
-if (marketDay === 1 && timeNum < 830) {
+if (marketDay == 1 && timeNum < 830) {
     date = date - 3
-} else if (marketDay >=2 && marketDay < 6 && timeNum < 830) {
+} else if (marketDay >= 2 && marketDay < 6 && timeNum < 830) {
     date = date - 1
 }
 
@@ -124,16 +129,16 @@ finalChartFat.sort((a,b) => {
 async function technicalIndicators() {
 let j = 0
 
-while (j < 10) { // VWAP LOOP
+while (j < 10) { // LOOP FOR TECHNICAL SYMBOL
 
  // THIS IS THE ALL MIGHTY SYMBOL
  const {symbol} = finalChart[j]
 
 // SMA -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-    const resSMA = await  fetch(`https://financialmodelingprep.com/api/v3/historical-price-full/${symbol}?serietype=line&apikey=4d4593bc9e6bc106ee9d1cbd6400b218`)
+    const resSMA = await  fetch(`https://financialmodelingprep.com/api/v3/historical-price-full/${symbol}?apikey=4d4593bc9e6bc106ee9d1cbd6400b218`)
     const dataSMA = await resSMA.json() // SMA PULL USED FOR OTHER CALCS
-
+    console.log(dataSMA)
         let culSMA = 0
 
         // ------- SMA INDEX IS - 1 FROM TOTAL BECAUSE OF 0 INDEX = 1 -------------------- 
@@ -245,7 +250,7 @@ while (j < 10) { // VWAP LOOP
                             let derp = (2/13) * (dataSMA.historical[emaTwelve].close - arrEma[0]) + arrEma[0]
                             arrEma.unshift(derp)
                             arrEma.pop()
-                            if (emaTwelve < 10 && emaTwelve > 0) { //THIS IF STATEMENT IS TO STORE VARIABLES FOR LATER MACD SIGNAL LINE
+                            if (emaTwelve < 10 && emaTwelve >= 1) { //THIS IF STATEMENT IS TO STORE VARIABLES FOR LATER MACD SIGNAL LINE
                                 macdTwelve.unshift(derp)
                             }
                             emaTwelve--
@@ -271,9 +276,10 @@ while (j < 10) { // VWAP LOOP
                             let derp = (2/27) * (dataSMA.historical[emaTwentySix].close - arrEma[0]) + arrEma[0]
                             arrEma.unshift(derp)
                             arrEma.pop()
-                            if (emaTwentySix < 10 && emaTwentySix > 0) { //THIS IF STATEMENT IS TO STORE VARIABLES FOR LATER MACD SIGNAL LINE
+                            if (emaTwentySix < 10 && emaTwentySix >= 1) { //THIS IF STATEMENT IS TO STORE VARIABLES FOR LATER MACD SIGNAL LINE
                                 macdTwentySix.unshift(derp)
                             }
+                            
                             emaTwentySix--
                         }
                         finalChart[j].emaTwentySix = arrEma[0].toFixed(2) 
@@ -327,7 +333,7 @@ while (j < 10) { // VWAP LOOP
                         prevDayEmaSub = 0
                     }
 
-    // MACD ------------------------------------------------------------------------------------------------------------------------------
+// MACD ------------------------------------------------------------------------------------------------------------------------------
 
     const macd = finalChart[j].emaTwelve - finalChart[j].emaTwentySix
     finalChart[j].macd = macd.toFixed(2)
@@ -338,15 +344,16 @@ while (j < 10) { // VWAP LOOP
         averageMacd.unshift(macdTwelve[iMacd] - macdTwentySix[iMacd])
         iMacd--
     }
-    let n = averageMacd.reduce((a,b) => a + b)
-    let finalAverageMacd = n / 9
+    let averageSum = averageMacd.reduce((a,b) => a + b)
+    let finalAverageMacd = averageSum / 9
     let macdSignalLine = (2/9) * (finalChart[j].macd - finalAverageMacd) + finalAverageMacd
     finalChart[j].macdSignalLine = macdSignalLine.toFixed(2)
     // HISTORGRAM CALC ------------------------------------- IF HISTOGRAM GOES FROM NEGATIVE TO POSITIVE IT IS BULLISH
     let histogram = finalChart[j].macd - finalChart[j].macdSignalLine
-    finalChart[j].histogram = histogram.toFixed(2)
-    if (finalChart[j].histogram === 'NaN') {
-        finalChart[j].histogram = 'Insufficient Data Available'
+    finalChart[j].macdHistogram = histogram.toFixed(2)
+// FOR NO DATA TO PULL FROM
+    if (finalChart[j].macdHistogram === 'NaN') {
+        finalChart[j].macdHistogram = 'Insufficient Data Available'
     }
     if (finalChart[j].macd === 'NaN') {
         finalChart[j].macd = 'Insufficient Data Available'
@@ -357,28 +364,21 @@ while (j < 10) { // VWAP LOOP
 
     // RSI ------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-                    let iRSI = 14
-                    let iRSIAdjusted = 15
+                    let iRSI = 15
+                    let iRSIAdjusted = 16
                     let recentUpper = 0
                     let recentDowner = 0
                     let upMove = 0
                     let downMove = 0
                     let pastDownPeriod = 0
                     let pastUpPeriod = 0
-
-                     // MOST RECENT DIFFERENCE
-                    if (dataSMA.historical[0].close > dataSMA.historical[1].close) {
-                        recentUpper = dataSMA.historical[0].close - dataSMA.historical[1].close
-                    } else {
-                        recentDowner = dataSMA.historical[1].close - dataSMA.historical[0].close
-                    }
  
                     // loop to get average
-                    while (iRSI >= 1) {
+                    while (iRSI > 1) {
                            if (dataSMA.historical[iRSI].close > dataSMA.historical[iRSIAdjusted].close) {
-                               upMove += dataSMA.historical[iRSI].close - dataSMA.historical[iRSIAdjusted].close
+                               upMove += (dataSMA.historical[iRSI].close - dataSMA.historical[iRSIAdjusted].close)
                            } else {
-                               downMove += dataSMA.historical[iRSIAdjusted].close - dataSMA.historical[iRSI].close 
+                               downMove += (dataSMA.historical[iRSIAdjusted].close - dataSMA.historical[iRSI].close)
                            }
                        iRSI--
                        iRSIAdjusted--
@@ -387,17 +387,26 @@ while (j < 10) { // VWAP LOOP
                     let averageUp = upMove / 14
                     let averageDown = downMove / 14
 
+                     // MOST RECENT DIFFERENCE
+                    if (dataSMA.historical[0].close > dataSMA.historical[1].close) {
+                            recentUpper = dataSMA.historical[0].close - dataSMA.historical[1].close
+                         } else {
+                            recentDowner = dataSMA.historical[1].close - dataSMA.historical[0].close
+                         }
+                   
+
                      pastUpPeriod = ((averageUp * 13) + recentUpper) / 14
                      pastDownPeriod = ((averageDown * 13) + recentDowner) / 14
 
                     let rsi = 100 - (100 / (1 + pastUpPeriod/pastDownPeriod))
                     finalChart[j].rsi = rsi.toFixed(2)
 
+
     // ------------------------------ VWAP ------------------------------------------------------------------------------------
 
           const resVWAP = await  fetch(`https://financialmodelingprep.com/api/v3/historical-chart/5min/${symbol}?apikey=4d4593bc9e6bc106ee9d1cbd6400b218`)
           const dataVWAP = await resVWAP.json()
-
+                
             // ----------- VWAP CALUC -------------------------------------------
                 let dayLengthPeriod = 0
                 let tpvCul = 0
@@ -433,7 +442,7 @@ while (j < 10) { // VWAP LOOP
         }
     
 // ------------------BUILD OUT HTML
-function buildIt() {
+async function buildIt() {
         let j = 0
         rowOne.innerHTML = ''
         while (j < 10) {
@@ -442,7 +451,16 @@ function buildIt() {
     
     changesPercentagePositive = changesPercentage * -1
 
-  
+    let volChange = (volume / avgVolume) * 100 // this little function can help change color for up and down
+    let volChangeFixedBear = volChange.toFixed(2)
+    let volChangeFixedBull = 0
+    if (volChange > 0) {
+        volChangeFixedBull = volChange.toFixed(2)
+        volChangeFixedBear = ''
+    } else {
+        volChangeFixedBull = ''
+    }
+   
 
     const litterBox = document.createElement('div')
     litterBox.classList.add('col-lg-6', 'p-3', 'border', 'text-center')
@@ -458,16 +476,16 @@ function buildIt() {
     </div>
     <div class="row mt-3">
     <h3 class="col-6" id="share-price-change">Today's Volume
-    <span class="d-block"> ${volume}</span></h3>
-    <h3 class="col-6" id="current-price">Average Daily Volume
-    <span class="d-block">${avgVolume}</span></h3>
-    <span class="d-block">Five Minute VWAP: $${vwap}</span></h3>
+    <span class="d-block">${volume}</span></h3>
+    <h3 class="col-6" id="current-price">Volume Change
+    <span class="d-block"><span class="bear">${volChangeFixedBear}</span><span class="bull">${volChangeFixedBull}%</span></span></h3> 
+    <span class="d-block">VWAP: $${vwap}</span></h3>
     </div>
     `
     rowOne.appendChild(litterBox)
- 
             j++
         }
+
 }
 //----- BUILD TO PAGE ----- // ------- AT SOME POINT THE FUNCTION WILL BE SET IN AN INTERVAL - HAVING THE ARRs CLEAR IS NOT A BAD IDEA
 
@@ -479,12 +497,14 @@ async function buildToPage() {
     
     await technicalIndicators()
 
-
     buildIt()
+    
 
     } catch (e){
         console.log('Build-To-Page Error', (e))
     }
+
+    
 }
 
 buildToPage()
