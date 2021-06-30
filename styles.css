@@ -208,6 +208,10 @@ nav {
     color: var(--bear-market-color);
 }
 
+#percentage-up {
+    color: var(--bull-market-color);
+}
+
 #share-price-change {
 
 }
@@ -222,4 +226,7 @@ nav {
 
 .bull {
     color: var(--bull-market-color)
+}
+.bear {
+    color: var(--bear-market-color)
 }

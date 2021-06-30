@@ -476,14 +476,16 @@ while (j < 10) { // LOOP FOR TECHNICAL SYMBOL
         }
     
 // ------------------BUILD OUT HTML
-function buildIt() {
+let stocksUp = []
+let stocksDown = []
+async function buildIt() {
+
         let j = 0
-        rowOne.innerHTML = ''
-        let stocksUp = []
-        let stocksDown = []
+  
+
         while (j < 10) {
 
-        const {symbol, changesPercentage, price, change, avgVolume, volume, vwap} = finalChart[j]
+        const {changesPercentage} = finalChart[j]
     
     if (changesPercentage > 0) {
         stocksUp.push(finalChart[j])
@@ -491,46 +493,175 @@ function buildIt() {
         stocksDown.push(finalChart[j])
     }
 
+    j++
+        } // END OF FILTER LOOP TO NEW UP/DOWN ARR
+
+        
+for (let i = 0; i < stocksUp.length; i++) {
+    stocksUp[i].symbolUp = stocksUp[i].symbol
+    delete stocksUp[i].symbol
+    stocksUp[i].changeUp = stocksUp[i].change
+    delete stocksUp[i].change
+    stocksUp[i].avgVolumeUp = stocksUp[i].avgVolume
+    delete stocksUp[i].avgVolume
+    stocksUp[i].changesPercentageUp = stocksUp[i].changesPercentage
+    delete stocksUp[i].changesPercentage
+    stocksUp[i].emaTwelveUp = stocksUp[i].emaTwelve
+    delete stocksUp[i].emaTwelve
+    stocksUp[i].emaTwentySixUp = stocksUp[i].emaTwentySix
+    delete stocksUp[i].emaTwentySix
+    stocksUp[i].emaFiftyUp = stocksUp[i].emaFifty
+    delete stocksUp[i].emaFifty
+    stocksUp[i].emaTwoHunUp = stocksUp[i].emaTwoHun
+    delete stocksUp[i].emaTwoHun
+    stocksUp[i].macdUp = stocksUp[i].macd
+    delete stocksUp[i].macd
+    stocksUp[i].macdHistogramUp = stocksUp[i].macdHistogram
+    delete stocksUp[i].macdHistogram
+    stocksUp[i].macdSignalLineUp = stocksUp[i].macdSignalLine
+    delete stocksUp[i].macdSignalLine
+    stocksUp[i].priceUp = stocksUp[i].price
+    delete stocksUp[i].price
+    stocksUp[i].rsiUp = stocksUp[i].rsi
+    delete stocksUp[i].rsi
+    stocksUp[i].smaFiveTeenUp = stocksUp[i].smaFiveTeen
+    delete stocksUp[i].smaFiveTeen
+    stocksUp[i].smaTwentyUp = stocksUp[i].smaTwenty
+    delete stocksUp[i].smaTwenty
+    stocksUp[i].smaThirtyUp = stocksUp[i].smaThirty
+    delete stocksUp[i].smaThirty
+    stocksUp[i].smaFiftyUp = stocksUp[i].smaFifty
+    delete stocksUp[i].smaFifty
+    stocksUp[i].smaHunUp = stocksUp[i].smaHun
+    delete stocksUp[i].smaHun
+    stocksUp[i].smaTwoHunUp = stocksUp[i].smaTwoHun
+    delete stocksUp[i].smaTwoHun
+    stocksUp[i].volumeUp = stocksUp[i].volume
+    delete stocksUp[i].volume
+    stocksUp[i].vwapUp = stocksUp[i].vwap
+    delete stocksUp[i].vwap
+
+    stocksDown[i].symbolDown = stocksDown[i].symbol
+    delete stocksDown[i].symbol
+    stocksDown[i].changeDown = stocksDown[i].change
+    delete stocksDown[i].change
+    stocksDown[i].avgVolumeDown = stocksDown[i].avgVolume
+    delete stocksDown[i].avgVolume
+    stocksDown[i].changesPercentageDown = stocksDown[i].changesPercentage
+    delete stocksDown[i].changesPercentage
+    stocksDown[i].emaTwelveDown = stocksDown[i].emaTwelve
+    delete stocksDown[i].emaTwelve
+    stocksDown[i].emaTwentySixDown = stocksDown[i].emaTwentySix
+    delete stocksDown[i].emaTwentySix
+    stocksDown[i].emaFiftyDown = stocksDown[i].emaFifty
+    delete stocksDown[i].emaFifty
+    stocksDown[i].emaTwoHunDown = stocksDown[i].emaTwoHun
+    delete stocksDown[i].emaTwoHun
+    stocksDown[i].macdDown = stocksDown[i].macd
+    delete stocksDown[i].macd
+    stocksDown[i].macdHistogramDown = stocksDown[i].macdHistogram
+    delete stocksDown[i].macdHistogram
+    stocksDown[i].macdSignalLineDown = stocksDown[i].macdSignalLine
+    delete stocksDown[i].macdSignalLine
+    stocksDown[i].priceDown = stocksDown[i].price
+    delete stocksDown[i].price
+    stocksDown[i].rsiDown = stocksDown[i].rsi
+    delete stocksDown[i].rsi
+    stocksDown[i].smaFiveTeenDown = stocksDown[i].smaFiveTeen
+    delete stocksDown[i].smaFiveTeen
+    stocksDown[i].smaTwentyDown = stocksDown[i].smaTwenty
+    delete stocksDown[i].smaTwenty
+    stocksDown[i].smaThirtyDown = stocksDown[i].smaThirty
+    delete stocksDown[i].smaThirty
+    stocksDown[i].smaFiftyDown = stocksDown[i].smaFifty
+    delete stocksDown[i].smaFifty
+    stocksDown[i].smaHunDown = stocksDown[i].smaHun
+    delete stocksDown[i].smaHun
+    stocksDown[i].smaTwoHunDown = stocksDown[i].smaTwoHun
+    delete stocksDown[i].smaTwoHun
+    stocksDown[i].volumeDown = stocksDown[i].volume
+    delete stocksDown[i].volume
+    stocksDown[i].vwapDown = stocksDown[i].vwap
+    delete stocksDown[i].vwap
+}
+}
+
+function doIt() {
+
+
+console.log(stocksUp, stocksDown)
+rowOne.innerHTML = '' // THIS CLEAR HTML BEFORE BUILD
+
+for (let i = 0; i < stocksDown.length; i++) {
+
 // YOURE GOING TO HAVE TO MAKE ANOTHER LOOP THAT GOES THROUGH THESE TWO ARRAY AT THE SAME TIME JUST LIKE YOU DID WITH FINALCHART[J]. 
 // AND PLACES THEM SELECTIVELY INTO A NEW RESTYLED HTML ELEMENT. ONE SIDE DOWN ONE SIDE UP
 
+    const {avgVolumeUp, changeUp, changesPercentageUp, priceUp, symbolUp, volumeUp, vwapUp} = stocksUp[i]
 
-    let volChange = (volume / avgVolume) * 100 // this little function can help change color for up and down
-    let volChangeFixedBear = volChange.toFixed(2)
-    let volChangeFixedBull = 0
-    if (volChange > 0) {
-        volChangeFixedBull = volChange.toFixed(2)
-        volChangeFixedBear = ''
-    } else {
-        volChangeFixedBull = ''
-    }
+    const {avgVolumeDown, changeDown, changesPercentageDown, priceDown, symbolDown, volumeDown, vwapDown} = stocksDown[i]
+
+    let volumeIncreaseUp = (volumeUp / avgVolumeUp) * 100 
+    let volumeIncreaseDown = (volumeDown / avgVolumeDown) * 100 
+   
    
 
     const litterBox = document.createElement('div')
-    litterBox.classList.add('col-lg-6', 'p-3', 'border', 'text-center')
-    litterBox.innerHTML = `<div class="row">
-    <h2 id="symbol">${symbol}</h2>
-    <h3><i class="fas fa-long-arrow-alt-down mx-2" id="percentage-down"></i>${changesPercentage}%</h3>
+    litterBox.classList.add('row')
+    litterBox.innerHTML = `            
+    <div class="col-md-6 p-3 border text-center">
+    <h2 id="symbol">${symbolDown}</h2>
+    <h3><i class="fas fa-long-arrow-alt-down mx-2" id="percentage-down"></i>${changesPercentageDown.toFixed(2)}%</h3>
+
+    <div class="row">
+
+        <h3 class="col-md-6" id="share-price-change">Share Price Loss
+            <span class="d-block bear">$ ${changeDown.toFixed(2)}</span></h3>
+        <h3 class="col-md-6" id="current-price">Current Price 
+            <span class="d-block bear">$ ${priceDown.toFixed(2)}</span></h3>
+
     </div>
+    
     <div class="row mt-3">
-    <h3 class="col-6" id="share-price-change">Share Price Loss
-    <span class="d-block"> $ ${change.toFixed(2)}</span></h3>
-    <h3 class="col-6" id="current-price">Current Price 
-    <span class="d-block"> $ ${price.toFixed(2)}</span></h3>
+
+        <h3 class="col-6" id="share-price-change">Today's Volume
+            <span class="d-block">${volumeDown}</span></h3>
+        <h3 class="col-6" id="current-price">Volume Change
+            <span class="d-block">${volumeIncreaseDown.toFixed(2)}%</span></h3>
+            <span class="d-block">Five Minute VWAP:${vwapDown}</span></h3>
+            
     </div>
-    <div class="row mt-3">
-    <h3 class="col-6" id="share-price-change">Today's Volume
-    <span class="d-block">${volume}</span></h3>
-    <h3 class="col-6" id="current-price">Volume Change
-    <span class="d-block"><span class="bear">${volChangeFixedBear}</span><span class="bull">${volChangeFixedBull}%</span></span></h3> 
-    <span class="d-block">VWAP: $${vwap}</span></h3>
-    </div>
+
+</div>
+<!----------------------------------- UPPER ---------------------------------------->
+<div class="col-md-6 p-3 border text-center">
+        <h2 id="symbol">${symbolUp}</h2>
+        <h3><i class="fas fa-long-arrow-alt-up mx-2" id="percentage-up"></i>${changesPercentageUp.toFixed(2)}%</h3>
+
+        <div class="row">
+
+        <h3 class="col-md-6" id="share-price-change">Share Price Loss
+            <span class="d-block bull">$ ${changeUp.toFixed(2)}</span></h3>
+        <h3 class="col-md-6" id="current-price">Current Price 
+            <span class="d-block bull">$ ${priceUp.toFixed(2)}</span></h3>
+
+        </div>
+
+        <div class="row mt-3">
+
+            <h3 class="col-6" id="share-price-change">Today's Volume
+                <span class="d-block"></span>${volumeUp}</h3>
+            <h3 class="col-6" id="current-price">Volume Change
+                <span class="d-block">${volumeIncreaseUp.toFixed(2)}%</span></h3>
+                <span class="d-block">Five Minute VWAP:${vwapUp}</span></h3>
+        </div>
+</div>
     `
     rowOne.appendChild(litterBox)
-            j++
-        }
 
-        console.log(stocksDown, stocksUp)
+    }
+
+   
 
 }
 //----- BUILD TO PAGE ----- // ------- AT SOME POINT THE FUNCTION WILL BE SET IN AN INTERVAL - HAVING THE ARRs CLEAR IS NOT A BAD IDEA
@@ -543,7 +674,9 @@ async function buildToPage() {
     
     await technicalIndicators()
 
-    buildIt()
+    await buildIt()
+
+    doIt()
     
 
     } catch (e){
