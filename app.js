@@ -245,8 +245,8 @@ function smaFunction(chartArr, dataPull, num) {
                 }
             } 
 // EMA FUNCTION ------------------------------------------------------------------------------------------------------------------------------------------       
-let macdTwelve = [] // ARRs USED FOR MACD PULLS
-let macdTwentySix = []
+let macdTwelve = [] // ARRs USED FOR MACD TWELVE HISTORY
+let macdTwentySix = [] // ARRs USED FOR MACD TWENTY SIX HISTORY
 
 function emaFunction(chartArr, dataPull, num) {
                 let emaTwelve = 23
@@ -388,7 +388,7 @@ function macdFunction(chartArr, num) {
 
    
 }
-// RSI FUNCTION -----------------------------------------------------------------------------------------------------------------------------------------       
+// RSI FUNCTION ------------------------------------------------------------------------------------------------------------------------------------------      
 function rsiFunction(chartArr, dataPull, num) {
 
     let iRSI = 15
@@ -437,196 +437,202 @@ function rsiFunction(chartArr, dataPull, num) {
 }
 
 } 
-
-
-// TA FUNCTION ---------------------------------
-async function technicalIndicators() {
-let j = 0
-
-while (j < 10) { // LOOP FOR TECHNICAL SYMBOL
-
- // THIS IS THE ALL MIGHTY SYMBOL
- const {symbol} = finalChart[j]
-
-
-    const resSMA = await  fetch(`https://financialmodelingprep.com/api/v3/historical-price-full/${symbol}?apikey=4d4593bc9e6bc106ee9d1cbd6400b218`)
-    const dataSMA = await resSMA.json() // SMA PULL USED FOR OTHER CALCS
-// SMA -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-smaFunction(finalChart, dataSMA, j)
-                
-// EMA ------------------------------------------------------------------------------------------------------------------------------------------       
-
-emaFunction(finalChart, dataSMA, j)
-
-// MACD ------------------------------------------------------------------------------------------------------------------------------
-
-macdFunction(finalChart, j)
-
-// RSI ------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-rsiFunction(finalChart, dataSMA, j)
-
-    // ------------------------------ VWAP ------------------------------------------------------------------------------------
-
-    const resVWAP = await  fetch(`https://financialmodelingprep.com/api/v3/historical-chart/5min/${symbol}?apikey=4d4593bc9e6bc106ee9d1cbd6400b218`)
-    const dataVWAP = await resVWAP.json()
-
+// VWAP FUNCTION ------------------------------------------------------------------------------------------------------------------------------------------       
 function vwapFunction(chartArr, dataPull, num ) {
 
 
 
                 
-            // ----------- VWAP CALUC -------------------------------------------
-                let dayLengthPeriod = 0
-                let tpvCul = 0
-                let volumeCul = 0
-                let tempVWAP = [] // HOLD VWAP PERIOD - TAKES FROM 0 INDEX FOR MOST CURRENT
+    // ----------- VWAP CALUC -------------------------------------------
+        let dayLengthPeriod = 0
+        let tpvCul = 0
+        let volumeCul = 0
+        let tempVWAP = [] // HOLD VWAP PERIOD - TAKES FROM 0 INDEX FOR MOST CURRENT
 
-                // -------------THIS IS FOR GETTING THE DAY LENGTH FOR VWAP
-                while (dataPull[dayLengthPeriod].date.slice(0,10) == todayDate) { 
-                        dayLengthPeriod++ 
-                        } 
-        
-               // --------------------THIS IS FOR CALCULATING THE VWAP AND PUSHING TO 
-                for (let i = 0; i < dayLengthPeriod; i++) {
+        // -------------THIS IS FOR GETTING THE DAY LENGTH FOR VWAP
+        while (dataPull[dayLengthPeriod].date.slice(0,10) == todayDate) { 
+                dayLengthPeriod++ 
+                } 
 
-                    const {volume, high, close, low, date} = dataPull[i];   
-                    let tpv = (high + low + close) / 3;
-                    if (date.slice(0,10) == todayDate) {
-                    tpvCul += tpv * volume
-                    volumeCul += volume
-                    }
-                    vwapFinal = tpvCul / volumeCul // --------- THIS IS VWAP!!!!!!!!
-                    tempVWAP.unshift(vwapFinal) //ADD VWAP TO SYMBOL OBJECT
-                }
-                chartArr[num].vwap = tempVWAP[0].toFixed(2)
-                tempVWAP = []
-                 } // END OF vwap function
+       // --------------------THIS IS FOR CALCULATING THE VWAP AND PUSHING TO 
+        for (let i = 0; i < dayLengthPeriod; i++) {
 
-                 vwapFunction(finalChart, dataVWAP, j)
-
-                j++
-        }//end j loop
-            console.log(finalChart)
+            const {volume, high, close, low, date} = dataPull[i];   
+            let tpv = (high + low + close) / 3;
+            if (date.slice(0,10) == todayDate) {
+            tpvCul += tpv * volume
+            volumeCul += volume
+            }
+            vwapFinal = tpvCul / volumeCul // --------- THIS IS VWAP!!!!!!!!
+            tempVWAP.unshift(vwapFinal) //ADD VWAP TO SYMBOL OBJECT
         }
+        chartArr[num].vwap = tempVWAP[0].toFixed(2)
+        tempVWAP = []
+         } 
+
+
+// TA FUNCTION ---------------------------------
+
+async function technicalIndicators() {
+
+    let j = 0
+
+    while (j < 10) { // LOOP FOR TECHNICAL SYMBOL
+
+        // THIS IS THE ALL MIGHTY SYMBOL USED FOR PULLS
+        const {symbol} = finalChart[j]
+
+        //THIS PULL IS FOR CLOSE PRICES TO CALC TAs
+        const resSMA = await  fetch(`https://financialmodelingprep.com/api/v3/historical-price-full/${symbol}?apikey=4d4593bc9e6bc106ee9d1cbd6400b218`)
+        const dataSMA = await resSMA.json() // SMA PULL USED FOR OTHER CALCS
+
+        // SMA -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+        smaFunction(finalChart, dataSMA, j)
+                        
+        // EMA ------------------------------------------------------------------------------------------------------------------------------------------       
+
+        emaFunction(finalChart, dataSMA, j)
+
+        // MACD ------------------------------------------------------------------------------------------------------------------------------
+
+        macdFunction(finalChart, j)
+
+        // RSI ------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+        rsiFunction(finalChart, dataSMA, j)
+
+        // VWAP ------------------------------------------------------------------------------------------------------------------------------------------------
+
+        const resVWAP = await  fetch(`https://financialmodelingprep.com/api/v3/historical-chart/5min/${symbol}?apikey=4d4593bc9e6bc106ee9d1cbd6400b218`)
+        const dataVWAP = await resVWAP.json()
+
+        vwapFunction(finalChart, dataVWAP, j)
+
+        j++ // UPDATE WHILE LOOP
+
+    }// THIS IS THE END OF LOOP
+            console.log(finalChart)
+}
     
 // ------------------BUILD OUT HTML
+
 let stocksUp = []
 let stocksDown = []
-async function buildIt() {
 
-        let j = 0
-  
+function filterUpDownStocks() {
 
-        while (j < 10) {
+    let j = 0
+
+    while (j < 10) {
 
         const {changesPercentage} = finalChart[j]
-    
-    if (changesPercentage > 0) {
-        stocksUp.push(finalChart[j])
-    } else {
-        stocksDown.push(finalChart[j])
-    }
-
-    j++
-        } // END OF FILTER LOOP TO NEW UP/DOWN ARR
-
         
-for (let i = 0; i < stocksUp.length; i++) {
-    stocksUp[i].symbolUp = stocksUp[i].symbol
-    delete stocksUp[i].symbol
-    stocksUp[i].changeUp = stocksUp[i].change
-    delete stocksUp[i].change
-    stocksUp[i].avgVolumeUp = stocksUp[i].avgVolume
-    delete stocksUp[i].avgVolume
-    stocksUp[i].changesPercentageUp = stocksUp[i].changesPercentage
-    delete stocksUp[i].changesPercentage
-    stocksUp[i].emaTwelveUp = stocksUp[i].emaTwelve
-    delete stocksUp[i].emaTwelve
-    stocksUp[i].emaTwentySixUp = stocksUp[i].emaTwentySix
-    delete stocksUp[i].emaTwentySix
-    stocksUp[i].emaFiftyUp = stocksUp[i].emaFifty
-    delete stocksUp[i].emaFifty
-    stocksUp[i].emaTwoHunUp = stocksUp[i].emaTwoHun
-    delete stocksUp[i].emaTwoHun
-    stocksUp[i].macdUp = stocksUp[i].macd
-    delete stocksUp[i].macd
-    stocksUp[i].macdHistogramUp = stocksUp[i].macdHistogram
-    delete stocksUp[i].macdHistogram
-    stocksUp[i].macdSignalLineUp = stocksUp[i].macdSignalLine
-    delete stocksUp[i].macdSignalLine
-    stocksUp[i].priceUp = stocksUp[i].price
-    delete stocksUp[i].price
-    stocksUp[i].rsiUp = stocksUp[i].rsi
-    delete stocksUp[i].rsi
-    stocksUp[i].smaFiveTeenUp = stocksUp[i].smaFiveTeen
-    delete stocksUp[i].smaFiveTeen
-    stocksUp[i].smaTwentyUp = stocksUp[i].smaTwenty
-    delete stocksUp[i].smaTwenty
-    stocksUp[i].smaThirtyUp = stocksUp[i].smaThirty
-    delete stocksUp[i].smaThirty
-    stocksUp[i].smaFiftyUp = stocksUp[i].smaFifty
-    delete stocksUp[i].smaFifty
-    stocksUp[i].smaHunUp = stocksUp[i].smaHun
-    delete stocksUp[i].smaHun
-    stocksUp[i].smaTwoHunUp = stocksUp[i].smaTwoHun
-    delete stocksUp[i].smaTwoHun
-    stocksUp[i].volumeUp = stocksUp[i].volume
-    delete stocksUp[i].volume
-    stocksUp[i].vwapUp = stocksUp[i].vwap
-    delete stocksUp[i].vwap
+        if (changesPercentage > 0) {
+            stocksUp.push(finalChart[j])
+        } else {
+            stocksDown.push(finalChart[j])
+        }
 
-    stocksDown[i].symbolDown = stocksDown[i].symbol
-    delete stocksDown[i].symbol
-    stocksDown[i].changeDown = stocksDown[i].change
-    delete stocksDown[i].change
-    stocksDown[i].avgVolumeDown = stocksDown[i].avgVolume
-    delete stocksDown[i].avgVolume
-    stocksDown[i].changesPercentageDown = stocksDown[i].changesPercentage
-    delete stocksDown[i].changesPercentage
-    stocksDown[i].emaTwelveDown = stocksDown[i].emaTwelve
-    delete stocksDown[i].emaTwelve
-    stocksDown[i].emaTwentySixDown = stocksDown[i].emaTwentySix
-    delete stocksDown[i].emaTwentySix
-    stocksDown[i].emaFiftyDown = stocksDown[i].emaFifty
-    delete stocksDown[i].emaFifty
-    stocksDown[i].emaTwoHunDown = stocksDown[i].emaTwoHun
-    delete stocksDown[i].emaTwoHun
-    stocksDown[i].macdDown = stocksDown[i].macd
-    delete stocksDown[i].macd
-    stocksDown[i].macdHistogramDown = stocksDown[i].macdHistogram
-    delete stocksDown[i].macdHistogram
-    stocksDown[i].macdSignalLineDown = stocksDown[i].macdSignalLine
-    delete stocksDown[i].macdSignalLine
-    stocksDown[i].priceDown = stocksDown[i].price
-    delete stocksDown[i].price
-    stocksDown[i].rsiDown = stocksDown[i].rsi
-    delete stocksDown[i].rsi
-    stocksDown[i].smaFiveTeenDown = stocksDown[i].smaFiveTeen
-    delete stocksDown[i].smaFiveTeen
-    stocksDown[i].smaTwentyDown = stocksDown[i].smaTwenty
-    delete stocksDown[i].smaTwenty
-    stocksDown[i].smaThirtyDown = stocksDown[i].smaThirty
-    delete stocksDown[i].smaThirty
-    stocksDown[i].smaFiftyDown = stocksDown[i].smaFifty
-    delete stocksDown[i].smaFifty
-    stocksDown[i].smaHunDown = stocksDown[i].smaHun
-    delete stocksDown[i].smaHun
-    stocksDown[i].smaTwoHunDown = stocksDown[i].smaTwoHun
-    delete stocksDown[i].smaTwoHun
-    stocksDown[i].volumeDown = stocksDown[i].volume
-    delete stocksDown[i].volume
-    stocksDown[i].vwapDown = stocksDown[i].vwap
-    delete stocksDown[i].vwap
-}
+        j++
+
+    } // END OF FILTER LOOP TO NEW UP/DOWN ARR
+
+        // REASSIGN OBJECT NAMES FOR UP AND DOWN STOCKS
+    for (let i = 0; i < stocksUp.length; i++) {
+        // UPPERS ---------------------------------------------
+        stocksUp[i].symbolUp = stocksUp[i].symbol
+        delete stocksUp[i].symbol
+        stocksUp[i].changeUp = stocksUp[i].change
+        delete stocksUp[i].change
+        stocksUp[i].avgVolumeUp = stocksUp[i].avgVolume
+        delete stocksUp[i].avgVolume
+        stocksUp[i].changesPercentageUp = stocksUp[i].changesPercentage
+        delete stocksUp[i].changesPercentage
+        stocksUp[i].emaTwelveUp = stocksUp[i].emaTwelve
+        delete stocksUp[i].emaTwelve
+        stocksUp[i].emaTwentySixUp = stocksUp[i].emaTwentySix
+        delete stocksUp[i].emaTwentySix
+        stocksUp[i].emaFiftyUp = stocksUp[i].emaFifty
+        delete stocksUp[i].emaFifty
+        stocksUp[i].emaTwoHunUp = stocksUp[i].emaTwoHun
+        delete stocksUp[i].emaTwoHun
+        stocksUp[i].macdUp = stocksUp[i].macd
+        delete stocksUp[i].macd
+        stocksUp[i].macdHistogramUp = stocksUp[i].macdHistogram
+        delete stocksUp[i].macdHistogram
+        stocksUp[i].macdSignalLineUp = stocksUp[i].macdSignalLine
+        delete stocksUp[i].macdSignalLine
+        stocksUp[i].priceUp = stocksUp[i].price
+        delete stocksUp[i].price
+        stocksUp[i].rsiUp = stocksUp[i].rsi
+        delete stocksUp[i].rsi
+        stocksUp[i].smaFiveTeenUp = stocksUp[i].smaFiveTeen
+        delete stocksUp[i].smaFiveTeen
+        stocksUp[i].smaTwentyUp = stocksUp[i].smaTwenty
+        delete stocksUp[i].smaTwenty
+        stocksUp[i].smaThirtyUp = stocksUp[i].smaThirty
+        delete stocksUp[i].smaThirty
+        stocksUp[i].smaFiftyUp = stocksUp[i].smaFifty
+        delete stocksUp[i].smaFifty
+        stocksUp[i].smaHunUp = stocksUp[i].smaHun
+        delete stocksUp[i].smaHun
+        stocksUp[i].smaTwoHunUp = stocksUp[i].smaTwoHun
+        delete stocksUp[i].smaTwoHun
+        stocksUp[i].volumeUp = stocksUp[i].volume
+        delete stocksUp[i].volume
+        stocksUp[i].vwapUp = stocksUp[i].vwap
+        delete stocksUp[i].vwap
+        // DOWNERS ---------------------------------------------
+        stocksDown[i].symbolDown = stocksDown[i].symbol
+        delete stocksDown[i].symbol
+        stocksDown[i].changeDown = stocksDown[i].change
+        delete stocksDown[i].change
+        stocksDown[i].avgVolumeDown = stocksDown[i].avgVolume
+        delete stocksDown[i].avgVolume
+        stocksDown[i].changesPercentageDown = stocksDown[i].changesPercentage
+        delete stocksDown[i].changesPercentage
+        stocksDown[i].emaTwelveDown = stocksDown[i].emaTwelve
+        delete stocksDown[i].emaTwelve
+        stocksDown[i].emaTwentySixDown = stocksDown[i].emaTwentySix
+        delete stocksDown[i].emaTwentySix
+        stocksDown[i].emaFiftyDown = stocksDown[i].emaFifty
+        delete stocksDown[i].emaFifty
+        stocksDown[i].emaTwoHunDown = stocksDown[i].emaTwoHun
+        delete stocksDown[i].emaTwoHun
+        stocksDown[i].macdDown = stocksDown[i].macd
+        delete stocksDown[i].macd
+        stocksDown[i].macdHistogramDown = stocksDown[i].macdHistogram
+        delete stocksDown[i].macdHistogram
+        stocksDown[i].macdSignalLineDown = stocksDown[i].macdSignalLine
+        delete stocksDown[i].macdSignalLine
+        stocksDown[i].priceDown = stocksDown[i].price
+        delete stocksDown[i].price
+        stocksDown[i].rsiDown = stocksDown[i].rsi
+        delete stocksDown[i].rsi
+        stocksDown[i].smaFiveTeenDown = stocksDown[i].smaFiveTeen
+        delete stocksDown[i].smaFiveTeen
+        stocksDown[i].smaTwentyDown = stocksDown[i].smaTwenty
+        delete stocksDown[i].smaTwenty
+        stocksDown[i].smaThirtyDown = stocksDown[i].smaThirty
+        delete stocksDown[i].smaThirty
+        stocksDown[i].smaFiftyDown = stocksDown[i].smaFifty
+        delete stocksDown[i].smaFifty
+        stocksDown[i].smaHunDown = stocksDown[i].smaHun
+        delete stocksDown[i].smaHun
+        stocksDown[i].smaTwoHunDown = stocksDown[i].smaTwoHun
+        delete stocksDown[i].smaTwoHun
+        stocksDown[i].volumeDown = stocksDown[i].volume
+        delete stocksDown[i].volume
+        stocksDown[i].vwapDown = stocksDown[i].vwap
+        delete stocksDown[i].vwap
+    }
 }
 
-function doIt() {
+function buildIt() {
 
 
 console.log(stocksUp, stocksDown)
-rowOne.innerHTML = '' // THIS CLEAR HTML BEFORE BUILD
 
 for (let i = 0; i < stocksDown.length; i++) {
 
@@ -710,9 +716,11 @@ async function buildToPage() {
     
     await technicalIndicators()
 
-    await buildIt()
+    filterUpDownStocks()
 
-    doIt()
+    rowOne.innerHTML = '' // THIS CLEAR HTML BEFORE BUILD
+
+    buildIt()
     
 
     } catch (e){
