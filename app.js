@@ -6,12 +6,6 @@ const today = new Date
 const year = today.getFullYear()
 let date = today.getDate()
 let month = today.getMonth() + 1
-if (date < 10) {
-    date = `0${date}`
-}
-if (month < 10) {
-    month = `0${month}`
-}
 
 const marketDay = today.getDay()
  // CHECK FOR MARKET OPEN - ADJUST DATE SO VWAP STILL PULLS DATA FROM LAST DAY
@@ -34,8 +28,16 @@ if (marketDay == 1 && timeNum < 830) {
 } else if (marketDay >= 2 && marketDay < 6 && timeNum < 830) {
     date = date - 1
 }
+// THIS IS TO CORRECT MISSING 0 ON SINGLE DIGITS
+if (date < 10) {
+    date = `0${date}`
+}
+if (month < 10) {
+    month = `0${month}`
+}
 
 const todayDate = `${year}-${month}-${date}` // DATE CHECK VARIBLE FOR DATA PERIOD PULLS
+console.log(todayDate)
 
 // ------------------- TRADABLE STOCK TICKERS --------------------------------------------------------------------------------------------------
 
@@ -243,6 +245,7 @@ function smaFunction(chartArr, dataPull, num) {
                 chartArr[num].smaTwoHun = smaTwoHunResult.toFixed(2)
                 culSMA = 0 
                 }
+                
             } 
 // EMA FUNCTION ------------------------------------------------------------------------------------------------------------------------------------------       
 let macdTwelve = [] // ARRs USED FOR MACD TWELVE HISTORY
@@ -386,7 +389,6 @@ function macdFunction(chartArr, num) {
         chartArr[num].macdSignalLine = 'Insufficient Data Available'
     }
 
-   
 }
 // RSI FUNCTION ------------------------------------------------------------------------------------------------------------------------------------------      
 function rsiFunction(chartArr, dataPull, num) {
@@ -635,11 +637,11 @@ function vwapFunction(chartArr, dataPull, num ) {
         while (dataPull[dayLengthPeriod].date.slice(0,10) == todayDate) { 
                 dayLengthPeriod++ 
                 } 
-                
+
        // --------------------THIS IS FOR CALCULATING THE VWAP AND PUSHING TO 
       
         for (let i = 0; i < dayLengthPeriod; i++) {
-
+            
             const {volume, high, close, low, date} = dataPull[i];   
             let tpv = (high + low + close) / 3;
             if (date.slice(0,10) == todayDate) {
