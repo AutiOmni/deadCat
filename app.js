@@ -222,14 +222,14 @@ function smaFunction(chartArr, dataPull, num) {
                 } 
                         // ------------- 100 DAY SMA -------------------------------
         if (dataPull.historical.length <= 100) {
-            chartArr[num].smaHun = 'Insufficient Data'
+            chartArr[num].smaOneHun = 'Insufficient Data'
         } else {
             while (hunSMA >= 0) {
                 culSMA += dataPull.historical[hunSMA].close
                 hunSMA--
                 }
-                let smaHunResult = (culSMA / 100)
-                chartArr[num].smaHun = smaHunResult.toFixed(2)
+                let smaOneHunResult = (culSMA / 100)
+                chartArr[num].smaOneHun = smaOneHunResult.toFixed(2)
                 culSMA = 0
                 }
                         // ------------- 200 DAY SMA -------------------------------
@@ -309,7 +309,7 @@ function wmaFunction(chartArr, dataPull, num) {
                         weight--
                     }
                    const wmaFifty = wmaCul / iWma
-                   chartArr[num].wmaFfifty = wmaFifty.toFixed(2)
+                   chartArr[num].wmaFifty = wmaFifty.toFixed(2)
                 }
     
             // WMA ONE HUNDRED --------------------------------------------------------------------
@@ -851,8 +851,8 @@ function filterUpDownStocks() {
         delete stocksUp[i].smaThirty
         stocksUp[i].smaFiftyUp = stocksUp[i].smaFifty
         delete stocksUp[i].smaFifty
-        stocksUp[i].smaHunUp = stocksUp[i].smaHun
-        delete stocksUp[i].smaHun
+        stocksUp[i].smaOneHunUp = stocksUp[i].smaOneHun
+        delete stocksUp[i].smaOneHun
         stocksUp[i].smaTwoHunUp = stocksUp[i].smaTwoHun
         delete stocksUp[i].smaTwoHun
         stocksUp[i].volumeUp = stocksUp[i].volume
@@ -861,6 +861,14 @@ function filterUpDownStocks() {
         delete stocksUp[i].vwap
         stocksUp[i].stochastic1433Up = stocksUp[i].stochastic1433
         delete stocksUp[i].stochastic1433
+        stocksUp[i].wmaTwentyUp = stocksUp[i].wmaTwenty
+        delete stocksUp[i].wmaTwenty
+        stocksUp[i].wmaThirtyUp = stocksUp[i].wmaThirty
+        delete stocksUp[i].wmaThirty
+        stocksUp[i].wmaFiftyUp = stocksUp[i].wmaFifty
+        delete stocksUp[i].wmaFifty
+        stocksUp[i].wmaOneHunUp = stocksUp[i].wmaOneHun
+        delete stocksUp[i].wmaOneHun
         // DOWNERS ------------------------------------------------------------------------------
         stocksDown[i].symbolDown = stocksDown[i].symbol
         delete stocksDown[i].symbol
@@ -896,8 +904,8 @@ function filterUpDownStocks() {
         delete stocksDown[i].smaThirty
         stocksDown[i].smaFiftyDown = stocksDown[i].smaFifty
         delete stocksDown[i].smaFifty
-        stocksDown[i].smaHunDown = stocksDown[i].smaHun
-        delete stocksDown[i].smaHun
+        stocksDown[i].smaOneHunDown = stocksDown[i].smaOneHun
+        delete stocksDown[i].smaOneHun
         stocksDown[i].smaTwoHunDown = stocksDown[i].smaTwoHun
         delete stocksDown[i].smaTwoHun
         stocksDown[i].volumeDown = stocksDown[i].volume
@@ -906,6 +914,14 @@ function filterUpDownStocks() {
         delete stocksDown[i].vwap
         stocksDown[i].stochastic1433Down = stocksDown[i].stochastic1433
         delete stocksDown[i].stochastic1433
+        stocksDown[i].wmaTwentyDown = stocksDown[i].wmaTwenty
+        delete stocksDown[i].wmaTwenty
+        stocksDown[i].wmaThirtyDown = stocksDown[i].wmaThirty
+        delete stocksDown[i].wmaThirty
+        stocksDown[i].wmaFiftyDown = stocksDown[i].wmaFifty
+        delete stocksDown[i].wmaFifty
+        stocksDown[i].wmaOneHunDown = stocksDown[i].wmaOneHun
+        delete stocksDown[i].wmaOneHun
     }
 }
 
