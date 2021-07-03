@@ -14,7 +14,7 @@ const marketDay = today.getDay()
 } else if (marketDay == 6) {
     date = date - 1
 }
-
+// GET TIME FOR CLOSING AND OPENING MARKET
 const hour = today.getHours()
 let min = today.getMinutes()
 if (min < 10) {
@@ -35,9 +35,8 @@ if (date < 10) {
 if (month < 10) {
     month = `0${month}`
 }
-
-const todayDate = `${year}-${month}-${date}` // DATE CHECK VARIBLE FOR DATA PERIOD PULLS
-console.log(todayDate)
+// DATE CHECK VARIBLE FOR DATA PERIOD PULLS
+const todayDate = `${year}-${month}-${date}` 
 
 // ------------------- TRADABLE STOCK TICKERS --------------------------------------------------------------------------------------------------
 
@@ -159,7 +158,7 @@ finalChartFatUp.sort((a,b) => {
   }
 } 
 
-// ---------------------- FILL WITH TECHNICAL INDICATORS ------------------------------------------------------------------------------------
+// ---------------------- TECHNICAL INDICATOR FUNCTIONS ------------------------------------------------------------------------------------
 
 // SMA FUNCTION ------------------------------------------------------------------------------------------------------------------------------------------
 function smaFunction(chartArr, dataPull, num) {
@@ -247,6 +246,94 @@ function smaFunction(chartArr, dataPull, num) {
                 }
                 
             } 
+
+// WMA FUNCTION ------------------------------------------------------------------------------------------------------------------------------------------
+function wmaFunction(chartArr, dataPull, num) {
+    
+                // WMA Twenty --------------------------------------------------------------------
+                let wmaCul = 0
+                let weight = 20
+                let wmaInterval = 0
+                let iWma = 0
+    
+                if (dataPull.historical.length < 20) {
+                    chartArr[num].wmaTwenty = 'Insufficient Data Available'
+                } else {
+    
+                    for (let i = 0; i <= 19; i++) {
+                        wmaInterval = dataPull.historical[i].close * weight
+                        wmaCul += wmaInterval
+                        iWma = iWma += weight
+                        weight--
+                    }
+                   const wmaTwenty = wmaCul / iWma
+                   chartArr[num].wmaTwenty = wmaTwenty.toFixed(2)
+                }
+    
+            // WMA THIRTY --------------------------------------------------------------------
+            
+                wmaCul = 0
+                weight = 30
+                wmaInterval = 0
+                iWma = 0
+    
+                if (dataPull.historical.length < 30) {
+                    chartArr[num].wmaThirty = 'Insufficient Data Available'
+                } else {
+    
+                    for (let i = 0; i <= 29; i++) {
+                        wmaInterval = dataPull.historical[i].close * weight
+                        wmaCul += wmaInterval
+                        iWma = iWma += weight
+                        weight--
+                    }
+                   const wmaThirty = wmaCul / iWma
+                   chartArr[num].wmaThirty = wmaThirty.toFixed(2)
+                }
+    
+            // WMA FIFTY --------------------------------------------------------------------
+    
+                wmaCul = 0
+                weight = 50
+                wmaInterval = 0
+                iWma = 0
+    
+                if (dataPull.historical.length < 50) {
+                    chartArr[num].wmaFifty = 'Insufficient Data Available'
+                } else {
+    
+                    for (let i = 0; i <= 49; i++) {
+                        wmaInterval = dataPull.historical[i].close * weight
+                        wmaCul += wmaInterval
+                        iWma = iWma += weight
+                        weight--
+                    }
+                   const wmaFifty = wmaCul / iWma
+                   chartArr[num].wmaFfifty = wmaFifty.toFixed(2)
+                }
+    
+            // WMA ONE HUNDRED --------------------------------------------------------------------
+    
+                wmaCul = 0
+                weight = 100
+                wmaInterval = 0
+                iWma = 0
+    
+                if (dataPull.historical.length < 100) {
+                    chartArr[num].wmaOneHun = 'Insufficient Data Available'
+                } else {
+    
+                    for (let i = 0; i <= 99; i++) {
+                        wmaInterval = dataPull.historical[i].close * weight
+                        wmaCul += wmaInterval
+                        iWma = iWma += weight
+                        weight--
+                    }
+                   const wmaOneHun = wmaCul / iWma
+                   chartArr[num].wmaOneHun = wmaOneHun.toFixed(2)
+                }
+            }
+
 // EMA FUNCTION ------------------------------------------------------------------------------------------------------------------------------------------       
 let macdTwelve = [] // ARRs USED FOR MACD TWELVE HISTORY
 let macdTwentySix = [] // ARRs USED FOR MACD TWENTY SIX HISTORY
@@ -673,25 +760,23 @@ async function technicalIndicators() {
         const resSMA = await  fetch(`https://financialmodelingprep.com/api/v3/historical-price-full/${symbol}?apikey=4d4593bc9e6bc106ee9d1cbd6400b218`)
         const dataSMA = await resSMA.json() // SMA PULL USED FOR OTHER CALCS
 
-        // SMA -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+            // SMA -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+            smaFunction(finalChart, dataSMA, j)
+                            
+            // EMA ------------------------------------------------------------------------------------------------------------------------------------------       
+            emaFunction(finalChart, dataSMA, j)
 
-        smaFunction(finalChart, dataSMA, j)
-                        
-        // EMA ------------------------------------------------------------------------------------------------------------------------------------------       
+            // MACD ------------------------------------------------------------------------------------------------------------------------------
+            macdFunction(finalChart, j)
 
-        emaFunction(finalChart, dataSMA, j)
+            // RSI ------------------------------------------------------------------------------------------------------------------------------------------------------------------
+            rsiFunction(finalChart, dataSMA, j)
+        
+            // STOCHASTIC OSCILLATOR ------------------------------------------------------------------------------------------------------------------------------------------------------------------
+            stochOsc1433Function(finalChart, dataSMA, j)
 
-        // MACD ------------------------------------------------------------------------------------------------------------------------------
-
-        macdFunction(finalChart, j)
-
-        // RSI ------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-        rsiFunction(finalChart, dataSMA, j)
-    
-        // STOCHASTIC OSCILLATOR ------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-        stochOsc1433Function(finalChart, dataSMA, j)
+            // WMA ------------------------------------------------------------------------------------------------------------------------------------------------------------------
+            wmaFunction(finalChart, dataSMA, j) 
 
 // VWAP ------------------------------------------------------------------------------------------------------------------------------------------------
 
