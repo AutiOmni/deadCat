@@ -5,10 +5,10 @@ const rowOne = document.getElementById('rowOne')
 const today = new Date
 const year = today.getFullYear()
 let date = today.getDate()
-if (date < 10) {
-    date = `0${month}`
-}
 let month = today.getMonth() + 1
+if (date < 10) {
+    date = `0${date}`
+}
 if (month < 10) {
     month = `0${month}`
 }
@@ -250,7 +250,7 @@ let macdTwentySix = [] // ARRs USED FOR MACD TWENTY SIX HISTORY
 
 function emaFunction(chartArr, dataPull, num) {
                 let emaTwelve = 23
-                let emaTwentySix = 53
+                let emaTwentySix = 51
                 let emaFifty = 99
                 let emaTwoHun = 399
                 let prevDayEmaSub = 0
@@ -283,7 +283,7 @@ function emaFunction(chartArr, dataPull, num) {
                                     prevDayEmaSub = 0 
                                 }
                                 // EMA TWENTY SIX ----------------------------------------------------------------------
-                                if (dataPull.historical.length <= 54) {
+                                if (dataPull.historical.length <= 52) {
                                     chartArr[num].emaTwentySix = 'Insufficient Data Available'
                                 } else {
                                 while (emaTwentySix >= 26) {
@@ -391,8 +391,8 @@ function macdFunction(chartArr, num) {
 // RSI FUNCTION ------------------------------------------------------------------------------------------------------------------------------------------      
 function rsiFunction(chartArr, dataPull, num) {
 
-    let iRSI = 15
-    let iRSIAdjusted = 16
+    let iRSI = 14
+    let iRSIAdjusted = 15
     let recentUpper = 0
     let recentDowner = 0
     let upMove = 0
@@ -404,19 +404,17 @@ function rsiFunction(chartArr, dataPull, num) {
     if (dataPull.historical.length <= 16) {
         chartArr[num].rsi = 'Insufficient Data Available'
     } else {
-
     // LOOP FOR AVERAGE
-    while (iRSI > 1) {
+    while (iRSI >= 1) {
            if (dataPull.historical[iRSI].close > dataPull.historical[iRSIAdjusted].close) {
                upMove += (dataPull.historical[iRSI].close - dataPull.historical[iRSIAdjusted].close)
            } else {
                downMove += (dataPull.historical[iRSIAdjusted].close - dataPull.historical[iRSI].close)
-           }
+           } 
        iRSI--
        iRSIAdjusted--
     }
 
-    
     let averageUp = upMove / 14
     let averageDown = downMove / 14
 
@@ -427,7 +425,6 @@ function rsiFunction(chartArr, dataPull, num) {
             recentDowner = dataPull.historical[1].close - dataPull.historical[0].close
          }
    
-
      pastUpPeriod = ((averageUp * 13) + recentUpper) / 14
      pastDownPeriod = ((averageDown * 13) + recentDowner) / 14
 
@@ -437,6 +434,191 @@ function rsiFunction(chartArr, dataPull, num) {
 }
 
 } 
+
+// STOCHASTIC OSCILLATOR ------------------------------------------------------------------------------------------------------------------------------------------------------------------
+function stochOsc1433Function(chartArr, dataPull, num) {
+
+        
+
+        let iSO = 13
+
+        let soLowHolder = []
+        let soHighHolder = []
+        let highestHigh = 0
+        let lowestLow = 0
+    // FIRST %D
+        let topForm = []
+        let bottomForm = []
+    // SECOND %D
+        let topFormTwo = []
+        let bottomFormTwo = []
+    // THIRD %D
+        let topFormThree = []
+        let bottomFormThree = []
+    // HOLDING SET OF %D FOR 14 3 3 
+        let signalLineHolder = []
+
+    if (dataPull.historical.length < 19) {
+    chartArr[num].stochasticK = 'Insufficient Data Available'
+    } else {
+
+    // GETTING HIGHS AND LOWS OF PERIOD------------------------------------------------------
+
+            while (iSO >= 0) {
+                soLowHolder.push(dataPull.historical[iSO].low)
+                soHighHolder.push(dataPull.historical[iSO].high)
+                iSO--
+            }
+
+            highestHigh = Math.max(...soHighHolder)
+            lowestLow = Math.min(...soLowHolder) 
+
+            topForm.push(dataPull.historical[0].close - lowestLow)
+            bottomForm.push(highestHigh - lowestLow)
+
+// RESET HOLDER AND VARs --------------------------------------------------------
+
+       iSO = 14
+       soLowHolder = []
+       soHighHolder = []
+       highestHigh = 0
+       lowestLow = 0
+
+// GETTING HIGHS AND LOWS OF PERIOD-----------------------------------------------
+
+            while (iSO >= 1) {
+                    soLowHolder.push(dataPull.historical[iSO].low)
+                    soHighHolder.push(dataPull.historical[iSO].high)
+                    iSO--
+            }
+
+            highestHigh = Math.max(...soHighHolder)
+            lowestLow = Math.min(...soLowHolder)
+
+            topForm.push(dataPull.historical[1].close - lowestLow)
+            bottomForm.push(highestHigh - lowestLow )
+
+            topFormTwo.push(dataPull.historical[1].close - lowestLow)
+            bottomFormTwo.push(highestHigh - lowestLow )
+
+
+// RESET HOLDER AND VARs ------------------------------------------------
+
+        iSO = 15
+        soLowHolder = []
+        soHighHolder = []
+        highestHigh = 0
+        lowestLow = 0
+
+// GETTING HIGHS AND LOWS OF PERIOD-----------------------------------
+
+            while (iSO >= 2) {
+                soLowHolder.push(dataPull.historical[iSO].low)
+                soHighHolder.push(dataPull.historical[iSO].high)
+                iSO--
+            }
+            highestHigh = Math.max(...soHighHolder)
+            lowestLow = Math.min(...soLowHolder)
+
+            topForm.push(dataPull.historical[2].close - lowestLow)
+            bottomForm.push(highestHigh - lowestLow)
+
+// AFTER 3 WE SUM IT UP --------------- TO GET 1 OF THE 3 SMOOTHS FOR 14 3 3------------------------------------------
+
+
+            let sumTop = topForm.reduce((a,b) => a + b, 0)
+            let sumBottom = bottomForm.reduce((a,b) => a + b, 0)
+
+            let slowD = (sumTop / sumBottom) * 100
+
+            signalLineHolder.push(slowD)
+
+// -------------------------------------------------------------------------
+
+            topFormTwo.push(dataPull.historical[2].close - lowestLow)
+            bottomFormTwo.push(highestHigh - lowestLow)
+
+            topFormThree.push(dataPull.historical[2].close - lowestLow)
+            bottomFormThree.push(highestHigh - lowestLow)
+
+//RESET VARS ---------------------------------------------------------------------
+
+            iSO = 16
+            soLowHolder = []
+            soHighHolder = []
+            highestHigh = 0
+            lowestLow = 0
+
+// GETTING HIGHS AND LOWS OF PERIOD------------------------------------------------
+
+                while (iSO >= 3) {
+                    soLowHolder.push(dataPull.historical[iSO].low)
+                    soHighHolder.push(dataPull.historical[iSO].high)
+                    iSO--
+                }
+                highestHigh = Math.max(...soHighHolder)
+                lowestLow = Math.min(...soLowHolder)
+
+                topFormTwo.push(dataPull.historical[3].close - lowestLow)
+                bottomFormTwo.push(highestHigh - lowestLow)
+
+// AFTER 3 WE SUM IT UP --------------- TO GET 2 OF THE 3 SMOOTHS FOR 14 3 3------------------------------------------
+
+                sumTop = topFormTwo.reduce((a,b) => a + b, 0)
+                sumBottom = bottomFormTwo.reduce((a,b) => a + b, 0)
+
+                slowD = (sumTop / sumBottom) * 100
+
+                signalLineHolder.push(slowD)
+
+        // -----------------------------------------------------------------
+
+                topFormThree.push(dataPull.historical[3].close - lowestLow)
+                bottomFormThree.push(highestHigh - lowestLow)
+
+//RESET VARS ---------------------------------------------
+
+                iSO = 17
+                soLowHolder = []
+                soHighHolder = []
+                highestHigh = 0
+                lowestLow = 0
+
+// GETTING HIGHS AND LOWS OF PERIOD-----------------------------------
+
+                    while (iSO >= 4) {
+                        soLowHolder.push(dataPull.historical[iSO].low)
+                        soHighHolder.push(dataPull.historical[iSO].high)
+                        iSO--
+                    }
+                    highestHigh = Math.max(...soHighHolder)
+                    lowestLow = Math.min(...soLowHolder)
+
+                    topFormThree.push(dataPull.historical[4].close - lowestLow)
+                    bottomFormThree.push(highestHigh - lowestLow)
+
+
+// AFTER 3 WE SUM IT UP --------------- TO GET 3 OF THE 3 SMOOTHS FOR 14 3 3------------------------------------------
+
+                    sumTop = topFormThree.reduce((a,b) => a + b, 0)
+                    sumBottom = bottomFormThree.reduce((a,b) => a + b, 0)
+
+                    slowD = (sumTop / sumBottom) * 100
+
+                    signalLineHolder.push(slowD)
+
+             // ----------- TALLY UP LAST SMOOTHING -------------------------------
+
+                    const sumStochD = signalLineHolder.reduce((a,b) => a + b, 0)
+
+                    const smaD = sumStochD / 3
+
+                    chartArr[num].stochastic1433 = smaD.toFixed(2)
+
+    }
+
+}
+
 // VWAP FUNCTION ------------------------------------------------------------------------------------------------------------------------------------------       
 function vwapFunction(chartArr, dataPull, num ) {
 
@@ -453,8 +635,9 @@ function vwapFunction(chartArr, dataPull, num ) {
         while (dataPull[dayLengthPeriod].date.slice(0,10) == todayDate) { 
                 dayLengthPeriod++ 
                 } 
-
+                
        // --------------------THIS IS FOR CALCULATING THE VWAP AND PUSHING TO 
+      
         for (let i = 0; i < dayLengthPeriod; i++) {
 
             const {volume, high, close, low, date} = dataPull[i];   
@@ -464,11 +647,13 @@ function vwapFunction(chartArr, dataPull, num ) {
             volumeCul += volume
             }
             vwapFinal = tpvCul / volumeCul // --------- THIS IS VWAP!!!!!!!!
-            tempVWAP.unshift(vwapFinal) //ADD VWAP TO SYMBOL OBJECT
+            tempVWAP.unshift(vwapFinal) //ADD VWAP FRONT OF ARR
+            }
+        
+            chartArr[num].vwap = tempVWAP[0].toFixed(2)
+            tempVWAP = []
+            
         }
-        chartArr[num].vwap = tempVWAP[0].toFixed(2)
-        tempVWAP = []
-         } 
 
 
 // TA FUNCTION ---------------------------------
@@ -501,8 +686,12 @@ async function technicalIndicators() {
         // RSI ------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
         rsiFunction(finalChart, dataSMA, j)
+    
+        // STOCHASTIC OSCILLATOR ------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-        // VWAP ------------------------------------------------------------------------------------------------------------------------------------------------
+        stochOsc1433Function(finalChart, dataSMA, j)
+
+// VWAP ------------------------------------------------------------------------------------------------------------------------------------------------
 
         const resVWAP = await  fetch(`https://financialmodelingprep.com/api/v3/historical-chart/5min/${symbol}?apikey=4d4593bc9e6bc106ee9d1cbd6400b218`)
         const dataVWAP = await resVWAP.json()
@@ -540,7 +729,7 @@ function filterUpDownStocks() {
 
         // REASSIGN OBJECT NAMES FOR UP AND DOWN STOCKS
     for (let i = 0; i < stocksUp.length; i++) {
-        // UPPERS ---------------------------------------------
+        // UPPERS ------------------------------------------------------------------------
         stocksUp[i].symbolUp = stocksUp[i].symbol
         delete stocksUp[i].symbol
         stocksUp[i].changeUp = stocksUp[i].change
@@ -583,7 +772,9 @@ function filterUpDownStocks() {
         delete stocksUp[i].volume
         stocksUp[i].vwapUp = stocksUp[i].vwap
         delete stocksUp[i].vwap
-        // DOWNERS ---------------------------------------------
+        stocksUp[i].stochastic1433Up = stocksUp[i].stochastic1433
+        delete stocksUp[i].stochastic1433
+        // DOWNERS ------------------------------------------------------------------------------
         stocksDown[i].symbolDown = stocksDown[i].symbol
         delete stocksDown[i].symbol
         stocksDown[i].changeDown = stocksDown[i].change
@@ -626,6 +817,8 @@ function filterUpDownStocks() {
         delete stocksDown[i].volume
         stocksDown[i].vwapDown = stocksDown[i].vwap
         delete stocksDown[i].vwap
+        stocksDown[i].stochastic1433Down = stocksDown[i].stochastic1433
+        delete stocksDown[i].stochastic1433
     }
 }
 
@@ -718,12 +911,12 @@ async function buildToPage() {
 
     filterUpDownStocks()
 
-    rowOne.innerHTML = '' // THIS CLEAR HTML BEFORE BUILD
+    rowOne.innerHTML = '' // THIS CLEARS PRIOR HTML BEFORE BUILD
 
     buildIt()
     
 
-    } catch (e){
+    } catch (e) {
         console.log('Build-To-Page Error', (e))
     }
 
@@ -732,4 +925,4 @@ async function buildToPage() {
 
 buildToPage()
 
-//setInterval(buildToPage, 10000)
+//setInterval(buildToPage, 10000)  FOR LATER AUTO UPDATE
