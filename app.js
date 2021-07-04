@@ -39,7 +39,6 @@ if (month < 10) {
 const todayDate = `${year}-${month}-${date}` 
 
 // ------------------- TRADABLE STOCK TICKERS --------------------------------------------------------------------------------------------------
-
 async function tradableSymbols() {
     let myStocksNas = []
     let myStocksNyse = []
@@ -63,7 +62,6 @@ async function tradableSymbols() {
 }
 
 // ---------------------- FILTERS TRADABLE SYMBOLS THAT HAVE DROPPED BELOW THE THRESHOLD -------------------------------------
-
 async function filterTradableSymbols(arr1, arr2, compileCallback) {
     let nyseHolderDown = [] //THESE ARRS NEED TO BE ACCESSIBLE TO COMPILE CALLBACK
     let nyseHolderUp = [] //THESE ARRS NEED TO BE ACCESSIBLE TO COMPILE CALLBACK
@@ -109,7 +107,6 @@ async function filterTradableSymbols(arr1, arr2, compileCallback) {
 }
 
 //---------------------- COMBINE AND SORT LARGEST DROP ------------------------- 
-
 let finalChartFatDown = [] // THIS HOLDS COMPILED AND SORTED STOCK TO GET TECHNICAL INDICATORS FROM AND MUTATE OBJECTS ! MOST IMPORTANT
 let finalChartFatUp = [] // THIS HOLDS COMPILED AND SORTED STOCK TO GET TECHNICAL INDICATORS FROM AND MUTATE OBJECTS ! MOST IMPORTANT
 let finalChart = [] // THIS HOLDS COMPILED AND SORTED STOCK TO GET TECHNICAL INDICATORS FROM AND MUTATE OBJECTS ! MOST IMPORTANT
@@ -245,16 +242,35 @@ function smaFunction(chartArr, dataPull, num) {
                 culSMA = 0 
                 }
                 
-            } 
-
+} 
 // WMA FUNCTION ------------------------------------------------------------------------------------------------------------------------------------------
 function wmaFunction(chartArr, dataPull, num) {
-    
-                // WMA Twenty --------------------------------------------------------------------
+
+                // WMA FiveTeen --------------------------------------------------------------------
                 let wmaCul = 0
-                let weight = 20
+                let weight = 15
                 let wmaInterval = 0
                 let iWma = 0
+    
+                if (dataPull.historical.length < 15) {
+                    chartArr[num].wmaFiveTeen = 'Insufficient Data Available'
+                } else {
+    
+                    for (let i = 0; i <= 14; i++) {
+                        wmaInterval = dataPull.historical[i].close * weight
+                        wmaCul += wmaInterval
+                        iWma = iWma += weight
+                        weight--
+                    }
+                   const wmaFiveTeen = wmaCul / iWma
+                   chartArr[num].wmaFiveTeen = wmaFiveTeen.toFixed(2)
+                }
+    
+                // WMA Twenty --------------------------------------------------------------------
+                wmaCul = 0
+                weight = 20
+                wmaInterval = 0
+                iWma = 0
     
                 if (dataPull.historical.length < 20) {
                     chartArr[num].wmaTwenty = 'Insufficient Data Available'
@@ -332,19 +348,162 @@ function wmaFunction(chartArr, dataPull, num) {
                    const wmaOneHun = wmaCul / iWma
                    chartArr[num].wmaOneHun = wmaOneHun.toFixed(2)
                 }
-            }
 
+            // WMA TWO HUNDRED --------------------------------------------------------------------
+    
+                wmaCul = 0
+                weight = 200
+                wmaInterval = 0
+                iWma = 0
+    
+                if (dataPull.historical.length < 200) {
+                    chartArr[num].wmaTwoHun = 'Insufficient Data Available'
+                } else {
+    
+                    for (let i = 0; i <= 199; i++) {
+                        wmaInterval = dataPull.historical[i].close * weight
+                        wmaCul += wmaInterval
+                        iWma = iWma += weight
+                        weight--
+                    }
+                   const wmaTwoHun = wmaCul / iWma
+                   chartArr[num].wmaTwoHun = wmaTwoHun.toFixed(2)
+                }
+}
+// VWMA FUNCTION ------------------------------------------------------------------------------------------------------------------------------------------
+function vwmaFunction(chartArr, dataPull, num) {
+
+    // VWMA FIVETEEN --------------------------------------------------------------------
+
+    let volCul = 0
+    let totalCul = 0
+    let price = 0
+    let volume = 0
+
+    if (dataPull.historical.length < 15) {
+        chartArr[num].vwmaFiveTeen = 'Insufficient Data Available'
+    } else {
+        for (let i = 0; i < 14; i++) {
+            price = dataPull.historical[i].close
+            volume = dataPull.historical[i].volume
+            totalCul += price * volume
+            volCul += dataPull.historical[i].volume
+        }
+        const vwmaFiveTeen = totalCul/volCul
+        chartArr[num].vwmaFiveTeen = vwmaFiveTeen.toFixed(2)
+    }
+
+    // VWMA TWENTY --------------------------------------------------------------------
+
+    volCul = 0
+    totalCul = 0
+    price = 0
+    volume = 0
+
+    if (dataPull.historical.length < 20) {
+        chartArr[num].vwmaTwenty = 'Insufficient Data Available'
+    } else {
+        for (let i = 0; i < 19; i++) {
+            price = dataPull.historical[i].close
+            volume = dataPull.historical[i].volume
+            totalCul += price * volume
+            volCul += dataPull.historical[i].volume
+        }
+        const vwmaTwenty = totalCul/volCul
+        chartArr[num].vwmaTwenty = vwmaTwenty.toFixed(2)
+    }
+
+    // VWMA THIRTY --------------------------------------------------------------------
+
+    volCul = 0
+    totalCul = 0
+    price = 0
+    volume = 0
+
+    if (dataPull.historical.length < 30) {
+        chartArr[num].vwmaThirty = 'Insufficient Data Available'
+    } else {
+        for (let i = 0; i < 29; i++) {
+            price = dataPull.historical[i].close
+            volume = dataPull.historical[i].volume
+            totalCul += price * volume
+            volCul += dataPull.historical[i].volume
+        }
+        const vwmaThirty = totalCul/volCul
+        chartArr[num].vwmaThirty = vwmaThirty.toFixed(2)
+    }
+
+    // VWMA FIFTY --------------------------------------------------------------------
+
+    volCul = 0
+    totalCul = 0
+    price = 0
+    volume = 0
+
+    if (dataPull.historical.length < 50) {
+        chartArr[num].vwmaFifty = 'Insufficient Data Available'
+    } else {
+        for (let i = 0; i < 49; i++) {
+            price = dataPull.historical[i].close
+            volume = dataPull.historical[i].volume
+            totalCul += price * volume
+            volCul += dataPull.historical[i].volume
+        }
+        const vwmaFifty = totalCul/volCul
+        chartArr[num].vwmaFifty = vwmaFifty.toFixed(2)
+    }
+
+    // VWMA ONEHUN --------------------------------------------------------------------
+
+    volCul = 0
+    totalCul = 0
+    price = 0
+    volume = 0
+
+    if (dataPull.historical.length < 100) {
+        chartArr[num].vwmaOneHun = 'Insufficient Data Available'
+    } else {
+        for (let i = 0; i < 99; i++) {
+            price = dataPull.historical[i].close
+            volume = dataPull.historical[i].volume
+            totalCul += price * volume
+            volCul += dataPull.historical[i].volume
+        }
+        const vwmaOneHun = totalCul/volCul
+        chartArr[num].vwmaOneHun = vwmaOneHun.toFixed(2)
+    }
+
+    // VWMA TWOHUN --------------------------------------------------------------------
+
+    volCul = 0
+    totalCul = 0
+    price = 0
+    volume = 0
+
+    if (dataPull.historical.length < 200) {
+        chartArr[num].vwmaTwoHun = 'Insufficient Data Available'
+    } else {
+        for (let i = 0; i < 199; i++) {
+            price = dataPull.historical[i].close
+            volume = dataPull.historical[i].volume
+            totalCul += price * volume
+            volCul += dataPull.historical[i].volume
+        }
+        const vwmaTwoHun = totalCul/volCul
+        chartArr[num].vwmaTwoHun = vwmaTwoHun.toFixed(2)
+    }
+}
 // EMA FUNCTION ------------------------------------------------------------------------------------------------------------------------------------------       
-let macdTwelve = [] // ARRs USED FOR MACD TWELVE HISTORY
-let macdTwentySix = [] // ARRs USED FOR MACD TWENTY SIX HISTORY
-
-function emaFunction(chartArr, dataPull, num) {
+function emaFunction(chartArr, dataPull, num, macdCallBack) {
                 let emaTwelve = 23
                 let emaTwentySix = 51
                 let emaFifty = 99
                 let emaTwoHun = 399
                 let prevDayEmaSub = 0
                 let arrEma = []
+
+                let macdTwelve = [] // ARRs USED FOR MACD TWELVE HISTORY
+                let macdTwentySix = [] // ARRs USED FOR MACD TWENTY SIX HISTORY
             
                                 // EMA TWELVE ------------------------------------------------------------------------- 
                                 if (dataPull.historical.length <= 24) {
@@ -446,16 +605,18 @@ function emaFunction(chartArr, dataPull, num) {
                                     prevDayEmaSub = 0
                                 }
             
-                            }
+            // MACD CALLBACK -----------------------------------------------------------------------------------------------------------------------------------------       
+            macdCallBack(chartArr, num, macdTwelve, macdTwentySix)
+}
 // MACD FUNCTION -----------------------------------------------------------------------------------------------------------------------------------------       
-function macdFunction(chartArr, num) {
+function macdFunction(chartArr, num, arr1, arr2) {
     const macd = chartArr[num].emaTwelve - chartArr[num].emaTwentySix
     chartArr[num].macd = macd.toFixed(2)
     // CALCULATE SIGNAL LINE ----------------
     let averageMacd = []
     let iMacd = 8
     while (iMacd >= 0) {
-        averageMacd.unshift(macdTwelve[iMacd] - macdTwentySix[iMacd])
+        averageMacd.unshift(arr1[iMacd] - arr2[iMacd])
         iMacd--
     }
     let averageSum = averageMacd.reduce((a,b) => a + b)
@@ -523,7 +684,6 @@ function rsiFunction(chartArr, dataPull, num) {
 }
 
 } 
-
 // STOCHASTIC OSCILLATOR ------------------------------------------------------------------------------------------------------------------------------------------------------------------
 function stochOsc1433Function(chartArr, dataPull, num) {
 
@@ -707,7 +867,6 @@ function stochOsc1433Function(chartArr, dataPull, num) {
     }
 
 }
-
 // VWAP FUNCTION ------------------------------------------------------------------------------------------------------------------------------------------       
 function vwapFunction(chartArr, dataPull, num ) {
 
@@ -742,11 +901,12 @@ function vwapFunction(chartArr, dataPull, num ) {
             chartArr[num].vwap = tempVWAP[0].toFixed(2)
             tempVWAP = []
             
-        }
+}
 
 
-// TA FUNCTION ---------------------------------
 
+
+// TA FUNCTION ---------------------------------------------------------------------
 async function technicalIndicators() {
 
     let j = 0
@@ -759,15 +919,12 @@ async function technicalIndicators() {
         //THIS PULL IS FOR CLOSE PRICES TO CALC TAs
         const resSMA = await  fetch(`https://financialmodelingprep.com/api/v3/historical-price-full/${symbol}?apikey=4d4593bc9e6bc106ee9d1cbd6400b218`)
         const dataSMA = await resSMA.json() // SMA PULL USED FOR OTHER CALCS
-
+        console.log(dataSMA)
             // SMA -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
             smaFunction(finalChart, dataSMA, j)
                             
-            // EMA ------------------------------------------------------------------------------------------------------------------------------------------       
-            emaFunction(finalChart, dataSMA, j)
-
-            // MACD ------------------------------------------------------------------------------------------------------------------------------
-            macdFunction(finalChart, j)
+            // EMA WITH MACD CALLBACK ------------------------------------------------------------------------------------------------------------------------------------------       
+            emaFunction(finalChart, dataSMA, j, macdFunction)
 
             // RSI ------------------------------------------------------------------------------------------------------------------------------------------------------------------
             rsiFunction(finalChart, dataSMA, j)
@@ -777,6 +934,33 @@ async function technicalIndicators() {
 
             // WMA ------------------------------------------------------------------------------------------------------------------------------------------------------------------
             wmaFunction(finalChart, dataSMA, j) 
+
+            // VWMA ------------------------------------------------------------------------------------------------------------------------------------------------------------------
+            vwmaFunction(finalChart, dataSMA, j)
+
+            // WILLIAMS %R 14 ------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+            let highs = []
+            let lows = []
+            let lowestLow = 0
+            let highestHigh = 0
+
+            if (dataSMA.historical.length < 14) {
+                finalChart[j].williams = 'Poop'
+            } else {
+                for (let i = 0; i < 13; i++) {
+                    highs.push(dataSMA.historical[i].high)
+                    lows.push(dataSMA.historical[i].low)
+                }
+
+                lowestLow = Math.min(...lows)
+                highestHigh = Math.max(...highs)
+
+                const williams = (highestHigh - dataSMA.historical[0].close) / (highestHigh - lowestLow) * -100
+                
+                finalChart[j].williamsR = williams.toFixed(2)
+            }
+
 
 // VWAP ------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -861,6 +1045,8 @@ function filterUpDownStocks() {
         delete stocksUp[i].vwap
         stocksUp[i].stochastic1433Up = stocksUp[i].stochastic1433
         delete stocksUp[i].stochastic1433
+        stocksUp[i].wmaFiveTeenUp = stocksUp[i].wmaFiveTeen
+        delete stocksUp[i].wmaFiveTeen
         stocksUp[i].wmaTwentyUp = stocksUp[i].wmaTwenty
         delete stocksUp[i].wmaTwenty
         stocksUp[i].wmaThirtyUp = stocksUp[i].wmaThirty
@@ -869,6 +1055,22 @@ function filterUpDownStocks() {
         delete stocksUp[i].wmaFifty
         stocksUp[i].wmaOneHunUp = stocksUp[i].wmaOneHun
         delete stocksUp[i].wmaOneHun
+        stocksUp[i].wmaTwoHunUp = stocksUp[i].wmaTwoHun
+        delete stocksUp[i].wmaTwoHun
+        stocksUp[i].vwmaFiveTeenUp = stocksUp[i].vwmaFiveTeen
+        delete stocksUp[i].vwmaFiveTeen
+        stocksUp[i].vwmaTwentyUp = stocksUp[i].vwmaTwenty
+        delete stocksUp[i].vwmaTwenty
+        stocksUp[i].vwmaThirtyUp = stocksUp[i].vwmaThirty
+        delete stocksUp[i].vwmaThirty
+        stocksUp[i].vwmaFiftyUp = stocksUp[i].vwmaFifty
+        delete stocksUp[i].vwmaFifty
+        stocksUp[i].vwmaOneHunUp = stocksUp[i].vwmaOneHun
+        delete stocksUp[i].vwmaOneHun
+        stocksUp[i].vwmaTwoHunUp = stocksUp[i].vwmaTwoHun
+        delete stocksUp[i].vwmaTwoHun
+        stocksUp[i].williamsRUp = stocksUp[i].williamsR
+        delete stocksUp[i].williamsR
         // DOWNERS ------------------------------------------------------------------------------
         stocksDown[i].symbolDown = stocksDown[i].symbol
         delete stocksDown[i].symbol
@@ -914,6 +1116,8 @@ function filterUpDownStocks() {
         delete stocksDown[i].vwap
         stocksDown[i].stochastic1433Down = stocksDown[i].stochastic1433
         delete stocksDown[i].stochastic1433
+        stocksDown[i].wmaFiveTeenDown = stocksDown[i].wmaFiveTeen
+        delete stocksDown[i].wmaFiveTeen
         stocksDown[i].wmaTwentyDown = stocksDown[i].wmaTwenty
         delete stocksDown[i].wmaTwenty
         stocksDown[i].wmaThirtyDown = stocksDown[i].wmaThirty
@@ -922,11 +1126,26 @@ function filterUpDownStocks() {
         delete stocksDown[i].wmaFifty
         stocksDown[i].wmaOneHunDown = stocksDown[i].wmaOneHun
         delete stocksDown[i].wmaOneHun
+        stocksDown[i].wmaTwoHunDown = stocksDown[i].wmaTwoHun
+        delete stocksDown[i].wmaTwoHun
+        stocksDown[i].vwmaFiveTeenDown = stocksDown[i].vwmaFiveTeen
+        delete stocksDown[i].vwmaFiveTeen
+        stocksDown[i].vwmaTwentyDown = stocksDown[i].vwmaTwenty
+        delete stocksDown[i].vwmaTwenty
+        stocksDown[i].vwmaThirtyDown = stocksDown[i].vwmaThirty
+        delete stocksDown[i].vwmaThirty
+        stocksDown[i].vwmaFiftyDown = stocksDown[i].vwmaFifty
+        delete stocksDown[i].vwmaFifty
+        stocksDown[i].vwmaOneHunDown = stocksDown[i].vwmaOneHun
+        delete stocksDown[i].vwmaOneHun
+        stocksDown[i].vwmaTwoHunDown = stocksDown[i].vwmaTwoHun
+        delete stocksDown[i].vwmaTwoHun
+        stocksDown[i].williamsRDown = stocksDown[i].williamsR
+        delete stocksDown[i].williamsR
     }
 }
 
 function buildIt() {
-
 
 console.log(stocksUp, stocksDown)
 
