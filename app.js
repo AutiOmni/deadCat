@@ -867,8 +867,32 @@ function stochOsc1433Function(chartArr, dataPull, num) {
     }
 
 }
+// WILLIAMS %R 14 ------------------------------------------------------------------------------------------------------------------------------------------------------------------
+function williamsRFunction(chartArr, dataPull, num) {
+
+                let highs = []
+                let lows = []
+                let lowestLow = 0
+                let highestHigh = 0
+    
+                if (dataPull.historical.length < 14) {
+                    chartArr[num].williams = 'Poop'
+                } else {
+                    for (let i = 0; i < 13; i++) {
+                        highs.push(dataPull.historical[i].high)
+                        lows.push(dataPull.historical[i].low)
+                    }
+    
+                    lowestLow = Math.min(...lows)
+                    highestHigh = Math.max(...highs)
+    
+                    const williams = (highestHigh - dataPull.historical[0].close) / (highestHigh - lowestLow) * -100
+                    
+                    chartArr[num].williamsR = williams.toFixed(2)
+                }
+}
 // VWAP FUNCTION ------------------------------------------------------------------------------------------------------------------------------------------       
-function vwapFunction(chartArr, dataPull, num ) {
+function vwapFunction(chartArr, dataPull, num) {
 
 
 
@@ -903,9 +927,6 @@ function vwapFunction(chartArr, dataPull, num ) {
             
 }
 
-
-
-
 // TA FUNCTION ---------------------------------------------------------------------
 async function technicalIndicators() {
 
@@ -939,28 +960,7 @@ async function technicalIndicators() {
             vwmaFunction(finalChart, dataSMA, j)
 
             // WILLIAMS %R 14 ------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-            let highs = []
-            let lows = []
-            let lowestLow = 0
-            let highestHigh = 0
-
-            if (dataSMA.historical.length < 14) {
-                finalChart[j].williams = 'Poop'
-            } else {
-                for (let i = 0; i < 13; i++) {
-                    highs.push(dataSMA.historical[i].high)
-                    lows.push(dataSMA.historical[i].low)
-                }
-
-                lowestLow = Math.min(...lows)
-                highestHigh = Math.max(...highs)
-
-                const williams = (highestHigh - dataSMA.historical[0].close) / (highestHigh - lowestLow) * -100
-                
-                finalChart[j].williamsR = williams.toFixed(2)
-            }
-
+            williamsRFunction(finalChart, dataSMA, j)
 
 // VWAP ------------------------------------------------------------------------------------------------------------------------------------------------
 
