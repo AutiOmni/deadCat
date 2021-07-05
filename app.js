@@ -931,6 +931,46 @@ function cciFunction(chartArr, dataPull, num) {
                     chartArr[num].cciTwenty = cci.toFixed(2)
                 }
 }
+// BOLLINGER BANDS ------------------------------------------------------------------------------------------------------------------------------------------------------------------
+function bollingerBandsFunction(chartArr, dataPull, num) {
+       
+    let smaCul = 0
+    let closeHolder = []
+
+    if (dataPull.historical.length < 20) {
+        chartArr[num].bbUpper = 'Insufficient Data Available'
+        chartArr[num].bbLower = 'Insufficient Data Available'
+        chartArr[num].bbMiddle = 'Insufficient Data Available'
+    } else {
+
+        for (let i = 0; i <= 19; i++) {
+            const closeP = dataPull.historical[i].close
+            closeHolder.push(closeP)
+            smaCul += closeP
+        }
+            // STANDARD DEVIATION CALC --------------------------------
+            const smaTwenty = smaCul / 20
+        
+            const priceAdj = closeHolder.map(x => x - smaTwenty)
+          
+            const priceAdjAbs = priceAdj.map(x => Math.abs(x))
+
+            const priceAdjSqrt = priceAdjAbs.map(x => x * x)
+            
+            const partOneDev = priceAdjSqrt.reduce((a,b) => a + b)
+            
+            const partTwoDev = partOneDev / 20
+            const standardDev = Math.sqrt(partTwoDev)
+            // BB BAND CALC --------------------------------------------
+            const bbUpper = smaTwenty + (standardDev * 2)
+            const bbLower = smaTwenty - (standardDev * 2)
+
+            chartArr[num].bbUpper = bbUpper.toFixed(2)
+            chartArr[num].bbLower = bbLower.toFixed(2)
+            chartArr[num].bbMiddle = smaTwenty.toFixed(2)
+    }
+
+}
 // VWAP FUNCTION ------------------------------------------------------------------------------------------------------------------------------------------       
 function vwapFunction(chartArr, dataPull, num) {
 
@@ -1005,6 +1045,10 @@ async function technicalIndicators() {
 
             // CCI 20 ------------------------------------------------------------------------------------------------------------------------------------------------------------------
             cciFunction(finalChart, dataSMA, j)
+
+            // BOLLINGER BANDS ------------------------------------------------------------------------------------------------------------------------------------------------------------------
+            bollingerBandsFunction(finalChart, dataSMA, j)
+            
 
             // VWAP ------------------------------------------------------------------------------------------------------------------------------------------------
             const resVWAP = await  fetch(`https://financialmodelingprep.com/api/v3/historical-chart/5min/${symbol}?apikey=4d4593bc9e6bc106ee9d1cbd6400b218`)
@@ -1116,6 +1160,12 @@ function filterUpDownStocks() {
         delete stocksUp[i].williamsR
         stocksUp[i].cciUp = stocksUp[i].cci
         delete stocksUp[i].cci
+        stocksUp[i].bbUpperUp = stocksUp[i].bbUpper
+        delete stocksUp[i].bbUpper
+        stocksUp[i].bbLowerUp = stocksUp[i].bbLower
+        delete stocksUp[i].bbLower
+        stocksUp[i].bbMiddleUp = stocksUp[i].bbMiddle
+        delete stocksUp[i].bbMiddle
         // DOWNERS ------------------------------------------------------------------------------
         stocksDown[i].symbolDown = stocksDown[i].symbol
         delete stocksDown[i].symbol
@@ -1189,6 +1239,12 @@ function filterUpDownStocks() {
         delete stocksDown[i].williamsR
         stocksDown[i].cciDown = stocksDown[i].cci
         delete stocksDown[i].cci
+        stocksDown[i].bbUpperDown = stocksDown[i].bbUpper
+        delete stocksDown[i].bbUpper
+        stocksDown[i].bbLowerDown = stocksDown[i].bbLower
+        delete stocksDown[i].bbLower
+        stocksDown[i].bbMiddleDown = stocksDown[i].bbMiddle
+        delete stocksDown[i].bbMiddle
     }
 }
 
