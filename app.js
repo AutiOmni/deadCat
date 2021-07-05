@@ -35,9 +35,12 @@ if (date < 10) {
 if (month < 10) {
     month = `0${month}`
 }
-// DATE CHECK VARIBLE FOR DATA PERIOD PULLS
-const todayDate = `${year}-${month}-${date}` 
 
+// DATE CHECK VARIBLE FOR DATA PERIOD PULLS
+let todayDate = `${year}-${month}-${date}`
+if (todayDate === '2021-07-05') {
+    todayDate = '2021-07-02'
+} 
 // ------------------- TRADABLE STOCK TICKERS --------------------------------------------------------------------------------------------------
 async function tradableSymbols() {
     let myStocksNas = []
@@ -383,7 +386,7 @@ function vwmaFunction(chartArr, dataPull, num) {
     if (dataPull.historical.length < 15) {
         chartArr[num].vwmaFiveTeen = 'Insufficient Data Available'
     } else {
-        for (let i = 0; i < 14; i++) {
+        for (let i = 0; i <= 14; i++) {
             price = dataPull.historical[i].close
             volume = dataPull.historical[i].volume
             totalCul += price * volume
@@ -403,7 +406,7 @@ function vwmaFunction(chartArr, dataPull, num) {
     if (dataPull.historical.length < 20) {
         chartArr[num].vwmaTwenty = 'Insufficient Data Available'
     } else {
-        for (let i = 0; i < 19; i++) {
+        for (let i = 0; i <= 19; i++) {
             price = dataPull.historical[i].close
             volume = dataPull.historical[i].volume
             totalCul += price * volume
@@ -423,7 +426,7 @@ function vwmaFunction(chartArr, dataPull, num) {
     if (dataPull.historical.length < 30) {
         chartArr[num].vwmaThirty = 'Insufficient Data Available'
     } else {
-        for (let i = 0; i < 29; i++) {
+        for (let i = 0; i <= 29; i++) {
             price = dataPull.historical[i].close
             volume = dataPull.historical[i].volume
             totalCul += price * volume
@@ -443,7 +446,7 @@ function vwmaFunction(chartArr, dataPull, num) {
     if (dataPull.historical.length < 50) {
         chartArr[num].vwmaFifty = 'Insufficient Data Available'
     } else {
-        for (let i = 0; i < 49; i++) {
+        for (let i = 0; i <= 49; i++) {
             price = dataPull.historical[i].close
             volume = dataPull.historical[i].volume
             totalCul += price * volume
@@ -463,7 +466,7 @@ function vwmaFunction(chartArr, dataPull, num) {
     if (dataPull.historical.length < 100) {
         chartArr[num].vwmaOneHun = 'Insufficient Data Available'
     } else {
-        for (let i = 0; i < 99; i++) {
+        for (let i = 0; i <= 99; i++) {
             price = dataPull.historical[i].close
             volume = dataPull.historical[i].volume
             totalCul += price * volume
@@ -483,7 +486,7 @@ function vwmaFunction(chartArr, dataPull, num) {
     if (dataPull.historical.length < 200) {
         chartArr[num].vwmaTwoHun = 'Insufficient Data Available'
     } else {
-        for (let i = 0; i < 199; i++) {
+        for (let i = 0; i <= 199; i++) {
             price = dataPull.historical[i].close
             volume = dataPull.historical[i].volume
             totalCul += price * volume
@@ -687,8 +690,6 @@ function rsiFunction(chartArr, dataPull, num) {
 // STOCHASTIC OSCILLATOR ------------------------------------------------------------------------------------------------------------------------------------------------------------------
 function stochOsc1433Function(chartArr, dataPull, num) {
 
-        
-
         let iSO = 13
 
         let soLowHolder = []
@@ -878,7 +879,7 @@ function williamsRFunction(chartArr, dataPull, num) {
                 if (dataPull.historical.length < 14) {
                     chartArr[num].williams = 'Poop'
                 } else {
-                    for (let i = 0; i < 13; i++) {
+                    for (let i = 0; i <= 13; i++) {
                         highs.push(dataPull.historical[i].high)
                         lows.push(dataPull.historical[i].low)
                     }
@@ -889,6 +890,45 @@ function williamsRFunction(chartArr, dataPull, num) {
                     const williams = (highestHigh - dataPull.historical[0].close) / (highestHigh - lowestLow) * -100
                     
                     chartArr[num].williamsR = williams.toFixed(2)
+                }
+}
+// CCI 20 ------------------------------------------------------------------------------------------------------------------------------------------------------------------
+function cciFunction(chartArr, dataPull, num) {
+                let tpvCul = 0
+                let tpv = []
+                let tpvMa = 0
+                let tpvCurrent  = 0
+                const recentTpv = (dataPull.historical[0].close + dataPull.historical[0].high + dataPull.historical[0].low) / 3
+    
+                if (dataPull.historical.length < 20) {
+                    chartArr[num].cciTwenty = 'Insufficient Data Available'
+                } else {
+    
+                    for (let i = 0; i <= 19; i++) {
+    
+                        const {high, close, low} = dataPull.historical[i];  
+    
+                        tpvCurrent = (close + high + low) / 3
+    
+                        tpv.push(tpvCurrent)
+                    }
+                    // ---- TPV SMA ------------------------
+                 
+                    tpvCul = tpv.reduce((a, b) => a + b)
+                    tpvMa = tpvCul / 20
+                    // TOP HALF OF FORMULA - DIVIDE BY PART TWO
+                    const partOne = recentTpv - tpvMa
+    
+                    const meanD = tpv.map(x => x - tpvMa)
+                    const meanDMap = meanD.map(x => Math.abs(x))
+                    const meanDSum = meanDMap.reduce((a,b) => a + b)
+                    const meanDiv = meanDSum / 20
+                    // PART TWO OF FORMULA --------------
+                    const partTwo = meanDiv * 0.015
+                    // CCI ------------------------------
+                    const cci = (partOne / partTwo)
+                    
+                    chartArr[num].cciTwenty = cci.toFixed(2)
                 }
 }
 // VWAP FUNCTION ------------------------------------------------------------------------------------------------------------------------------------------       
@@ -927,6 +967,7 @@ function vwapFunction(chartArr, dataPull, num) {
             
 }
 
+
 // TA FUNCTION ---------------------------------------------------------------------
 async function technicalIndicators() {
 
@@ -940,7 +981,7 @@ async function technicalIndicators() {
         //THIS PULL IS FOR CLOSE PRICES TO CALC TAs
         const resSMA = await  fetch(`https://financialmodelingprep.com/api/v3/historical-price-full/${symbol}?apikey=4d4593bc9e6bc106ee9d1cbd6400b218`)
         const dataSMA = await resSMA.json() // SMA PULL USED FOR OTHER CALCS
-        console.log(dataSMA)
+    
             // SMA -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
             smaFunction(finalChart, dataSMA, j)
                             
@@ -962,12 +1003,14 @@ async function technicalIndicators() {
             // WILLIAMS %R 14 ------------------------------------------------------------------------------------------------------------------------------------------------------------------
             williamsRFunction(finalChart, dataSMA, j)
 
-// VWAP ------------------------------------------------------------------------------------------------------------------------------------------------
+            // CCI 20 ------------------------------------------------------------------------------------------------------------------------------------------------------------------
+            cciFunction(finalChart, dataSMA, j)
 
-        const resVWAP = await  fetch(`https://financialmodelingprep.com/api/v3/historical-chart/5min/${symbol}?apikey=4d4593bc9e6bc106ee9d1cbd6400b218`)
-        const dataVWAP = await resVWAP.json()
+            // VWAP ------------------------------------------------------------------------------------------------------------------------------------------------
+            const resVWAP = await  fetch(`https://financialmodelingprep.com/api/v3/historical-chart/5min/${symbol}?apikey=4d4593bc9e6bc106ee9d1cbd6400b218`)
+            const dataVWAP = await resVWAP.json()
 
-        vwapFunction(finalChart, dataVWAP, j)
+            vwapFunction(finalChart, dataVWAP, j)
 
         j++ // UPDATE WHILE LOOP
 
@@ -1071,6 +1114,8 @@ function filterUpDownStocks() {
         delete stocksUp[i].vwmaTwoHun
         stocksUp[i].williamsRUp = stocksUp[i].williamsR
         delete stocksUp[i].williamsR
+        stocksUp[i].cciUp = stocksUp[i].cci
+        delete stocksUp[i].cci
         // DOWNERS ------------------------------------------------------------------------------
         stocksDown[i].symbolDown = stocksDown[i].symbol
         delete stocksDown[i].symbol
@@ -1142,6 +1187,8 @@ function filterUpDownStocks() {
         delete stocksDown[i].vwmaTwoHun
         stocksDown[i].williamsRDown = stocksDown[i].williamsR
         delete stocksDown[i].williamsR
+        stocksDown[i].cciDown = stocksDown[i].cci
+        delete stocksDown[i].cci
     }
 }
 
