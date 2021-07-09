@@ -160,648 +160,609 @@ finalChartFatUp.sort((a,b) => {
 
 // ---------------------- TECHNICAL INDICATOR FUNCTIONS ------------------------------------------------------------------------------------
 
-// SMA FUNCTION ------------------------------------------------------------------------------------------------------------------------------------------
-function smaFunction(chartArr, dataPull, num) {
-    let culSMA = 0
+    // SMA FUNCTION ------------------------------------------------------------------------------------------------------------------------------------------
+    function smaFunction(chartArr, dataPull, num) {
+        let culSMA = 0
 
-    // ------- SMA INDEX IS - 1 FROM TOTAL BECAUSE OF 0 INDEX = 1 -------------------- 
-    let fiveTeenSMA = 14
-    let twentySMA = 19
-    let thirtySMA = 29
-    let fiftySMA = 49
-    let hunSMA = 99
-    let twoHunSMA = 199
+        // ------- SMA INDEX IS - 1 FROM TOTAL BECAUSE OF 0 INDEX = 1 -------------------- 
+        let fiveTeenSMA = 14
+        let twentySMA = 19
+        let thirtySMA = 29
+        let fiftySMA = 49
+        let hunSMA = 99
+        let twoHunSMA = 199
 
-                        // ------------- 15 DAY SMA -------------------------------
-        if (dataPull.historical.length <= 15) {
-            chartArr[num].smaFiveTeen = 'Insufficient Data'
-        } else {
-            while (fiveTeenSMA >= 0) {
-                culSMA += dataPull.historical[fiveTeenSMA].close
-                fiveTeenSMA--
-                }
-                let smaFiveResult = (culSMA / 15) 
-                chartArr[num].smaFiveTeen = smaFiveResult.toFixed(2) 
-                culSMA = 0
-                }
-                        // ------------- 20 DAY SMA -------------------------------
-        if (dataPull.historical.length <= 20) {
-            chartArr[num].smaTwenty = 'Insufficient Data'
-        } else {
-            while (twentySMA >= 0) {
-                culSMA += dataPull.historical[twentySMA].close
-                twentySMA--
-                }
-                let smaTwentyResult = (culSMA / 20)
-                chartArr[num].smaTwenty = smaTwentyResult.toFixed(2)
-                culSMA = 0
-                }
-                        // ------------- 30 DAY SMA -------------------------------
-        if (dataPull.historical.length <= 30) {
-            chartArr[num].smaThirty = 'Insufficient Data'
-        } else {
-            while (thirtySMA >= 0) {
-                culSMA += dataPull.historical[thirtySMA].close
-                thirtySMA--
-                }
-                let smaThirtyResult = (culSMA / 30)
-                chartArr[num].smaThirty = smaThirtyResult.toFixed(2) 
-                culSMA = 0
-                }
-                        // ------------- 50 DAY SMA -------------------------------
-        if (dataPull.historical.length <= 50) {
-            chartArr[num].smaFifty = 'Insufficient Data'
-        } else {
-            while (fiftySMA >= 0) {
-                culSMA += dataPull.historical[fiftySMA].close
-                fiftySMA--
-                }
-                let smaFiftyResult = (culSMA / 50)
-                chartArr[num].smaFifty = smaFiftyResult.toFixed(2)
-                culSMA = 0
-                } 
-                        // ------------- 100 DAY SMA -------------------------------
-        if (dataPull.historical.length <= 100) {
-            chartArr[num].smaOneHun = 'Insufficient Data'
-        } else {
-            while (hunSMA >= 0) {
-                culSMA += dataPull.historical[hunSMA].close
-                hunSMA--
-                }
-                let smaOneHunResult = (culSMA / 100)
-                chartArr[num].smaOneHun = smaOneHunResult.toFixed(2)
-                culSMA = 0
-                }
-                        // ------------- 200 DAY SMA -------------------------------
-        if (dataPull.historical.length <= 200) {
-            chartArr[num].smaTwoHun = 'Insufficient Data'
-        } else {
-            while (twoHunSMA >= 0) {
-                culSMA += dataPull.historical[twoHunSMA].close
-                twoHunSMA--
-                }
-                let smaTwoHunResult = (culSMA / 200)
-                chartArr[num].smaTwoHun = smaTwoHunResult.toFixed(2)
-                culSMA = 0 
-                }
+                            // ------------- 15 DAY SMA -------------------------------
+            if (dataPull.historical.length <= 15) {
+                chartArr[num].smaFiveTeen = 'Insufficient Data'
+            } else {
+                while (fiveTeenSMA >= 0) {
+                    culSMA += dataPull.historical[fiveTeenSMA].close
+                    fiveTeenSMA--
+                    }
+                    let smaFiveResult = (culSMA / 15) 
+                    chartArr[num].smaFiveTeen = smaFiveResult.toFixed(2) 
+                    culSMA = 0
+                    }
+                            // ------------- 20 DAY SMA -------------------------------
+            if (dataPull.historical.length <= 20) {
+                chartArr[num].smaTwenty = 'Insufficient Data'
+            } else {
+                while (twentySMA >= 0) {
+                    culSMA += dataPull.historical[twentySMA].close
+                    twentySMA--
+                    }
+                    let smaTwentyResult = (culSMA / 20)
+                    chartArr[num].smaTwenty = smaTwentyResult.toFixed(2)
+                    culSMA = 0
+                    }
+                            // ------------- 30 DAY SMA -------------------------------
+            if (dataPull.historical.length <= 30) {
+                chartArr[num].smaThirty = 'Insufficient Data'
+            } else {
+                while (thirtySMA >= 0) {
+                    culSMA += dataPull.historical[thirtySMA].close
+                    thirtySMA--
+                    }
+                    let smaThirtyResult = (culSMA / 30)
+                    chartArr[num].smaThirty = smaThirtyResult.toFixed(2) 
+                    culSMA = 0
+                    }
+                            // ------------- 50 DAY SMA -------------------------------
+            if (dataPull.historical.length <= 50) {
+                chartArr[num].smaFifty = 'Insufficient Data'
+            } else {
+                while (fiftySMA >= 0) {
+                    culSMA += dataPull.historical[fiftySMA].close
+                    fiftySMA--
+                    }
+                    let smaFiftyResult = (culSMA / 50)
+                    chartArr[num].smaFifty = smaFiftyResult.toFixed(2)
+                    culSMA = 0
+                    } 
+                            // ------------- 100 DAY SMA -------------------------------
+            if (dataPull.historical.length <= 100) {
+                chartArr[num].smaOneHun = 'Insufficient Data'
+            } else {
+                while (hunSMA >= 0) {
+                    culSMA += dataPull.historical[hunSMA].close
+                    hunSMA--
+                    }
+                    let smaOneHunResult = (culSMA / 100)
+                    chartArr[num].smaOneHun = smaOneHunResult.toFixed(2)
+                    culSMA = 0
+                    }
+                            // ------------- 200 DAY SMA -------------------------------
+            if (dataPull.historical.length <= 200) {
+                chartArr[num].smaTwoHun = 'Insufficient Data'
+            } else {
+                while (twoHunSMA >= 0) {
+                    culSMA += dataPull.historical[twoHunSMA].close
+                    twoHunSMA--
+                    }
+                    let smaTwoHunResult = (culSMA / 200)
+                    chartArr[num].smaTwoHun = smaTwoHunResult.toFixed(2)
+                    culSMA = 0 
+                    }
+                    
+    } 
+    // WMA FUNCTION ------------------------------------------------------------------------------------------------------------------------------------------
+    function wmaFunction(chartArr, dataPull, num) {
+
+                    // WMA FiveTeen --------------------------------------------------------------------
+                    let wmaCul = 0
+                    let weight = 15
+                    let wmaInterval = 0
+                    let iWma = 0
+        
+                    if (dataPull.historical.length < 15) {
+                        chartArr[num].wmaFiveTeen = 'Insufficient Data Available'
+                    } else {
+        
+                        for (let i = 0; i <= 14; i++) {
+                            wmaInterval = dataPull.historical[i].close * weight
+                            wmaCul += wmaInterval
+                            iWma = iWma += weight
+                            weight--
+                        }
+                    const wmaFiveTeen = wmaCul / iWma
+                    chartArr[num].wmaFiveTeen = wmaFiveTeen.toFixed(2)
+                    }
+        
+                    // WMA Twenty --------------------------------------------------------------------
+                    wmaCul = 0
+                    weight = 20
+                    wmaInterval = 0
+                    iWma = 0
+        
+                    if (dataPull.historical.length < 20) {
+                        chartArr[num].wmaTwenty = 'Insufficient Data Available'
+                    } else {
+        
+                        for (let i = 0; i <= 19; i++) {
+                            wmaInterval = dataPull.historical[i].close * weight
+                            wmaCul += wmaInterval
+                            iWma = iWma += weight
+                            weight--
+                        }
+                    const wmaTwenty = wmaCul / iWma
+                    chartArr[num].wmaTwenty = wmaTwenty.toFixed(2)
+                    }
+        
+                // WMA THIRTY --------------------------------------------------------------------
                 
-} 
-// WMA FUNCTION ------------------------------------------------------------------------------------------------------------------------------------------
-function wmaFunction(chartArr, dataPull, num) {
-
-                // WMA FiveTeen --------------------------------------------------------------------
-                let wmaCul = 0
-                let weight = 15
-                let wmaInterval = 0
-                let iWma = 0
-    
-                if (dataPull.historical.length < 15) {
-                    chartArr[num].wmaFiveTeen = 'Insufficient Data Available'
-                } else {
-    
-                    for (let i = 0; i <= 14; i++) {
-                        wmaInterval = dataPull.historical[i].close * weight
-                        wmaCul += wmaInterval
-                        iWma = iWma += weight
-                        weight--
+                    wmaCul = 0
+                    weight = 30
+                    wmaInterval = 0
+                    iWma = 0
+        
+                    if (dataPull.historical.length < 30) {
+                        chartArr[num].wmaThirty = 'Insufficient Data Available'
+                    } else {
+        
+                        for (let i = 0; i <= 29; i++) {
+                            wmaInterval = dataPull.historical[i].close * weight
+                            wmaCul += wmaInterval
+                            iWma = iWma += weight
+                            weight--
+                        }
+                    const wmaThirty = wmaCul / iWma
+                    chartArr[num].wmaThirty = wmaThirty.toFixed(2)
                     }
-                   const wmaFiveTeen = wmaCul / iWma
-                   chartArr[num].wmaFiveTeen = wmaFiveTeen.toFixed(2)
-                }
-    
-                // WMA Twenty --------------------------------------------------------------------
-                wmaCul = 0
-                weight = 20
-                wmaInterval = 0
-                iWma = 0
-    
-                if (dataPull.historical.length < 20) {
-                    chartArr[num].wmaTwenty = 'Insufficient Data Available'
-                } else {
-    
-                    for (let i = 0; i <= 19; i++) {
-                        wmaInterval = dataPull.historical[i].close * weight
-                        wmaCul += wmaInterval
-                        iWma = iWma += weight
-                        weight--
+        
+                // WMA FIFTY --------------------------------------------------------------------
+        
+                    wmaCul = 0
+                    weight = 50
+                    wmaInterval = 0
+                    iWma = 0
+        
+                    if (dataPull.historical.length < 50) {
+                        chartArr[num].wmaFifty = 'Insufficient Data Available'
+                    } else {
+        
+                        for (let i = 0; i <= 49; i++) {
+                            wmaInterval = dataPull.historical[i].close * weight
+                            wmaCul += wmaInterval
+                            iWma = iWma += weight
+                            weight--
+                        }
+                    const wmaFifty = wmaCul / iWma
+                    chartArr[num].wmaFifty = wmaFifty.toFixed(2)
                     }
-                   const wmaTwenty = wmaCul / iWma
-                   chartArr[num].wmaTwenty = wmaTwenty.toFixed(2)
-                }
-    
-            // WMA THIRTY --------------------------------------------------------------------
-            
-                wmaCul = 0
-                weight = 30
-                wmaInterval = 0
-                iWma = 0
-    
-                if (dataPull.historical.length < 30) {
-                    chartArr[num].wmaThirty = 'Insufficient Data Available'
-                } else {
-    
-                    for (let i = 0; i <= 29; i++) {
-                        wmaInterval = dataPull.historical[i].close * weight
-                        wmaCul += wmaInterval
-                        iWma = iWma += weight
-                        weight--
+        
+                // WMA ONE HUNDRED --------------------------------------------------------------------
+        
+                    wmaCul = 0
+                    weight = 100
+                    wmaInterval = 0
+                    iWma = 0
+        
+                    if (dataPull.historical.length < 100) {
+                        chartArr[num].wmaOneHun = 'Insufficient Data Available'
+                    } else {
+        
+                        for (let i = 0; i <= 99; i++) {
+                            wmaInterval = dataPull.historical[i].close * weight
+                            wmaCul += wmaInterval
+                            iWma = iWma += weight
+                            weight--
+                        }
+                    const wmaOneHun = wmaCul / iWma
+                    chartArr[num].wmaOneHun = wmaOneHun.toFixed(2)
                     }
-                   const wmaThirty = wmaCul / iWma
-                   chartArr[num].wmaThirty = wmaThirty.toFixed(2)
-                }
-    
-            // WMA FIFTY --------------------------------------------------------------------
-    
-                wmaCul = 0
-                weight = 50
-                wmaInterval = 0
-                iWma = 0
-    
-                if (dataPull.historical.length < 50) {
-                    chartArr[num].wmaFifty = 'Insufficient Data Available'
-                } else {
-    
-                    for (let i = 0; i <= 49; i++) {
-                        wmaInterval = dataPull.historical[i].close * weight
-                        wmaCul += wmaInterval
-                        iWma = iWma += weight
-                        weight--
+
+                // WMA TWO HUNDRED --------------------------------------------------------------------
+        
+                    wmaCul = 0
+                    weight = 200
+                    wmaInterval = 0
+                    iWma = 0
+        
+                    if (dataPull.historical.length < 200) {
+                        chartArr[num].wmaTwoHun = 'Insufficient Data Available'
+                    } else {
+        
+                        for (let i = 0; i <= 199; i++) {
+                            wmaInterval = dataPull.historical[i].close * weight
+                            wmaCul += wmaInterval
+                            iWma = iWma += weight
+                            weight--
+                        }
+                    const wmaTwoHun = wmaCul / iWma
+                    chartArr[num].wmaTwoHun = wmaTwoHun.toFixed(2)
                     }
-                   const wmaFifty = wmaCul / iWma
-                   chartArr[num].wmaFifty = wmaFifty.toFixed(2)
-                }
-    
-            // WMA ONE HUNDRED --------------------------------------------------------------------
-    
-                wmaCul = 0
-                weight = 100
-                wmaInterval = 0
-                iWma = 0
-    
-                if (dataPull.historical.length < 100) {
-                    chartArr[num].wmaOneHun = 'Insufficient Data Available'
-                } else {
-    
-                    for (let i = 0; i <= 99; i++) {
-                        wmaInterval = dataPull.historical[i].close * weight
-                        wmaCul += wmaInterval
-                        iWma = iWma += weight
-                        weight--
-                    }
-                   const wmaOneHun = wmaCul / iWma
-                   chartArr[num].wmaOneHun = wmaOneHun.toFixed(2)
-                }
-
-            // WMA TWO HUNDRED --------------------------------------------------------------------
-    
-                wmaCul = 0
-                weight = 200
-                wmaInterval = 0
-                iWma = 0
-    
-                if (dataPull.historical.length < 200) {
-                    chartArr[num].wmaTwoHun = 'Insufficient Data Available'
-                } else {
-    
-                    for (let i = 0; i <= 199; i++) {
-                        wmaInterval = dataPull.historical[i].close * weight
-                        wmaCul += wmaInterval
-                        iWma = iWma += weight
-                        weight--
-                    }
-                   const wmaTwoHun = wmaCul / iWma
-                   chartArr[num].wmaTwoHun = wmaTwoHun.toFixed(2)
-                }
-}
-// VWMA FUNCTION ------------------------------------------------------------------------------------------------------------------------------------------
-function vwmaFunction(chartArr, dataPull, num) {
-
-    // VWMA FIVETEEN --------------------------------------------------------------------
-
-    let volCul = 0
-    let totalCul = 0
-    let price = 0
-    let volume = 0
-
-    if (dataPull.historical.length < 15) {
-        chartArr[num].vwmaFiveTeen = 'Insufficient Data Available'
-    } else {
-        for (let i = 0; i <= 14; i++) {
-            price = dataPull.historical[i].close
-            volume = dataPull.historical[i].volume
-            totalCul += price * volume
-            volCul += dataPull.historical[i].volume
-        }
-        const vwmaFiveTeen = totalCul/volCul
-        chartArr[num].vwmaFiveTeen = vwmaFiveTeen.toFixed(2)
     }
+    // VWMA FUNCTION ------------------------------------------------------------------------------------------------------------------------------------------
+    function vwmaFunction(chartArr, dataPull, num) {
 
-    // VWMA TWENTY --------------------------------------------------------------------
+        // VWMA FIVETEEN --------------------------------------------------------------------
 
-    volCul = 0
-    totalCul = 0
-    price = 0
-    volume = 0
+        let volCul = 0
+        let totalCul = 0
+        let price = 0
+        let volume = 0
 
-    if (dataPull.historical.length < 20) {
-        chartArr[num].vwmaTwenty = 'Insufficient Data Available'
-    } else {
-        for (let i = 0; i <= 19; i++) {
-            price = dataPull.historical[i].close
-            volume = dataPull.historical[i].volume
-            totalCul += price * volume
-            volCul += dataPull.historical[i].volume
-        }
-        const vwmaTwenty = totalCul/volCul
-        chartArr[num].vwmaTwenty = vwmaTwenty.toFixed(2)
-    }
-
-    // VWMA THIRTY --------------------------------------------------------------------
-
-    volCul = 0
-    totalCul = 0
-    price = 0
-    volume = 0
-
-    if (dataPull.historical.length < 30) {
-        chartArr[num].vwmaThirty = 'Insufficient Data Available'
-    } else {
-        for (let i = 0; i <= 29; i++) {
-            price = dataPull.historical[i].close
-            volume = dataPull.historical[i].volume
-            totalCul += price * volume
-            volCul += dataPull.historical[i].volume
-        }
-        const vwmaThirty = totalCul/volCul
-        chartArr[num].vwmaThirty = vwmaThirty.toFixed(2)
-    }
-
-    // VWMA FIFTY --------------------------------------------------------------------
-
-    volCul = 0
-    totalCul = 0
-    price = 0
-    volume = 0
-
-    if (dataPull.historical.length < 50) {
-        chartArr[num].vwmaFifty = 'Insufficient Data Available'
-    } else {
-        for (let i = 0; i <= 49; i++) {
-            price = dataPull.historical[i].close
-            volume = dataPull.historical[i].volume
-            totalCul += price * volume
-            volCul += dataPull.historical[i].volume
-        }
-        const vwmaFifty = totalCul/volCul
-        chartArr[num].vwmaFifty = vwmaFifty.toFixed(2)
-    }
-
-    // VWMA ONEHUN --------------------------------------------------------------------
-
-    volCul = 0
-    totalCul = 0
-    price = 0
-    volume = 0
-
-    if (dataPull.historical.length < 100) {
-        chartArr[num].vwmaOneHun = 'Insufficient Data Available'
-    } else {
-        for (let i = 0; i <= 99; i++) {
-            price = dataPull.historical[i].close
-            volume = dataPull.historical[i].volume
-            totalCul += price * volume
-            volCul += dataPull.historical[i].volume
-        }
-        const vwmaOneHun = totalCul/volCul
-        chartArr[num].vwmaOneHun = vwmaOneHun.toFixed(2)
-    }
-
-    // VWMA TWOHUN --------------------------------------------------------------------
-
-    volCul = 0
-    totalCul = 0
-    price = 0
-    volume = 0
-
-    if (dataPull.historical.length < 200) {
-        chartArr[num].vwmaTwoHun = 'Insufficient Data Available'
-    } else {
-        for (let i = 0; i <= 199; i++) {
-            price = dataPull.historical[i].close
-            volume = dataPull.historical[i].volume
-            totalCul += price * volume
-            volCul += dataPull.historical[i].volume
-        }
-        const vwmaTwoHun = totalCul/volCul
-        chartArr[num].vwmaTwoHun = vwmaTwoHun.toFixed(2)
-    }
-}
-// EMA FUNCTION ------------------------------------------------------------------------------------------------------------------------------------------       
-function emaFunction(chartArr, dataPull, num, macdCallBack) {
-                let emaTwelve = 23
-                let emaTwentySix = 51
-                let emaFifty = 99
-                let emaTwoHun = 399
-                let prevDayEmaSub = 0
-                let arrEma = []
-
-                let macdTwelve = [] // ARRs USED FOR MACD TWELVE HISTORY
-                let macdTwentySix = [] // ARRs USED FOR MACD TWENTY SIX HISTORY
-            
-                                // EMA TWELVE ------------------------------------------------------------------------- 
-                                if (dataPull.historical.length <= 24) {
-                                    chartArr[num].emaTwelve = 'Insufficient Data Available'
-                                } else {
-                                while (emaTwelve >= 12) {
-                                    prevDayEmaSub += dataPull.historical[emaTwelve].close
-                                    emaTwelve--
-                                    } //CALCULATE EMA HERE TO GET PREVIOUS DAY EMA FOR ACCURATE CURRENT EMA
-                                    const subEMA = prevDayEmaSub / 12
-                                    //THIS GETS AN EMA USING SMA AS PREV EMA ----------------------------
-                                    const finalSubEma = (2/13) * (dataPull.historical[emaTwelve].close - subEMA) + subEMA
-                                    arrEma.unshift(finalSubEma)
-                                    emaTwelve--
-                                    while (emaTwelve >= 0) {
-                                        let derp = (2/13) * (dataPull.historical[emaTwelve].close - arrEma[0]) + arrEma[0]
-                                        arrEma.unshift(derp)
-                                        arrEma.pop()
-                                        if (emaTwelve < 10 && emaTwelve >= 1) { //THIS IF STATEMENT IS TO STORE VARIABLES FOR LATER MACD SIGNAL LINE
-                                            macdTwelve.unshift(derp)
-                                        }
-                                        emaTwelve--
-                                    }
-                                    chartArr[num].emaTwelve = arrEma[0].toFixed(2) 
-                                    arrEma.pop()
-                                    prevDayEmaSub = 0 
-                                }
-                                // EMA TWENTY SIX ----------------------------------------------------------------------
-                                if (dataPull.historical.length <= 52) {
-                                    chartArr[num].emaTwentySix = 'Insufficient Data Available'
-                                } else {
-                                while (emaTwentySix >= 26) {
-                                    prevDayEmaSub += dataPull.historical[emaTwentySix].close
-                                    emaTwentySix--
-                                    } //CALCULATE EMA HERE TO GET PREVIOUS DAY EMA FOR ACCURATE CURRENT EMA
-                                    const subEMA = prevDayEmaSub / 26
-                                    //THIS GETS AN EMA USING SMA AS PREV EMA ----------------------------
-                                    const finalSubEma = (2/27) * (dataPull.historical[emaTwentySix].close - subEMA) + subEMA
-                                    arrEma.unshift(finalSubEma)
-                                    emaTwentySix--
-                                    while (emaTwentySix >= 0) {
-                                        let derp = (2/27) * (dataPull.historical[emaTwentySix].close - arrEma[0]) + arrEma[0]
-                                        arrEma.unshift(derp)
-                                        arrEma.pop()
-                                        if (emaTwentySix < 10 && emaTwentySix >= 1) { //THIS IF STATEMENT IS TO STORE VARIABLES FOR LATER MACD SIGNAL LINE
-                                            macdTwentySix.unshift(derp)
-                                        }
-                                        
-                                        emaTwentySix--
-                                    }
-                                    chartArr[num].emaTwentySix = arrEma[0].toFixed(2) 
-                                    arrEma.pop() 
-                                    prevDayEmaSub = 0
-                                }   
-                                // EMA FIFTY -----------------------------------------------------------------------------
-                                if (dataPull.historical.length <= 100) {
-                                    chartArr[num].emaFifty = 'Insufficient Data Available'
-                                } else {
-                                while (emaFifty >= 50) {
-                                    prevDayEmaSub += dataPull.historical[emaFifty].close
-                                    emaFifty--
-                                    } //CALCULATE EMA HERE TO GET PREVIOUS DAY EMA FOR ACCURATE CURRENT EMA
-                                    const subEMA = prevDayEmaSub / 50
-                                    //THIS GETS AN EMA USING SMA AS PREV EMA ----------------------------
-                                    const finalSubEma = (2/51) * (dataPull.historical[emaFifty].close - subEMA) + subEMA
-                                    arrEma.unshift(finalSubEma)
-                                    emaFifty--
-                                    while (emaFifty >= 0) {
-                                        let derp = (2/51) * (dataPull.historical[emaFifty].close - arrEma[0]) + arrEma[0]
-                                        arrEma.unshift(derp)
-                                        arrEma.pop()
-                                        emaFifty--
-                                    }
-                                    chartArr[num].emaFifty = arrEma[0].toFixed(2) 
-                                    arrEma.pop() 
-                                    prevDayEmaSub = 0
-                                }
-                                // EMA TWO HUNDRED -----------------------------------------------------------------------------
-                                if (dataPull.historical.length <= 400) {
-                                    chartArr[num].emaTwoHun = 'Insufficient Data Available'
-                                } else {
-                                while (emaTwoHun >= 200) {
-                                    prevDayEmaSub += dataPull.historical[emaTwoHun].close
-                                    emaTwoHun--
-                                    } //CALCULATE EMA HERE TO GET PREVIOUS DAY EMA FOR ACCURATE CURRENT EMA
-                                    const subEMA = prevDayEmaSub / 200
-                                    //THIS GETS AN EMA USING SMA AS PREV EMA ----------------------------
-                                    const finalSubEma = (2/201) * (dataPull.historical[emaTwoHun].close - subEMA) + subEMA
-                                    arrEma.unshift(finalSubEma)
-                                    emaTwoHun--
-                                    while (emaTwoHun >= 0) {
-                                        let derp = (2/201) * (dataPull.historical[emaTwoHun].close - arrEma[0]) + arrEma[0]
-                                        arrEma.unshift(derp)
-                                        arrEma.pop()
-                                        emaTwoHun--
-                                    }
-                                    chartArr[num].emaTwoHun = arrEma[0].toFixed(2) 
-                                    arrEma.pop() 
-                                    prevDayEmaSub = 0
-                                }
-            
-            // MACD CALLBACK -----------------------------------------------------------------------------------------------------------------------------------------       
-            macdCallBack(chartArr, num, macdTwelve, macdTwentySix)
-}
-// MACD FUNCTION -----------------------------------------------------------------------------------------------------------------------------------------       
-function macdFunction(chartArr, num, arr1, arr2) {
-    const macd = chartArr[num].emaTwelve - chartArr[num].emaTwentySix
-    chartArr[num].macd = macd.toFixed(2)
-    // CALCULATE SIGNAL LINE ----------------
-    let averageMacd = []
-    let iMacd = 8
-    while (iMacd >= 0) {
-        averageMacd.unshift(arr1[iMacd] - arr2[iMacd])
-        iMacd--
-    }
-    let averageSum = averageMacd.reduce((a,b) => a + b)
-    let finalAverageMacd = averageSum / 9
-    let macdSignalLine = (2/9) * (chartArr[num].macd - finalAverageMacd) + finalAverageMacd
-    chartArr[num].macdSignalLine = macdSignalLine.toFixed(2)
-    // HISTORGRAM CALC ------------------------------------- IF HISTOGRAM GOES FROM NEGATIVE TO POSITIVE IT IS BULLISH
-    let histogram = chartArr[num].macd - chartArr[num].macdSignalLine
-    chartArr[num].macdHistogram = histogram.toFixed(2)
-// FOR NO DATA TO PULL FROM
-    if (chartArr[num].macdHistogram === 'NaN') {
-        chartArr[num].macdHistogram = 'Insufficient Data Available'
-    }
-    if (chartArr[num].macd === 'NaN') {
-        chartArr[num].macd = 'Insufficient Data Available'
-    }
-    if (chartArr[num].macdSignalLine === 'NaN') {
-        chartArr[num].macdSignalLine = 'Insufficient Data Available'
-    }
-
-}
-// RSI FUNCTION ------------------------------------------------------------------------------------------------------------------------------------------      
-function rsiFunction(chartArr, dataPull, num) {
-
-    let iRSI = 14
-    let iRSIAdjusted = 15
-    let recentUpper = 0
-    let recentDowner = 0
-    let upMove = 0
-    let downMove = 0
-    let pastDownPeriod = 0
-    let pastUpPeriod = 0
-
-   // CHECK TO SEE IF DATA PULL CAN PULL ENOUGH DATA TO BE EFFECTIVE 
-    if (dataPull.historical.length <= 16) {
-        chartArr[num].rsi = 'Insufficient Data Available'
-    } else {
-    // LOOP FOR AVERAGE
-    while (iRSI >= 1) {
-           if (dataPull.historical[iRSI].close > dataPull.historical[iRSIAdjusted].close) {
-               upMove += (dataPull.historical[iRSI].close - dataPull.historical[iRSIAdjusted].close)
-           } else {
-               downMove += (dataPull.historical[iRSIAdjusted].close - dataPull.historical[iRSI].close)
-           } 
-       iRSI--
-       iRSIAdjusted--
-    }
-
-    let averageUp = upMove / 14
-    let averageDown = downMove / 14
-
-     // MOST RECENT DIFFERENCE
-    if (dataPull.historical[0].close > dataPull.historical[1].close) {
-            recentUpper = dataPull.historical[0].close - dataPull.historical[1].close
-         } else {
-            recentDowner = dataPull.historical[1].close - dataPull.historical[0].close
-         }
-   
-     pastUpPeriod = ((averageUp * 13) + recentUpper) / 14
-     pastDownPeriod = ((averageDown * 13) + recentDowner) / 14
-
-    let rsi = 100 - (100 / (1 + pastUpPeriod/pastDownPeriod))
-    chartArr[num].rsi = rsi.toFixed(2)
-
-}
-
-} 
-// STOCHASTIC OSCILLATOR ------------------------------------------------------------------------------------------------------------------------------------------------------------------
-function stochOsc1433Function(chartArr, dataPull, num) {
-
-        let iSO = 13
-
-        let soLowHolder = []
-        let soHighHolder = []
-        let highestHigh = 0
-        let lowestLow = 0
-    // FIRST %D
-        let topForm = []
-        let bottomForm = []
-    // SECOND %D
-        let topFormTwo = []
-        let bottomFormTwo = []
-    // THIRD %D
-        let topFormThree = []
-        let bottomFormThree = []
-    // HOLDING SET OF %D FOR 14 3 3 
-        let signalLineHolder = []
-
-    if (dataPull.historical.length < 19) {
-    chartArr[num].stochasticK = 'Insufficient Data Available'
-    } else {
-
-    // GETTING HIGHS AND LOWS OF PERIOD------------------------------------------------------
-
-            while (iSO >= 0) {
-                soLowHolder.push(dataPull.historical[iSO].low)
-                soHighHolder.push(dataPull.historical[iSO].high)
-                iSO--
+        if (dataPull.historical.length < 15) {
+            chartArr[num].vwmaFiveTeen = 'Insufficient Data Available'
+        } else {
+            for (let i = 0; i <= 14; i++) {
+                price = dataPull.historical[i].close
+                volume = dataPull.historical[i].volume
+                totalCul += price * volume
+                volCul += dataPull.historical[i].volume
             }
+            const vwmaFiveTeen = totalCul/volCul
+            chartArr[num].vwmaFiveTeen = vwmaFiveTeen.toFixed(2)
+        }
 
-            highestHigh = Math.max(...soHighHolder)
-            lowestLow = Math.min(...soLowHolder) 
+        // VWMA TWENTY --------------------------------------------------------------------
 
-            topForm.push(dataPull.historical[0].close - lowestLow)
-            bottomForm.push(highestHigh - lowestLow)
+        volCul = 0
+        totalCul = 0
+        price = 0
+        volume = 0
 
-// RESET HOLDER AND VARs --------------------------------------------------------
+        if (dataPull.historical.length < 20) {
+            chartArr[num].vwmaTwenty = 'Insufficient Data Available'
+        } else {
+            for (let i = 0; i <= 19; i++) {
+                price = dataPull.historical[i].close
+                volume = dataPull.historical[i].volume
+                totalCul += price * volume
+                volCul += dataPull.historical[i].volume
+            }
+            const vwmaTwenty = totalCul/volCul
+            chartArr[num].vwmaTwenty = vwmaTwenty.toFixed(2)
+        }
 
-       iSO = 14
-       soLowHolder = []
-       soHighHolder = []
-       highestHigh = 0
-       lowestLow = 0
+        // VWMA THIRTY --------------------------------------------------------------------
 
-// GETTING HIGHS AND LOWS OF PERIOD-----------------------------------------------
+        volCul = 0
+        totalCul = 0
+        price = 0
+        volume = 0
 
-            while (iSO >= 1) {
+        if (dataPull.historical.length < 30) {
+            chartArr[num].vwmaThirty = 'Insufficient Data Available'
+        } else {
+            for (let i = 0; i <= 29; i++) {
+                price = dataPull.historical[i].close
+                volume = dataPull.historical[i].volume
+                totalCul += price * volume
+                volCul += dataPull.historical[i].volume
+            }
+            const vwmaThirty = totalCul/volCul
+            chartArr[num].vwmaThirty = vwmaThirty.toFixed(2)
+        }
+
+        // VWMA FIFTY --------------------------------------------------------------------
+
+        volCul = 0
+        totalCul = 0
+        price = 0
+        volume = 0
+
+        if (dataPull.historical.length < 50) {
+            chartArr[num].vwmaFifty = 'Insufficient Data Available'
+        } else {
+            for (let i = 0; i <= 49; i++) {
+                price = dataPull.historical[i].close
+                volume = dataPull.historical[i].volume
+                totalCul += price * volume
+                volCul += dataPull.historical[i].volume
+            }
+            const vwmaFifty = totalCul/volCul
+            chartArr[num].vwmaFifty = vwmaFifty.toFixed(2)
+        }
+
+        // VWMA ONEHUN --------------------------------------------------------------------
+
+        volCul = 0
+        totalCul = 0
+        price = 0
+        volume = 0
+
+        if (dataPull.historical.length < 100) {
+            chartArr[num].vwmaOneHun = 'Insufficient Data Available'
+        } else {
+            for (let i = 0; i <= 99; i++) {
+                price = dataPull.historical[i].close
+                volume = dataPull.historical[i].volume
+                totalCul += price * volume
+                volCul += dataPull.historical[i].volume
+            }
+            const vwmaOneHun = totalCul/volCul
+            chartArr[num].vwmaOneHun = vwmaOneHun.toFixed(2)
+        }
+
+        // VWMA TWOHUN --------------------------------------------------------------------
+
+        volCul = 0
+        totalCul = 0
+        price = 0
+        volume = 0
+
+        if (dataPull.historical.length < 200) {
+            chartArr[num].vwmaTwoHun = 'Insufficient Data Available'
+        } else {
+            for (let i = 0; i <= 199; i++) {
+                price = dataPull.historical[i].close
+                volume = dataPull.historical[i].volume
+                totalCul += price * volume
+                volCul += dataPull.historical[i].volume
+            }
+            const vwmaTwoHun = totalCul/volCul
+            chartArr[num].vwmaTwoHun = vwmaTwoHun.toFixed(2)
+        }
+    }
+    // EMA FUNCTION ------------------------------------------------------------------------------------------------------------------------------------------       
+    function emaFunction(chartArr, dataPull, num, macdCallBack) {
+                    let emaTwelve = 23
+                    let emaTwentySix = 51
+                    let emaFifty = 99
+                    let emaTwoHun = 399
+                    let prevDayEmaSub = 0
+                    let arrEma = []
+
+                    let macdTwelve = [] // ARRs USED FOR MACD TWELVE HISTORY
+                    let macdTwentySix = [] // ARRs USED FOR MACD TWENTY SIX HISTORY
+                
+                                    // EMA TWELVE ------------------------------------------------------------------------- 
+                                    if (dataPull.historical.length <= 24) {
+                                        chartArr[num].emaTwelve = 'Insufficient Data Available'
+                                    } else {
+                                    while (emaTwelve >= 12) {
+                                        prevDayEmaSub += dataPull.historical[emaTwelve].close
+                                        emaTwelve--
+                                        } //CALCULATE EMA HERE TO GET PREVIOUS DAY EMA FOR ACCURATE CURRENT EMA
+                                        const subEMA = prevDayEmaSub / 12
+                                        //THIS GETS AN EMA USING SMA AS PREV EMA ----------------------------
+                                        const finalSubEma = (2/13) * (dataPull.historical[emaTwelve].close - subEMA) + subEMA
+                                        arrEma.unshift(finalSubEma)
+                                        emaTwelve--
+                                        while (emaTwelve >= 0) {
+                                            let derp = (2/13) * (dataPull.historical[emaTwelve].close - arrEma[0]) + arrEma[0]
+                                            arrEma.unshift(derp)
+                                            arrEma.pop()
+                                            if (emaTwelve < 10 && emaTwelve >= 1) { //THIS IF STATEMENT IS TO STORE VARIABLES FOR LATER MACD SIGNAL LINE
+                                                macdTwelve.unshift(derp)
+                                            }
+                                            emaTwelve--
+                                        }
+                                        chartArr[num].emaTwelve = arrEma[0].toFixed(2) 
+                                        arrEma.pop()
+                                        prevDayEmaSub = 0 
+                                    }
+                                    // EMA TWENTY SIX ----------------------------------------------------------------------
+                                    if (dataPull.historical.length <= 52) {
+                                        chartArr[num].emaTwentySix = 'Insufficient Data Available'
+                                    } else {
+                                    while (emaTwentySix >= 26) {
+                                        prevDayEmaSub += dataPull.historical[emaTwentySix].close
+                                        emaTwentySix--
+                                        } //CALCULATE EMA HERE TO GET PREVIOUS DAY EMA FOR ACCURATE CURRENT EMA
+                                        const subEMA = prevDayEmaSub / 26
+                                        //THIS GETS AN EMA USING SMA AS PREV EMA ----------------------------
+                                        const finalSubEma = (2/27) * (dataPull.historical[emaTwentySix].close - subEMA) + subEMA
+                                        arrEma.unshift(finalSubEma)
+                                        emaTwentySix--
+                                        while (emaTwentySix >= 0) {
+                                            let derp = (2/27) * (dataPull.historical[emaTwentySix].close - arrEma[0]) + arrEma[0]
+                                            arrEma.unshift(derp)
+                                            arrEma.pop()
+                                            if (emaTwentySix < 10 && emaTwentySix >= 1) { //THIS IF STATEMENT IS TO STORE VARIABLES FOR LATER MACD SIGNAL LINE
+                                                macdTwentySix.unshift(derp)
+                                            }
+                                            
+                                            emaTwentySix--
+                                        }
+                                        chartArr[num].emaTwentySix = arrEma[0].toFixed(2) 
+                                        arrEma.pop() 
+                                        prevDayEmaSub = 0
+                                    }   
+                                    // EMA FIFTY -----------------------------------------------------------------------------
+                                    if (dataPull.historical.length <= 100) {
+                                        chartArr[num].emaFifty = 'Insufficient Data Available'
+                                    } else {
+                                    while (emaFifty >= 50) {
+                                        prevDayEmaSub += dataPull.historical[emaFifty].close
+                                        emaFifty--
+                                        } //CALCULATE EMA HERE TO GET PREVIOUS DAY EMA FOR ACCURATE CURRENT EMA
+                                        const subEMA = prevDayEmaSub / 50
+                                        //THIS GETS AN EMA USING SMA AS PREV EMA ----------------------------
+                                        const finalSubEma = (2/51) * (dataPull.historical[emaFifty].close - subEMA) + subEMA
+                                        arrEma.unshift(finalSubEma)
+                                        emaFifty--
+                                        while (emaFifty >= 0) {
+                                            let derp = (2/51) * (dataPull.historical[emaFifty].close - arrEma[0]) + arrEma[0]
+                                            arrEma.unshift(derp)
+                                            arrEma.pop()
+                                            emaFifty--
+                                        }
+                                        chartArr[num].emaFifty = arrEma[0].toFixed(2) 
+                                        arrEma.pop() 
+                                        prevDayEmaSub = 0
+                                    }
+                                    // EMA TWO HUNDRED -----------------------------------------------------------------------------
+                                    if (dataPull.historical.length <= 400) {
+                                        chartArr[num].emaTwoHun = 'Insufficient Data Available'
+                                    } else {
+                                    while (emaTwoHun >= 200) {
+                                        prevDayEmaSub += dataPull.historical[emaTwoHun].close
+                                        emaTwoHun--
+                                        } //CALCULATE EMA HERE TO GET PREVIOUS DAY EMA FOR ACCURATE CURRENT EMA
+                                        const subEMA = prevDayEmaSub / 200
+                                        //THIS GETS AN EMA USING SMA AS PREV EMA ----------------------------
+                                        const finalSubEma = (2/201) * (dataPull.historical[emaTwoHun].close - subEMA) + subEMA
+                                        arrEma.unshift(finalSubEma)
+                                        emaTwoHun--
+                                        while (emaTwoHun >= 0) {
+                                            let derp = (2/201) * (dataPull.historical[emaTwoHun].close - arrEma[0]) + arrEma[0]
+                                            arrEma.unshift(derp)
+                                            arrEma.pop()
+                                            emaTwoHun--
+                                        }
+                                        chartArr[num].emaTwoHun = arrEma[0].toFixed(2) 
+                                        arrEma.pop() 
+                                        prevDayEmaSub = 0
+                                    }
+                
+                // MACD CALLBACK -----------------------------------------------------------------------------------------------------------------------------------------       
+                macdCallBack(chartArr, num, macdTwelve, macdTwentySix)
+    }
+    // MACD FUNCTION -----------------------------------------------------------------------------------------------------------------------------------------       
+    function macdFunction(chartArr, num, arr1, arr2) {
+        const macd = chartArr[num].emaTwelve - chartArr[num].emaTwentySix
+        chartArr[num].macd = macd.toFixed(2)
+        // CALCULATE SIGNAL LINE ----------------
+        let averageMacd = []
+        let iMacd = 8
+        while (iMacd >= 0) {
+            averageMacd.unshift(arr1[iMacd] - arr2[iMacd])
+            iMacd--
+        }
+        let averageSum = averageMacd.reduce((a,b) => a + b)
+        let finalAverageMacd = averageSum / 9
+        let macdSignalLine = (2/9) * (chartArr[num].macd - finalAverageMacd) + finalAverageMacd
+        chartArr[num].macdSignalLine = macdSignalLine.toFixed(2)
+        // HISTORGRAM CALC ------------------------------------- IF HISTOGRAM GOES FROM NEGATIVE TO POSITIVE IT IS BULLISH
+        let histogram = chartArr[num].macd - chartArr[num].macdSignalLine
+        chartArr[num].macdHistogram = histogram.toFixed(2)
+    // FOR NO DATA TO PULL FROM
+        if (chartArr[num].macdHistogram === 'NaN') {
+            chartArr[num].macdHistogram = 'Insufficient Data Available'
+        }
+        if (chartArr[num].macd === 'NaN') {
+            chartArr[num].macd = 'Insufficient Data Available'
+        }
+        if (chartArr[num].macdSignalLine === 'NaN') {
+            chartArr[num].macdSignalLine = 'Insufficient Data Available'
+        }
+
+    }
+    // RSI FUNCTION ------------------------------------------------------------------------------------------------------------------------------------------      
+    function rsiFunction(chartArr, dataPull, num) {
+
+        let iRSI = 14
+        let iRSIAdjusted = 15
+        let recentUpper = 0
+        let recentDowner = 0
+        let upMove = 0
+        let downMove = 0
+        let pastDownPeriod = 0
+        let pastUpPeriod = 0
+
+    // CHECK TO SEE IF DATA PULL CAN PULL ENOUGH DATA TO BE EFFECTIVE 
+        if (dataPull.historical.length <= 16) {
+            chartArr[num].rsi = 'Insufficient Data Available'
+        } else {
+        // LOOP FOR AVERAGE
+        while (iRSI >= 1) {
+            if (dataPull.historical[iRSI].close > dataPull.historical[iRSIAdjusted].close) {
+                upMove += (dataPull.historical[iRSI].close - dataPull.historical[iRSIAdjusted].close)
+            } else {
+                downMove += (dataPull.historical[iRSIAdjusted].close - dataPull.historical[iRSI].close)
+            } 
+        iRSI--
+        iRSIAdjusted--
+        }
+
+        let averageUp = upMove / 14
+        let averageDown = downMove / 14
+
+        // MOST RECENT DIFFERENCE
+        if (dataPull.historical[0].close > dataPull.historical[1].close) {
+                recentUpper = dataPull.historical[0].close - dataPull.historical[1].close
+            } else {
+                recentDowner = dataPull.historical[1].close - dataPull.historical[0].close
+            }
+    
+        pastUpPeriod = ((averageUp * 13) + recentUpper) / 14
+        pastDownPeriod = ((averageDown * 13) + recentDowner) / 14
+
+        let rsi = 100 - (100 / (1 + pastUpPeriod/pastDownPeriod))
+        chartArr[num].rsi = rsi.toFixed(2)
+
+    }
+
+    } 
+    // STOCHASTIC OSCILLATOR ------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    function stochOsc1433Function(chartArr, dataPull, num) {
+
+            let iSO = 13
+
+            let soLowHolder = []
+            let soHighHolder = []
+            let highestHigh = 0
+            let lowestLow = 0
+        // FIRST %D
+            let topForm = []
+            let bottomForm = []
+        // SECOND %D
+            let topFormTwo = []
+            let bottomFormTwo = []
+        // THIRD %D
+            let topFormThree = []
+            let bottomFormThree = []
+        // HOLDING SET OF %D FOR 14 3 3 
+            let signalLineHolder = []
+
+        if (dataPull.historical.length < 19) {
+        chartArr[num].stochasticK = 'Insufficient Data Available'
+        } else {
+
+        // GETTING HIGHS AND LOWS OF PERIOD------------------------------------------------------
+
+                while (iSO >= 0) {
                     soLowHolder.push(dataPull.historical[iSO].low)
                     soHighHolder.push(dataPull.historical[iSO].high)
                     iSO--
-            }
+                }
 
-            highestHigh = Math.max(...soHighHolder)
-            lowestLow = Math.min(...soLowHolder)
+                highestHigh = Math.max(...soHighHolder)
+                lowestLow = Math.min(...soLowHolder) 
 
-            topForm.push(dataPull.historical[1].close - lowestLow)
-            bottomForm.push(highestHigh - lowestLow )
+                topForm.push(dataPull.historical[0].close - lowestLow)
+                bottomForm.push(highestHigh - lowestLow)
 
-            topFormTwo.push(dataPull.historical[1].close - lowestLow)
-            bottomFormTwo.push(highestHigh - lowestLow )
+    // RESET HOLDER AND VARs --------------------------------------------------------
 
-
-// RESET HOLDER AND VARs ------------------------------------------------
-
-        iSO = 15
+        iSO = 14
         soLowHolder = []
         soHighHolder = []
         highestHigh = 0
         lowestLow = 0
 
-// GETTING HIGHS AND LOWS OF PERIOD-----------------------------------
+    // GETTING HIGHS AND LOWS OF PERIOD-----------------------------------------------
 
-            while (iSO >= 2) {
-                soLowHolder.push(dataPull.historical[iSO].low)
-                soHighHolder.push(dataPull.historical[iSO].high)
-                iSO--
-            }
-            highestHigh = Math.max(...soHighHolder)
-            lowestLow = Math.min(...soLowHolder)
+                while (iSO >= 1) {
+                        soLowHolder.push(dataPull.historical[iSO].low)
+                        soHighHolder.push(dataPull.historical[iSO].high)
+                        iSO--
+                }
 
-            topForm.push(dataPull.historical[2].close - lowestLow)
-            bottomForm.push(highestHigh - lowestLow)
+                highestHigh = Math.max(...soHighHolder)
+                lowestLow = Math.min(...soLowHolder)
 
-// AFTER 3 WE SUM IT UP --------------- TO GET 1 OF THE 3 SMOOTHS FOR 14 3 3------------------------------------------
+                topForm.push(dataPull.historical[1].close - lowestLow)
+                bottomForm.push(highestHigh - lowestLow )
+
+                topFormTwo.push(dataPull.historical[1].close - lowestLow)
+                bottomFormTwo.push(highestHigh - lowestLow )
 
 
-            let sumTop = topForm.reduce((a,b) => a + b, 0)
-            let sumBottom = bottomForm.reduce((a,b) => a + b, 0)
+    // RESET HOLDER AND VARs ------------------------------------------------
 
-            let slowD = (sumTop / sumBottom) * 100
-
-            signalLineHolder.push(slowD)
-
-// -------------------------------------------------------------------------
-
-            topFormTwo.push(dataPull.historical[2].close - lowestLow)
-            bottomFormTwo.push(highestHigh - lowestLow)
-
-            topFormThree.push(dataPull.historical[2].close - lowestLow)
-            bottomFormThree.push(highestHigh - lowestLow)
-
-//RESET VARS ---------------------------------------------------------------------
-
-            iSO = 16
+            iSO = 15
             soLowHolder = []
             soHighHolder = []
             highestHigh = 0
             lowestLow = 0
 
-// GETTING HIGHS AND LOWS OF PERIOD------------------------------------------------
+    // GETTING HIGHS AND LOWS OF PERIOD-----------------------------------
 
-                while (iSO >= 3) {
+                while (iSO >= 2) {
                     soLowHolder.push(dataPull.historical[iSO].low)
                     soHighHolder.push(dataPull.historical[iSO].high)
                     iSO--
@@ -809,34 +770,38 @@ function stochOsc1433Function(chartArr, dataPull, num) {
                 highestHigh = Math.max(...soHighHolder)
                 lowestLow = Math.min(...soLowHolder)
 
-                topFormTwo.push(dataPull.historical[3].close - lowestLow)
-                bottomFormTwo.push(highestHigh - lowestLow)
+                topForm.push(dataPull.historical[2].close - lowestLow)
+                bottomForm.push(highestHigh - lowestLow)
 
-// AFTER 3 WE SUM IT UP --------------- TO GET 2 OF THE 3 SMOOTHS FOR 14 3 3------------------------------------------
+    // AFTER 3 WE SUM IT UP --------------- TO GET 1 OF THE 3 SMOOTHS FOR 14 3 3------------------------------------------
 
-                sumTop = topFormTwo.reduce((a,b) => a + b, 0)
-                sumBottom = bottomFormTwo.reduce((a,b) => a + b, 0)
 
-                slowD = (sumTop / sumBottom) * 100
+                let sumTop = topForm.reduce((a,b) => a + b, 0)
+                let sumBottom = bottomForm.reduce((a,b) => a + b, 0)
+
+                let slowD = (sumTop / sumBottom) * 100
 
                 signalLineHolder.push(slowD)
 
-        // -----------------------------------------------------------------
+    // -------------------------------------------------------------------------
 
-                topFormThree.push(dataPull.historical[3].close - lowestLow)
+                topFormTwo.push(dataPull.historical[2].close - lowestLow)
+                bottomFormTwo.push(highestHigh - lowestLow)
+
+                topFormThree.push(dataPull.historical[2].close - lowestLow)
                 bottomFormThree.push(highestHigh - lowestLow)
 
-//RESET VARS ---------------------------------------------
+    //RESET VARS ---------------------------------------------------------------------
 
-                iSO = 17
+                iSO = 16
                 soLowHolder = []
                 soHighHolder = []
                 highestHigh = 0
                 lowestLow = 0
 
-// GETTING HIGHS AND LOWS OF PERIOD-----------------------------------
+    // GETTING HIGHS AND LOWS OF PERIOD------------------------------------------------
 
-                    while (iSO >= 4) {
+                    while (iSO >= 3) {
                         soLowHolder.push(dataPull.historical[iSO].low)
                         soHighHolder.push(dataPull.historical[iSO].high)
                         iSO--
@@ -844,168 +809,203 @@ function stochOsc1433Function(chartArr, dataPull, num) {
                     highestHigh = Math.max(...soHighHolder)
                     lowestLow = Math.min(...soLowHolder)
 
-                    topFormThree.push(dataPull.historical[4].close - lowestLow)
-                    bottomFormThree.push(highestHigh - lowestLow)
+                    topFormTwo.push(dataPull.historical[3].close - lowestLow)
+                    bottomFormTwo.push(highestHigh - lowestLow)
 
+    // AFTER 3 WE SUM IT UP --------------- TO GET 2 OF THE 3 SMOOTHS FOR 14 3 3------------------------------------------
 
-// AFTER 3 WE SUM IT UP --------------- TO GET 3 OF THE 3 SMOOTHS FOR 14 3 3------------------------------------------
-
-                    sumTop = topFormThree.reduce((a,b) => a + b, 0)
-                    sumBottom = bottomFormThree.reduce((a,b) => a + b, 0)
+                    sumTop = topFormTwo.reduce((a,b) => a + b, 0)
+                    sumBottom = bottomFormTwo.reduce((a,b) => a + b, 0)
 
                     slowD = (sumTop / sumBottom) * 100
 
                     signalLineHolder.push(slowD)
 
-             // ----------- TALLY UP LAST SMOOTHING -------------------------------
+            // -----------------------------------------------------------------
 
-                    const sumStochD = signalLineHolder.reduce((a,b) => a + b, 0)
+                    topFormThree.push(dataPull.historical[3].close - lowestLow)
+                    bottomFormThree.push(highestHigh - lowestLow)
 
-                    const smaD = sumStochD / 3
+    //RESET VARS ---------------------------------------------
 
-                    chartArr[num].stochastic1433 = smaD.toFixed(2)
+                    iSO = 17
+                    soLowHolder = []
+                    soHighHolder = []
+                    highestHigh = 0
+                    lowestLow = 0
 
-    }
+    // GETTING HIGHS AND LOWS OF PERIOD-----------------------------------
 
-}
-// WILLIAMS %R 14 ------------------------------------------------------------------------------------------------------------------------------------------------------------------
-function williamsRFunction(chartArr, dataPull, num) {
+                        while (iSO >= 4) {
+                            soLowHolder.push(dataPull.historical[iSO].low)
+                            soHighHolder.push(dataPull.historical[iSO].high)
+                            iSO--
+                        }
+                        highestHigh = Math.max(...soHighHolder)
+                        lowestLow = Math.min(...soLowHolder)
 
-                let highs = []
-                let lows = []
-                let lowestLow = 0
-                let highestHigh = 0
-    
-                if (dataPull.historical.length < 14) {
-                    chartArr[num].williams = 'Poop'
-                } else {
-                    for (let i = 0; i <= 13; i++) {
-                        highs.push(dataPull.historical[i].high)
-                        lows.push(dataPull.historical[i].low)
-                    }
-    
-                    lowestLow = Math.min(...lows)
-                    highestHigh = Math.max(...highs)
-    
-                    const williams = (highestHigh - dataPull.historical[0].close) / (highestHigh - lowestLow) * -100
-                    
-                    chartArr[num].williamsR = williams.toFixed(2)
-                }
-}
-// CCI 20 ------------------------------------------------------------------------------------------------------------------------------------------------------------------
-function cciFunction(chartArr, dataPull, num) {
-                let tpvCul = 0
-                let tpv = []
-                let tpvMa = 0
-                let tpvCurrent  = 0
-                const recentTpv = (dataPull.historical[0].close + dataPull.historical[0].high + dataPull.historical[0].low) / 3
-    
-                if (dataPull.historical.length < 20) {
-                    chartArr[num].cciTwenty = 'Insufficient Data Available'
-                } else {
-    
-                    for (let i = 0; i <= 19; i++) {
-    
-                        const {high, close, low} = dataPull.historical[i];  
-    
-                        tpvCurrent = (close + high + low) / 3
-    
-                        tpv.push(tpvCurrent)
-                    }
-                    // ---- TPV SMA ------------------------
-                 
-                    tpvCul = tpv.reduce((a, b) => a + b)
-                    tpvMa = tpvCul / 20
-                    // TOP HALF OF FORMULA - DIVIDE BY PART TWO
-                    const partOne = recentTpv - tpvMa
-    
-                    const meanD = tpv.map(x => x - tpvMa)
-                    const meanDMap = meanD.map(x => Math.abs(x))
-                    const meanDSum = meanDMap.reduce((a,b) => a + b)
-                    const meanDiv = meanDSum / 20
-                    // PART TWO OF FORMULA --------------
-                    const partTwo = meanDiv * 0.015
-                    // CCI ------------------------------
-                    const cci = (partOne / partTwo)
-                    
-                    chartArr[num].cciTwenty = cci.toFixed(2)
-                }
-}
-// BOLLINGER BANDS ------------------------------------------------------------------------------------------------------------------------------------------------------------------
-function bollingerBandsFunction(chartArr, dataPull, num) {
-       
-    let smaCul = 0
-    let closeHolder = []
+                        topFormThree.push(dataPull.historical[4].close - lowestLow)
+                        bottomFormThree.push(highestHigh - lowestLow)
 
-    if (dataPull.historical.length < 20) {
-        chartArr[num].bbUpper = 'Insufficient Data Available'
-        chartArr[num].bbLower = 'Insufficient Data Available'
-        chartArr[num].bbMiddle = 'Insufficient Data Available'
-    } else {
 
-        for (let i = 0; i <= 19; i++) {
-            const closeP = dataPull.historical[i].close
-            closeHolder.push(closeP)
-            smaCul += closeP
+    // AFTER 3 WE SUM IT UP --------------- TO GET 3 OF THE 3 SMOOTHS FOR 14 3 3------------------------------------------
+
+                        sumTop = topFormThree.reduce((a,b) => a + b, 0)
+                        sumBottom = bottomFormThree.reduce((a,b) => a + b, 0)
+
+                        slowD = (sumTop / sumBottom) * 100
+
+                        signalLineHolder.push(slowD)
+
+                // ----------- TALLY UP LAST SMOOTHING -------------------------------
+
+                        const sumStochD = signalLineHolder.reduce((a,b) => a + b, 0)
+
+                        const smaD = sumStochD / 3
+
+                        chartArr[num].stochastic1433 = smaD.toFixed(2)
+
         }
-            // STANDARD DEVIATION CALC --------------------------------
-            const smaTwenty = smaCul / 20
-        
-            const priceAdj = closeHolder.map(x => x - smaTwenty)
-          
-            const priceAdjAbs = priceAdj.map(x => Math.abs(x))
 
-            const priceAdjSqrt = priceAdjAbs.map(x => x * x)
-            
-            const partOneDev = priceAdjSqrt.reduce((a,b) => a + b)
-            
-            const partTwoDev = partOneDev / 20
-            const standardDev = Math.sqrt(partTwoDev)
-            // BB BAND CALC --------------------------------------------
-            const bbUpper = smaTwenty + (standardDev * 2)
-            const bbLower = smaTwenty - (standardDev * 2)
-
-            chartArr[num].bbUpper = bbUpper.toFixed(2)
-            chartArr[num].bbLower = bbLower.toFixed(2)
-            chartArr[num].bbMiddle = smaTwenty.toFixed(2)
     }
+    // WILLIAMS %R 14 ------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    function williamsRFunction(chartArr, dataPull, num) {
 
-}
-// VWAP FUNCTION ------------------------------------------------------------------------------------------------------------------------------------------       
-function vwapFunction(chartArr, dataPull, num) {
-
-
-
-                
-    // ----------- VWAP CALUC -------------------------------------------
-        let dayLengthPeriod = 0
-        let tpvCul = 0
-        let volumeCul = 0
-        let tempVWAP = [] // HOLD VWAP PERIOD - TAKES FROM 0 INDEX FOR MOST CURRENT
-
-        // -------------THIS IS FOR GETTING THE DAY LENGTH FOR VWAP
-        while (dataPull[dayLengthPeriod].date.slice(0,10) == todayDate) { 
-                dayLengthPeriod++ 
-                } 
-
-       // --------------------THIS IS FOR CALCULATING THE VWAP AND PUSHING TO 
-      
-        for (let i = 0; i < dayLengthPeriod; i++) {
-            
-            const {volume, high, close, low, date} = dataPull[i];   
-            let tpv = (high + low + close) / 3;
-            if (date.slice(0,10) == todayDate) {
-            tpvCul += tpv * volume
-            volumeCul += volume
-            }
-            vwapFinal = tpvCul / volumeCul // --------- THIS IS VWAP!!!!!!!!
-            tempVWAP.unshift(vwapFinal) //ADD VWAP FRONT OF ARR
-            }
+                    let highs = []
+                    let lows = []
+                    let lowestLow = 0
+                    let highestHigh = 0
         
-            chartArr[num].vwap = tempVWAP[0].toFixed(2)
-            tempVWAP = []
+                    if (dataPull.historical.length < 14) {
+                        chartArr[num].williams = 'Poop'
+                    } else {
+                        for (let i = 0; i <= 13; i++) {
+                            highs.push(dataPull.historical[i].high)
+                            lows.push(dataPull.historical[i].low)
+                        }
+        
+                        lowestLow = Math.min(...lows)
+                        highestHigh = Math.max(...highs)
+        
+                        const williams = (highestHigh - dataPull.historical[0].close) / (highestHigh - lowestLow) * -100
+                        
+                        chartArr[num].williamsR = williams.toFixed(2)
+                    }
+    }
+    // CCI 20 ------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    function cciFunction(chartArr, dataPull, num) {
+                    let tpvCul = 0
+                    let tpv = []
+                    let tpvMa = 0
+                    let tpvCurrent  = 0
+                    const recentTpv = (dataPull.historical[0].close + dataPull.historical[0].high + dataPull.historical[0].low) / 3
+        
+                    if (dataPull.historical.length < 20) {
+                        chartArr[num].cciTwenty = 'Insufficient Data Available'
+                    } else {
+        
+                        for (let i = 0; i <= 19; i++) {
+        
+                            const {high, close, low} = dataPull.historical[i];  
+        
+                            tpvCurrent = (close + high + low) / 3
+        
+                            tpv.push(tpvCurrent)
+                        }
+                        // ---- TPV SMA ------------------------
+                    
+                        tpvCul = tpv.reduce((a, b) => a + b)
+                        tpvMa = tpvCul / 20
+                        // TOP HALF OF FORMULA - DIVIDE BY PART TWO
+                        const partOne = recentTpv - tpvMa
+        
+                        const meanD = tpv.map(x => x - tpvMa)
+                        const meanDMap = meanD.map(x => Math.abs(x))
+                        const meanDSum = meanDMap.reduce((a,b) => a + b)
+                        const meanDiv = meanDSum / 20
+                        // PART TWO OF FORMULA --------------
+                        const partTwo = meanDiv * 0.015
+                        // CCI ------------------------------
+                        const cci = (partOne / partTwo)
+                        
+                        chartArr[num].cciTwenty = cci.toFixed(2)
+                    }
+    }
+    // BOLLINGER BANDS ------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    function bollingerBandsFunction(chartArr, dataPull, num) {
+        
+        let smaCul = 0
+        let closeHolder = []
+
+        if (dataPull.historical.length < 20) {
+            chartArr[num].bbUpper = 'Insufficient Data Available'
+            chartArr[num].bbLower = 'Insufficient Data Available'
+            chartArr[num].bbMiddle = 'Insufficient Data Available'
+        } else {
+
+            for (let i = 0; i <= 19; i++) {
+                const closeP = dataPull.historical[i].close
+                closeHolder.push(closeP)
+                smaCul += closeP
+            }
+                // STANDARD DEVIATION CALC --------------------------------
+                const smaTwenty = smaCul / 20
             
-}
+                const priceAdj = closeHolder.map(x => x - smaTwenty)
+            
+                const priceAdjAbs = priceAdj.map(x => Math.abs(x))
+
+                const priceAdjSqrt = priceAdjAbs.map(x => x * x)
+                
+                const partOneDev = priceAdjSqrt.reduce((a,b) => a + b)
+                
+                const partTwoDev = partOneDev / 20
+                const standardDev = Math.sqrt(partTwoDev)
+                // BB BAND CALC --------------------------------------------
+                const bbUpper = smaTwenty + (standardDev * 2)
+                const bbLower = smaTwenty - (standardDev * 2)
+
+                chartArr[num].bbUpper = bbUpper.toFixed(2)
+                chartArr[num].bbLower = bbLower.toFixed(2)
+                chartArr[num].bbMiddle = smaTwenty.toFixed(2)
+        }
+
+    }
+    // VWAP FUNCTION ------------------------------------------------------------------------------------------------------------------------------------------       
+    function vwapFunction(chartArr, dataPull, num) {
+
+
+
+                    
+        // ----------- VWAP CALUC -------------------------------------------
+            let dayLengthPeriod = 0
+            let tpvCul = 0
+            let volumeCul = 0
+            let tempVWAP = [] // HOLD VWAP PERIOD - TAKES FROM 0 INDEX FOR MOST CURRENT
+
+            // -------------THIS IS FOR GETTING THE DAY LENGTH FOR VWAP
+            while (dataPull[dayLengthPeriod].date.slice(0,10) == todayDate) { 
+                    dayLengthPeriod++ 
+                    } 
+
+        // --------------------THIS IS FOR CALCULATING THE VWAP AND PUSHING TO 
+        
+            for (let i = 0; i < dayLengthPeriod; i++) {
+                
+                const {volume, high, close, low, date} = dataPull[i];   
+                let tpv = (high + low + close) / 3;
+                if (date.slice(0,10) == todayDate) {
+                tpvCul += tpv * volume
+                volumeCul += volume
+                }
+                vwapFinal = tpvCul / volumeCul // --------- THIS IS VWAP!!!!!!!!
+                tempVWAP.unshift(vwapFinal) //ADD VWAP FRONT OF ARR
+                }
+            
+                chartArr[num].vwap = tempVWAP[0].toFixed(2)
+                tempVWAP = []
+                
+    }
 
 
 // TA FUNCTION ---------------------------------------------------------------------
@@ -1271,7 +1271,7 @@ for (let i = 0; i < stocksDown.length; i++) {
     litterBox.innerHTML = `            
     <div class="col-md-6 p-3 border text-center">
     <h2 id="symbol">${symbolDown}</h2>
-    <h3><i class="fas fa-long-arrow-alt-down mx-2" id="percentage-down"></i>${changesPercentageDown.toFixed(2)}%</h3>
+    <h3><svg id="upArrow" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 100 400" shape-rendering="geometricPrecision" text-rendering="geometricPrecision"><g id="ewG75ifXDmx2" transform="matrix(0.99132899255994 0.00125353493548 0.00179456906301 -1.41919326774185 0 5360)"><g id="ewG75ifXDmx3" transform="matrix(0.10000000000000 0 0 0.10000000000000 0.00000000000023 0.00000000000023)"><path id="ewG75ifXDmx4" d="M29164.905156,10134.800000L28991.385074,10784.799602L28821.634757,10614.426482L27244.542329,12197.305156L27102.400000,12054.641316L28679.492428,10471.762642L28517.281642,10308.956716L29164.905156,10134.800000" transform="matrix(-0.70853823648212 0.70567242219234 -0.70567242219234 -0.70853823648212 28243.81608984843479 24398.89755446932395)" fill="rgb(89,228,139)" stroke="none" stroke-width="1"/><path id="ewG75ifXDmx5" d="M36131.700000,8167.800000C36128.200000,8167.800000,36124.700000,8168.900000,36121.700000,8170.900000C34563.300000,9219.200000,32199.200000,8231.400000,32175.500000,8221.300000C32169.500000,8218.300000,32162.200000,8218.800000,32156.700000,8222.800000C32151.200000,8226.700000,32148.300000,8233.400000,32149.300000,8240.100000C32150.300000,8246.800000,32154.900000,8252.400000,32161.300000,8254.600000C32185.300000,8264.700000,34566.400000,9259.600000,36142.200000,8200.900000C36148.700000,8196.400000,36151.500000,8188.300000,36149.200000,8180.800000C36146.900000,8173.300000,36140,8168.100000,36132.200000,8167.900000L36131.700000,8167.800000" transform="matrix(1 0 0 1 -23974.95002737504910 24467.33418583546154)" fill="rgb(255,255,255)" stroke="none" stroke-width="1"/><path id="ewG75ifXDmx6" d="M24267.800000,8167.800000C24260,8167.900000,24253.100000,8173.100000,24250.800000,8180.600000C24248.500000,8188.200000,24251.300000,8196.300000,24257.800000,8200.800000C25833.100000,9259.500000,28214.600000,8264.500000,28238.700000,8254.500000C28243.100000,8252.600000,28246.600000,8249.100000,28248.400000,8244.600000C28250.200000,8240.100000,28250.200000,8235.100000,28248.300000,8230.700000C28244.200000,8221.700000,28233.700000,8217.500000,28224.500000,8221.100000C28200.700000,8231.100000,25837.100000,9218.400000,24278.300000,8170.800000C24275.200000,8168.700000,24271.500000,8167.700000,24267.800000,8167.800000" transform="matrix(1 0 0 1 -23974.95002737508185 24467.33418583546154)" fill="rgb(255,255,255)" stroke="none" stroke-width="1"/></g></g></svg>${changesPercentageDown.toFixed(2)}%</h3>
 
     <div class="row">
 

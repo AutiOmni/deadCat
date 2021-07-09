@@ -204,24 +204,18 @@ nav {
 
 /* ------------------------------------------------------ STOCK DROPS CUSTOMIZE */
   
-#percentage-down {
+#downArrow {
     color: var(--bear-market-color);
+    height: 50px;
+    width: 10px;
+    margin-right: 10px;
 }
 
-#percentage-up {
+#upArrow {
     color: var(--bull-market-color);
-}
-
-#share-price-change {
-
-}
-
-#current-price {
-
-}
-
-#symbol {
-
+    height: 50px;
+    width: 10px;
+    margin-right: 10px;
 }
 
 .bull {
@@ -229,4 +223,33 @@ nav {
 }
 .bear {
     color: var(--bear-market-color)
+}
+
+.front-scene-1 {
+    background-color: var(--main-background);
+    z-index: 10;
+    transition: all ease-in-out 1000ms;
+
+}
+.front-scene-2 {
+    background-color: var(--main-background);
+    z-index: 10;
+}
+
+.behind-scenes-1 {
+    background-color: white;
+    width: 50%;
+    height: 100%;
+    left:0;
+    top:0;
+    transition: all ease-in-out 1000ms;
+}
+
+.behind-scenes-2 {
+    background-color: white;
+    width: 50%;
+    height: 100%;
+    right:0;
+    top:0;
+    transition: all ease-in-out 1000ms;
 }
