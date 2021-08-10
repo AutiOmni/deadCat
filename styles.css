@@ -203,19 +203,16 @@ nav {
 }
 
 /* ------------------------------------------------------ STOCK DROPS CUSTOMIZE */
-  
-#downArrow {
-    color: var(--bear-market-color);
-    height: 50px;
-    width: 10px;
-    margin-right: 10px;
+
+#rowOne {
+    width: 500px;
+    height: 600px;
+    border: 1px solid var(--light-text-color);
+    position: relative;
 }
 
-#upArrow {
-    color: var(--bull-market-color);
-    height: 50px;
-    width: 10px;
-    margin-right: 10px;
+#litter-box {
+    height: 100%;
 }
 
 .bull {
@@ -225,31 +222,172 @@ nav {
     color: var(--bear-market-color)
 }
 
-.front-scene-1 {
-    background-color: var(--main-background);
-    z-index: 10;
-    transition: all ease-in-out 1000ms;
-
-}
-.front-scene-2 {
-    background-color: var(--main-background);
-    z-index: 10;
+.section {
+    width: 500px;
+    height: 600px;
+    border: 1px solid var(--light-text-color);
+    position: relative;
 }
 
-.behind-scenes-1 {
-    background-color: white;
+.row-ex {
+    width: 100%;
+    height: 120px;
+    position: relative;
+}
+
+.symbol-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.downer {
     width: 50%;
     height: 100%;
+    background-color: var(--main-background);
+    border-bottom: 1px solid var(--light-text-color);
+    border-right: 1px solid var(--light-text-color);
+    text-align: center;
+    position: absolute;
     left:0;
-    top:0;
-    transition: all ease-in-out 1000ms;
+    transition: width ease-in-out 500ms;
+    cursor: pointer;
+    overflow: hidden;
+    z-index: 3;
 }
 
-.behind-scenes-2 {
-    background-color: white;
+.downer:hover {
+    box-shadow: inset 5px 0px 1px var(--light-text-color), inset 5px 0px 3px var(--light-text-color);
+}
+
+.upper {
     width: 50%;
     height: 100%;
+    background-color: var(--main-background);
+    border-bottom: 1px solid var(--light-text-color);
+    border-left: 1px solid var(--light-text-color);
+    text-align: center;
+    position: absolute;
     right:0;
-    top:0;
-    transition: all ease-in-out 1000ms;
+    transition: width ease-in-out 500ms;
+    cursor: pointer;
+    overflow: hidden;
+    z-index: 3;
+}
+
+.upper:hover {
+    box-shadow: inset -5px 0px 1px var(--light-text-color), inset -5px 0px 3px var(--light-text-color);
+}
+
+.price {
+    margin-bottom: 2.5px;
+}
+
+#downArrow {
+    color: var(--bear-market-color);
+    height: 25px;
+    width: 10px;
+    margin: 0 10px;
+}
+
+#upArrow {
+    color: var(--bull-market-color);
+    height: 25px;
+    width: 10px;
+    margin: 0 10px;
+}
+
+.changes-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.tech-up-0, 
+.tech-up-1, 
+.tech-up-2, 
+.tech-up-3, 
+.tech-up-4 {
+    display: none;
+}
+.tech-down-0, 
+.tech-down-1, 
+.tech-down-2, 
+.tech-down-3, 
+.tech-down-4 {
+    display: none;
+}
+
+.active-down-symbol {
+    border-right: transparent;
+    box-shadow: inset 5px 0px 1px var(--bear-market-color), inset 5px 0px 2px var(--bear-market-color);
+}
+
+.active-up-symbol {
+    border-left: transparent;
+    box-shadow: inset -5px 0px 1px var(--bull-market-color), inset -5px 0px 2px var(--bull-market-color);
+}
+
+#tech-in {
+    width: 40%;
+    height: 100%;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    overflow-y: scroll;
+    z-index:2;
+    font-size: .8em;
+}
+
+#tech-in::-webkit-scrollbar {
+    display: none;
+}
+
+.tech-title {
+    width: 100%;
+    text-align: center;
+    text-decoration: underline;
+    font-size: 2em;
+}
+
+.tech-header {
+    width: 100%;
+    text-align: center;
+    text-decoration: underline;
+    font-size: 1.25em;
+}
+
+.tech-row,
+    .tech-vol-row {
+    padding: 0 5px;
+    margin-top: 10px;
+    width: 100%;
+}
+
+.tech-to-left {
+    float: right;
+}
+
+.averages-row {
+    display: flex;
+    justify-content: space-between;
+}
+
+.osc-text {
+    width: 100%;
+    text-align: center;
+}
+
+.macd-row {
+    width: 100%;
+    text-align: center;
+    display: flex;
+    font-size: .75em;
+    justify-content: space-between;
+}
+
+.flex-rsi-cci {
+    display: flex;
 }
