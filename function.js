@@ -1,128 +1,112 @@
-const upper = document.querySelectorAll('.upper')
-const downer = document.querySelectorAll('.downer')
 
-const symbolBox = document.querySelectorAll('.symbol-box')
+
+const upper = $('.upper')
+const downer = $('.downer')
+let techIn = $('#tech-in')
+
+const symbolBox = $('.symbol-box')
 // THESE FIRE ON LOAD TO GET THE TECH-IN ELEMENT READY FOR CLICK ------------------------
-fillDownTech()
-fillUpTech()
+//fillDownTech()
+//fillUpTech()
 // CONFIGURE DOWN BOXES FOR FUNCTION ----------------------------
-downer.forEach(down => {
-        down.addEventListener('click', () => {
-            if (down.classList.contains('active-down-symbol')) {
 
-                    setTimeout(() => {
-                    down.classList.remove('active-down-symbol')
-                    }, 500)
+downer.each(function() {
+    $(this).click(function() {
+        if ($(this).hasClass('active-down-symbol')) {
 
-                    animatedLoad() 
-
-                } else {
-
-                    removeDownClass()
-                    removeUpClass()
-                    animatedLoad()
-                    expandDetract()
-
-                    fillDownTech()
-
-                    setTimeout(() => {
-                    down.classList.add('active-down-symbol')
-                    }, 500)
-            }
-        })
-})
-// CONFIGURE UP BOXES FOR FUNCTION ----------------------------
-upper.forEach(up => {
-    up.addEventListener('click', () => {
-        if (up.classList.contains('active-up-symbol')) {
-
-                    setTimeout(() => {
-                    up.classList.remove('active-up-symbol')
-                    }, 500)
-
-                    animatedLoad() 
-
-                } else {
-
-                    removeUpClass()
-                    removeDownClass()
-                    animatedLoad()
-                    expandDetract()
-
-                    fillUpTech()
-
-                    setTimeout(() => {
-                    up.classList.add('active-up-symbol')
-                     }, 500)
-            }
-    })
-})
-
-// THIS REMOVES DOWN CLASS FROM SYMBOLBOX ----------------------------
-function removeDownClass() {
-    downer.forEach(down => {
-        setTimeout(() => {
-            down.classList.remove('active-down-symbol')
-        }, 500)
-    })
-}
-
-// THIS REMOVES UP CLASS FROM SYMBOLBOX ----------------------------
-function removeUpClass() {
-    upper.forEach(up => {
-        setTimeout(() => {
-            up.classList.remove('active-up-symbol')
-        }, 500)
-    })
-}
-
-// THIS GIVE THE FEELING THAT INFO IS LOADED WHEN DOORS CLOSE ------------------------------
-function expandDetract() {
-    setTimeout(() => {
-        symbolBox.forEach(box => {
-            box.style.width = '30%'
-        })
-    }, 500)
-
-}
-// TECHNICAL ANALYSIS LOADING  ------------------------------------------
-function animatedLoad() {
-    symbolBox.forEach(box => {
-        box.style.width = "50%"
-    })
-}
-
-// need to get index # of thing clicked on - then have it match `tech-down-${index}` to fill html
-
-var tech = document.getElementById('tech-in')
-
-function fillDownTech() {
-
-        for (const down of downer) {
-         
-            down.addEventListener('click', () => {
-
-            let index = down.getAttribute('data-index') 
-
-            const downerTech = document.querySelector(`.tech-down-${index}`)
+            animatedLoad() 
             setTimeout(() => {
-                tech.innerHTML = downerTech.innerHTML
+                $(this).removeClass('active-down-symbol')
             }, 500)
+
+
+        } else {
+
+           
+
+            removeDownClass()
+            removeUpClass()
+            animatedLoad()
+            expandDetract()
+
+            fillDownTech()
+
+            setTimeout(() => {
+                $(this).addClass('active-down-symbol')
+            }, 500)
+        }
+    })
+});
+
+upper.each(function() {
+    $(this).click(function() {
+        if ($(this).hasClass('active-up-symbol')) {
+
+            animatedLoad() 
+            setTimeout( () => {
+                upper.removeClass('active-up-symbol')
+                
+            }, 500)
+        } else {
+
+            removeDownClass()
+            removeUpClass()
+            expandDetract()
+            animatedLoad()
+
+            fillUpTech()
+
+            setTimeout(() => {
+                $(this).addClass('active-up-symbol')
             })
-        }   
-}
+        }
+    })
+})
 
-function fillUpTech() {
-    for (const up of upper) {
-        up.addEventListener('click', () => {
+    function removeDownClass() {
+        downer.removeClass('active-down-symbol')
+        }
 
-        let index = up.getAttribute('data-index') 
+    function removeUpClass() {
+        upper.removeClass('active-up-symbol')
+    }    
 
-        const upperTech = document.querySelector(`.tech-up-${index}`)
+    function expandDetract() {
         setTimeout(() => {
-            tech.innerHTML = upperTech.innerHTML
+            symbolBox.each(function() {
+                $(this).css('width', '30%')
+            })
         }, 500)
+    }
+
+    function animatedLoad() {
+        symbolBox.each(function() {
+            $(this).css('width', '50%')
         })
     }
 
-}
+    function fillDownTech() {
+        downer.each(function() {
+
+                let index = $(this).attr('data-index')
+                
+                let downerTech = $(`.tech-down-${index}`).html()
+                
+                setTimeout(() => {
+                    techIn.html(downerTech) 
+                }, 500)
+            })
+    }
+
+    function fillUpTech() {
+        upper.each(function() {
+                
+                let index = $(this).attr('data-index')
+                
+                let upperTech = $(`.tech-up-${index}`).html()
+                
+                setTimeout(() => {
+                    techIn.html(upperTech)
+                }, 500)
+            })
+    }

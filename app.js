@@ -41,7 +41,7 @@ const rowOne = document.getElementById('rowOne')
  if (todayDate === '2021-07-05') {
      todayDate = '2021-07-02'
  } 
- 
+
  
  // ------------------- TRADABLE STOCK TICKERS --------------------------------------------------------------------------------------------------
  async function tradableSymbols() {
@@ -53,9 +53,9 @@ const rowOne = document.getElementById('rowOne')
      const data = await res.json()
  
      for (let i = 0; i < data.length; i++) {
-         if (data[i].exchange === 'New York Stock Exchange' || 'NYSE') {
+         if (data[i].exchange === 'New York Stock Exchange') {
              myStocksNyse.push(data[i].symbol)
-         } else if (data[i].exchange === 'Nasdaq Global Select' || 'NASDAQ') {
+         } else if (data[i].exchange === 'Nasdaq Global Select') {
              myStocksNas.push(data[i].symbol)
          } 
      }
@@ -131,11 +131,11 @@ const rowOne = document.getElementById('rowOne')
  
  const keys = /^[A-Z]{1,4}$/g
  finalChartFatDown = combinedStockDrop.filter(stock => {
-     return stock.symbol.match(keys) && !stock.symbol.match('CBO') && !stock.symbol.match('GXGX') && !stock.symbol.match('HPR')// ! HAD TO ADD GIX BECAUSE ITS NOT TRADABLE BUT STILL ON LIST
+     return stock.symbol.match(keys) && !stock.symbol.match('CBO') && !stock.symbol.match('GXGX') && !stock.symbol.match('HPR') && !stock.symbol.match('RANI') && !stock.symbol.match('ELYM')// ! HAD TO ADD GIX BECAUSE ITS NOT TRADABLE BUT STILL ON LIST
  })
  
  finalChartFatUp = combinedStockUp.filter(stock => {
-     return stock.symbol.match(keys) && !stock.symbol.match('CBO') && !stock.symbol.match('GXGX') && !stock.symbol.match('HPR') // ! HAD TO ADD GIX BECAUSE ITS NOT TRADABLE BUT STILL ON LIST
+     return stock.symbol.match(keys) && !stock.symbol.match('CBO') && !stock.symbol.match('GXGX') && !stock.symbol.match('HPR') && !stock.symbol.match('RANI') && !stock.symbol.match('ELYM') // ! HAD TO ADD GIX BECAUSE ITS NOT TRADABLE BUT STILL ON LIST
  })
  
  for (let i = 0; i < finalChartFatDown.length; i++) {
@@ -161,7 +161,7 @@ const rowOne = document.getElementById('rowOne')
      finalChart.unshift(finalChartFatUp[slimChartUp])
      slimChartUp--
    }
-    // console.log(finalChart) THIS IS TO CHECK ERRORS WITH FORMULAS
+     console.log(finalChart) 
  } 
  
  // ---------------------- TECHNICAL INDICATOR FUNCTIONS ------------------------------------------------------------------------------------
@@ -177,7 +177,7 @@ const rowOne = document.getElementById('rowOne')
          let fiftySMA = 48
          let hunSMA = 98
          let twoHunSMA = 198
- 
+ console.log(dataPull)
          const todayPricePull = newestPull[0].price
  
                              // ------------- 15 DAY SMA -------------------------------
@@ -1058,14 +1058,14 @@ const rowOne = document.getElementById('rowOne')
              let tpvCul = 0
              let volumeCul = 0
              let tempVWAP = [] // HOLD VWAP PERIOD - TAKES FROM 0 INDEX FOR MOST CURRENT
- 
-                 while (dataPull[dayLengthPeriod].date.slice(0,10) === todayDate) { 
-                     dayLengthPeriod++ 
-                     } 
+
+             console.log(dataPull[dayLengthPeriod].date.slice(0,10))
              
          // -------------THIS IS FOR GETTING THE DAY LENGTH FOR VWAP
-           
- 
+         while (dataPull[dayLengthPeriod].date.slice(0,10) === todayDate) { 
+            dayLengthPeriod++ 
+            } 
+
          // --------------------THIS IS FOR CALCULATING THE VWAP AND PUSHING TO 
          
              for (let i = 0; i < dayLengthPeriod; i++) {
@@ -1106,7 +1106,7 @@ const rowOne = document.getElementById('rowOne')
          const resVWAP = await  fetch(`https://financialmodelingprep.com/api/v3/historical-chart/5min/${symbol}?apikey=4d4593bc9e6bc106ee9d1cbd6400b218`)
          const dataVWAP = await resVWAP.json()
           
-     //    vwapFunction(finalChart, dataVWAP, j)
+         vwapFunction(finalChart, dataVWAP, j)
           
  
              // SMA -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -1134,7 +1134,7 @@ const rowOne = document.getElementById('rowOne')
              cciFunction(finalChart, dataSMA, dataRecentPulled, j)
  
              // BOLLINGER BANDS ------------------------------------------------------------------------------------------------------------------------------------------------------------------
-             bollingerBandsFunction(finalChart, dataSMA, dataRecentPulled, j)
+            bollingerBandsFunction(finalChart, dataSMA, dataRecentPulled, j)
             
          j++ // UPDATE WHILE LOOP
  
