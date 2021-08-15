@@ -412,12 +412,17 @@ nav {
     width: 100%;
     height: 100%;
     z-index: 99;
-    background-color: rgba(207, 206, 206, 0.5);
+    background-color: rgba(231, 231, 231, 0.5);
     backdrop-filter: blur(5px);
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
+}
+
+.loading-screen h1 {
+    color: var(--main-cat-color);
+    text-shadow: 1px 1px var(--light-text-color);
 }
 
 #deadCatLoad {
@@ -451,7 +456,9 @@ nav {
 }
 
 #load-one {
-    font-size: 50px;
+    color: var(--main-cat-color);
+    text-shadow: 1px 1px var(--light-text-color);
+    font-size: 75px;
     margin: 0 10px;
     opacity: 0;
     animation-delay: 500ms;
@@ -471,7 +478,9 @@ nav {
     }
 }
 #load-two {
-    font-size: 40px;
+    color: var(--main-cat-color);
+    text-shadow: 1px 1px var(--light-text-color);
+    font-size: 55px;
     margin: 0 10px;
     opacity: 0;
     animation-name: load-two;
@@ -491,7 +500,9 @@ nav {
     }
 }
 #load-three {
-    font-size: 30px;
+    color: var(--main-cat-color);
+    text-shadow: 1px 1px var(--light-text-color);
+    font-size: 35px;
     margin: 0 10px;
     opacity: 0;
     animation-delay: 2000ms;
