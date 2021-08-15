@@ -216,14 +216,13 @@ nav {
 
 .section {
     width: 500px;
-    height: 600px;
-    border: 1px solid var(--light-text-color);
+    height: 100%;
     position: relative;
 }
 
 .row-ex {
     width: 100%;
-    height: 120px;
+    height: 119.9px;
     position: relative;
 }
 
@@ -281,6 +280,7 @@ nav {
     height: 25px;
     width: 10px;
     margin: 0 10px;
+    margin-bottom: 15px;
 }
 
 #upArrow {
@@ -288,6 +288,7 @@ nav {
     height: 25px;
     width: 10px;
     margin: 0 10px;
+    margin-bottom: 15px;
 }
 
 .changes-row {
@@ -384,4 +385,110 @@ nav {
 
 .flex-rsi-cci {
     display: flex;
+}
+
+/* ------- LOADING SCREEN ---------------------------- */
+
+.loading-screen {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 99;
+    background-color: rgba(207, 206, 206, 0.5);
+    backdrop-filter: blur(5px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+#deadCatLoad {
+    width: 150px;
+    height: 150px;
+    animation-name: cat-load;
+    animation-timing-function:ease-in-out;
+    animation-duration: 2000ms;
+    animation-iteration-count: infinite;
+    margin-bottom: 0px;
+}
+
+@keyframes cat-load {
+    0% {
+        width: 150px;
+        height: 150px;
+        margin-bottom: 0px;
+    }
+
+    50% {
+        width: 140px;
+        height: 140px;
+        margin-bottom: 10px;
+    }
+
+    100% {
+        width: 150px;
+        height: 150px;
+        margin-bottom: 0px;
+    }
+}
+
+#load-one {
+    font-size: 50px;
+    margin: 0 10px;
+    opacity: 0;
+    animation-delay: 500ms;
+    animation-name: load-one;
+    animation-timing-function: linear;
+    animation-duration: 2000ms;
+    animation-iteration-count: infinite;
+}
+
+@keyframes load-one {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+#load-two {
+    font-size: 40px;
+    margin: 0 10px;
+    opacity: 0;
+    animation-name: load-two;
+    animation-delay: 1250ms;
+    animation-timing-function: linear;
+    animation-duration: 2000ms;
+    animation-iteration-count: infinite;
+}
+
+@keyframes load-two {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+#load-three {
+    font-size: 30px;
+    margin: 0 10px;
+    opacity: 0;
+    animation-delay: 2000ms;
+    animation-name: load-three;
+    animation-timing-function: linear;
+    animation-duration: 2000ms;
+    animation-iteration-count: infinite;
+}
+
+@keyframes load-three {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
 }

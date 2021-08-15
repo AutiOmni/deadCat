@@ -29,7 +29,7 @@ downer.each(function() {
             animatedLoad()
             expandDetract()
 
-            fillDownTech()
+      
 
             setTimeout(() => {
                 $(this).addClass('active-down-symbol')
@@ -54,7 +54,7 @@ upper.each(function() {
             expandDetract()
             animatedLoad()
 
-            fillUpTech()
+          
 
             setTimeout(() => {
                 $(this).addClass('active-up-symbol')
@@ -84,29 +84,39 @@ upper.each(function() {
             $(this).css('width', '50%')
         })
     }
-
+// FILL TECHNICAL INDICATORS WITH THESE
     function fillDownTech() {
         downer.each(function() {
+            $(this).click(function() {
 
                 let index = $(this).attr('data-index')
                 
                 let downerTech = $(`.tech-down-${index}`).html()
-                
+                console.log(downerTech, index)
                 setTimeout(() => {
                     techIn.html(downerTech) 
                 }, 500)
             })
+        })
     }
+
+    fillDownTech()
 
     function fillUpTech() {
         upper.each(function() {
-                
+            $(this).click(function() {
+
+              
                 let index = $(this).attr('data-index')
                 
                 let upperTech = $(`.tech-up-${index}`).html()
-                
+                console.log(upperTech, index)
                 setTimeout(() => {
                     techIn.html(upperTech)
                 }, 500)
             })
+        })
+              
     }
+
+    fillUpTech()
