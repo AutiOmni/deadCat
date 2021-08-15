@@ -220,23 +220,6 @@ nav {
     position: relative;
 }
 
-@media (max-width: 500px) {
-    .section {
-        width: 100vw;
-    }
-
-    .symbol-box {
-        width: 50vw;
-    }
-
-    row-ex {
-        width: 100vw;
-    }
-
-    #rowOne {
-        width: 100vw;
-    }
-}
 
 .row-ex {
     width: 100%;
@@ -307,6 +290,34 @@ nav {
     width: 10px;
     margin: 0 10px;
     margin-bottom: 15px;
+}
+
+@media (max-width: 500px) {
+
+    #upArrow, #downArrow {
+        margin: 0 5px 15px 5px;
+        height: 15px;
+    }
+
+    .section {
+        width: 100vw;
+    }
+
+    .symbol-box {
+        width: 50vw;
+    }
+
+    row-ex {
+        width: 100vw;
+    }
+
+    #rowOne {
+        width: 100vw;
+    }
+
+    .symbol-box {
+        font-size: 10px;
+    }
 }
 
 .changes-row {
