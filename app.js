@@ -177,7 +177,7 @@ const rowOne = document.getElementById('rowOne')
          let fiftySMA = 48
          let hunSMA = 98
          let twoHunSMA = 198
- console.log(dataPull)
+
          const todayPricePull = newestPull[0].price
  
                              // ------------- 15 DAY SMA -------------------------------
@@ -935,7 +935,7 @@ const rowOne = document.getElementById('rowOne')
  
      }
     // WILLIAMS %R 14 ------------------------------------------------------------------------------------------------------------------------------------------------------------------
-   /*   function williamsRFunction(chartArr, dataPull, newestPull, num) {
+     function williamsRFunction(chartArr, dataPull, newestPull, num) {
  
          const newPrice = newestPull[0].price
  
@@ -964,7 +964,6 @@ const rowOne = document.getElementById('rowOne')
                          chartArr[num].williamsR = williams.toFixed(2)
                      }
      }
-     */
  
      // CCI 20 ------------------------------------------------------------------------------------------------------------------------------------------------------------------
      function cciFunction(chartArr, dataPull, newestPull, num) {
@@ -1058,8 +1057,6 @@ const rowOne = document.getElementById('rowOne')
              let tpvCul = 0
              let volumeCul = 0
              let tempVWAP = [] // HOLD VWAP PERIOD - TAKES FROM 0 INDEX FOR MOST CURRENT
-
-             console.log(dataPull[dayLengthPeriod].date.slice(0,10))
              
          // -------------THIS IS FOR GETTING THE DAY LENGTH FOR VWAP
          while (dataPull[dayLengthPeriod].date.slice(0,10) === todayDate) { 
@@ -1126,10 +1123,10 @@ const rowOne = document.getElementById('rowOne')
          
              // STOCHASTIC OSCILLATOR ------------------------------------------------------------------------------------------------------------------------------------------------------------------
              stochOsc1433Function(finalChart, dataSMA, dataRecentPulled, j) //DATA VWAP USED FOR RECETN CLOSE DATA
- /*
+
              // WILLIAMS %R 14 ------------------------------------------------------------------------------------------------------------------------------------------------------------------
              williamsRFunction(finalChart, dataSMA, dataRecentPulled, j)
- */
+
              // CCI 20 ------------------------------------------------------------------------------------------------------------------------------------------------------------------
              cciFunction(finalChart, dataSMA, dataRecentPulled, j)
  
@@ -1339,17 +1336,15 @@ const rowOne = document.getElementById('rowOne')
  const litterBox = document.getElementById('litter-box') 
  
  function buildIt() {
- 
- console.log(stocksUp, stocksDown)
- 
+  
  for (let i = 0; i < stocksDown.length; i++) {
  
  // YOURE GOING TO HAVE TO MAKE ANOTHER LOOP THAT GOES THROUGH THESE TWO ARRAY AT THE SAME TIME JUST LIKE YOU DID WITH FINALCHART[J]. 
  // AND PLACES THEM SELECTIVELY INTO A NEW RESTYLED HTML ELEMENT. ONE SIDE DOWN ONE SIDE UP
  
-     const {avgVolumeUp, changeUp, changesPercentageUp, priceUp, symbolUp, volumeUp, vwapUp, smaFiveTeenUp, smaTwentyUp, smaThirtyUp, smaFiftyUp, smaOneHunUp, smaTwoHunUp, emaTwelveUp, emaTwentySixUp, emaFiftyUp, emaTwoHunUp, wmaFiveTeenUp, wmaTwentyUp, wmaThirtyUp, wmaFiftyUp, wmaOneHunUp, wmaTwoHunUp, vwmaFiveTeenUp, vwmaTwentyUp, vwmaThirtyUp, vwmaFiftyUp, vwmaOneHunUp, vwmaTwoHunUp, macdUp, macdHistogramUp, macdSignalLineUp, rsiUp, stochastic1433Up, cciUp, bbMiddleUp, bbLowerUp, bbUpperUp, williamsRUp} = stocksUp[i]
+     const {avgVolumeUp, changeUp, changesPercentageUp, priceUp, symbolUp, volumeUp, vwapUp, smaFiveTeenUp, smaTwentyUp, smaThirtyUp, smaFiftyUp, smaOneHunUp, smaTwoHunUp, emaTwelveUp, emaTwentySixUp, emaFiftyUp, emaTwoHunUp, wmaFiveTeenUp, wmaTwentyUp, wmaThirtyUp, wmaFiftyUp, wmaOneHunUp, wmaTwoHunUp, vwmaFiveTeenUp, vwmaTwentyUp, vwmaThirtyUp, vwmaFiftyUp, vwmaOneHunUp, vwmaTwoHunUp, macdUp, macdHistogramUp, macdSignalLineUp, rsiUp, stochasticDUp, stochasticKUp, stochasticSignalUp, cciUp, bbMiddleUp, bbLowerUp, bbUpperUp, williamsRUp} = stocksUp[i]
  
-     const {avgVolumeDown, changeDown, changesPercentageDown, priceDown, symbolDown, volumeDown, vwapDown, smaFiveTeenDown, smaTwentyDown, smaThirtyDown, smaFiftyDown, smaOneHunDown, smaTwoHunDown, emaTwelveDown, emaTwentySixDown, emaFiftyDown, emaTwoHunDown, wmaFiveTeenDown, wmaTwentyDown, wmaThirtyDown, wmaFiftyDown, wmaOneHunDown, wmaTwoHunDown, vwmaFiveTeenDown, vwmaTwentyDown, vwmaThirtyDown, vwmaFiftyDown, vwmaOneHunDown, vwmaTwoHunDown, macdDown, macdHistogramDown, macdSignalLineDown, rsiDown, stochastic1433Down, cciDown, bbMiddleDown, bbLowerDown, bbUpperDown , williamsRDown} = stocksDown[i]
+     const {avgVolumeDown, changeDown, changesPercentageDown, priceDown, symbolDown, volumeDown, vwapDown, smaFiveTeenDown, smaTwentyDown, smaThirtyDown, smaFiftyDown, smaOneHunDown, smaTwoHunDown, emaTwelveDown, emaTwentySixDown, emaFiftyDown, emaTwoHunDown, wmaFiveTeenDown, wmaTwentyDown, wmaThirtyDown, wmaFiftyDown, wmaOneHunDown, wmaTwoHunDown, vwmaFiveTeenDown, vwmaTwentyDown, vwmaThirtyDown, vwmaFiftyDown, vwmaOneHunDown, vwmaTwoHunDown, macdDown, macdHistogramDown, macdSignalLineDown, rsiDown, stochasticDDown, stochasticKDown, stochasticSignalDown, cciDown, bbMiddleDown, bbLowerDown, bbUpperDown , williamsRDown} = stocksDown[i]
  
      let volumeIncreaseUp = (volumeUp / avgVolumeUp) * 100 
      let volumeIncreaseDown = (volumeDown / avgVolumeDown) * 100 
@@ -1377,19 +1372,20 @@ const rowOne = document.getElementById('rowOne')
      </div>
      <!----------------------------------- THIS WILL HOLD TECH ANALYSIS FOR HOVER POPULATE IN MIDDLE ---------------------------------------->
   
-     <div class="tech-down-${i}">
+    <div class="tech-down-${i}">
  
      <h2 class="tech-title">Daily Indicators</h2>
  
          <div class="tech-vol-row">
-             <h3 class='tech-header'>Volume</h3>
-             <p>Average: <span class="tech-to-left">${avgVolumeDown}</span></p>
+         <a class="info-link" href="https://www.investopedia.com/terms/d/downvolume.asp" target="_blank"><h3 class='tech-header'>Volume</h3></a>
+         <p>Average: <span class="tech-to-left">${avgVolumeDown}</span></p>
              <p>Today: <span class="tech-to-left">${volumeDown}</span></p>
              <p>Overall Increase: <span class="tech-to-left"> ${volumeIncreaseDown.toFixed(0)}%</span></p>
          </div>
  
          <div class="tech-row">
-             <h3 class='tech-header'>SMA</h3>
+
+             <a class="info-link" href="https://www.investopedia.com/terms/s/sma.asp" target="_blank"><h3 class='tech-header'>SMA</h3></a>
                  <div class="averages-row">
                      <p>15: ${smaFiveTeenDown}</p>
                      <p>20: ${smaTwentyDown}</p>
@@ -1405,7 +1401,7 @@ const rowOne = document.getElementById('rowOne')
          </div>
  
          <div class="tech-row">
-             <h3 class='tech-header'>EMA</h3>
+         <a class="info-link" href="https://www.investopedia.com/terms/e/ema.asp" target="_blank"><h3 class='tech-header'>EMA</h3></a>
                  <div class="averages-row">
                      <p>12: ${emaTwelveDown}</p>
                      <p>26: ${emaTwentySixDown}</p>
@@ -1417,7 +1413,7 @@ const rowOne = document.getElementById('rowOne')
          </div>
  
          <div class="tech-row">
-             <h3 class='tech-header'>WMA</h3>
+         <a class="info-link" href="https://www.investopedia.com/ask/answers/071414/whats-difference-between-moving-average-and-weighted-moving-average.asp" target="_blank"><h3 class='tech-header'>WMA</h3></a>
                  <div class="averages-row">
                      <p>15: ${wmaFiveTeenDown}</p>
                      <p>20: ${wmaTwentyDown}</p>
@@ -1433,7 +1429,7 @@ const rowOne = document.getElementById('rowOne')
          </div>
  
          <div class="tech-row">
-             <h3 class='tech-header'>VWMA</h3>
+         <a class="info-link" href="https://www.tradingsetupsreview.com/volume-weighted-moving-average-vwma/" target="_blank"><h3 class='tech-header'>VWMA</h3></a>
                  <div class="averages-row">
                      <p>15: ${vwmaFiveTeenDown}</p>
                      <p>20: ${vwmaTwentyDown}</p>
@@ -1449,12 +1445,12 @@ const rowOne = document.getElementById('rowOne')
          </div>
  
          <div class="tech-row">
-             <h3 class='tech-header'>VWAP (5 Minute)</h3>
+         <a class="info-link" href="https://www.investopedia.com/terms/v/vwap.asp" target="_blank"><h3 class='tech-header'>VWAP (5 Minute)</h3></a>
              <p class="osc-text">${vwapDown}</p>
          </div>
  
          <div class="tech-row">
-             <h3 class='tech-header'>MACD (12 , 26)</h3>
+         <a class="info-link" href="https://www.investopedia.com/terms/m/macd.asp" target="_blank"><h3 class='tech-header'>MACD (12 , 26)</h3></a>
              <p class="osc-text">${macdDown}</p>
                  <div class="macd-row">
                      <p>Signal Line: ${macdSignalLineDown}</p>
@@ -1464,31 +1460,45 @@ const rowOne = document.getElementById('rowOne')
  
          <div class="flex-rsi-cci">
              <div class="tech-row">
-                 <h3 class='tech-header'>RSI</h3>
+             <a class="info-link" href="https://www.investopedia.com/terms/s/stochrsi.asp" target="_blank"><h3 class='tech-header'>RSI</h3></a>
                  <p class="osc-text">${rsiDown}</p>
              </div>
  
              <div class="tech-row">
-                 <h3 class='tech-header'>CCI</h3>
+             <a class="info-link" href="https://www.investopedia.com/terms/c/commoditychannelindex.asp" target="_blank"><h3 class='tech-header'>CCI</h3></a>
                  <p class="osc-text">${cciDown}</p>
              </div>
+
+         </div>
+
+         <div class="tech-row">
+         <a class="info-link" href="https://www.investopedia.com/terms/w/williamsr.asp" target="_blank"><h3 class='tech-header'>Williams %R</h3></a>
+             <p class="osc-text">${williamsRDown}</p>
+         </div>
+
+ 
+         <div class="tech-row">
+         <a class="info-link" href="https://www.investopedia.com/terms/s/stochasticoscillator.asp" target="_blank"><h3 class='tech-header'>Stochastic Oscillator</h3></a>
+            <div class="averages-row">
+                <p class="osc-text">%K: ${stochasticKDown}</p>
+                <p class="osc-text">%D: ${stochasticDDown}</p>
+            </div>
+                <p class="osc-text">Signal Line: ${stochasticSignalDown}</p>
          </div>
  
          <div class="tech-row">
-             <h3 class='tech-header'>Stochastic %K</h3>
-             <p class="osc-text">${stochastic1433Down}</p>
-         </div>
- 
-         <div class="tech-row">
-                 <h3 class='tech-header'>Bollinger Bands</h3>
+         <a class="info-link" href="https://www.investopedia.com/terms/b/bollingerbands.asp" target="_blank"><h3 class='tech-header'>Bollinger Bands</h3></a>
                  <p class="osc-text">Middle: ${bbMiddleDown}</p>
              <div class="macd-row">
                  <p class="osc-text">Upper: ${bbUpperDown}</p>
                  <p class="osc-text">Lower: ${bbLowerDown}</p>
              </div>
          </div>
-         
-     
+
+         <div class="tech-row">
+         <a class="stock-news-link" href="http://www.google.com/search?q=${symbolDown}+stock+news&source=lnms&tbm=nws&sa=X&ved=2ahUKEwj7_6eMpbPyAhXaVs0KHfuADvoQ_AUoAXoECAEQAw&biw=1280&bih=614" target="_blank">News About This Stock</a>
+         </div>
+
      </div>
  
          <!----------------------------------- UPPER ---------------------------------------->
@@ -1509,15 +1519,15 @@ const rowOne = document.getElementById('rowOne')
      <h2 class="tech-title">Daily Indicators</h2>
  
              <div class="tech-row">
-                 <h3 class='tech-header'>Volume</h3>
+             <a class="info-link" href="https://www.investopedia.com/terms/u/upvolume.asp" target="_blank"><h3 class='tech-header'>Volume</h3></a>
                  <p>Average: <span class="tech-to-left"> ${avgVolumeUp}</span></p>
                  <p>Today:  <span class="tech-to-left"> ${volumeUp}</span></p>
                  <p>Overall Increase:  <span class="tech-to-left"> ${volumeIncreaseUp.toFixed(0)}%</span></p>
              </div>
  
          <div class="tech-row">
-             <h3 class='tech-header'>SMA</h3>
-                 <div class="averages-row">
+         <a class="info-link" href="https://www.investopedia.com/terms/s/sma.asp" target="_blank"><h3 class='tech-header'>SMA</h3></a>
+                <div class="averages-row">
                      <p>15: ${smaFiveTeenUp}</p>
                      <p>20: ${smaTwentyUp}</p>
                  </div>
@@ -1532,7 +1542,7 @@ const rowOne = document.getElementById('rowOne')
          </div>
  
          <div class="tech-row">
-             <h3 class='tech-header'>EMA</h3>
+         <a class="info-link" href="https://www.investopedia.com/terms/e/ema.asp" target="_blank"><h3 class='tech-header'>EMA</h3></a>
                  <div class="averages-row">
                      <p>12: ${emaTwelveUp}</p>
                      <p>26: ${emaTwentySixUp}</p>
@@ -1544,7 +1554,7 @@ const rowOne = document.getElementById('rowOne')
          </div>
  
          <div class="tech-row">
-             <h3 class='tech-header'>WMA</h3>
+         <a class="info-link" href="https://www.investopedia.com/ask/answers/071414/whats-difference-between-moving-average-and-weighted-moving-average.asp" target="_blank"><h3 class='tech-header'>WMA</h3></a>
                  <div class="averages-row">
                      <p>15: ${wmaFiveTeenUp}</p>
                      <p>20: ${wmaTwentyUp}</p>
@@ -1560,7 +1570,7 @@ const rowOne = document.getElementById('rowOne')
          </div>
  
          <div class="tech-row">
-             <h3 class='tech-header'>VWMA</h3>
+         <a class="info-link" href="https://www.tradingsetupsreview.com/volume-weighted-moving-average-vwma/" target="_blank"><h3 class='tech-header'>VWMA</h3></a>
                  <div class="averages-row">
                      <p>15: ${vwmaFiveTeenUp}</p>
                      <p>20: ${vwmaTwentyUp}</p>
@@ -1576,12 +1586,12 @@ const rowOne = document.getElementById('rowOne')
          </div>
  
          <div class="tech-row">
-             <h3 class='tech-header'>VWAP (5 Minute)</h3>
+         <a class="info-link" href="https://www.investopedia.com/terms/v/vwap.asp" target="_blank"><h3 class='tech-header'>VWAP (5 Minute)</h3></a>
              <p class="osc-text">${vwapUp}</p>
          </div>
  
          <div class="tech-row">
-             <h3 class='tech-header'>MACD (12 , 26)</h3>
+         <a class="info-link" href="https://www.investopedia.com/terms/m/macd.asp" target="_blank"><h3 class='tech-header'>MACD (12 , 26)</h3></a>
              <p class="osc-text">${macdUp}</p>
                  <div class="macd-row">
                      <p>Signal Line: ${macdSignalLineUp}</p>
@@ -1591,31 +1601,44 @@ const rowOne = document.getElementById('rowOne')
  
          <div class="flex-rsi-cci">
              <div class="tech-row">
-                 <h3 class='tech-header'>RSI</h3>
-                 <p class="osc-text">${rsiUp}</p>
+             <a class="info-link" href="https://www.investopedia.com/terms/s/stochrsi.asp" target="_blank"><h3 class='tech-header'>RSI</h3></a>
+             <p class="osc-text">${rsiUp}</p>
              </div>
  
              <div class="tech-row">
-                 <h3 class='tech-header'>CCI</h3>
+             <a class="info-link" href="https://www.investopedia.com/terms/c/commoditychannelindex.asp" target="_blank"><h3 class='tech-header'>CCI</h3></a>
                  <p class="osc-text">${cciUp}</p>
              </div>
+
+         </div>
+
+         <div class="tech-row">
+         <a class="info-link" href="https://www.investopedia.com/terms/w/williamsr.asp" target="_blank"><h3 class='tech-header'>Williams %R</h3></a>
+             <p class="osc-text">${williamsRUp}</p>
          </div>
  
          <div class="tech-row">
-             <h3 class='tech-header'>Stochastic %K</h3>
-             <p class="osc-text">${stochastic1433Up}</p>
+         <a class="info-link" href="https://www.investopedia.com/terms/s/stochasticoscillator.asp" target="_blank"><h3 class='tech-header'>Stochastic Oscillator</h3></a>
+            <div class="averages-row">
+            <p class="osc-text">%K: ${stochasticKUp}</p>
+            <p class="osc-text">%D: ${stochasticDUp}</p>
+            </div>
+            <p class="osc-text">Signal Line: ${stochasticSignalUp}</p>
          </div>
  
          <div class="tech-row">
-                 <h3 class='tech-header'>Bollinger Bands</h3>
+         <a class="info-link" href="https://www.investopedia.com/terms/b/bollingerbands.asp" target="_blank"><h3 class='tech-header'>Bollinger Bands</h3></a>
                  <p class="osc-text">Middle: ${bbMiddleUp}</p>
              <div class="macd-row">
                  <p class="osc-text">Upper: ${bbUpperUp}</p>
                  <p class="osc-text">Lower: ${bbLowerUp}</p>
              </div>
          </div>
- 
- 
+
+         <div class="tech-row">
+         <a class="stock-news-link" href="http://www.google.com/search?q=${symbolUp}+stock+news&source=lnms&tbm=nws&sa=X&ved=2ahUKEwj7_6eMpbPyAhXaVs0KHfuADvoQ_AUoAXoECAEQAw&biw=1280&bih=614" target="_blank">News About This Stock</a>
+         </div>
+
      </div> `
  
      rowOne.appendChild(litter)

@@ -37,6 +37,15 @@ section {
     font-size: 2.5vw;
 }
 
+a {
+    text-decoration: none;
+    transition: all ease-in-out 750ms;
+}
+
+a:hover {
+    color: var(--light-text-color);
+}
+
 /* ------------------------------------------------------ MAN OUTFIT */
 
 #hair {
@@ -326,6 +335,10 @@ nav {
     align-items: center;
 }
 
+.info-link {
+    color: var(--light-text-color)
+}
+
 .tech-up-0, 
 .tech-up-1, 
 .tech-up-2, 
@@ -381,6 +394,11 @@ nav {
     text-align: center;
     text-decoration: underline;
     font-size: 1.25em;
+    transition: all ease-in-out 500ms;
+}
+
+.tech-header:hover {
+    text-decoration-color: var(--notification-color);
 }
 
 .tech-row,
@@ -431,10 +449,11 @@ nav {
     flex-direction: column;
 }
 
-.loading-screen h1 {
+#loading-text {
+    font-size: 40px;
     color: var(--main-cat-color);
     text-shadow: 1px 1px var(--light-text-color);
-}
+  }
 
 #deadCatLoad {
     width: 150px;
@@ -532,3 +551,14 @@ nav {
         opacity: 1;
     }
 }
+
+/* --- GOOGLE SEARCH TICKER NEWS ---- */
+.stock-news-link {
+    color: var(--notification-color);
+    margin-left: 14%;
+    padding: 15px 0;
+  }
+
+  .stock-news-link:hover {
+      letter-spacing: 0px;
+  }
