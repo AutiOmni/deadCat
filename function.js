@@ -92,7 +92,6 @@ upper.each(function() {
                 let index = $(this).attr('data-index')
                 
                 let downerTech = $(`.tech-down-${index}`).html()
-                console.log(downerTech, index)
                 setTimeout(() => {
                     techIn.html(downerTech) 
                 }, 500)
