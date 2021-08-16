@@ -737,9 +737,9 @@ const rowOne = document.getElementById('rowOne')
      // STOCHASTIC OSCILLATOR ------------------------------------------------------------------------------------------------------------------------------------------------------------------
      function stochOsc1433Function(chartArr, dataPull, newestPull, num) {
  
-         const newPrice = newestPull[0].price
+         let newPrice = newestPull[0].price
         
-             let iSO = 12
+             let iSO = 13
  
              let soLowHolder = []
              let soHighHolder = []
@@ -771,16 +771,25 @@ const rowOne = document.getElementById('rowOne')
  
                  soHighHolder.push(newPrice)
                  soLowHolder.push(newPrice)
- 
+
+                 
                  highestHigh = Math.max(...soHighHolder)
                  lowestLow = Math.min(...soLowHolder)
- 
+
+                 if (newPrice === lowestLow) {
+                     newPrice = dataPull.historical[0].close
+                 }
+
+                 if (newPrice === highestHigh) {
+                     newPrice = dataPull.historical[0].close
+                 }
+                 
                  topForm.push(newPrice - lowestLow)
                  bottomForm.push(highestHigh - lowestLow)
  
                  //FOR %K
                  chartArr[num].stochasticK = (((newPrice - lowestLow) / (highestHigh - lowestLow)) * 100).toFixed(2)
-
+                 console.log(chartArr[num].stochasticK)
                  // VERY IMPORT - REWORK THE STOCHASTIC NAMES AND THATS WHY ITS UNDEFINDED. REWRITE TO SHOW IN TECHIN
 
      // RESET HOLDER AND VARs --------------------------------------------------------
