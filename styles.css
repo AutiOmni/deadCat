@@ -565,13 +565,19 @@ nav {
 
 /* ------------------------------------ GOOGLE SEARCH TICKER NEWS ---- */
 .stock-news-link {
-    color: var(--notification-color);
-    margin-left: 14%;
-    padding: 15px 0;
+    color: var(--notification-color);    
   }
 
   .stock-news-link:hover {
       letter-spacing: 0px;
+  }
+
+  .news-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-bottom: 15px;
   }
 
 /* ------------------------------------ NAV BAR ---- */
