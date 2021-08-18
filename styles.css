@@ -627,3 +627,15 @@ nav {
        margin-left: 0px;
       }
   }
+
+  /* --------------------- DOWNLOAD LINK ----------------------- */
+
+  .download-link {
+      font-size: 2em;
+  }
+
+  @media (max-width: 600px) {
+    .download-link {
+        font-size: 1.25em;
+    }
+}
