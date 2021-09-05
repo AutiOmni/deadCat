@@ -5,7 +5,7 @@ $(document).ready(function() {
 
 
 
-$('#deadCat').hover(function() {
+$('#deadCat').mouseenter(function() {
     $(this).css('transform', 'rotate(10deg) scale(1.05)')
     
     setTimeout(() => {
