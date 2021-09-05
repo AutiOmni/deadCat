@@ -123,7 +123,6 @@ const rowOne = document.getElementById('rowOne')
  
  let combinedStockUp = []
  combinedStockUp = combinedStockUp.concat(arr3, arr4)
- console.log(combinedStockUp)
  const keys = /^[A-Z]{1,4}$/g
  finalChartFatDown = combinedStockDrop.filter(stock => {
      return stock.symbol.match(keys) && !stock.symbol.match('CBO') // ! HAD TO ADD CBO BECAUSE ITS NOT TRADABLE BUT STILL ON LIST
@@ -783,7 +782,6 @@ const rowOne = document.getElementById('rowOne')
 
             //FOR %K
             chartArr[num].stochasticK = (((newPrice - lowestLow) / (highestHigh - lowestLow)) * 100).toFixed(2)
-            console.log(chartArr[num].stochasticK)
                 // VERY IMPORT - REWORK THE STOCHASTIC NAMES AND THATS WHY ITS UNDEFINDED. REWRITE TO SHOW IN TECHIN
 
     // RESET HOLDER AND VARs --------------------------------------------------------

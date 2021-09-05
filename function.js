@@ -1,5 +1,3 @@
-
-
 const upper = $('.upper')
 const downer = $('.downer')
 let techIn = $('#tech-in')
@@ -55,7 +53,6 @@ upper.each(function() {
             animatedLoad()
 
           
-
             setTimeout(() => {
                 $(this).addClass('active-up-symbol')
             })
@@ -118,3 +115,5 @@ upper.each(function() {
     }
 
     fillUpTech()
+
+    

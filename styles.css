@@ -16,6 +16,7 @@ html  {
     height: 100%;
     margin: 0px;
     padding: 0px;
+    overflow-x: hidden;
 }
 
 body {
@@ -24,6 +25,7 @@ body {
     overflow-x: hidden;
     line-height: 1.5;
     transition: all ease-in-out 1000ms;
+    overflow-x: hidden;
 }
 
 section {
@@ -111,8 +113,15 @@ nav {
    min-height: 100vh;
 }
 
+#hero-text {
+    transform: translateX(-100%);
+    transition: transform linear 250ms;
+}
+
 #deadCat {
+    transform: translateX(100%) scale(1) rotate(0deg);
     max-width: 650px;
+    transition: transform linear 250ms;
 }
 
 #bounce {
@@ -121,11 +130,17 @@ nav {
     padding-bottom: 20px;
 }
 
-
 /* ------------------------------------------------------ DEADCAT EXPLAINED */
 
-.explain-p {
-    margin-top: -20px;
+.info-cont-one {
+    transform: translateY(100%);
+    opacity: 0;
+    transition: all ease-in 500ms;
+}
+
+.info-cont-one.active-info-one {
+    transform: translateY(-25%);
+    opacity: 1;
 }
 
 /* ------------------------------------------------------ INFO HUH */
@@ -201,6 +216,46 @@ nav {
     border-top: none;
     border-left: none;
     border-right: none;
+}
+
+.confused-chart-right {
+    transform: translateX(150%);
+    opacity: 0;
+    transition: all ease-in 500ms;
+}
+.confused-chart-left {
+    transform: translateX(-150%);
+    opacity: 0;
+    transition: all ease-in 500ms;
+}
+
+.active-info-two-r,
+    .active-info-two-l {
+    transform: translateX(0%);
+    opacity: 1;
+}
+
+.selector-info-r
+     {
+        transform: translateY(150%);
+        opacity: 0;
+        transition: all ease-in 500ms;
+    }
+
+.selector-info-l
+     {
+        transform: translateY(150%);
+        opacity: 0;
+        transition: all ease-in 500ms;
+    }
+
+.active-info-three {
+    transform: translateY(0%);
+    opacity: 1;
+}
+
+#download {
+    margin-top: 100px;
 }
 
 /* ------------------------------------------------------ STOCK DROPS CUSTOMIZE */
@@ -639,3 +694,4 @@ nav {
         font-size: 1.25em;
     }
 }
+
