@@ -219,38 +219,38 @@ nav {
 }
 
 .confused-chart-right {
-    transform: translateX(150%);
+    transform: translate(150%, 0%);
     opacity: 0;
     transition: all ease-in 500ms;
 }
 .confused-chart-left {
-    transform: translateX(-150%);
+    transform: translate(-150%, 0%);
     opacity: 0;
     transition: all ease-in 500ms;
 }
 
 .active-info-two-r,
     .active-info-two-l {
-    transform: translateX(0%);
+    transform: translate(0% , 0%);
     opacity: 1;
 }
 
 .selector-info-r
      {
-        transform: translateY(150%);
+        transform: translate(0%, 150%);
         opacity: 0;
         transition: all ease-in 500ms;
     }
 
 .selector-info-l
      {
-        transform: translateY(150%);
+        transform: translate(0%, 150%);
         opacity: 0;
         transition: all ease-in 500ms;
     }
 
 .active-info-three {
-    transform: translateY(0%);
+    transform: translate(0%, 0%);
     opacity: 1;
 }
 
@@ -384,6 +384,26 @@ nav {
     .symbol-box {
         font-size: 10px;
     }
+
+    .selector-info-r
+        {
+            transform: translate(100%, 0%);
+            opacity: 0;
+            transition: all ease-in 500ms;
+        }
+
+    .selector-info-l
+        {
+            transform: translate(-100%, 0%);
+            opacity: 0;
+            transition: all ease-in 500ms;
+        }
+
+    .active-info-three {
+        transform: translate(0%, 0%);
+        opacity: 1;
+    }
+
 }
 
 .changes-row {
@@ -681,6 +701,10 @@ nav {
       #popup-close {
        margin-left: 0px;
       }
+
+      
+
+
   }
 
   /* --------------------- DOWNLOAD LINK ----------------------- */
