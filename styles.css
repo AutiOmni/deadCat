@@ -221,12 +221,12 @@ nav {
 .confused-chart-right {
     transform: translate(150%, 0%);
     opacity: 0;
-    transition: all ease-in 500ms;
+    transition: all linear 500ms;
 }
 .confused-chart-left {
     transform: translate(-150%, 0%);
     opacity: 0;
-    transition: all ease-in 500ms;
+    transition: all linear 500ms;
 }
 
 .active-info-two-r,
@@ -239,14 +239,14 @@ nav {
      {
         transform: translate(0%, 150%);
         opacity: 0;
-        transition: all ease-in 500ms;
+        transition: all linear 500ms;
     }
 
 .selector-info-l
      {
         transform: translate(0%, 150%);
         opacity: 0;
-        transition: all ease-in 500ms;
+        transition: all linear 500ms;
     }
 
 .active-info-three {
