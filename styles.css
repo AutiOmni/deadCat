@@ -139,7 +139,7 @@ nav {
 }
 
 .info-cont-one.active-info-one {
-    transform: translateY(-25%);
+    transform: translateY(0%);
     opacity: 1;
 }
 
