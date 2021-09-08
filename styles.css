@@ -726,6 +726,12 @@ nav {
   }
 
   @media (max-width: 600px) {
+
+    .info-cont-one.active-info-one {
+        transform: translateY(-25%);
+        opacity: 1;
+    }
+    
     .download-link {
         font-size: 1.25em;
     }
