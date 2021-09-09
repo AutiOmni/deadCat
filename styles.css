@@ -260,7 +260,12 @@ nav {
 
     }
 
-.active-info-three {
+.active-info-three-r {
+    transform: translate(0%, 0%);
+    -webkit-transform: translate(0%, 0%);
+    opacity: 1;
+}
+.active-info-three-l {
     transform: translate(0%, 0%);
     -webkit-transform: translate(0%, 0%);
     opacity: 1;
@@ -411,7 +416,8 @@ nav {
             transition: all ease-in 500ms;
         }
 
-    .active-info-three {
+    .active-info-three-l, 
+    .active-info-three-r {
         transform: translate(0%, 0%);
         opacity: 1;
     }

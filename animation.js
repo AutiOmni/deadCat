@@ -32,29 +32,29 @@ $(window).scroll(function() {
     var topInfoThreeL = $('.selector-info-l').offset().top
 
 
-	if ((windowTop * 3) > topInfoOne)
+	if ((windowTop * 2) > topInfoOne)
     {
         $('.info-cont-one').addClass('active-info-one')
     }
 
-	if ((windowTop * 1.5) > topInfoTwoR)
+	if ((windowTop * 1.25) > topInfoTwoR)
     {
         $('.confused-chart-right').addClass('active-info-two-r')
        
     }
 
-	if ((windowTop * 1.5) > topInfoTwoL)
+	if ((windowTop * 1.25) > topInfoTwoL)
     {
         $('.confused-chart-left').addClass('active-info-two-l')       
     }
 
-	if (windowTop * 1.75 > topInfoThreeR)
+	if ((windowTop * 1.25) > topInfoThreeR)
     {
-        $('.selector-info-r').addClass('active-info-three')
+        $('.selector-info-r').addClass('active-info-three-r')
     }
-	if (windowTop * 1.75 > topInfoThreeL)
+	if ((windowTop * 1.25) > topInfoThreeL)
     {
-        $('.selector-info-l').addClass('active-info-three')
+        $('.selector-info-l').addClass('active-info-three-l')
     }
 
 
