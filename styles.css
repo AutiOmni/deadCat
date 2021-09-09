@@ -703,6 +703,12 @@ nav {
     transform: scale(.98)
   }
 
+   /* --------------------- DOWNLOAD LINK ----------------------- */
+
+   .download-link {
+    font-size: 2em;
+}
+
   @media (max-width: 500px) {
     .header {
         height: 30px;
@@ -721,18 +727,6 @@ nav {
       }
 
       
-
-
-  }
-
-  /* --------------------- DOWNLOAD LINK ----------------------- */
-
-  .download-link {
-      font-size: 2em;
-  }
-
-  @media (max-width: 600px) {
-
     .info-cont-one.active-info-one {
         transform: translateY(-25%);
         opacity: 1;
@@ -741,5 +735,7 @@ nav {
     .download-link {
         font-size: 1.25em;
     }
-}
+
+  }
+
 
