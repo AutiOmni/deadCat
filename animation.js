@@ -32,27 +32,27 @@ $(window).scroll(function() {
     var topInfoThreeL = $('.selector-info-l').offset().top
 
 
-	if ((windowTop * 1.75) > topInfoOne)
+	if ((windowTop * 3.5) > topInfoOne)
     {
         $('.info-cont-one').addClass('active-info-one')
     }
 
-	if ((windowTop * 1.75) > topInfoTwoR)
+	if ((windowTop * 1.25) > topInfoTwoR)
     {
         $('.confused-chart-right').addClass('active-info-two-r')
        
     }
 
-	if ((windowTop * 1.75) > topInfoTwoL)
+	if ((windowTop * 1.25) > topInfoTwoL)
     {
         $('.confused-chart-left').addClass('active-info-two-l')       
     }
 
-	if ((windowTop * 1.75) > topInfoThreeR)
+	if ((windowTop * 1.5) > topInfoThreeR)
     {
         $('.selector-info-r').addClass('active-info-three-r')
     }
-	if ((windowTop * 1.75) > topInfoThreeL)
+	if ((windowTop * 1.5) > topInfoThreeL)
     {
         $('.selector-info-l').addClass('active-info-three-l')
     }
