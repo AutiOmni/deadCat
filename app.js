@@ -161,6 +161,7 @@ const rowOne = document.getElementById('rowOne')
  
      // SMA FUNCTION ------------------------------------------------------------------------------------------------------------------------------------------
      function smaFunction(chartArr, dataPull, newestPull, num) {
+         
         let culSMA = 0
 
         // ------- SMA INDEX IS - 2 FROM TOTAL BECAUSE OF 0 INDEX = 1 AND ADDING RECENT PRICE DATA -------------------- 
@@ -173,6 +174,7 @@ const rowOne = document.getElementById('rowOne')
 
         const todayPricePull = newestPull[0].price
 
+        try {
                             // ------------- 15 DAY SMA -------------------------------
             if (dataPull.historical.length <= 13) {
                 chartArr[num].smaFiveTeen = 'No Data'
@@ -245,17 +247,25 @@ const rowOne = document.getElementById('rowOne')
                     chartArr[num].smaTwoHun = smaTwoHunResult.toFixed(2)
                     culSMA = 0 
                     }
+
+                }
+                catch(e) 
+                {
+                      
+                }
                     
     } 
     // WMA FUNCTION ------------------------------------------------------------------------------------------------------------------------------------------
     function wmaFunction(chartArr, dataPull, newestPull, num) {
+
 
                     // WMA FiveTeen --------------------------------------------------------------------
                     let wmaCul = newestPull[0].price * 15
                     let weight = 14
                     let wmaInterval = 0
                     let iWma = 15
-                    
+                   
+                    try {
                     if (dataPull.historical.length < 14) {
                         chartArr[num].wmaFiveTeen = 'No Data'
                     } else {
@@ -373,6 +383,13 @@ const rowOne = document.getElementById('rowOne')
                     const wmaTwoHun = wmaCul / iWma
                     chartArr[num].wmaTwoHun = wmaTwoHun.toFixed(2)
                     }
+
+                }
+                catch(e) 
+                {
+                      
+                }
+                
     }
     // VWMA FUNCTION ------------------------------------------------------------------------------------------------------------------------------------------
     function vwmaFunction(chartArr, dataPull, newestPull, num) {
@@ -387,6 +404,7 @@ const rowOne = document.getElementById('rowOne')
         let price = 0
         let volume = 0
 
+        try {
         if (dataPull.historical.length < 14) {
             chartArr[num].vwmaFiveTeen = 'No Data'
         } else {
@@ -499,6 +517,12 @@ const rowOne = document.getElementById('rowOne')
             const vwmaTwoHun = totalCul/volCul
             chartArr[num].vwmaTwoHun = vwmaTwoHun.toFixed(2)
         }
+
+        }
+        catch(e) 
+        {
+            
+        }
     }
     // EMA FUNCTION ------------------------------------------------------------------------------------------------------------------------------------------       
     function emaFunction(chartArr, dataPull, newestPull, num, macdCallBack) {
@@ -516,7 +540,7 @@ const rowOne = document.getElementById('rowOne')
                     let macdTwentySix = [] // ARRs USED FOR MACD TWENTY SIX HISTORY
                    
 // EMA TWELVE ----------------------------------------------------------------------
-
+try {
                     if (dataPull.historical.length <= 24) {
                         chartArr[num].emaTwelve = 'No Data'
                     } else {
@@ -645,6 +669,12 @@ const rowOne = document.getElementById('rowOne')
                         prevDayEmaSub = 0
                     }
 
+                }
+                    catch(e) 
+                    {
+                          
+                    }
+
                 
                 // MACD CALLBACK -----------------------------------------------------------------------------------------------------------------------------------------       
                 macdCallBack(chartArr, num, macdTwelve, macdTwentySix)
@@ -656,6 +686,9 @@ const rowOne = document.getElementById('rowOne')
         // CALCULATE SIGNAL LINE ----------------
         let averageMacd = []
         let iMacd = 8
+
+    try {
+
         while (iMacd >= 0) {
             averageMacd.unshift(arr1[iMacd] - arr2[iMacd])
             iMacd--
@@ -678,6 +711,12 @@ const rowOne = document.getElementById('rowOne')
             chartArr[num].macdSignalLine = 'No Data'
         }
 
+        }
+        catch(e) 
+        {
+            
+        }
+
     }
     // RSI FUNCTION ------------------------------------------------------------------------------------------------------------------------------------------      
     function rsiFunction(chartArr, dataPull, newestPull, num) {
@@ -693,6 +732,7 @@ const rowOne = document.getElementById('rowOne')
         let pastDownPeriod = 0
         let pastUpPeriod = 0
 
+        try {
     // CHECK TO SEE IF DATA PULL CAN PULL ENOUGH DATA TO BE EFFECTIVE 
         if (dataPull.historical.length <= 14) {
             chartArr[num].rsi = 'No Data'
@@ -724,7 +764,13 @@ const rowOne = document.getElementById('rowOne')
         let rsi = 100 - (100 / (1 + pastUpPeriod/pastDownPeriod))
         chartArr[num].rsi = rsi.toFixed(2)
 
-    }
+        }
+
+        }
+        catch(e) 
+        {
+            
+        }
 
     } 
     // STOCHASTIC OSCILLATOR ------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -750,6 +796,7 @@ const rowOne = document.getElementById('rowOne')
     // HOLDING SET OF %D FOR 14 3 3 
         let signalLineHolder = []
 
+       try { 
     if (dataPull.historical.length < 18) {
     chartArr[num].stochasticK = 'No Data'
     } else {
@@ -934,6 +981,12 @@ const rowOne = document.getElementById('rowOne')
 
         }
 
+                }
+                catch(e) 
+                {
+                    
+                }
+
     }
    // WILLIAMS %R 14 ------------------------------------------------------------------------------------------------------------------------------------------------------------------
     function williamsRFunction(chartArr, dataPull, newestPull, num) {
@@ -945,7 +998,7 @@ const rowOne = document.getElementById('rowOne')
                     let lows = []
                     let lowestLow = 0
                     let highestHigh = 0
-        
+        try {
                     if (dataPull.historical.length < 14) {
                         chartArr[num].williams = 'No Data'
                     } else {
@@ -964,6 +1017,12 @@ const rowOne = document.getElementById('rowOne')
                         
                         chartArr[num].williamsR = williams.toFixed(2)
                     }
+
+                }
+                catch(e) 
+                {
+                      
+                }
     }
 
     // CCI 20 ------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -977,7 +1036,7 @@ const rowOne = document.getElementById('rowOne')
                     let tpvMa = 0
                     let tpvCurrent  = newPrice
                     const recentTpv = newPrice
-        
+        try {
                     if (dataPull.historical.length < 19) {
                         chartArr[num].cciTwenty = 'No Data'
                     } else {
@@ -1007,6 +1066,11 @@ const rowOne = document.getElementById('rowOne')
                         
                         chartArr[num].cciTwenty = cci.toFixed(2)
                     }
+                }
+                catch(e) 
+                {
+                      
+                }
     }
     // BOLLINGER BANDS ------------------------------------------------------------------------------------------------------------------------------------------------------------------
     function bollingerBandsFunction(chartArr, dataPull, newestPull, num) {
@@ -1015,7 +1079,7 @@ const rowOne = document.getElementById('rowOne')
 
         let smaCul = 0
         let closeHolder = []
-
+try {
         if (dataPull.historical.length < 19) {
             chartArr[num].bbUpper = 'No Data'
             chartArr[num].bbLower = 'No Data'
@@ -1048,6 +1112,11 @@ const rowOne = document.getElementById('rowOne')
                 chartArr[num].bbLower = bbLower.toFixed(2)
                 chartArr[num].bbMiddle = smaTwenty.toFixed(2)
         }
+    }
+    catch(e) 
+    {
+          
+    }
 
     }
     // VWAP FUNCTION ------------------------------------------------------------------------------------------------------------------------------------------       
@@ -1058,7 +1127,7 @@ const rowOne = document.getElementById('rowOne')
             let tpvCul = 0
             let volumeCul = 0
             let tempVWAP = [] // HOLD VWAP PERIOD - TAKES FROM 0 INDEX FOR MOST CURRENT
-            
+            try {
         // -------------THIS IS FOR GETTING THE DAY LENGTH FOR VWAP
         while (dataPull[dayLengthPeriod].date.slice(0,10) === todayDate) { 
            dayLengthPeriod++ 
@@ -1078,8 +1147,16 @@ const rowOne = document.getElementById('rowOne')
                 tempVWAP.unshift(vwapFinal) //ADD VWAP FRONT OF ARR
                 }
                 let vwap =  tempVWAP[0].toFixed(2)
-                chartArr[num].vwap = vwap                
+                chartArr[num].vwap = vwap  
+                
+            }
+            catch(e) 
+            {
+                  
+            }
     }
+
+    
 
  // TA FUNCTION ---------------------------------------------------------------------
  async function technicalIndicators() {
@@ -1663,8 +1740,7 @@ const rowOne = document.getElementById('rowOne')
  var tech = document.getElementById('tech-in')
  async function buildToPage() {
  
-     try {
- 
+
      await tradableSymbols()
      
      await technicalIndicators()
@@ -1676,9 +1752,6 @@ const rowOne = document.getElementById('rowOne')
      buildIt()
      tech.innerHTML = ''
  
-     } catch (e) {
-         console.log('Build-To-Page Error', (e))
-     }
  
      
  }
