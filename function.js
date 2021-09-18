@@ -24,6 +24,9 @@ downer.each(function() {
 
             removeDownClass()
             removeUpClass()
+
+            moveTechToTop()
+
             animatedLoad()
             expandDetract()
 
@@ -49,6 +52,9 @@ upper.each(function() {
 
             removeDownClass()
             removeUpClass()
+
+            moveTechToTop()
+
             expandDetract()
             animatedLoad()
 
@@ -116,4 +122,10 @@ upper.each(function() {
 
     fillUpTech()
 
-    
+
+  // MOVES TECH-IN TO TOP AFTER EACH SYMBOL CLICK  
+    function moveTechToTop() {
+        setTimeout(() => {
+            $('#tech-in').scrollTop(0)
+        }, 500)
+    }
