@@ -31,10 +31,24 @@ $(window).scroll(function() {
     var topInfoThreeR = $('.selector-info-r').offset().top
     var topInfoThreeL = $('.selector-info-l').offset().top
 
+    var topInfoConfCover = $('.confused-cover').offset().top
+    var topInfoChoiceCover = $('.choice-cover').offset().top
+
 
 	if ((windowTop * 3.5) > topInfoOne)
     {
         $('.info-cont-one').addClass('active-info-one')
+    }
+
+
+	if ((windowTop * 1.25) > topInfoConfCover)
+    {
+        $('.confused-cover').css('transform', 'translateX(100%)') 
+    }
+
+	if ((windowTop * 1.25) > topInfoChoiceCover)
+    {
+        $('.choice-cover').css({'opacity': '0', 'z-index': '0'});
     }
 
 	if ((windowTop * 1.25) > topInfoTwoR)
