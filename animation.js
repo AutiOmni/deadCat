@@ -33,6 +33,21 @@ else
     })
 }
 
+// different animation per window size
+
+     if ($(window).width() < 800) {
+
+        for (let i = 1; i <= 5; i++) {
+            $(`.alert-fly-${i}`).css('transform', 'translate(0%, 100%)');
+        }
+    }
+    else 
+    {
+        for (let i = 1; i <= 5; i++) {
+            $(`.alert-fly-${i}`).css('transform', 'translate(100%, 0%)');
+        }
+    }
+
 var windowTop = window.pageYOffset
 
 $(window).scroll(function() {
@@ -92,21 +107,6 @@ $(window).scroll(function() {
         }
     }
 
-     // different animation per window size
 
 
 });
-
-
-if ($(window).width() < 800) {
-
-    for (let i = 1; i <= 5; i++) {
-        $(`.alert-fly-${i}`).css('transform', 'translate(0%, 100%)');
-    }
-}
-else 
-{
-    for (let i = 1; i <= 5; i++) {
-        $(`.alert-fly-${i}`).css('transform', 'translate(100%, 0%)');
-    }
-}
