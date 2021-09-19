@@ -115,13 +115,13 @@ nav {
 
 #hero-text {
     transform: translateX(-100%);
-    transition: transform linear 250ms;
+    transition: transform linear 500ms;
 }
 
 #deadCat {
     transform: translateX(100%) scale(1) rotate(0deg);
     max-width: 650px;
-    transition: transform linear 250ms;
+    transition: transform linear 500ms;
 }
 
 #bounce {

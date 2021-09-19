@@ -3,7 +3,7 @@ $(document).ready(function() {
     $('#deadCat').css('transform', 'translateX(0%)')
 })
 
-if ($(window) > 800) {
+if ($(window).width() > 800) {
 
     $('#deadCat').mouseenter(function() {
         $(this).css('transform', 'rotate(10deg) scale(1.05)')
@@ -33,31 +33,7 @@ else
     })
 }
 
-
-
-
-if ($(window).width() > 850) {
-$('.img-holder').each(function() {
-    $(this).mouseenter(function() {
-        $(this).addClass('active-gallery-after')
-    }).mouseleave(function() {
-        $(this).removeClass('active-gallery-after')
-    })
-})
-} 
-else
-{
-    $('.img-holder').each(function() {
-        $(this).click(function() {
-            $(this).toggleClass('active-gallery-after')
-        })
-    })
-}
-
 var windowTop = window.pageYOffset
-
-
-
 
 $(window).scroll(function() {
     var windowTop = window.pageYOffset;
@@ -122,7 +98,7 @@ $(window).scroll(function() {
 });
 
 
-if ($(window) < 800) {
+if ($(window).width() < 800) {
 
     for (let i = 1; i <= 5; i++) {
         $(`.alert-fly-${i}`).css('transform', 'translate(0%, 100%)');
