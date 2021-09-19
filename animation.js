@@ -3,19 +3,38 @@ $(document).ready(function() {
     $('#deadCat').css('transform', 'translateX(0%)')
 })
 
+if ($(window) > 800) {
+
+    $('#deadCat').mouseenter(function() {
+        $(this).css('transform', 'rotate(10deg) scale(1.05)')
+        
+        setTimeout(() => {
+            $(this).css('transform', 'rotate(-10deg) scale(1.05)')
+        }, 250)
+
+        setTimeout(() => {
+            $(this).css('transform', 'rotate(0deg) scale(1)')
+        }, 500)
+    })
+
+}
+else 
+{
+    $('#deadCat').click(function() {
+        $(this).css('transform', 'rotate(10deg) scale(1.05)')
+        
+        setTimeout(() => {
+            $(this).css('transform', 'rotate(-10deg) scale(1.05)')
+        }, 250)
+
+        setTimeout(() => {
+            $(this).css('transform', 'rotate(0deg) scale(1)')
+        }, 500)
+    })
+}
 
 
-$('#deadCat').mouseenter(function() {
-    $(this).css('transform', 'rotate(10deg) scale(1.05)')
-    
-    setTimeout(() => {
-        $(this).css('transform', 'rotate(-10deg) scale(1.05)')
-    }, 250)
 
-    setTimeout(() => {
-        $(this).css('transform', 'rotate(0deg) scale(1)')
-    }, 500)
-})
 
 if ($(window).width() > 850) {
 $('.img-holder').each(function() {
