@@ -89,7 +89,7 @@ a:hover {
 }
 
 #g-shoe {
-    fill: var(--main-cat-color);
+    fill: var(--light-text-color);
 }
 
 /* ------------------------------------------------------ NAV */
@@ -139,12 +139,11 @@ nav {
 }
 
 .info-cont-one.active-info-one {
-    transform: translateY(0%);
+    transform: translateY(-25%);
     opacity: 1;
 }
 
 /* ------------------------------------------------------ INFO HUH */
-
 
 .huh {
     font-size: 2.5vw;
@@ -277,8 +276,16 @@ nav {
         opacity: 0;
         transition: all ease-in 500ms;
         -webkit-transition: all ease-in 500ms;
-
     }
+
+.alert-fly-1,
+    .alert-fly-2,
+        .alert-fly-3, 
+            .alert-fly-4,
+                .alert-fly-5  {
+    transform: translate(0%, 200%);
+    transition: ease-in transform 500ms;
+}
 
 .selector-info-l
      {
@@ -302,8 +309,12 @@ nav {
 }
 
 #download {
-    margin-top: 100px;
+    padding-top: 100px;
+    background-color: var(--light-text-color);
+    transition: all ease-out 2000ms;
 }
+
+
 
 /* ------------------------------------------------------ STOCK DROPS CUSTOMIZE */
 

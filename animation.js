@@ -17,7 +17,27 @@ $('#deadCat').mouseenter(function() {
     }, 500)
 })
 
+if ($(window).width() > 850) {
+$('.img-holder').each(function() {
+    $(this).mouseenter(function() {
+        $(this).addClass('active-gallery-after')
+    }).mouseleave(function() {
+        $(this).removeClass('active-gallery-after')
+    })
+})
+} 
+else
+{
+    $('.img-holder').each(function() {
+        $(this).click(function() {
+            $(this).toggleClass('active-gallery-after')
+        })
+    })
+}
+
 var windowTop = window.pageYOffset
+
+
 
 
 $(window).scroll(function() {
@@ -40,21 +60,15 @@ $(window).scroll(function() {
         $('.info-cont-one').addClass('active-info-one')
     }
 
-
 	if ((windowTop * 1.25) > topInfoConfCover)
     {
         $('.confused-cover').css('transform', 'translateX(100%)') 
     }
 
-	if ((windowTop * 1.25) > topInfoChoiceCover)
-    {
-        $('.choice-cover').css({'opacity': '0', 'z-index': '0'});
-    }
 
 	if ((windowTop * 1.25) > topInfoTwoR)
     {
         $('.confused-chart-right').addClass('active-info-two-r')
-       
     }
 
 	if ((windowTop * 1.25) > topInfoTwoL)
@@ -62,14 +76,42 @@ $(window).scroll(function() {
         $('.confused-chart-left').addClass('active-info-two-l')       
     }
 
-	if ((windowTop * 1.5) > topInfoThreeR)
+    if ((windowTop * 1.5) > topInfoChoiceCover)
+    {
+        $('.choice-cover').css({'opacity': '0', 'z-index': '0'});
+        $('#download').css('background-color', 'var(--main-background)');
+
+    }
+
+	if ((windowTop * 1.45) > topInfoThreeR)
     {
         $('.selector-info-r').addClass('active-info-three-r')
     }
-	if ((windowTop * 1.5) > topInfoThreeL)
+	if ((windowTop * 1.45) > topInfoThreeL)
     {
         $('.selector-info-l').addClass('active-info-three-l')
+        for (let i = 1; i <= 5; i++) {
+            setTimeout(() => {
+                $(`.alert-fly-${i}`).css('transform', 'translate(0%, 0%)');
+            }, `${i}50`)
+        }
     }
+
+     // different animation per window size
 
 
 });
+
+
+if ($(window) < 800) {
+
+    for (let i = 1; i <= 5; i++) {
+        $(`.alert-fly-${i}`).css('transform', 'translate(0%, 100%)');
+    }
+}
+else 
+{
+    for (let i = 1; i <= 5; i++) {
+        $(`.alert-fly-${i}`).css('transform', 'translate(100%, 0%)');
+    }
+}
