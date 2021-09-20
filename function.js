@@ -3,9 +3,7 @@ const downer = $('.downer')
 let techIn = $('#tech-in')
 
 const symbolBox = $('.symbol-box')
-// THESE FIRE ON LOAD TO GET THE TECH-IN ELEMENT READY FOR CLICK ------------------------
-//fillDownTech()
-//fillUpTech()
+
 // CONFIGURE DOWN BOXES FOR FUNCTION ----------------------------
 
 downer.each(function() {
@@ -138,11 +136,3 @@ upper.each(function() {
             $('#tech-in').scrollTop(0)
         }, 500)
     }
-//SEARCH FUNCTION
-   $('.search-icon').click(function() {
-       $('.search-bar').toggleClass('active-search')
-   }) 
-
-   $('.search-text').on('keyup', function() {
-    $('.search-text').val($('.search-text').val().toUpperCase());
-   })
