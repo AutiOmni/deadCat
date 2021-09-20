@@ -18,7 +18,7 @@ if ($(window).width() > 700) {
     })
 
 }
-else 
+else if (($(window).width() < 700))
 {
     $('#deadCat').click(function() {
         $(this).css('transform', 'rotate(10deg) scale(1.05)')
