@@ -17,6 +17,7 @@ downer.each(function() {
                 $(this).removeClass('active-down-symbol')
             }, 500)
 
+            
 
         } else {
 
@@ -44,14 +45,20 @@ upper.each(function() {
         if ($(this).hasClass('active-up-symbol')) {
 
             animatedLoad() 
+
             setTimeout( () => {
-                upper.removeClass('active-up-symbol')
+                $(this).removeClass('active-up-symbol')
                 
             }, 500)
+
+           
         } else {
 
-            removeDownClass()
+
+
+
             removeUpClass()
+            removeDownClass()
 
             moveTechToTop()
 
@@ -61,10 +68,12 @@ upper.each(function() {
           
             setTimeout(() => {
                 $(this).addClass('active-up-symbol')
-            })
+            }, 500)
         }
     })
 })
+
+
 
     function removeDownClass() {
         downer.removeClass('active-down-symbol')
@@ -129,9 +138,13 @@ upper.each(function() {
             $('#tech-in').scrollTop(0)
         }, 500)
     }
-
+//SEARCH FUNCTION
    $('.search-icon').click(function() {
        $('.search-bar').toggleClass('active-search')
    }) 
 
-   
+
+$('.search-text').on('keyup', function() {
+    $(this).value.toUpperCase();
+})
+

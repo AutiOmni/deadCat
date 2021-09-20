@@ -731,7 +731,7 @@ nav {
       position: absolute;
       top: 50%;
       left: 47.9%;
-      transform: translate(-50%, -50%);
+      transform: translate(-50%, -46%);
       font-size: 25px;
       width: 150px;
       text-align: center;
@@ -741,6 +741,7 @@ nav {
   #deadCat-header {
     height: 35px;
     cursor: pointer;
+    transform: translateY(-2px);
   }
   
   #popup-close {
@@ -774,6 +775,7 @@ nav {
     margin-left: 10px;
     transition: all ease-in-out 500ms;
     background-color: transparent;
+    padding-left: 5px;
   }
 
   input:active,
@@ -783,7 +785,7 @@ nav {
   }
 
   .active-search .search-text {
-      width: 75px;
+      width: 80px;
       background-color: var(--light-text-color);
   }   
 
@@ -803,7 +805,7 @@ nav {
   .active-search .search-icon {
     height: 15px;
     width: 15px;
-    left: 65px;
+    left: 70px;
     color: var(--main-background)
   }
 
