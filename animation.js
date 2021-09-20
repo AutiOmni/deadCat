@@ -3,7 +3,7 @@ $(document).ready(function() {
     $('#deadCat').css('transform', 'translateX(0%)')
 })
 
-if ($(window).width() > 800) {
+if ($(window).width() > 700) {
 
     $('#deadCat').mouseenter(function() {
         $(this).css('transform', 'rotate(10deg) scale(1.05)')
@@ -35,7 +35,7 @@ else
 
 // different animation per window size
 
-     if ($(window).width() < 800) {
+     if ($(window).width() < 700) {
 
         for (let i = 1; i <= 5; i++) {
             $(`.alert-fly-${i}`).css('transform', 'translate(0%, 100%)');
