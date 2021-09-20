@@ -418,7 +418,7 @@ nav {
 
     #upArrow, #downArrow {
         margin: 0 5px 15px 5px;
-        height: 15px;
+        height: 20px;
     }
 
     .section {
@@ -440,7 +440,7 @@ nav {
     }
 
     .symbol-box {
-        font-size: 10px;
+        font-size: 15px;
     }
 
     .selector-info-r
@@ -714,7 +714,7 @@ nav {
     margin-bottom: 15px;
   }
 
-/* ------------------------------------ NAV BAR ---- */
+/* ------------------------------------ NAV BAR ------------------------------------ */
 
   .header {
     height: 30px;
@@ -730,7 +730,7 @@ nav {
   .header h1 {
       position: absolute;
       top: 50%;
-      left: 50%;
+      left: 47.9%;
       transform: translate(-50%, -50%);
       font-size: 25px;
       width: 150px;
@@ -744,17 +744,68 @@ nav {
   }
   
   #popup-close {
-   margin-left: 400px;
+   position: absolute;
    font-size: 25px;
    background: transparent;
    border: none;
    color: var(--light-text-color);
    cursor: pointer;
+   right: 10px;
+   top: 50%;
+   transform: translateY(-50%);
   }
   
   #popup-close:active {
-    transform: scale(.98)
+    transform: scale(.98) translateY(-50%);
   }
+
+ .search-bar {
+      position: absolute;
+      left: 0px;
+      top: 50%;
+      transform: translateY(-50%);
+  }
+
+  .search-text {
+    width: 0px;
+    border: none;
+    height: 75%;
+    margin-left: 10px;
+    transition: all ease-in-out 500ms;
+    background-color: transparent;
+  }
+
+  input:active,
+  input:focus {
+      border-color: transparent;
+      outline: transparent;
+  }
+
+  .active-search .search-text {
+      width: 75px;
+      background-color: var(--light-text-color);
+  }   
+
+  .search-icon {
+      position: absolute;
+      height: 20px;
+      width: 20px;
+      cursor: pointer;
+      left: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      cursor: pointer;
+      color: var(--light-text-color);
+      transition: all ease-in-out 500ms;
+  }
+
+  .active-search .search-icon {
+    height: 15px;
+    width: 15px;
+    left: 65px;
+    color: var(--main-background)
+  }
+
 
    /* --------------------- DOWNLOAD LINK ----------------------- */
 
@@ -774,11 +825,6 @@ nav {
       #deadCat-header {
         height: 30px;
       }
-      
-      #popup-close {
-       margin-left: 0px;
-      }
-
       
     .info-cont-one.active-info-one {
         transform: translateY(-25%);
