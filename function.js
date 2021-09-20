@@ -129,3 +129,9 @@ upper.each(function() {
             $('#tech-in').scrollTop(0)
         }, 500)
     }
+
+   $('.search-icon').click(function() {
+       $('.search-bar').toggleClass('active-search')
+   }) 
+
+   
