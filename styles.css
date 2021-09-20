@@ -757,6 +757,7 @@ nav {
   
   #popup-close:active {
     transform: scale(.98) translateY(-50%);
+    color: var(--bear-market-color);
   }
 
  .search-bar {
