@@ -1230,7 +1230,7 @@ function buildSearchTech(obj) {
    // }
 
   //  let volumeIncrease = (volume / avgVolume) * 100 
-console.log(obj)
+
      techIn.html(   
     `     <!----------------------------------- SEARCHED SYMBOL --------------------------------------->
 
