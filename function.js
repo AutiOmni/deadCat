@@ -1178,8 +1178,8 @@ try {
         const dataSMA = await resSMA.json() // SMA PULL USED FOR OTHER CALCS
 console.log(dataSMA)
         
-        searchedSymbol.price = dataSMA.historical[0].change
-        searchedSymbol.changesPercent = dataSMA.historical[0].changePercent
+        searchedSymbol.change = dataSMA.historical[0].change
+        searchedSymbol.changesPercentage = dataSMA.historical[0].changePercent
         searchedSymbol.volume = dataSMA.historical[0].volume
             
          //THIS PULL IS FOR OSCILLATORS ALL CURRENT CLOSE DATA
@@ -1237,12 +1237,24 @@ console.log(dataSMA)
 
     
 function buildSearchTech(obj) {
-
+console.log(obj)
     let {symbol, price, change, changesPercentage, avgVolume, volume, vwap, smaFiveTeen, smaTwenty, smaThirty, smaFifty, smaOneHun, smaTwoHun, emaTwelve, emaTwentySix, emaFifty, emaTwoHun, wmaFiveTeen, wmaTwenty, wmaThirty, wmaFifty, wmaOneHun, wmaTwoHun, vwmaFiveTeen, vwmaTwenty, vwmaThirty, vwmaFifty, vwmaOneHun, vwmaTwoHun, macd, macdHistogram, macdSignalLine, rsi, stochasticD, stochasticK, stochasticSignal, cciTwenty, bbMiddle, bbLower, bbUpper, williamsR} = obj;
 
-   // if (change < 0) {
-   //     change = change * -1
-   // }
+    let directionArrow = 'up'
+
+
+    if (changesPercentage < 0) 
+    {
+        directionArrow = 'down'
+    } 
+    else 
+    {
+        directionArrow = 'up'
+    }
+
+    if (change < 0) {
+        change = change * -1
+    }
 
   //  let volumeIncrease = (volume / avgVolume) * 100 
     console.log(obj)
@@ -1256,6 +1268,13 @@ function buildSearchTech(obj) {
     <h2 class="tech-title">${symbol}'s</h2>
     <h2 class="tech-title">Daily Indicators</h2> <!--- put if else for if its up or down then out arrow next to it here --------->
     
+    <div class="tech-row">
+    <p class="search-price-text">Price: $${price.toFixed(2)}</p>
+    <div class="search-changes-row">
+    <p>${changesPercentage.toFixed(2)}%</p>
+    <div id="search-arrow-${directionArrow}"></div>
+    <p>$${change.toFixed(2)}</p>
+    </div>
 
 
         <div class="tech-vol-row">
