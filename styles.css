@@ -838,6 +838,13 @@ nav {
         font-size: 1.25em;
     }
 
+    .downer:hover {
+        box-shadow: inset 5px 0px 1px var(--bear-market-color), inset 5px 0px 3px var(--bear-market-color);
+    }
+    .upper:hover {
+        box-shadow: inset -5px 0px 1px var(--bull-market-color), inset -5px 0px 3px var(--bull-market-color);
+    }
+
   }
 
 
