@@ -60,7 +60,7 @@ const rowOne = document.getElementById('rowOne')
      await filterTradableSymbols(myStocksNyse, myStocksNas, compileStocks)
  
          } catch(e) {
-              console.log(e)
+              
          }
  }
  
@@ -103,7 +103,7 @@ const rowOne = document.getElementById('rowOne')
      }
  //--------- CATCH
      } catch(e) {
-         console.log(e)
+         
      }
  
      compileCallback(nasdaqHolderDown, nyseHolderDown, nyseHolderUp, nasdaqHolderUp) // CALLBACK FOR STOCK FILTER
@@ -1175,13 +1175,13 @@ try {
          //THIS PULL IS FOR OSCILLATORS ALL CURRENT CLOSE DATA
          const resOscPulled = await fetch(`https://financialmodelingprep.com/api/v3/quote-short/${symbol}?apikey=4d4593bc9e6bc106ee9d1cbd6400b218`)
          const dataRecentPulled = await resOscPulled.json()
-/*
+
         // VWAP ------------------------------------------------------------------------------------------------------------------------------------------------
         const resVWAP = await  fetch(`https://financialmodelingprep.com/api/v3/historical-chart/5min/${symbol}?apikey=4d4593bc9e6bc106ee9d1cbd6400b218`)
         const dataVWAP = await resVWAP.json()
          
         vwapFunction(finalChart, dataVWAP, j)
-         */
+         
 
             // SMA -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
            smaFunction(finalChart, dataSMA, dataRecentPulled, j)
@@ -1521,12 +1521,12 @@ try {
                      <p>200: ${vwmaTwoHunDown}</p>
                  </div>
          </div>
- <!--
+
          <div class="tech-row">
          <a class="info-link" href="https://www.investopedia.com/terms/v/vwap.asp" target="_blank"><h3 class='tech-header'>VWAP (5 Minute)</h3></a>
              <p class="osc-text">${vwapDown}</p>
          </div>
- -->
+
          <div class="tech-row">
          <a class="info-link" href="https://www.investopedia.com/terms/m/macd.asp" target="_blank"><h3 class='tech-header'>MACD (12 , 26)</h3></a>
              <p class="osc-text">${macdDown}</p>
@@ -1662,12 +1662,12 @@ try {
                      <p>200: ${vwmaTwoHunUp}</p>
                  </div>
          </div>
-<!--
+
          <div class="tech-row">
          <a class="info-link" href="https://www.investopedia.com/terms/v/vwap.asp" target="_blank"><h3 class='tech-header'>VWAP (5 Minute)</h3></a>
              <p class="osc-text">${vwapUp}</p>
          </div>
--->
+
          <div class="tech-row">
          <a class="info-link" href="https://www.investopedia.com/terms/m/macd.asp" target="_blank"><h3 class='tech-header'>MACD (12 , 26)</h3></a>
              <p class="osc-text">${macdUp}</p>
