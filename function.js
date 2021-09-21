@@ -151,10 +151,8 @@ $('.search-text').on('keyup', function(e) {
             moveTechToTop()
             animatedLoad()
 
-            technicalIndicators(ticker, symbolSearch);
-
-            expandDetract()
-            // EXPAND TO SEE
+            searchedOrderBuild(ticker, symbolSearch)
+        
 
 
         }
@@ -1158,6 +1156,15 @@ try {
                   
             }
     }
+
+// TO TIME THE BUILD OUT
+async function searchedOrderBuild(name, obj) {
+
+    await technicalIndicators(name, obj)
+
+    expandDetract()
+
+} 
 
  // TA FUNCTION ---------------------------------------------------------------------
 async function technicalIndicators(symbol, searchedSymbol) {
