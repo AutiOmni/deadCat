@@ -490,6 +490,10 @@ nav {
     display: none;
 }
 
+.tech-search {
+    display: block;
+}
+
 .active-down-symbol {
     transition: all ease-in-out 500ms;
     border-right: transparent;
