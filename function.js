@@ -1245,8 +1245,8 @@ function buildSearchTech(obj) {
  
    <div class="tech-search">
 
-
-    <h2 class="tech-title">Daily Indicators For ${symbol}</h2> <!--- put if else for if its up or down then out arrow next to it here --------->
+    <h2 class="tech-title">${symbol}'s</h2>
+    <h2 class="tech-title">Daily Indicators</h2> <!--- put if else for if its up or down then out arrow next to it here --------->
     
 
         <div class="tech-vol-row">
