@@ -1070,7 +1070,7 @@ try {
                 }
                 catch(e) 
                 {
-                      
+                      console.log(e)
                 }
     }
     // BOLLINGER BANDS ------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -1176,11 +1176,19 @@ try {
         //THIS PULL IS FOR CLOSE PRICES TO CALC TAs PAST CLOSE DATA // 
         const resSMA = await  fetch(`https://financialmodelingprep.com/api/v3/historical-price-full/${symbol}?apikey=4d4593bc9e6bc106ee9d1cbd6400b218`)
         const dataSMA = await resSMA.json() // SMA PULL USED FOR OTHER CALCS
-
+console.log(dataSMA)
+        
+        searchedSymbol.price = dataSMA.historical[0].change
+        searchedSymbol.changesPercent = dataSMA.historical[0].changePercent
+        searchedSymbol.volume = dataSMA.historical[0].volume
             
          //THIS PULL IS FOR OSCILLATORS ALL CURRENT CLOSE DATA
          const resOscPulled = await fetch(`https://financialmodelingprep.com/api/v3/quote-short/${symbol}?apikey=4d4593bc9e6bc106ee9d1cbd6400b218`)
          const dataRecentPulled = await resOscPulled.json()
+
+         searchedSymbol.price = dataRecentPulled[0].price
+         console.log(dataRecentPulled)
+
         // VWAP ------------------------------------------------------------------------------------------------------------------------------------------------
         const resVWAP = await  fetch(`https://financialmodelingprep.com/api/v3/historical-chart/5min/${symbol}?apikey=4d4593bc9e6bc106ee9d1cbd6400b218`)
         const dataVWAP = await resVWAP.json()
@@ -1230,14 +1238,14 @@ try {
     
 function buildSearchTech(obj) {
 
-    let {symbol, volume, vwap, smaFiveTeen, smaTwenty, smaThirty, smaFifty, smaOneHun, smaTwoHun, emaTwelve, emaTwentySix, emaFifty, emaTwoHun, wmaFiveTeen, wmaTwenty, wmaThirty, wmaFifty, wmaOneHun, wmaTwoHun, vwmaFiveTeen, vwmaTwenty, vwmaThirty, vwmaFifty, vwmaOneHun, vwmaTwoHun, macd, macdHistogram, macdSignalLine, rsi, stochasticD, stochasticK, stochasticSignal, cci, bbMiddle, bbLower, bbUpper, williamsR} = obj;
+    let {symbol, price, change, changesPercentage, avgVolume, volume, vwap, smaFiveTeen, smaTwenty, smaThirty, smaFifty, smaOneHun, smaTwoHun, emaTwelve, emaTwentySix, emaFifty, emaTwoHun, wmaFiveTeen, wmaTwenty, wmaThirty, wmaFifty, wmaOneHun, wmaTwoHun, vwmaFiveTeen, vwmaTwenty, vwmaThirty, vwmaFifty, vwmaOneHun, vwmaTwoHun, macd, macdHistogram, macdSignalLine, rsi, stochasticD, stochasticK, stochasticSignal, cciTwenty, bbMiddle, bbLower, bbUpper, williamsR} = obj;
 
    // if (change < 0) {
    //     change = change * -1
    // }
 
   //  let volumeIncrease = (volume / avgVolume) * 100 
-
+    console.log(obj)
      techIn.html(   
     `     <!----------------------------------- SEARCHED SYMBOL --------------------------------------->
 
@@ -1248,6 +1256,7 @@ function buildSearchTech(obj) {
     <h2 class="tech-title">${symbol}'s</h2>
     <h2 class="tech-title">Daily Indicators</h2> <!--- put if else for if its up or down then out arrow next to it here --------->
     
+
 
         <div class="tech-vol-row">
         <a class="info-link" href="https://www.investopedia.com/terms/d/downvolume.asp" target="_blank"><h3 class='tech-header'>Volume</h3></a>
@@ -1339,7 +1348,7 @@ function buildSearchTech(obj) {
 
             <div class="tech-row">
             <a class="info-link" href="https://www.investopedia.com/terms/c/commoditychannelindex.asp" target="_blank"><h3 class='tech-header'>CCI</h3></a>
-                <p class="osc-text">${cci}</p>
+                <p class="osc-text">${cciTwenty}</p>
             </div>
 
         </div>
