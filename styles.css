@@ -414,6 +414,21 @@ nav {
     margin-bottom: 15px;
 }
 
+#search-arrow-up {
+    content: url(SVGs/upArrow.svg);
+    height: 25px;
+    width: 10px;
+    margin: 0 10px;
+    margin-bottom: 15px;
+}
+#search-arrow-down {
+    content: url(SVGs/downArrow.svg);
+    height: 25px;
+    width: 10px;
+    margin: 0 10px;
+    margin-bottom: 15px;
+}
+
 @media (max-width: 500px) {
 
     #upArrow, #downArrow {
@@ -469,6 +484,13 @@ nav {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.search-changes-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1rem;
 }
 
 .info-link {
@@ -561,6 +583,12 @@ nav {
 .osc-text {
     width: 100%;
     text-align: center;
+}
+
+.search-price-text {
+    width: 100%;
+    text-align: center;
+    font-size: 1rem;
 }
 
 .macd-row {
