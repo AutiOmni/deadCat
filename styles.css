@@ -618,6 +618,10 @@ nav {
     flex-direction: column;
 }
 
+.loading-search {
+    display: none;
+}
+
 @supports (-webkit-backdrop-filter: none) or (backdrop-filter: none) {
     .loading-screen {
       -webkit-backdrop-filter: blur(8px);

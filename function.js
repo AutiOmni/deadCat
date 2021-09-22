@@ -6,61 +6,61 @@ const symbolBox = $('.symbol-box')
 
 // CONFIGURE DOWN BOXES FOR FUNCTION ----------------------------
 
-downer.each(function() {
-    $(this).click(function() {
-        if ($(this).hasClass('active-down-symbol')) {
+    downer.each(function() {
+        $(this).click(function() {
+            if ($(this).hasClass('active-down-symbol')) {
 
-            animatedLoad() 
-            setTimeout(() => {
-                $(this).removeClass('active-down-symbol')
-            }, 500)
+                animatedLoad() 
+                setTimeout(() => {
+                    $(this).removeClass('active-down-symbol')
+                }, 500)
 
-        } else {
+            } else {
 
-            removeDownClass()
-            removeUpClass()
+                removeDownClass()
+                removeUpClass()
 
-            moveTechToTop()
+                moveTechToTop()
 
-            animatedLoad()
-            expandDetract()
+                animatedLoad()
+                expandDetract()
 
-            setTimeout(() => {
-                $(this).addClass('active-down-symbol')
-            }, 500)
-        }
+                setTimeout(() => {
+                    $(this).addClass('active-down-symbol')
+                }, 500)
+            }
+        })
+    });
+
+    upper.each(function() {
+        $(this).click(function() {
+            if ($(this).hasClass('active-up-symbol')) {
+
+                animatedLoad() 
+
+                setTimeout( () => {
+                    $(this).removeClass('active-up-symbol')
+                    
+                }, 500)
+
+            
+            } else {
+
+                removeUpClass()
+                removeDownClass()
+
+                moveTechToTop()
+
+                expandDetract()
+                animatedLoad()
+
+            
+                setTimeout(() => {
+                    $(this).addClass('active-up-symbol')
+                }, 500)
+            }
+        })
     })
-});
-
-upper.each(function() {
-    $(this).click(function() {
-        if ($(this).hasClass('active-up-symbol')) {
-
-            animatedLoad() 
-
-            setTimeout( () => {
-                $(this).removeClass('active-up-symbol')
-                
-            }, 500)
-
-           
-        } else {
-
-            removeUpClass()
-            removeDownClass()
-
-            moveTechToTop()
-
-            expandDetract()
-            animatedLoad()
-
-          
-            setTimeout(() => {
-                $(this).addClass('active-up-symbol')
-            }, 500)
-        }
-    })
-})
 
     function removeDownClass() {
         downer.removeClass('active-down-symbol')
@@ -118,14 +118,12 @@ upper.each(function() {
 
     fillUpTech()
 
-
-  // MOVES TECH-IN TO TOP AFTER EACH sCLICK  
+// MOVES TECH-IN TO TOP AFTER EACH sCLICK  
     function moveTechToTop() {
         setTimeout(() => {
             $('#tech-in').scrollTop(0)
         }, 500)
     }
-
 
 // SEARCH STOCK ----------------------------------------------------
 
@@ -135,26 +133,25 @@ upper.each(function() {
       }
   }
 
-$('.search-text').on('keyup', function(e) {
+    $('.search-text').on('keyup', function(e) {
 
-        if (e.keyCode == 13) {
-            // GET VALUE SYMBOL NAME
-            let ticker = $('.search-text').val();
-            // SET OBJECT TO STORE PULL
-            let symbolSearch = new SearchObj(ticker)  
+            if (e.keyCode == 13) {
+                // GET VALUE SYMBOL NAME
+                let ticker = $('.search-text').val();
+                // SET OBJECT TO STORE PULL
+                let symbolSearch = new SearchObj(ticker)  
 
-            removeDownClass()
-            removeUpClass()
+                removeDownClass()
+                removeUpClass()
 
-            moveTechToTop()
-            animatedLoad()
+                moveTechToTop()
+                animatedLoad()
 
-            searchedOrderBuild(ticker, symbolSearch)
-        
+                $('.loading-search').css('display', 'flex');
 
-
-        }
-    })
+                technicalIndicators(ticker, symbolSearch)
+            }
+        })
 
 // ---------------------- TECHNICAL INDICATOR FUNCTIONS FOR SEARCH SYMBOL ------------------------------------------------------------------------------------
  
@@ -1023,7 +1020,6 @@ try {
                       
                 }
     }
-
     // CCI 20 ------------------------------------------------------------------------------------------------------------------------------------------------------------------
     function cciFunction(searchedTicker, dataPull, newestPull) {
 
@@ -1155,304 +1151,300 @@ try {
             }
     }
 
-// TO TIME THE BUILD OUT
-async function searchedOrderBuild(name, obj) {
+// TA FUNCTION ---------------------------------------------------------------------
+    async function technicalIndicators(symbol, searchedSymbol) {
+    
+        let j = 0
+    try {
+        while (j < 1) { // LOOP FOR TECHNICAL searchedTicker
 
-    await technicalIndicators(name, obj)
-
-    expandDetract()
-
-} 
-
- // TA FUNCTION ---------------------------------------------------------------------
-async function technicalIndicators(symbol, searchedSymbol) {
- 
-    let j = 0
-try {
-    while (j < 1) { // LOOP FOR TECHNICAL searchedTicker
-
-        try {
-        // ------ FETCH NASDAQ
-     const resTwo = await fetch('https://financialmodelingprep.com/api/v3/quotes/nasdaq?apikey=4d4593bc9e6bc106ee9d1cbd6400b218')
-     const dataNas = await resTwo.json()
-
-                for (let i = 0; i < dataNas.length; i++)
-                {
-                    if (dataNas[i].symbol == symbol) {
-                        searchedSymbol = dataNas[i]
-                        break;
-                    }
-                }
-            }
-            catch(e) 
-            {
-
-            }
             try {
-     const res = await fetch('https://financialmodelingprep.com/api/v3/quotes/nyse?apikey=4d4593bc9e6bc106ee9d1cbd6400b218')
-     const dataNyse = await res.json()
+            // ------ FETCH NASDAQ
+        const resTwo = await fetch('https://financialmodelingprep.com/api/v3/quotes/nasdaq?apikey=4d4593bc9e6bc106ee9d1cbd6400b218')
+        const dataNas = await resTwo.json()
 
-                for (let i = 0; i < dataNyse.length; i++)
-                {
-                    if (dataNyse[i].symbol == symbol) {
-                        searchedSymbol = dataNyse[i]
-                        break;
+                    for (let i = 0; i < dataNas.length; i++)
+                    {
+                        if (dataNas[i].symbol == symbol) {
+                            searchedSymbol = dataNas[i]
+                            break;
+                        }
                     }
                 }
-            }
-            catch(e) 
-            {
-                
-            }
-        //THIS PULL IS FOR CLOSE PRICES TO CALC TAs PAST CLOSE DATA // 
-        const resSMA = await  fetch(`https://financialmodelingprep.com/api/v3/historical-price-full/${symbol}?apikey=4d4593bc9e6bc106ee9d1cbd6400b218`)
-        const dataSMA = await resSMA.json() // SMA PULL USED FOR OTHER CALCS
-           // SET RECENT YESTERDAY VOLUME
-        searchedSymbol.yesterdayVolume = dataSMA.historical[0].volume
-     
-         //THIS PULL IS FOR OSCILLATORS ALL CURRENT CLOSE DATA
-         const resOscPulled = await fetch(`https://financialmodelingprep.com/api/v3/quote-short/${symbol}?apikey=4d4593bc9e6bc106ee9d1cbd6400b218`)
-         const dataRecentPulled = await resOscPulled.json()
-           // SET RECENT VOLUME AND PRICE
-        searchedSymbol.price = dataRecentPulled[0].price
-        searchedSymbol.volume = dataRecentPulled[0].volume
-       
-        // VWAP ------------------------------------------------------------------------------------------------------------------------------------------------
-        const resVWAP = await  fetch(`https://financialmodelingprep.com/api/v3/historical-chart/5min/${symbol}?apikey=4d4593bc9e6bc106ee9d1cbd6400b218`)
-        const dataVWAP = await resVWAP.json()
+                catch(e) 
+                {
 
-            vwapFunction(searchedSymbol, dataVWAP)
-         
-            // SMA -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-           smaFunction(searchedSymbol, dataSMA, dataRecentPulled)
+                }
+                try {
+        const res = await fetch('https://financialmodelingprep.com/api/v3/quotes/nyse?apikey=4d4593bc9e6bc106ee9d1cbd6400b218')
+        const dataNyse = await res.json()
 
-            // WMA ------------------------------------------------------------------------------------------------------------------------------------------------------------------
-            wmaFunction(searchedSymbol, dataSMA, dataRecentPulled) 
-
-            // VWMA ------------------------------------------------------------------------------------------------------------------------------------------------------------------
-            vwmaFunction(searchedSymbol, dataSMA, dataRecentPulled)
-                  
-            // EMA WITH MACD CALLBACK ------------------------------------------------------------------------------------------------------------------------------------------       
-            emaFunction(searchedSymbol, dataSMA, dataRecentPulled, macdFunction)
- 
-            // RSI ------------------------------------------------------------------------------------------------------------------------------------------------------------------
-            rsiFunction(searchedSymbol, dataSMA, dataRecentPulled)
+                    for (let i = 0; i < dataNyse.length; i++)
+                    {
+                        if (dataNyse[i].symbol == symbol) {
+                            searchedSymbol = dataNyse[i]
+                            break;
+                        }
+                    }
+                }
+                catch(e) 
+                {
+                    
+                }
+            //THIS PULL IS FOR CLOSE PRICES TO CALC TAs PAST CLOSE DATA // 
+            const resSMA = await  fetch(`https://financialmodelingprep.com/api/v3/historical-price-full/${symbol}?apikey=4d4593bc9e6bc106ee9d1cbd6400b218`)
+            const dataSMA = await resSMA.json() // SMA PULL USED FOR OTHER CALCS
+            // SET RECENT YESTERDAY VOLUME
+            searchedSymbol.yesterdayVolume = dataSMA.historical[0].volume
         
-            // STOCHASTIC OSCILLATOR ------------------------------------------------------------------------------------------------------------------------------------------------------------------
-            stochOsc1433Function(searchedSymbol, dataSMA, dataRecentPulled)
+            //THIS PULL IS FOR OSCILLATORS ALL CURRENT CLOSE DATA
+            const resOscPulled = await fetch(`https://financialmodelingprep.com/api/v3/quote-short/${symbol}?apikey=4d4593bc9e6bc106ee9d1cbd6400b218`)
+            const dataRecentPulled = await resOscPulled.json()
+            // SET RECENT VOLUME AND PRICE
+            searchedSymbol.price = dataRecentPulled[0].price
+            searchedSymbol.volume = dataRecentPulled[0].volume
+        
+            // VWAP ------------------------------------------------------------------------------------------------------------------------------------------------
+            const resVWAP = await  fetch(`https://financialmodelingprep.com/api/v3/historical-chart/5min/${symbol}?apikey=4d4593bc9e6bc106ee9d1cbd6400b218`)
+            const dataVWAP = await resVWAP.json()
 
-            // WILLIAMS %R 14 ------------------------------------------------------------------------------------------------------------------------------------------------------------------
-            williamsRFunction(searchedSymbol, dataSMA, dataRecentPulled)
+                vwapFunction(searchedSymbol, dataVWAP)
+            
+                // SMA -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+            smaFunction(searchedSymbol, dataSMA, dataRecentPulled)
 
-            // CCI 20 ------------------------------------------------------------------------------------------------------------------------------------------------------------------
-            cciFunction(searchedSymbol, dataSMA, dataRecentPulled)
+                // WMA ------------------------------------------------------------------------------------------------------------------------------------------------------------------
+                wmaFunction(searchedSymbol, dataSMA, dataRecentPulled) 
 
-            // BOLLINGER BANDS ------------------------------------------------------------------------------------------------------------------------------------------------------------------
-           bollingerBandsFunction(searchedSymbol, dataSMA, dataRecentPulled)
-           
-        j++ // UPDATE WHILE LOOP
-        buildSearchTech(searchedSymbol) // BUILD HTML TO DISPLAY
-
-    }// THIS IS THE END OF LOOP
+                // VWMA ------------------------------------------------------------------------------------------------------------------------------------------------------------------
+                vwmaFunction(searchedSymbol, dataSMA, dataRecentPulled)
+                    
+                // EMA WITH MACD CALLBACK ------------------------------------------------------------------------------------------------------------------------------------------       
+                emaFunction(searchedSymbol, dataSMA, dataRecentPulled, macdFunction)
     
-                                }// END OF TRY
-                                catch(e) 
-                                {
-                                   alert('Unable to find stock symbol. Check the symbol and try again!');
-                                }        
-} 
+                // RSI ------------------------------------------------------------------------------------------------------------------------------------------------------------------
+                rsiFunction(searchedSymbol, dataSMA, dataRecentPulled)
+            
+                // STOCHASTIC OSCILLATOR ------------------------------------------------------------------------------------------------------------------------------------------------------------------
+                stochOsc1433Function(searchedSymbol, dataSMA, dataRecentPulled)
 
-    
-function buildSearchTech(obj) {
-    let {symbol, price, change, changesPercentage, avgVolume, volume, yesterdayVolume, vwap, smaFiveTeen, smaTwenty, smaThirty, smaFifty, smaOneHun, smaTwoHun, emaTwelve, emaTwentySix, emaFifty, emaTwoHun, wmaFiveTeen, wmaTwenty, wmaThirty, wmaFifty, wmaOneHun, wmaTwoHun, vwmaFiveTeen, vwmaTwenty, vwmaThirty, vwmaFifty, vwmaOneHun, vwmaTwoHun, macd, macdHistogram, macdSignalLine, rsi, stochasticD, stochasticK, stochasticSignal, cciTwenty, bbMiddle, bbLower, bbUpper, williamsR} = obj;
+                // WILLIAMS %R 14 ------------------------------------------------------------------------------------------------------------------------------------------------------------------
+                williamsRFunction(searchedSymbol, dataSMA, dataRecentPulled)
 
-    let directionArrow = 'up'
+                // CCI 20 ------------------------------------------------------------------------------------------------------------------------------------------------------------------
+                cciFunction(searchedSymbol, dataSMA, dataRecentPulled)
 
-    // SETS ARROW FOR UP AND DOWN --------------
-    if (changesPercentage < 0) 
-    {
-        directionArrow = 'down'
+                // BOLLINGER BANDS ------------------------------------------------------------------------------------------------------------------------------------------------------------------
+            bollingerBandsFunction(searchedSymbol, dataSMA, dataRecentPulled)
+            
+            j++ // UPDATE WHILE LOOP
+        await  buildSearchTech(searchedSymbol) // BUILD HTML TO DISPLAY
+
+            expandDetract()
+        }// THIS IS THE END OF LOOP
+        
+                                    }// END OF TRY
+                                    catch(e) 
+                                    {
+                                    alert('Unable to find stock symbol. Check the symbol and try again!');
+                                    }        
     } 
-    else 
-    {
-        directionArrow = 'up'
-    }
-    // CHANGE TO POSITIVE BUT ARROW POINTS DOWN OR UP ----------
-    if (change < 0) {
-        change = change * -1
-    }
 
-    // VOLUME INCREASE TODAY ----------
-    let volumeIncrease = 0;
+    // BUILD OUT HTML ------------------------------------------------------   
+    async function buildSearchTech(obj) {
+        let {symbol, price, change, changesPercentage, avgVolume, volume, yesterdayVolume, vwap, smaFiveTeen, smaTwenty, smaThirty, smaFifty, smaOneHun, smaTwoHun, emaTwelve, emaTwentySix, emaFifty, emaTwoHun, wmaFiveTeen, wmaTwenty, wmaThirty, wmaFifty, wmaOneHun, wmaTwoHun, vwmaFiveTeen, vwmaTwenty, vwmaThirty, vwmaFifty, vwmaOneHun, vwmaTwoHun, macd, macdHistogram, macdSignalLine, rsi, stochasticD, stochasticK, stochasticSignal, cciTwenty, bbMiddle, bbLower, bbUpper, williamsR} = obj;
 
-    if (volume > avgVolume) {
-        let increase = volume - avgVolume;
-        volumeIncrease = (increase / avgVolume) * 100
-    }
-    else
-    {
-        let decrease = avgVolume - volume;
-        volumeIncrease = (decrease / avgVolume) * -100
-    }
+        let directionArrow = 'up'
 
-// TO GET AVERAGE DAILY VOLUME FOR YESTERDAY ----------------
-    let yesterdayVolIncrease = 0;
+        // SETS ARROW FOR UP AND DOWN --------------
+        if (changesPercentage < 0) 
+        {
+            directionArrow = 'down'
+        } 
+        else 
+        {
+            directionArrow = 'up'
+        }
+        // CHANGE TO POSITIVE BUT ARROW POINTS DOWN OR UP ----------
+        if (change < 0) {
+            change = change * -1
+        }
 
-    if (yesterdayVolume > avgVolume) {
-        let increase = yesterdayVolume - avgVolume;
-        yesterdayVolIncrease = (increase / avgVolume) * 100
-    }
-    else
-    {
-        let decrease = avgVolume - yesterdayVolume;
-        yesterdayVolIncrease = (decrease / avgVolume) * -100
-    }
+        // VOLUME INCREASE TODAY ----------
+        let volumeIncrease = 0;
 
-     techIn.html(   
-    `     <!----------------------------------- SEARCHED SYMBOL --------------------------------------->
+        if (volume > avgVolume) {
+            let increase = volume - avgVolume;
+            volumeIncrease = (increase / avgVolume) * 100
+        }
+        else
+        {
+            let decrease = avgVolume - volume;
+            volumeIncrease = (decrease / avgVolume) * -100
+        }
 
-    <!----------------------------------- THIS WILL HOLD TECH ANALYSIS FOR HOVER POPULATE IN MIDDLE ---------------------------------------->
- 
-   <div class="tech-search">
+    // TO GET AVERAGE DAILY VOLUME FOR YESTERDAY ----------------
+        let yesterdayVolIncrease = 0;
 
-    <h2 class="tech-title">${symbol}'s</h2>
-    <h2 class="tech-title">Daily Indicators</h2> <!--- put if else for if its up or down then out arrow next to it here --------->
+        if (yesterdayVolume > avgVolume) {
+            let increase = yesterdayVolume - avgVolume;
+            yesterdayVolIncrease = (increase / avgVolume) * 100
+        }
+        else
+        {
+            let decrease = avgVolume - yesterdayVolume;
+            yesterdayVolIncrease = (decrease / avgVolume) * -100
+        }
+
+        techIn.html(   
+        `     <!----------------------------------- SEARCHED SYMBOL --------------------------------------->
+
+        <!----------------------------------- THIS WILL HOLD TECH ANALYSIS FOR HOVER POPULATE IN MIDDLE ---------------------------------------->
     
-    <div class="tech-row">
-    <p class="search-price-text">Price: $${price.toFixed(2)}</p>
-    <div class="search-changes-row">
-    <p>${changesPercentage.toFixed(2)}%</p>
-    <div id="search-arrow-${directionArrow}"></div>
-    <p>$${change.toFixed(2)}</p>
-    </div>
+    <div class="tech-search">
 
-
-        <div class="tech-vol-row">
-        <a class="info-link" href="https://www.investopedia.com/terms/d/downvolume.asp" target="_blank"><h3 class='tech-header'>Volume</h3></a>
-            <p>Average: <span class="tech-to-left">${avgVolume}</span></p> 
-            <p>Current Day: <span class="tech-to-left">${volume}</span></p>
-            <p>Overall Difference: <span class="tech-to-left"> ${volumeIncrease.toFixed(2)}%</span></p>
-
-            <p>Yesterday: <span class="tech-to-left"> ${yesterdayVolume}</span></p>
-            <p>Overall Difference: <span class="tech-to-left"> ${yesterdayVolIncrease.toFixed(2)}%</span></p>
+        <h2 class="tech-title">${symbol}'s</h2>
+        <h2 class="tech-title">Daily Indicators</h2> <!--- put if else for if its up or down then out arrow next to it here --------->
+        
+        <div class="tech-row">
+        <p class="search-price-text">Price: $${price.toFixed(2)}</p>
+        <div class="search-changes-row">
+        <p>${changesPercentage.toFixed(2)}%</p>
+        <div id="search-arrow-${directionArrow}"></div>
+        <p>$${change.toFixed(2)}</p>
         </div>
 
-        <div class="tech-row">
 
-            <a class="info-link" href="https://www.investopedia.com/terms/s/sma.asp" target="_blank"><h3 class='tech-header'>SMA</h3></a>
-                <div class="averages-row">
-                    <p>15: ${smaFiveTeen}</p>
-                    <p>20: ${smaTwenty}</p>
-                </div>
-                <div class="averages-row">
-                    <p>30: ${smaThirty}</p>
-                    <p>50: ${smaFifty}</p>
-                </div>
-                <div class="averages-row">
-                    <p>100: ${smaOneHun}</p>
-                    <p>200: ${smaTwoHun}</p>
-                </div>
-        </div>
+            <div class="tech-vol-row">
+            <a class="info-link" href="https://www.investopedia.com/terms/d/downvolume.asp" target="_blank"><h3 class='tech-header'>Volume</h3></a>
+                <p>Average: <span class="tech-to-left">${avgVolume}</span></p> 
+                <p>Current Day: <span class="tech-to-left">${volume}</span></p>
+                <p>Overall Difference: <span class="tech-to-left"> ${volumeIncrease.toFixed(2)}%</span></p>
 
-        <div class="tech-row">
-        <a class="info-link" href="https://www.investopedia.com/terms/e/ema.asp" target="_blank"><h3 class='tech-header'>EMA</h3></a>
-                <div class="averages-row">
-                    <p>12: ${emaTwelve}</p>
-                    <p>26: ${emaTwentySix}</p>
-                </div>
-                <div class="averages-row">
-                    <p>50: ${emaFifty}</p>
-                    <p>200: ${emaTwoHun}</p>
-                </div>           
-        </div>
+                <p>Yesterday: <span class="tech-to-left"> ${yesterdayVolume}</span></p>
+                <p>Overall Difference: <span class="tech-to-left"> ${yesterdayVolIncrease.toFixed(2)}%</span></p>
+            </div>
 
-        <div class="tech-row">
-        <a class="info-link" href="https://www.investopedia.com/ask/answers/071414/whats-difference-between-moving-average-and-weighted-moving-average.asp" target="_blank"><h3 class='tech-header'>WMA</h3></a>
-                <div class="averages-row">
-                    <p>15: ${wmaFiveTeen}</p>
-                    <p>20: ${wmaTwenty}</p>
-                </div>
-                <div class="averages-row">
-                    <p>30: ${wmaThirty}</p>
-                    <p>50: ${wmaFifty}</p>
-                </div>
-                <div class="averages-row">
-                    <p>100: ${wmaOneHun}</p>
-                    <p>200: ${wmaTwoHun}</p>
-                </div>
-        </div>
+            <div class="tech-row">
 
-        <div class="tech-row">
-        <a class="info-link" href="https://www.tradingsetupsreview.com/volume-weighted-moving-average-vwma/" target="_blank"><h3 class='tech-header'>VWMA</h3></a>
-                <div class="averages-row">
-                    <p>15: ${vwmaFiveTeen}</p>
-                    <p>20: ${vwmaTwenty}</p>
-                </div>
-                <div class="averages-row">
-                    <p>30: ${vwmaThirty}</p>
-                    <p>50: ${vwmaFifty}</p>
-                </div>
-                <div class="averages-row">
-                    <p>100: ${vwmaOneHun}</p>
-                    <p>200: ${vwmaTwoHun}</p>
-                </div>
-        </div>
+                <a class="info-link" href="https://www.investopedia.com/terms/s/sma.asp" target="_blank"><h3 class='tech-header'>SMA</h3></a>
+                    <div class="averages-row">
+                        <p>15: ${smaFiveTeen}</p>
+                        <p>20: ${smaTwenty}</p>
+                    </div>
+                    <div class="averages-row">
+                        <p>30: ${smaThirty}</p>
+                        <p>50: ${smaFifty}</p>
+                    </div>
+                    <div class="averages-row">
+                        <p>100: ${smaOneHun}</p>
+                        <p>200: ${smaTwoHun}</p>
+                    </div>
+            </div>
 
-        <div class="tech-row">
-        <a class="info-link" href="https://www.investopedia.com/terms/v/vwap.asp" target="_blank"><h3 class='tech-header'>VWAP (5 Minute)</h3></a>
-            <p class="osc-text">${vwap}</p>
-        </div>
+            <div class="tech-row">
+            <a class="info-link" href="https://www.investopedia.com/terms/e/ema.asp" target="_blank"><h3 class='tech-header'>EMA</h3></a>
+                    <div class="averages-row">
+                        <p>12: ${emaTwelve}</p>
+                        <p>26: ${emaTwentySix}</p>
+                    </div>
+                    <div class="averages-row">
+                        <p>50: ${emaFifty}</p>
+                        <p>200: ${emaTwoHun}</p>
+                    </div>           
+            </div>
 
-        <div class="tech-row">
-        <a class="info-link" href="https://www.investopedia.com/terms/m/macd.asp" target="_blank"><h3 class='tech-header'>MACD (12 , 26)</h3></a>
-            <p class="osc-text">${macd}</p>
+            <div class="tech-row">
+            <a class="info-link" href="https://www.investopedia.com/ask/answers/071414/whats-difference-between-moving-average-and-weighted-moving-average.asp" target="_blank"><h3 class='tech-header'>WMA</h3></a>
+                    <div class="averages-row">
+                        <p>15: ${wmaFiveTeen}</p>
+                        <p>20: ${wmaTwenty}</p>
+                    </div>
+                    <div class="averages-row">
+                        <p>30: ${wmaThirty}</p>
+                        <p>50: ${wmaFifty}</p>
+                    </div>
+                    <div class="averages-row">
+                        <p>100: ${wmaOneHun}</p>
+                        <p>200: ${wmaTwoHun}</p>
+                    </div>
+            </div>
+
+            <div class="tech-row">
+            <a class="info-link" href="https://www.tradingsetupsreview.com/volume-weighted-moving-average-vwma/" target="_blank"><h3 class='tech-header'>VWMA</h3></a>
+                    <div class="averages-row">
+                        <p>15: ${vwmaFiveTeen}</p>
+                        <p>20: ${vwmaTwenty}</p>
+                    </div>
+                    <div class="averages-row">
+                        <p>30: ${vwmaThirty}</p>
+                        <p>50: ${vwmaFifty}</p>
+                    </div>
+                    <div class="averages-row">
+                        <p>100: ${vwmaOneHun}</p>
+                        <p>200: ${vwmaTwoHun}</p>
+                    </div>
+            </div>
+
+            <div class="tech-row">
+            <a class="info-link" href="https://www.investopedia.com/terms/v/vwap.asp" target="_blank"><h3 class='tech-header'>VWAP (5 Minute)</h3></a>
+                <p class="osc-text">${vwap}</p>
+            </div>
+
+            <div class="tech-row">
+            <a class="info-link" href="https://www.investopedia.com/terms/m/macd.asp" target="_blank"><h3 class='tech-header'>MACD (12 , 26)</h3></a>
+                <p class="osc-text">${macd}</p>
+                    <div class="macd-row">
+                        <p>Signal Line: ${macdSignalLine}</p>
+                        <p>Histogram: ${macdHistogram}</p>
+                    </div>
+            </div>
+
+            <div class="flex-rsi-cci">
+                <div class="tech-row">
+                <a class="info-link" href="https://www.investopedia.com/terms/s/stochrsi.asp" target="_blank"><h3 class='tech-header'>RSI</h3></a>
+                    <p class="osc-text">${rsi}</p>
+                </div>
+
+                <div class="tech-row">
+                <a class="info-link" href="https://www.investopedia.com/terms/c/commoditychannelindex.asp" target="_blank"><h3 class='tech-header'>CCI</h3></a>
+                    <p class="osc-text">${cciTwenty}</p>
+                </div>
+
+            </div>
+
+            <div class="tech-row">
+            <a class="info-link" href="https://www.investopedia.com/terms/w/williamsr.asp" target="_blank"><h3 class='tech-header'>Williams %R</h3></a>
+                <p class="osc-text">${williamsR}</p>
+            </div>
+
+
+            <div class="tech-row">
+            <a class="info-link" href="https://www.investopedia.com/terms/s/stochasticoscillator.asp" target="_blank"><h3 class='tech-header'>Stochastic Oscillator</h3></a>
+            <div class="averages-row">
+                <p class="osc-text">%K: ${stochasticK}</p>
+                <p class="osc-text">%D: ${stochasticD}</p>
+            </div>
+                <p class="osc-text">Signal Line: ${stochasticSignal}</p>
+            </div>
+
+            <div class="tech-row">
+            <a class="info-link" href="https://www.investopedia.com/terms/b/bollingerbands.asp" target="_blank"><h3 class='tech-header'>Bollinger Bands</h3></a>
+                    <p class="osc-text">Middle: ${bbMiddle}</p>
                 <div class="macd-row">
-                    <p>Signal Line: ${macdSignalLine}</p>
-                    <p>Histogram: ${macdHistogram}</p>
+                    <p class="osc-text">Upper: ${bbUpper}</p>
+                    <p class="osc-text">Lower: ${bbLower}</p>
                 </div>
-        </div>
-
-        <div class="flex-rsi-cci">
-            <div class="tech-row">
-            <a class="info-link" href="https://www.investopedia.com/terms/s/stochrsi.asp" target="_blank"><h3 class='tech-header'>RSI</h3></a>
-                <p class="osc-text">${rsi}</p>
             </div>
 
-            <div class="tech-row">
-            <a class="info-link" href="https://www.investopedia.com/terms/c/commoditychannelindex.asp" target="_blank"><h3 class='tech-header'>CCI</h3></a>
-                <p class="osc-text">${cciTwenty}</p>
+            <div class="news-row">
+            <a class="stock-news-link" href="http://www.google.com/search?q=${symbol}+stock+news&source=lnms&tbm=nws&sa=X&ved=2ahUKEwj7_6eMpbPyAhXaVs0KHfuADvoQ_AUoAXoECAEQAw&biw=1280&bih=614" target="_blank">News About This Stock</a>
             </div>
 
-        </div>
+        </div>`
+        )
+        
+        // GET RID OF LOADING SCREEN
+        $('.loading-search').css('display', 'none');
 
-        <div class="tech-row">
-        <a class="info-link" href="https://www.investopedia.com/terms/w/williamsr.asp" target="_blank"><h3 class='tech-header'>Williams %R</h3></a>
-            <p class="osc-text">${williamsR}</p>
-        </div>
-
-
-        <div class="tech-row">
-        <a class="info-link" href="https://www.investopedia.com/terms/s/stochasticoscillator.asp" target="_blank"><h3 class='tech-header'>Stochastic Oscillator</h3></a>
-           <div class="averages-row">
-               <p class="osc-text">%K: ${stochasticK}</p>
-               <p class="osc-text">%D: ${stochasticD}</p>
-           </div>
-               <p class="osc-text">Signal Line: ${stochasticSignal}</p>
-        </div>
-
-        <div class="tech-row">
-        <a class="info-link" href="https://www.investopedia.com/terms/b/bollingerbands.asp" target="_blank"><h3 class='tech-header'>Bollinger Bands</h3></a>
-                <p class="osc-text">Middle: ${bbMiddle}</p>
-            <div class="macd-row">
-                <p class="osc-text">Upper: ${bbUpper}</p>
-                <p class="osc-text">Lower: ${bbLower}</p>
-            </div>
-        </div>
-
-        <div class="news-row">
-        <a class="stock-news-link" href="http://www.google.com/search?q=${symbol}+stock+news&source=lnms&tbm=nws&sa=X&ved=2ahUKEwj7_6eMpbPyAhXaVs0KHfuADvoQ_AUoAXoECAEQAw&biw=1280&bih=614" target="_blank">News About This Stock</a>
-        </div>
-
-    </div>`
-    )
-}
+    }
