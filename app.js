@@ -1519,7 +1519,7 @@ try {
          <a class="info-link" href="https://www.investopedia.com/terms/d/downvolume.asp" target="_blank"><h3 class='tech-header'>Volume</h3></a>
          <p>Average: <span class="tech-to-left">${avgVolumeDown}</span></p>
              <p>Today: <span class="tech-to-left">${volumeDown}</span></p>
-             <p>Overall Increase: <span class="tech-to-left"> ${volumeIncreaseDown.toFixed(2)}%</span></p>
+             <p>Overall Difference: <span class="tech-to-left"> ${volumeIncreaseDown.toFixed(2)}%</span></p>
 
              <p>Yesterday: <span class="tech-to-left"> ${volumeYesterdayDown}</span></p>
              <p>Overall Difference: <span class="tech-to-left"> ${yesterdayVolIncreaseDown.toFixed(2)}%</span></p>
@@ -1664,7 +1664,7 @@ try {
              <a class="info-link" href="https://www.investopedia.com/terms/u/upvolume.asp" target="_blank"><h3 class='tech-header'>Volume</h3></a>
                  <p>Average: <span class="tech-to-left"> ${avgVolumeUp}</span></p>
                  <p>Today:  <span class="tech-to-left"> ${volumeUp}</span></p>
-                 <p>Overall Increase:  <span class="tech-to-left"> ${volumeIncreaseUp.toFixed(2)}%</span></p>
+                 <p>Overall Difference: <span class="tech-to-left"> ${volumeIncreaseUp.toFixed(2)}%</span></p>
 
                  <p>Yesterday: <span class="tech-to-left"> ${volumeYesterdayUp}</span></p>
                  <p>Overall Difference: <span class="tech-to-left"> ${yesterdayVolIncreaseUp.toFixed(2)}%</span></p>
