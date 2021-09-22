@@ -74,7 +74,7 @@ const rowOne = document.getElementById('rowOne')
  // ------ FETCH NYSE
      const res = await fetch('https://financialmodelingprep.com/api/v3/quotes/nyse?apikey=4d4593bc9e6bc106ee9d1cbd6400b218')
      const dataNyse = await res.json()
-     // ----- FILTER TRADABLE SYMBOLS ON NYSE THAT HAVE DROPPED
+// ----- FILTER TRADABLE SYMBOLS ON NYSE THAT HAVE DROPPED
      for (let i = 0; i < dataNyse.length; i++) {
          if (dataNyse[i].changesPercentage < -7.5 && arr1.indexOf(dataNyse[i].symbol) > 0 && dataNyse[i].price > 1) {
        nyseHolderDown.push(dataNyse[i])
@@ -89,6 +89,7 @@ const rowOne = document.getElementById('rowOne')
  // ------ FETCH NASDAQ
      const resTwo = await fetch('https://financialmodelingprep.com/api/v3/quotes/nasdaq?apikey=4d4593bc9e6bc106ee9d1cbd6400b218')
      const dataNas = await resTwo.json()
+
  // ----- FILTER TRADABLE SYMBOLS ON NASDAQ THAT HAVE DROPPED
      for (let i = 0; i < dataNas.length; i++) {
          if (dataNas[i].changesPercentage < -7.5 && arr2.indexOf(dataNas[i].symbol) > 0 && dataNas[i].price > 1) {
@@ -101,7 +102,7 @@ const rowOne = document.getElementById('rowOne')
        nasdaqHolderUp.push(dataNas[i])
          }
      }
- //--------- CATCH
+
      } catch(e) {
          
      }
@@ -155,8 +156,8 @@ const rowOne = document.getElementById('rowOne')
      finalChart.unshift(finalChartFatUp[slimChartUp])
      slimChartUp--
    }
+
  } 
- 
  // ---------------------- TECHNICAL INDICATOR FUNCTIONS ------------------------------------------------------------------------------------
  
      // SMA FUNCTION ------------------------------------------------------------------------------------------------------------------------------------------
@@ -1171,18 +1172,20 @@ try {
         //THIS PULL IS FOR CLOSE PRICES TO CALC TAs PAST CLOSE DATA // 
         const resSMA = await  fetch(`https://financialmodelingprep.com/api/v3/historical-price-full/${symbol}?apikey=4d4593bc9e6bc106ee9d1cbd6400b218`)
         const dataSMA = await resSMA.json() // SMA PULL USED FOR OTHER CALCS
-   
+        // SET RECENT YESTERDAY VOLUME
+        finalChart[j].yesterdayVolume = dataSMA.historical[0].volume
          //THIS PULL IS FOR OSCILLATORS ALL CURRENT CLOSE DATA
          const resOscPulled = await fetch(`https://financialmodelingprep.com/api/v3/quote-short/${symbol}?apikey=4d4593bc9e6bc106ee9d1cbd6400b218`)
          const dataRecentPulled = await resOscPulled.json()
+        // SET RECENT VOLUME
+        finalChart[j].volume = dataRecentPulled[0].volume
 
         // VWAP ------------------------------------------------------------------------------------------------------------------------------------------------
         const resVWAP = await  fetch(`https://financialmodelingprep.com/api/v3/historical-chart/5min/${symbol}?apikey=4d4593bc9e6bc106ee9d1cbd6400b218`)
         const dataVWAP = await resVWAP.json()
          
-        vwapFunction(finalChart, dataVWAP, j)
+            vwapFunction(finalChart, dataVWAP, j)
          
-
             // SMA -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
            smaFunction(finalChart, dataSMA, dataRecentPulled, j)
 
@@ -1283,6 +1286,8 @@ try {
          delete stocksUp[i].smaTwoHun
          stocksUp[i].volumeUp = stocksUp[i].volume
          delete stocksUp[i].volume
+         stocksUp[i].volumeYesterdayUp = stocksDown[i].yesterdayVolume
+         delete stocksUp[i].yesterdayVolume
          stocksUp[i].vwapUp = stocksUp[i].vwap
          delete stocksUp[i].vwap
          stocksUp[i].stochasticDUp = stocksUp[i].stochasticD
@@ -1366,6 +1371,8 @@ try {
          delete stocksDown[i].smaTwoHun
          stocksDown[i].volumeDown = stocksDown[i].volume
          delete stocksDown[i].volume
+         stocksDown[i].volumeYesterdayDown = stocksDown[i].yesterdayVolume
+         delete stocksDown[i].yesterdayVolume
          stocksDown[i].vwapDown = stocksDown[i].vwap
          delete stocksDown[i].vwap
          stocksDown[i].stochasticDDown = stocksDown[i].stochasticD
@@ -1417,18 +1424,72 @@ try {
   
  for (let i = 0; i < stocksDown.length; i++) {
  
- // YOURE GOING TO HAVE TO MAKE ANOTHER LOOP THAT GOES THROUGH THESE TWO ARRAY AT THE SAME TIME JUST LIKE YOU DID WITH FINALCHART[J]. 
- // AND PLACES THEM SELECTIVELY INTO A NEW RESTYLED HTML ELEMENT. ONE SIDE DOWN ONE SIDE UP
+ // DECONSTRUCTING UP AND DOWN VAR
+     const {avgVolumeUp, volumeYesterdayUp, changeUp, changesPercentageUp, priceUp, symbolUp, volumeUp, vwapUp, smaFiveTeenUp, smaTwentyUp, smaThirtyUp, smaFiftyUp, smaOneHunUp, smaTwoHunUp, emaTwelveUp, emaTwentySixUp, emaFiftyUp, emaTwoHunUp, wmaFiveTeenUp, wmaTwentyUp, wmaThirtyUp, wmaFiftyUp, wmaOneHunUp, wmaTwoHunUp, vwmaFiveTeenUp, vwmaTwentyUp, vwmaThirtyUp, vwmaFiftyUp, vwmaOneHunUp, vwmaTwoHunUp, macdUp, macdHistogramUp, macdSignalLineUp, rsiUp, stochasticDUp, stochasticKUp, stochasticSignalUp, cciUp, bbMiddleUp, bbLowerUp, bbUpperUp, williamsRUp} = stocksUp[i]
  
-     const {avgVolumeUp, changeUp, changesPercentageUp, priceUp, symbolUp, volumeUp, vwapUp, smaFiveTeenUp, smaTwentyUp, smaThirtyUp, smaFiftyUp, smaOneHunUp, smaTwoHunUp, emaTwelveUp, emaTwentySixUp, emaFiftyUp, emaTwoHunUp, wmaFiveTeenUp, wmaTwentyUp, wmaThirtyUp, wmaFiftyUp, wmaOneHunUp, wmaTwoHunUp, vwmaFiveTeenUp, vwmaTwentyUp, vwmaThirtyUp, vwmaFiftyUp, vwmaOneHunUp, vwmaTwoHunUp, macdUp, macdHistogramUp, macdSignalLineUp, rsiUp, stochasticDUp, stochasticKUp, stochasticSignalUp, cciUp, bbMiddleUp, bbLowerUp, bbUpperUp, williamsRUp} = stocksUp[i]
+     const {avgVolumeDown, volumeYesterdayDown, changeDown, changesPercentageDown, priceDown, symbolDown, volumeDown, vwapDown, smaFiveTeenDown, smaTwentyDown, smaThirtyDown, smaFiftyDown, smaOneHunDown, smaTwoHunDown, emaTwelveDown, emaTwentySixDown, emaFiftyDown, emaTwoHunDown, wmaFiveTeenDown, wmaTwentyDown, wmaThirtyDown, wmaFiftyDown, wmaOneHunDown, wmaTwoHunDown, vwmaFiveTeenDown, vwmaTwentyDown, vwmaThirtyDown, vwmaFiftyDown, vwmaOneHunDown, vwmaTwoHunDown, macdDown, macdHistogramDown, macdSignalLineDown, rsiDown, stochasticDDown, stochasticKDown, stochasticSignalDown, cciDown, bbMiddleDown, bbLowerDown, bbUpperDown , williamsRDown} = stocksDown[i]
  
-     const {avgVolumeDown, changeDown, changesPercentageDown, priceDown, symbolDown, volumeDown, vwapDown, smaFiveTeenDown, smaTwentyDown, smaThirtyDown, smaFiftyDown, smaOneHunDown, smaTwoHunDown, emaTwelveDown, emaTwentySixDown, emaFiftyDown, emaTwoHunDown, wmaFiveTeenDown, wmaTwentyDown, wmaThirtyDown, wmaFiftyDown, wmaOneHunDown, wmaTwoHunDown, vwmaFiveTeenDown, vwmaTwentyDown, vwmaThirtyDown, vwmaFiftyDown, vwmaOneHunDown, vwmaTwoHunDown, macdDown, macdHistogramDown, macdSignalLineDown, rsiDown, stochasticDDown, stochasticKDown, stochasticSignalDown, cciDown, bbMiddleDown, bbLowerDown, bbUpperDown , williamsRDown} = stocksDown[i]
- 
-     let volumeIncreaseUp = (volumeUp / avgVolumeUp) * 100 
-     let volumeIncreaseDown = (volumeDown / avgVolumeDown) * 100 
+
+// VOLUME INCREASE TODAY ------------------------
+
+// UP VOLUME INCREASE ----------------------------
+
+   let volumeIncreaseUp = 0;
+
+    if (volumeUp > avgVolumeUp) {
+        let increase = volumeUp - avgVolumeUp;
+        volumeIncreaseUp = (increase / avgVolumeUp) * 100
+    }
+    else
+    {
+        let decrease = avgVolumeUp - volumeUp;
+        volumeIncreaseUp = (decrease / avgVolumeUp) * -100
+    }
+// DOWN VOLUME INCREASE ----------------------------
+     let volumeIncreaseDown = 0;
+
+    if (volumeDown > avgVolumeDown) {
+        let increase = volumeDown - avgVolumeDown;
+        volumeIncreaseDown = (increase / avgVolumeDown) * 100
+    }
+    else
+    {
+        let decrease = avgVolumeDown - volumeDown;
+        volumeIncreaseDown = (decrease / avgVolumeDown) * -100
+    }
+
+// TO GET AVERAGE DAILY VOLUME FOR YESTERDAY ----------------
+
+// YESTERDAY UP VOLUME INCREASE ----------------------------
+
+   let yesterdayVolIncreaseUp = 0;
+
+    if (volumeYesterdayUp > avgVolumeUp) {
+        let increase =  volumeYesterdayUp - avgVolumeUp;
+        yesterdayVolIncreaseUp = (increase / avgVolumeUp) * 100
+    }
+    else
+    {
+        let decrease = avgVolumeUp - volumeYesterdayUp;
+        yesterdayVolIncreaseUp = (decrease / avgVolumeUp) * -100
+    }
+
+// YESTERDAY DOWN VOLUME INCREASE ----------------------------
+
+   let yesterdayVolIncreaseDown = 0;
+
+    if (volumeYesterdayDown > avgVolumeDown) {
+        let increase = volumeYesterdayDown - avgVolumeDown;
+        yesterdayVolIncreaseDown = (increase / avgVolumeDown) * 100
+    }
+    else
+    {
+        let decrease = avgVolumeDown - volumeYesterdayDown;
+        yesterdayVolIncreaseDown = (decrease / avgVolumeDown) * -100
+    }
     
      let changeDownAdjusted = changeDown
- 
+  // ADJUST PERCENTAGE TO POSITIVE - ARROW WILL SIGNAL UP OR DOWN 
     if (changeDownAdjusted < 0) {
         changeDownAdjusted = changeDownAdjusted * -1
     }
@@ -1458,7 +1519,10 @@ try {
          <a class="info-link" href="https://www.investopedia.com/terms/d/downvolume.asp" target="_blank"><h3 class='tech-header'>Volume</h3></a>
          <p>Average: <span class="tech-to-left">${avgVolumeDown}</span></p>
              <p>Today: <span class="tech-to-left">${volumeDown}</span></p>
-             <p>Overall Increase: <span class="tech-to-left"> ${volumeIncreaseDown.toFixed(0)}%</span></p>
+             <p>Overall Increase: <span class="tech-to-left"> ${volumeIncreaseDown.toFixed(2)}%</span></p>
+
+             <p>Yesterday: <span class="tech-to-left"> ${volumeYesterdayDown}</span></p>
+             <p>Overall Difference: <span class="tech-to-left"> ${yesterdayVolIncreaseDown.toFixed(2)}%</span></p>
          </div>
  
          <div class="tech-row">
@@ -1600,7 +1664,10 @@ try {
              <a class="info-link" href="https://www.investopedia.com/terms/u/upvolume.asp" target="_blank"><h3 class='tech-header'>Volume</h3></a>
                  <p>Average: <span class="tech-to-left"> ${avgVolumeUp}</span></p>
                  <p>Today:  <span class="tech-to-left"> ${volumeUp}</span></p>
-                 <p>Overall Increase:  <span class="tech-to-left"> ${volumeIncreaseUp.toFixed(0)}%</span></p>
+                 <p>Overall Increase:  <span class="tech-to-left"> ${volumeIncreaseUp.toFixed(2)}%</span></p>
+
+                 <p>Yesterday: <span class="tech-to-left"> ${volumeYesterdayUp}</span></p>
+                 <p>Overall Difference: <span class="tech-to-left"> ${yesterdayVolIncreaseUp.toFixed(2)}%</span></p>
              </div>
  
          <div class="tech-row">

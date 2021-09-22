@@ -62,8 +62,6 @@ upper.each(function() {
     })
 })
 
-
-
     function removeDownClass() {
         downer.removeClass('active-down-symbol')
         }
@@ -1173,27 +1171,57 @@ async function technicalIndicators(symbol, searchedSymbol) {
 try {
     while (j < 1) { // LOOP FOR TECHNICAL searchedTicker
 
+        try {
+        // ------ FETCH NASDAQ
+     const resTwo = await fetch('https://financialmodelingprep.com/api/v3/quotes/nasdaq?apikey=4d4593bc9e6bc106ee9d1cbd6400b218')
+     const dataNas = await resTwo.json()
+
+                for (let i = 0; i < dataNas.length; i++)
+                {
+                    if (dataNas[i].symbol == symbol) {
+                        searchedSymbol = dataNas[i]
+                        break;
+                    }
+                }
+            }
+            catch(e) 
+            {
+
+            }
+            try {
+     const res = await fetch('https://financialmodelingprep.com/api/v3/quotes/nyse?apikey=4d4593bc9e6bc106ee9d1cbd6400b218')
+     const dataNyse = await res.json()
+
+                for (let i = 0; i < dataNyse.length; i++)
+                {
+                    if (dataNyse[i].symbol == symbol) {
+                        searchedSymbol = dataNyse[i]
+                        break;
+                    }
+                }
+            }
+            catch(e) 
+            {
+                
+            }
         //THIS PULL IS FOR CLOSE PRICES TO CALC TAs PAST CLOSE DATA // 
         const resSMA = await  fetch(`https://financialmodelingprep.com/api/v3/historical-price-full/${symbol}?apikey=4d4593bc9e6bc106ee9d1cbd6400b218`)
         const dataSMA = await resSMA.json() // SMA PULL USED FOR OTHER CALCS
-console.log(dataSMA)
-        
-        searchedSymbol.change = dataSMA.historical[0].change
-        searchedSymbol.changesPercentage = dataSMA.historical[0].changePercent
-        searchedSymbol.volume = dataSMA.historical[0].volume
-            
+           // SET RECENT YESTERDAY VOLUME
+        searchedSymbol.yesterdayVolume = dataSMA.historical[0].volume
+     
          //THIS PULL IS FOR OSCILLATORS ALL CURRENT CLOSE DATA
          const resOscPulled = await fetch(`https://financialmodelingprep.com/api/v3/quote-short/${symbol}?apikey=4d4593bc9e6bc106ee9d1cbd6400b218`)
          const dataRecentPulled = await resOscPulled.json()
-
-         searchedSymbol.price = dataRecentPulled[0].price
-         console.log(dataRecentPulled)
-
+           // SET RECENT VOLUME AND PRICE
+        searchedSymbol.price = dataRecentPulled[0].price
+        searchedSymbol.volume = dataRecentPulled[0].volume
+       
         // VWAP ------------------------------------------------------------------------------------------------------------------------------------------------
         const resVWAP = await  fetch(`https://financialmodelingprep.com/api/v3/historical-chart/5min/${symbol}?apikey=4d4593bc9e6bc106ee9d1cbd6400b218`)
         const dataVWAP = await resVWAP.json()
-         
-        vwapFunction(searchedSymbol, dataVWAP)
+
+            vwapFunction(searchedSymbol, dataVWAP)
          
             // SMA -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
            smaFunction(searchedSymbol, dataSMA, dataRecentPulled)
@@ -1230,19 +1258,17 @@ console.log(dataSMA)
                                 }// END OF TRY
                                 catch(e) 
                                 {
-                                    console.log(e)
-                                   // alert('Unable to find stock symbol. Check the symbol and try again!')
+                                   alert('Unable to find stock symbol. Check the symbol and try again!');
                                 }        
 } 
 
     
 function buildSearchTech(obj) {
-console.log(obj)
-    let {symbol, price, change, changesPercentage, avgVolume, volume, vwap, smaFiveTeen, smaTwenty, smaThirty, smaFifty, smaOneHun, smaTwoHun, emaTwelve, emaTwentySix, emaFifty, emaTwoHun, wmaFiveTeen, wmaTwenty, wmaThirty, wmaFifty, wmaOneHun, wmaTwoHun, vwmaFiveTeen, vwmaTwenty, vwmaThirty, vwmaFifty, vwmaOneHun, vwmaTwoHun, macd, macdHistogram, macdSignalLine, rsi, stochasticD, stochasticK, stochasticSignal, cciTwenty, bbMiddle, bbLower, bbUpper, williamsR} = obj;
+    let {symbol, price, change, changesPercentage, avgVolume, volume, yesterdayVolume, vwap, smaFiveTeen, smaTwenty, smaThirty, smaFifty, smaOneHun, smaTwoHun, emaTwelve, emaTwentySix, emaFifty, emaTwoHun, wmaFiveTeen, wmaTwenty, wmaThirty, wmaFifty, wmaOneHun, wmaTwoHun, vwmaFiveTeen, vwmaTwenty, vwmaThirty, vwmaFifty, vwmaOneHun, vwmaTwoHun, macd, macdHistogram, macdSignalLine, rsi, stochasticD, stochasticK, stochasticSignal, cciTwenty, bbMiddle, bbLower, bbUpper, williamsR} = obj;
 
     let directionArrow = 'up'
 
-
+    // SETS ARROW FOR UP AND DOWN --------------
     if (changesPercentage < 0) 
     {
         directionArrow = 'down'
@@ -1251,13 +1277,37 @@ console.log(obj)
     {
         directionArrow = 'up'
     }
-
+    // CHANGE TO POSITIVE BUT ARROW POINTS DOWN OR UP ----------
     if (change < 0) {
         change = change * -1
     }
 
-  //  let volumeIncrease = (volume / avgVolume) * 100 
-    console.log(obj)
+    // VOLUME INCREASE TODAY ----------
+    let volumeIncrease = 0;
+
+    if (volume > avgVolume) {
+        let increase = volume - avgVolume;
+        volumeIncrease = (increase / avgVolume) * 100
+    }
+    else
+    {
+        let decrease = avgVolume - volume;
+        volumeIncrease = (decrease / avgVolume) * -100
+    }
+
+// TO GET AVERAGE DAILY VOLUME FOR YESTERDAY ----------------
+    let yesterdayVolIncrease = 0;
+
+    if (yesterdayVolume > avgVolume) {
+        let increase = yesterdayVolume - avgVolume;
+        yesterdayVolIncrease = (increase / avgVolume) * 100
+    }
+    else
+    {
+        let decrease = avgVolume - yesterdayVolume;
+        yesterdayVolIncrease = (decrease / avgVolume) * -100
+    }
+
      techIn.html(   
     `     <!----------------------------------- SEARCHED SYMBOL --------------------------------------->
 
@@ -1279,9 +1329,12 @@ console.log(obj)
 
         <div class="tech-vol-row">
         <a class="info-link" href="https://www.investopedia.com/terms/d/downvolume.asp" target="_blank"><h3 class='tech-header'>Volume</h3></a>
-        <p>Average: <span class="tech-to-left">${volume}</span></p>  <!---------NEED TO CHANGE BACK TO avgVolume------->
-            <p>Today: <span class="tech-to-left">${volume}</span></p>
-            <p>Overall Increase: <span class="tech-to-left"> ${volume}%</span></p><!---------NEED TO CHANGE BACK TO volumeIncrease.toFixed(0) ------->
+            <p>Average: <span class="tech-to-left">${avgVolume}</span></p> 
+            <p>Current Day: <span class="tech-to-left">${volume}</span></p>
+            <p>Overall Difference: <span class="tech-to-left"> ${volumeIncrease.toFixed(2)}%</span></p>
+
+            <p>Yesterday: <span class="tech-to-left"> ${yesterdayVolume}</span></p>
+            <p>Overall Difference: <span class="tech-to-left"> ${yesterdayVolIncrease.toFixed(2)}%</span></p>
         </div>
 
         <div class="tech-row">
