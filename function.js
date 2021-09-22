@@ -1189,7 +1189,7 @@ try {
                 }
                 catch(e) 
                 {
-                    
+                    alert('Unable to find stock symbol. Check the symbol and try again!');
                 }
             //THIS PULL IS FOR CLOSE PRICES TO CALC TAs PAST CLOSE DATA // 
             const resSMA = await  fetch(`https://financialmodelingprep.com/api/v3/historical-price-full/${symbol}?apikey=4d4593bc9e6bc106ee9d1cbd6400b218`)
@@ -1246,7 +1246,6 @@ try {
                                     }// END OF TRY
                                     catch(e) 
                                     {
-                                    alert('Unable to find stock symbol. Check the symbol and try again!');
                                     }        
     } 
 
@@ -1443,7 +1442,7 @@ try {
 
         </div>`
         )
-        
+
         // GET RID OF LOADING SCREEN
         $('.loading-search').css('display', 'none');
 

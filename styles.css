@@ -634,7 +634,7 @@ nav {
 #loading-text {
     font-size: 40px;
     color: var(--main-cat-color);
-    text-shadow: 1px 1px var(--light-text-color);
+    text-shadow: 0px 0px 2px var(--light-text-color);
   }
 
 #deadCatLoad {
@@ -669,7 +669,7 @@ nav {
 
 #load-one {
     color: var(--main-cat-color);
-    text-shadow: 1px 1px var(--light-text-color);
+    text-shadow: 0px 0px 2px var(--light-text-color);
     font-size: 75px;
     margin: 0 10px;
     opacity: 0;
@@ -691,7 +691,7 @@ nav {
 }
 #load-two {
     color: var(--main-cat-color);
-    text-shadow: 1px 1px var(--light-text-color);
+    text-shadow: 0px 0px 2px var(--light-text-color);
     font-size: 55px;
     margin: 0 10px;
     opacity: 0;
@@ -713,7 +713,7 @@ nav {
 }
 #load-three {
     color: var(--main-cat-color);
-    text-shadow: 1px 1px var(--light-text-color);
+    text-shadow: 0px 0px 2px var(--light-text-color);
     font-size: 35px;
     margin: 0 10px;
     opacity: 0;
