@@ -811,7 +811,7 @@ nav {
     }
 
     .section {
-        width: 10px;
+        width: calc(100vw - 5px);
         justify-content: center;
         align-items: center;
     }
@@ -820,12 +820,11 @@ nav {
         width: calc(50%);
     }
 
-    row-ex {
-        width: 100vw;
-    }
+    .row-ex {
+        width: 100%;    }
 
     #rowOne {
-        width: 100vw;
+        width: 100%;
     }
 
     .symbol-box {
@@ -854,7 +853,7 @@ nav {
 
     .header {
         height: 30px;
-        width: 100vw;
+        width: calc(100vw - 5px);
         display: flex;
         align-items: center;
         justify-content: space-between;  
