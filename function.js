@@ -133,6 +133,9 @@ const symbolBox = $('.symbol-box')
       }
   }
 
+if ($(window).width() > 700) 
+{
+
     $('.search-text').on('keyup', function(e) {
 
             if (e.keyCode == 13) {
@@ -152,6 +155,30 @@ const symbolBox = $('.symbol-box')
                 technicalIndicators(ticker, symbolSearch)
             }
         })
+
+    }
+    else 
+    {
+        $('.search-text').blur(function() {
+
+                // GET VALUE SYMBOL NAME
+                let ticker = $('.search-text').val();
+                // SET OBJECT TO STORE PULL
+                let symbolSearch = new SearchObj(ticker)  
+
+                removeDownClass()
+                removeUpClass()
+
+                moveTechToTop()
+                animatedLoad()
+
+                $('.loading-search').css('display', 'flex');
+
+                technicalIndicators(ticker, symbolSearch)
+            
+        })
+
+    }
 
 // ---------------------- TECHNICAL INDICATOR FUNCTIONS FOR SEARCH SYMBOL ------------------------------------------------------------------------------------
  
@@ -1173,8 +1200,9 @@ try {
                 }
                 catch(e) 
                 {
-
+                    alert('Unable locate stock ticker. Please check your input and try again!')
                 }
+                
                 try {
         const res = await fetch('https://financialmodelingprep.com/api/v3/quotes/nyse?apikey=4d4593bc9e6bc106ee9d1cbd6400b218')
         const dataNyse = await res.json()
@@ -1189,7 +1217,7 @@ try {
                 }
                 catch(e) 
                 {
-                    alert('Unable to find stock symbol. Check the symbol and try again!');
+                    alert('Unable locate stock ticker. Please check your input and try again!');
                 }
             //THIS PULL IS FOR CLOSE PRICES TO CALC TAs PAST CLOSE DATA // 
             const resSMA = await  fetch(`https://financialmodelingprep.com/api/v3/historical-price-full/${symbol}?apikey=4d4593bc9e6bc106ee9d1cbd6400b218`)
