@@ -314,9 +314,6 @@ nav {
     transition: all ease-out 2000ms;
     scroll-margin-top: -25px;
 }
-
-
-
 /* ------------------------------------------------------ STOCK DROPS CUSTOMIZE */
 
 #rowOne {
@@ -428,57 +425,6 @@ nav {
     width: 10px;
     margin: 0 10px;
     margin-bottom: 15px;
-}
-
-@media (max-width: 500px) {
-
-    #upArrow, #downArrow {
-        margin: 0 5px 15px 5px;
-        height: 20px;
-    }
-
-    .section {
-        width: calc(100vw - 10px);
-        justify-content: center;
-        align-items: center;
-    }
-
-    .symbol-box {
-        width: calc(50%);
-    }
-
-    row-ex {
-        width: 100vw;
-    }
-
-    #rowOne {
-        width: calc(100vw - 10px);
-    }
-
-    .symbol-box {
-        font-size: 15px;
-    }
-
-    .selector-info-r
-        {
-            transform: translate(100%, 0%);
-            opacity: 0;
-            transition: all ease-in 500ms;
-        }
-
-    .selector-info-l
-        {
-            transform: translate(-100%, 0%);
-            opacity: 0;
-            transition: all ease-in 500ms;
-        }
-
-    .active-info-three-l, 
-    .active-info-three-r {
-        transform: translate(0%, 0%);
-        opacity: 1;
-    }
-
 }
 
 .changes-row {
@@ -792,6 +738,10 @@ nav {
    top: 50%;
    transform: translateY(-50%);
   }
+
+  #popup-close:hover {
+      color: var(--bear-market-color);
+  }
   
   #popup-close:active {
     transform: scale(.98) translateY(-50%);
@@ -854,9 +804,57 @@ nav {
 }
 
   @media (max-width: 500px) {
+
+    #upArrow, #downArrow {
+        margin: 0 5px 15px 5px;
+        height: 20px;
+    }
+
+    .section {
+        width: 10px;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .symbol-box {
+        width: calc(50%);
+    }
+
+    row-ex {
+        width: 100vw;
+    }
+
+    #rowOne {
+        width: 100vw;
+    }
+
+    .symbol-box {
+        font-size: 12.5px;
+    }
+
+    .selector-info-r
+        {
+            transform: translate(100%, 0%);
+            opacity: 0;
+            transition: all ease-in 500ms;
+        }
+
+    .selector-info-l
+        {
+            transform: translate(-100%, 0%);
+            opacity: 0;
+            transition: all ease-in 500ms;
+        }
+
+    .active-info-three-l, 
+    .active-info-three-r {
+        transform: translate(0%, 0%);
+        opacity: 1;
+    }
+
     .header {
         height: 30px;
-        width: calc(100vw - 10px);
+        width: 100vw;
         display: flex;
         align-items: center;
         justify-content: space-between;  
@@ -880,6 +878,10 @@ nav {
     }
     .upper:hover {
         box-shadow: inset -5px 0px 1px var(--bull-market-color), inset -5px 0px 3px var(--bull-market-color);
+    }
+
+    #tech-in {
+        font-size: .65em;
     }
 
   }
