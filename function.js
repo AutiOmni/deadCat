@@ -1177,6 +1177,27 @@ try {
                   
             }
     }
+    // VOLUME FUNCTION ------------------------------------------------------------------------------------------------------------------------------------------       
+    function setVolume(searchedTicker, dataPull, newestPull) {
+        // SET RECENT YESTERDAY VOLUME
+        if (dataPull.historical.length < 0) 
+        {
+            searchedTicker.yesterdayVolume = 0
+        } 
+        else
+        {
+            searchedTicker.yesterdayVolume = dataPull.historical[0].volume
+        }
+        if (newestPull.length < 0) 
+        {
+            searchedTicker.volume = 0
+        }
+        else 
+        {
+        // SET RECENT VOLUME
+        searchedTicker.volume = newestPull[0].volume
+        }
+    }
 
 // TA FUNCTION ---------------------------------------------------------------------
     async function technicalIndicators(symbol, searchedSymbol) {
@@ -1222,16 +1243,11 @@ try {
             //THIS PULL IS FOR CLOSE PRICES TO CALC TAs PAST CLOSE DATA // 
             const resSMA = await  fetch(`https://financialmodelingprep.com/api/v3/historical-price-full/${symbol}?apikey=4d4593bc9e6bc106ee9d1cbd6400b218`)
             const dataSMA = await resSMA.json() // SMA PULL USED FOR OTHER CALCS
-            // SET RECENT YESTERDAY VOLUME
-            searchedSymbol.yesterdayVolume = dataSMA.historical[0].volume
-        
+
             //THIS PULL IS FOR OSCILLATORS ALL CURRENT CLOSE DATA
             const resOscPulled = await fetch(`https://financialmodelingprep.com/api/v3/quote-short/${symbol}?apikey=4d4593bc9e6bc106ee9d1cbd6400b218`)
             const dataRecentPulled = await resOscPulled.json()
-            // SET RECENT VOLUME AND PRICE
-            searchedSymbol.price = dataRecentPulled[0].price
-            searchedSymbol.volume = dataRecentPulled[0].volume
-        
+
             // VWAP ------------------------------------------------------------------------------------------------------------------------------------------------
             const resVWAP = await  fetch(`https://financialmodelingprep.com/api/v3/historical-chart/5min/${symbol}?apikey=4d4593bc9e6bc106ee9d1cbd6400b218`)
             const dataVWAP = await resVWAP.json()
@@ -1239,7 +1255,7 @@ try {
                 vwapFunction(searchedSymbol, dataVWAP)
             
                 // SMA -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-            smaFunction(searchedSymbol, dataSMA, dataRecentPulled)
+                smaFunction(searchedSymbol, dataSMA, dataRecentPulled)
 
                 // WMA ------------------------------------------------------------------------------------------------------------------------------------------------------------------
                 wmaFunction(searchedSymbol, dataSMA, dataRecentPulled) 
@@ -1263,10 +1279,15 @@ try {
                 cciFunction(searchedSymbol, dataSMA, dataRecentPulled)
 
                 // BOLLINGER BANDS ------------------------------------------------------------------------------------------------------------------------------------------------------------------
-            bollingerBandsFunction(searchedSymbol, dataSMA, dataRecentPulled)
+                bollingerBandsFunction(searchedSymbol, dataSMA, dataRecentPulled)
+
+                // SET VOLUME PROPERTIES
+                setVolume(searchedSymbol, dataSMA, dataRecentPulled)
+
             
             j++ // UPDATE WHILE LOOP
-        await  buildSearchTech(searchedSymbol) // BUILD HTML TO DISPLAY
+
+            await  buildSearchTech(searchedSymbol) // BUILD HTML TO DISPLAY
 
             expandDetract()
         }// THIS IS THE END OF LOOP
@@ -1346,10 +1367,10 @@ try {
             <a class="info-link" href="https://www.investopedia.com/terms/d/downvolume.asp" target="_blank"><h3 class='tech-header'>Volume</h3></a>
                 <p>Average: <span class="tech-to-left">${avgVolume}</span></p> 
                 <p>Current Day: <span class="tech-to-left">${volume}</span></p>
-                <p>Overall Difference: <span class="tech-to-left"> ${volumeIncrease.toFixed(2)}%</span></p>
+                <p>Change: <span class="tech-to-left"> ${volumeIncrease.toFixed(2)}%</span></p>
 
                 <p>Yesterday: <span class="tech-to-left"> ${yesterdayVolume}</span></p>
-                <p>Overall Difference: <span class="tech-to-left"> ${yesterdayVolIncrease.toFixed(2)}%</span></p>
+                <p>Change: <span class="tech-to-left"> ${yesterdayVolIncrease.toFixed(2)}%</span></p>
             </div>
 
             <div class="tech-row">
