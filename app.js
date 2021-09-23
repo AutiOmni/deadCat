@@ -126,11 +126,11 @@ const rowOne = document.getElementById('rowOne')
  combinedStockUp = combinedStockUp.concat(arr3, arr4)
  const keys = /^[A-Z]{1,4}$/g
  finalChartFatDown = combinedStockDrop.filter(stock => {
-     return stock.symbol.match(keys) && !stock.symbol.match('CBO') // ! HAD TO ADD CBO BECAUSE ITS NOT TRADABLE BUT STILL ON LIST
+     return stock.symbol.match(keys) && !stock.symbol.match('CBO') && !stock.symbol.match('SPIR') // ! HAD TO ADD CBO BECAUSE ITS NOT TRADABLE BUT STILL ON LIST
  })
  
  finalChartFatUp = combinedStockUp.filter(stock => {
-     return stock.symbol.match(keys) && !stock.symbol.match('CBO') // ! HAD TO ADD CBO BECAUSE ITS NOT TRADABLE BUT STILL ON LIST
+     return stock.symbol.match(keys) && !stock.symbol.match('CBO') && !stock.symbol.match('SPIR') // ! HAD TO ADD CBO BECAUSE ITS NOT TRADABLE BUT STILL ON LIST
  })
  
  for (let i = 0; i < finalChartFatDown.length; i++) {
@@ -1128,7 +1128,7 @@ try {
             let tpvCul = 0
             let volumeCul = 0
             let tempVWAP = [] // HOLD VWAP PERIOD - TAKES FROM 0 INDEX FOR MOST CURRENT
-            try {
+        try {
         // -------------THIS IS FOR GETTING THE DAY LENGTH FOR VWAP
         while (dataPull[dayLengthPeriod].date.slice(0,10) === todayDate) { 
            dayLengthPeriod++ 
@@ -1157,33 +1157,51 @@ try {
             }
     }
 
-    
+    function setVolume(chartArr, dataPull, newestPull, num) {
+        // SET RECENT YESTERDAY VOLUME
+        if (dataPull.historical.length < 0) 
+        {
+            chartArr[num].yesterdayVolume = 0
+        } 
+        else
+        {
+            chartArr[num].yesterdayVolume = dataPull.historical[0].volume
+        }
+        if (newestPull.length < 0) 
+        {
+            chartArr[num].volume = 0
+        }
+        else 
+        {
+        // SET RECENT VOLUME
+        chartArr[num].volume = newestPull[0].volume
+        }
+    }
 
  // TA FUNCTION ---------------------------------------------------------------------
  async function technicalIndicators() {
  
     let j = 0
-
-    while (j < 10) { // LOOP FOR TECHNICAL SYMBOL
+    
+    while (j < finalChart.length) { // LOOP FOR TECHNICAL SYMBOL
 
         // THIS IS THE ALL MIGHTY SYMBOL USED FOR PULLS
         const {symbol} = finalChart[j]
-
+        
         //THIS PULL IS FOR CLOSE PRICES TO CALC TAs PAST CLOSE DATA // 
         const resSMA = await  fetch(`https://financialmodelingprep.com/api/v3/historical-price-full/${symbol}?apikey=4d4593bc9e6bc106ee9d1cbd6400b218`)
         const dataSMA = await resSMA.json() // SMA PULL USED FOR OTHER CALCS
-        // SET RECENT YESTERDAY VOLUME
-        finalChart[j].yesterdayVolume = dataSMA.historical[0].volume
          //THIS PULL IS FOR OSCILLATORS ALL CURRENT CLOSE DATA
          const resOscPulled = await fetch(`https://financialmodelingprep.com/api/v3/quote-short/${symbol}?apikey=4d4593bc9e6bc106ee9d1cbd6400b218`)
          const dataRecentPulled = await resOscPulled.json()
-        // SET RECENT VOLUME
-        finalChart[j].volume = dataRecentPulled[0].volume
-
+                    
         // VWAP ------------------------------------------------------------------------------------------------------------------------------------------------
         const resVWAP = await  fetch(`https://financialmodelingprep.com/api/v3/historical-chart/5min/${symbol}?apikey=4d4593bc9e6bc106ee9d1cbd6400b218`)
         const dataVWAP = await resVWAP.json()
-         
+
+
+
+
             vwapFunction(finalChart, dataVWAP, j)
          
             // SMA -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -1213,6 +1231,9 @@ try {
             // BOLLINGER BANDS ------------------------------------------------------------------------------------------------------------------------------------------------------------------
            bollingerBandsFunction(finalChart, dataSMA, dataRecentPulled, j)
            
+            // SET VOLUME PROPERTIES
+            setVolume(finalChart, dataSMA, dataRecentPulled, j)
+
         j++ // UPDATE WHILE LOOP
 
     }// THIS IS THE END OF LOOP
@@ -1229,7 +1250,7 @@ try {
  
      let j = 0
  
-     while (j < 10) {
+     while (j < finalChart.length) {
  
          const {changesPercentage} = finalChart[j]
          
@@ -1242,7 +1263,6 @@ try {
          j++
  
      } // END OF FILTER LOOP TO NEW UP/DOWN ARR
- 
          // REASSIGN OBJECT NAMES FOR UP AND DOWN STOCKS
      for (let i = 0; i < stocksUp.length; i++) {
          // UPPERS ------------------------------------------------------------------------
@@ -1286,7 +1306,7 @@ try {
          delete stocksUp[i].smaTwoHun
          stocksUp[i].volumeUp = stocksUp[i].volume
          delete stocksUp[i].volume
-         stocksUp[i].volumeYesterdayUp = stocksDown[i].yesterdayVolume
+         stocksUp[i].volumeYesterdayUp = stocksUp[i].yesterdayVolume
          delete stocksUp[i].yesterdayVolume
          stocksUp[i].vwapUp = stocksUp[i].vwap
          delete stocksUp[i].vwap
