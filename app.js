@@ -155,7 +155,6 @@ function compileStocks(arr1, arr2, arr3, arr4, callback) {
    callback(finalChart, filterUpDownStocks)
  } 
 
- 
 // ---------------------- TECHNICAL INDICATOR FUNCTIONS ------------------------------------------------------------------------------------
  
      // SMA FUNCTION ------------------------------------------------------------------------------------------------------------------------------------------
@@ -1178,12 +1177,14 @@ function compileStocks(arr1, arr2, arr3, arr4, callback) {
  // TA FUNCTION ---------------------------------------------------------------------
  async function technicalIndicators(finalArr, callback) {
  
-    let j = 0
+    let j = 0 
     
     while (j < finalArr.length) { // LOOP FOR TECHNICAL SYMBOL
-       
-        // THIS IS THE ALL MIGHTY SYMBOL USED FOR PULLS
-        const {symbol} = finalArr[j]
+
+        try {
+
+            // THIS IS THE ALL MIGHTY SYMBOL USED FOR PULLS
+            const {symbol} = finalArr[j]
             //THIS PULL IS FOR CLOSE PRICES TO CALC TAs PAST CLOSE DATA // 
             const resSMA = await  fetch(`https://financialmodelingprep.com/api/v3/historical-price-full/${symbol}?apikey=4d4593bc9e6bc106ee9d1cbd6400b218`)
             const dataSMA = await resSMA.json() // SMA PULL USED FOR OTHER CALCS
@@ -1243,8 +1244,13 @@ function compileStocks(arr1, arr2, arr3, arr4, callback) {
             // SET VOLUME PROPERTIES
             setVolume(finalArr, dataSMA, dataRecentPulled, j)
 
-        j++ // UPDATE WHILE LOOP
-         
+            j++ // UPDATE WHILE LOOP
+
+        }
+        catch(e)
+        {
+
+        }
     }// THIS IS THE END OF LOOP
     callback(finalArr, buildIt)
 } 
