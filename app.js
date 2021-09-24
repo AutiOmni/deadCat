@@ -1,5 +1,12 @@
 const rowOne = document.getElementById('rowOne') 
 
+ //------------ ADD SECOND SCRIPT FOR RUN ---------------------- // 
+ function addSecondScript() {
+    const scripty = document.createElement('script')
+    scripty.setAttribute('src', 'function.js')
+    document.body.appendChild(scripty)
+}
+
  /// DATE REFERENCE FOR MARKET DATA PULLS ----------------------------------------
 
  const today = new Date
@@ -42,31 +49,6 @@ const rowOne = document.getElementById('rowOne')
  if (todayDate === '2021-07-05') {
      todayDate = '2021-07-02'
  } 
-
- // ------------------- TRADABLE STOCK TICKERS replaced******** --------------------------------------------------------------------------------------------------
- /* async function tradableSymbols() {
-     let myStocksNas = []
-     let myStocksNyse = []
-     try {
-     const res = await fetch('https://financialmodelingprep.com/api/v3/available-traded/list?apikey=4d4593bc9e6bc106ee9d1cbd6400b218')
-     const data = await res.json()
-
-
-     for (let i = 0; i < data.length; i++) {
-         if (data[i].exchange === 'New York Stock Exchange') {
-             myStocksNyse.push(data[i].symbol)
-         } else if (data[i].exchange === 'Nasdaq Global Select') {
-             myStocksNas.push(data[i].symbol)
-         }
-     }
-
-     await filterTradableSymbols(myStocksNyse, myStocksNas, compileStocks)
- 
-         } catch(e) {
-              
-         }
- }
- */
 
  // ---------------------- FILTERS TRADABLE SYMBOLS THAT HAVE DROPPED BELOW THE THRESHOLD -------------------------------------
  async function filterTradableSymbols(arr1, arr2, compileCallback) {
@@ -115,16 +97,17 @@ const rowOne = document.getElementById('rowOne')
          
     }
      
-     compileCallback(nasdaqHolderDown, nyseHolderDown, nyseHolderUp, nasdaqHolderUp) // CALLBACK FOR STOCK FILTER
+     compileCallback(nasdaqHolderDown, nyseHolderDown, nyseHolderUp, nasdaqHolderUp, technicalIndicators) // CALLBACK FOR STOCK FILTER
  }
  
 //---------------------- COMBINE AND SORT LARGEST DROP ------------------------- 
-let finalChartFatDown = [] // THIS HOLDS COMPILED AND SORTED STOCK TO GET TECHNICAL INDICATORS FROM AND MUTATE OBJECTS ! MOST IMPORTANT
-let finalChartFatUp = [] // THIS HOLDS COMPILED AND SORTED STOCK TO GET TECHNICAL INDICATORS FROM AND MUTATE OBJECTS ! MOST IMPORTANT
- // MOST IMPORTANT
-let finalChart = [] // THIS HOLDS COMPILED AND SORTED STOCK TO GET TECHNICAL INDICATORS FROM AND MUTATE OBJECTS ! MOST IMPORTANT
- 
-function compileStocks(arr1, arr2, arr3, arr4) {
+function compileStocks(arr1, arr2, arr3, arr4, callback) {
+
+    let finalChartFatDown = [] // THIS HOLDS COMPILED AND SORTED STOCK TO GET TECHNICAL INDICATORS FROM AND MUTATE OBJECTS ! MOST IMPORTANT
+    let finalChartFatUp = [] // THIS HOLDS COMPILED AND SORTED STOCK TO GET TECHNICAL INDICATORS FROM AND MUTATE OBJECTS ! MOST IMPORTANT
+    // MOST IMPORTANT
+    let finalChart = [] // THIS HOLDS COMPILED AND SORTED STOCK TO GET TECHNICAL INDICATORS FROM AND MUTATE OBJECTS ! MOST IMPORTANT
+
   
  // ------- THIS IS A FILTER FOR WEIRD STOCK SYMBOLS THAT SLIP IN ----------
  
@@ -170,12 +153,11 @@ function compileStocks(arr1, arr2, arr3, arr4) {
      slimChartUp--
    }
 
-   technicalIndicators(finalChart)
+   callback(finalChart, filterUpDownStocks)
  } 
- 
 
  
- // ---------------------- TECHNICAL INDICATOR FUNCTIONS ------------------------------------------------------------------------------------
+// ---------------------- TECHNICAL INDICATOR FUNCTIONS ------------------------------------------------------------------------------------
  
      // SMA FUNCTION ------------------------------------------------------------------------------------------------------------------------------------------
      function smaFunction(chartArr, dataPull, newestPull, num) {
@@ -1195,14 +1177,14 @@ function compileStocks(arr1, arr2, arr3, arr4) {
     }
 
  // TA FUNCTION ---------------------------------------------------------------------
- async function technicalIndicators(finalArr) {
+ async function technicalIndicators(finalArr, callback) {
  
     let j = 0
     
-    while (j < finalChart.length) { // LOOP FOR TECHNICAL SYMBOL
+    while (j < finalArr.length) { // LOOP FOR TECHNICAL SYMBOL
        
         // THIS IS THE ALL MIGHTY SYMBOL USED FOR PULLS
-        const {symbol} = finalChart[j]
+        const {symbol} = finalArr[j]
             //THIS PULL IS FOR CLOSE PRICES TO CALC TAs PAST CLOSE DATA // 
             const resSMA = await  fetch(`https://financialmodelingprep.com/api/v3/historical-price-full/${symbol}?apikey=4d4593bc9e6bc106ee9d1cbd6400b218`)
             const dataSMA = await resSMA.json() // SMA PULL USED FOR OTHER CALCS
@@ -1230,62 +1212,60 @@ function compileStocks(arr1, arr2, arr3, arr4) {
                     return;
                 }
 
-            vwapFunction(finalChart, dataVWAP, j)
+            vwapFunction(finalArr, dataVWAP, j)
          
             // SMA -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-            smaFunction(finalChart, dataSMA, dataRecentPulled, j)
+            smaFunction(finalArr, dataSMA, dataRecentPulled, j)
 
             // WMA ------------------------------------------------------------------------------------------------------------------------------------------------------------------
-            wmaFunction(finalChart, dataSMA, dataRecentPulled, j) 
+            wmaFunction(finalArr, dataSMA, dataRecentPulled, j) 
 
             // VWMA ------------------------------------------------------------------------------------------------------------------------------------------------------------------
-            vwmaFunction(finalChart, dataSMA, dataRecentPulled, j)
+            vwmaFunction(finalArr, dataSMA, dataRecentPulled, j)
                   
             // EMA WITH MACD CALLBACK ------------------------------------------------------------------------------------------------------------------------------------------       
-            emaFunction(finalChart, dataSMA, dataRecentPulled, j, macdFunction)
+            emaFunction(finalArr, dataSMA, dataRecentPulled, j, macdFunction)
  
             // RSI ------------------------------------------------------------------------------------------------------------------------------------------------------------------
-            rsiFunction(finalChart, dataSMA, dataRecentPulled, j)
+            rsiFunction(finalArr, dataSMA, dataRecentPulled, j)
         
             // STOCHASTIC OSCILLATOR ------------------------------------------------------------------------------------------------------------------------------------------------------------------
-            stochOsc1433Function(finalChart, dataSMA, dataRecentPulled, j) //DATA VWAP USED FOR RECETN CLOSE DATA
+            stochOsc1433Function(finalArr, dataSMA, dataRecentPulled, j) //DATA VWAP USED FOR RECETN CLOSE DATA
 
             // WILLIAMS %R 14 ------------------------------------------------------------------------------------------------------------------------------------------------------------------
-            williamsRFunction(finalChart, dataSMA, dataRecentPulled, j)
+            williamsRFunction(finalArr, dataSMA, dataRecentPulled, j)
 
             // CCI 20 ------------------------------------------------------------------------------------------------------------------------------------------------------------------
-            cciFunction(finalChart, dataSMA, dataRecentPulled, j)
+            cciFunction(finalArr, dataSMA, dataRecentPulled, j)
 
             // BOLLINGER BANDS ------------------------------------------------------------------------------------------------------------------------------------------------------------------
-            bollingerBandsFunction(finalChart, dataSMA, dataRecentPulled, j)
+            bollingerBandsFunction(finalArr, dataSMA, dataRecentPulled, j)
            
             // SET VOLUME PROPERTIES
-            setVolume(finalChart, dataSMA, dataRecentPulled, j)
+            setVolume(finalArr, dataSMA, dataRecentPulled, j)
 
         j++ // UPDATE WHILE LOOP
          
     }// THIS IS THE END OF LOOP
-           
+    callback(finalArr, buildIt)
 } 
 
-     
- // ------------------BUILD OUT HTML
+// FILTER TO PROPER UP AND DOWN GROUPS ---------------------------
+ function filterUpDownStocks(finalArr, callback) {
  
- let stocksUp = []
- let stocksDown = []
- 
- function filterUpDownStocks() {
- 
+    let stocksUp = []
+    let stocksDown = []
+
      let j = 0
  
-     while (j < finalChart.length) {
+     while (j < finalArr.length) {
  
-         const {changesPercentage} = finalChart[j]
+         const {changesPercentage} = finalArr[j]
          
          if (changesPercentage > 0) {
-             stocksUp.push(finalChart[j])
+             stocksUp.push(finalArr[j])
          } else {
-             stocksDown.push(finalChart[j])
+             stocksDown.push(finalArr[j])
          }
  
          j++
@@ -1464,21 +1444,24 @@ function compileStocks(arr1, arr2, arr3, arr4) {
          stocksDown[i].bbMiddleDown = stocksDown[i].bbMiddle
          delete stocksDown[i].bbMiddle
      }
+
+     callback(stocksUp, stocksDown)
  }
- // PARENT TO APPEND ---------------------------------------------------
- const litterBox = document.getElementById('litter-box') 
- 
- function buildIt() {
+
+// ------------------BUILD OUT HTML-----------------------------------
+ function buildIt(arrUp,arrDown) {
+
+    rowOne.innerHTML = '' // THIS CLEARS PRIOR HTML BEFORE BUILD
   
- for (let i = 0; i < stocksDown.length; i++) {
+ for (let i = 0; i < arrDown.length; i++) {
  
  // DECONSTRUCTING UP AND DOWN VAR
-     const {avgVolumeUp, volumeYesterdayUp, changeUp, changesPercentageUp, priceUp, symbolUp, volumeUp, vwapUp, smaFiveTeenUp, smaTwentyUp, smaThirtyUp, smaFiftyUp, smaOneHunUp, smaTwoHunUp, emaTwelveUp, emaTwentySixUp, emaFiftyUp, emaTwoHunUp, wmaFiveTeenUp, wmaTwentyUp, wmaThirtyUp, wmaFiftyUp, wmaOneHunUp, wmaTwoHunUp, vwmaFiveTeenUp, vwmaTwentyUp, vwmaThirtyUp, vwmaFiftyUp, vwmaOneHunUp, vwmaTwoHunUp, macdUp, macdHistogramUp, macdSignalLineUp, rsiUp, stochasticDUp, stochasticKUp, stochasticSignalUp, cciUp, bbMiddleUp, bbLowerUp, bbUpperUp, williamsRUp} = stocksUp[i]
+     const {avgVolumeUp, volumeYesterdayUp, changeUp, changesPercentageUp, priceUp, symbolUp, volumeUp, vwapUp, smaFiveTeenUp, smaTwentyUp, smaThirtyUp, smaFiftyUp, smaOneHunUp, smaTwoHunUp, emaTwelveUp, emaTwentySixUp, emaFiftyUp, emaTwoHunUp, wmaFiveTeenUp, wmaTwentyUp, wmaThirtyUp, wmaFiftyUp, wmaOneHunUp, wmaTwoHunUp, vwmaFiveTeenUp, vwmaTwentyUp, vwmaThirtyUp, vwmaFiftyUp, vwmaOneHunUp, vwmaTwoHunUp, macdUp, macdHistogramUp, macdSignalLineUp, rsiUp, stochasticDUp, stochasticKUp, stochasticSignalUp, cciUp, bbMiddleUp, bbLowerUp, bbUpperUp, williamsRUp} = arrUp[i]
  
-     const {avgVolumeDown, volumeYesterdayDown, changeDown, changesPercentageDown, priceDown, symbolDown, volumeDown, vwapDown, smaFiveTeenDown, smaTwentyDown, smaThirtyDown, smaFiftyDown, smaOneHunDown, smaTwoHunDown, emaTwelveDown, emaTwentySixDown, emaFiftyDown, emaTwoHunDown, wmaFiveTeenDown, wmaTwentyDown, wmaThirtyDown, wmaFiftyDown, wmaOneHunDown, wmaTwoHunDown, vwmaFiveTeenDown, vwmaTwentyDown, vwmaThirtyDown, vwmaFiftyDown, vwmaOneHunDown, vwmaTwoHunDown, macdDown, macdHistogramDown, macdSignalLineDown, rsiDown, stochasticDDown, stochasticKDown, stochasticSignalDown, cciDown, bbMiddleDown, bbLowerDown, bbUpperDown , williamsRDown} = stocksDown[i]
+     const {avgVolumeDown, volumeYesterdayDown, changeDown, changesPercentageDown, priceDown, symbolDown, volumeDown, vwapDown, smaFiveTeenDown, smaTwentyDown, smaThirtyDown, smaFiftyDown, smaOneHunDown, smaTwoHunDown, emaTwelveDown, emaTwentySixDown, emaFiftyDown, emaTwoHunDown, wmaFiveTeenDown, wmaTwentyDown, wmaThirtyDown, wmaFiftyDown, wmaOneHunDown, wmaTwoHunDown, vwmaFiveTeenDown, vwmaTwentyDown, vwmaThirtyDown, vwmaFiftyDown, vwmaOneHunDown, vwmaTwoHunDown, macdDown, macdHistogramDown, macdSignalLineDown, rsiDown, stochasticDDown, stochasticKDown, stochasticSignalDown, cciDown, bbMiddleDown, bbLowerDown, bbUpperDown , williamsRDown} = arrDown[i]
  
 
-    // VOLUME INCREASE TODAY ------------------------
+    // VOLUME INCREASE TODAY --------------------------------------------------------
 
     // UP VOLUME INCREASE ----------------------------
 
@@ -1844,31 +1827,6 @@ function compileStocks(arr1, arr2, arr3, arr4) {
  
  }
  
- //------------ ADD SECOND SCRIPT FOR RUN ---------------------- // 
- function addSecondScript() {
-     const scripty = document.createElement('script')
-     scripty.setAttribute('src', 'function.js')
-     document.body.appendChild(scripty)
- }
- 
- //----- BUILD TO PAGE ----- // ------- AT SOME POINT THE FUNCTION WILL BE SET IN AN INTERVAL - HAVING THE ARRs CLEAR IS NOT A BAD IDEA
- var tech = document.getElementById('tech-in')
- async function buildToPage() {
- 
+//----- BUILD TO PAGE ----- // ------- AT SOME POINT THE FUNCTION WILL BE SET IN AN INTERVAL - HAVING THE ARRs CLEAR IS NOT A BAD IDEA
 
-     await filterTradableSymbols(nyseMasterKey, nasdaqMasterKey, compileStocks)
-
-     await technicalIndicators()
- 
-     filterUpDownStocks()
- 
-     rowOne.innerHTML = '' // THIS CLEARS PRIOR HTML BEFORE BUILD
- 
-     buildIt()
-     tech.innerHTML = ''
- 
- 
-     
- }
- 
- buildToPage()
+filterTradableSymbols(nyseMasterKey, nasdaqMasterKey, compileStocks)
