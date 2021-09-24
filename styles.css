@@ -734,7 +734,7 @@ nav {
    border: none;
    color: var(--light-text-color);
    cursor: pointer;
-   right: 5px;
+   right: 10px;
    top: 50%;
    transform: translateY(-50%);
    padding: 0;
