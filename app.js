@@ -38,11 +38,12 @@ const rowOne = document.getElementById('rowOne')
  
  // DATE CHECK FOR HOLIDAYS - !!!! NEED TO UPDATE WITH HOLIDAYS AS THE COMES
  let todayDate = `${year}-${month}-${date}`
+
  if (todayDate === '2021-07-05') {
      todayDate = '2021-07-02'
  } 
 
- // ------------------- TRADABLE STOCK TICKERS --------------------------------------------------------------------------------------------------
+ // ------------------- TRADABLE STOCK TICKERS replaced******** --------------------------------------------------------------------------------------------------
  /* async function tradableSymbols() {
      let myStocksNas = []
      let myStocksNyse = []
@@ -67,60 +68,64 @@ const rowOne = document.getElementById('rowOne')
  }
  */
 
-
  // ---------------------- FILTERS TRADABLE SYMBOLS THAT HAVE DROPPED BELOW THE THRESHOLD -------------------------------------
  async function filterTradableSymbols(arr1, arr2, compileCallback) {
      let nyseHolderDown = [] //THESE ARRS NEED TO BE ACCESSIBLE TO COMPILE CALLBACK
      let nyseHolderUp = [] //THESE ARRS NEED TO BE ACCESSIBLE TO COMPILE CALLBACK
      let nasdaqHolderDown = []
      let nasdaqHolderUp = []
-     try {
- // ------ FETCH NYSE
-     const res = await fetch('https://financialmodelingprep.com/api/v3/quotes/nyse?apikey=4d4593bc9e6bc106ee9d1cbd6400b218')
-     const dataNyse = await res.json()
-// ----- FILTER TRADABLE SYMBOLS ON NYSE THAT HAVE DROPPED
-     for (let i = 0; i < dataNyse.length; i++) {
-         if (dataNyse[i].changesPercentage < -7.5 && arr1.indexOf(dataNyse[i].symbol) > 0 && dataNyse[i].price > 1) {
-       nyseHolderDown.push(dataNyse[i])
-         }
-     }
- 
-     for (let i = 0; i < dataNyse.length; i++) {
-         if (dataNyse[i].changesPercentage > 7.5 && arr1.indexOf(dataNyse[i].symbol) > 0 && dataNyse[i].price > 1) {
-       nyseHolderUp.push(dataNyse[i])
-         }
-     }
- // ------ FETCH NASDAQ
-     const resTwo = await fetch('https://financialmodelingprep.com/api/v3/quotes/nasdaq?apikey=4d4593bc9e6bc106ee9d1cbd6400b218')
-     const dataNas = await resTwo.json()
+    try {
+        // ------ FETCH NYSE
+            const res = await fetch('https://financialmodelingprep.com/api/v3/quotes/nyse?apikey=4d4593bc9e6bc106ee9d1cbd6400b218')
+            const dataNyse = await res.json()
+        // ----- FILTER TRADABLE SYMBOLS ON NYSE THAT HAVE DROPPED
+            for (let i = 0; i < dataNyse.length; i++) {
+                if (dataNyse[i].changesPercentage < -7.5 && arr1.indexOf(dataNyse[i].symbol) > 0 && dataNyse[i].price > 1) {
+            nyseHolderDown.push(dataNyse[i])
+                }
+            }
+        
+            for (let i = 0; i < dataNyse.length; i++) {
+                if (dataNyse[i].changesPercentage > 7.5 && arr1.indexOf(dataNyse[i].symbol) > 0 && dataNyse[i].price > 1) {
+            nyseHolderUp.push(dataNyse[i])
+                }
+            }
+            
+        // ------ FETCH NASDAQ
+            const resTwo = await fetch('https://financialmodelingprep.com/api/v3/quotes/nasdaq?apikey=4d4593bc9e6bc106ee9d1cbd6400b218')
+            const dataNas = await resTwo.json()
 
- // ----- FILTER TRADABLE SYMBOLS ON NASDAQ THAT HAVE DROPPED
-     for (let i = 0; i < dataNas.length; i++) {
-         if (dataNas[i].changesPercentage < -7.5 && arr2.indexOf(dataNas[i].symbol) > 0 && dataNas[i].price > 1) {
-       nasdaqHolderDown.push(dataNas[i])
-         }
-     }
- 
-     for (let i = 0; i < dataNas.length; i++) {
-         if (dataNas[i].changesPercentage > 7.5 && arr2.indexOf(dataNas[i].symbol) > 0 && dataNas[i].price > 1) {
-       nasdaqHolderUp.push(dataNas[i])
-         }
-     }
-
-     } catch(e) {
+        // ----- FILTER TRADABLE SYMBOLS ON NASDAQ THAT HAVE DROPPED
+            for (let i = 0; i < dataNas.length; i++) {
+                if (dataNas[i].changesPercentage < -7.5 && arr2.indexOf(dataNas[i].symbol) > 0 && dataNas[i].price > 1) {
+            nasdaqHolderDown.push(dataNas[i])
+                }
+            }
+        
+            for (let i = 0; i < dataNas.length; i++) {
+                if (dataNas[i].changesPercentage > 7.5 && arr2.indexOf(dataNas[i].symbol) > 0 && dataNas[i].price > 1) {
+            nasdaqHolderUp.push(dataNas[i])
+                }
+            }
+            
+            
+    } 
+    catch(e) 
+    {
          
-     }
- 
+    }
+     
      compileCallback(nasdaqHolderDown, nyseHolderDown, nyseHolderUp, nasdaqHolderUp) // CALLBACK FOR STOCK FILTER
  }
  
- //---------------------- COMBINE AND SORT LARGEST DROP ------------------------- 
- let finalChartFatDown = [] // THIS HOLDS COMPILED AND SORTED STOCK TO GET TECHNICAL INDICATORS FROM AND MUTATE OBJECTS ! MOST IMPORTANT
- let finalChartFatUp = [] // THIS HOLDS COMPILED AND SORTED STOCK TO GET TECHNICAL INDICATORS FROM AND MUTATE OBJECTS ! MOST IMPORTANT
- let finalChart = [] // THIS HOLDS COMPILED AND SORTED STOCK TO GET TECHNICAL INDICATORS FROM AND MUTATE OBJECTS ! MOST IMPORTANT
+//---------------------- COMBINE AND SORT LARGEST DROP ------------------------- 
+let finalChartFatDown = [] // THIS HOLDS COMPILED AND SORTED STOCK TO GET TECHNICAL INDICATORS FROM AND MUTATE OBJECTS ! MOST IMPORTANT
+let finalChartFatUp = [] // THIS HOLDS COMPILED AND SORTED STOCK TO GET TECHNICAL INDICATORS FROM AND MUTATE OBJECTS ! MOST IMPORTANT
+ // MOST IMPORTANT
+let finalChart = [] // THIS HOLDS COMPILED AND SORTED STOCK TO GET TECHNICAL INDICATORS FROM AND MUTATE OBJECTS ! MOST IMPORTANT
  
- function compileStocks(arr1, arr2, arr3, arr4) {
- 
+function compileStocks(arr1, arr2, arr3, arr4) {
+  
  // ------- THIS IS A FILTER FOR WEIRD STOCK SYMBOLS THAT SLIP IN ----------
  
  let combinedStockDrop = []
@@ -129,16 +134,17 @@ const rowOne = document.getElementById('rowOne')
  let combinedStockUp = []
  combinedStockUp = combinedStockUp.concat(arr3, arr4)
 
+ //FILTER FOR PROPER SYMBOLS ----------------------------------------------------------------------
  const keys = /^[A-Z]{1,4}$/g
 
  finalChartFatDown = combinedStockDrop.filter(stock => {
-     return stock.symbol.match(keys) && !stock.symbol.match('CBO') && !stock.symbol.match('SPIR') // ! HAD TO ADD CBO BECAUSE ITS NOT TRADABLE BUT STILL ON LIST
+     return stock.symbol.match(keys)
  })
  
  finalChartFatUp = combinedStockUp.filter(stock => {
-     return stock.symbol.match(keys) && !stock.symbol.match('CBO') && !stock.symbol.match('SPIR') // ! HAD TO ADD CBO BECAUSE ITS NOT TRADABLE BUT STILL ON LIST
+     return stock.symbol.match(keys)
  })
- 
+ //SORT BY PERCENTAGE  UP AND DOWN ----------------------------------------------------------------------
  for (let i = 0; i < finalChartFatDown.length; i++) {
  finalChartFatDown.sort((a,b) => {
      return a.changesPercentage - b.changesPercentage
@@ -150,7 +156,8 @@ const rowOne = document.getElementById('rowOne')
      return b.changesPercentage - a.changesPercentage 
      })
    }
- // SLIM CHAT DOWN SO IT'S NOT BLOATED
+
+ // SLIM CHART DOWN TO TOP 10 -----------------------------------------------
    let slimChartDown = 4
    while (slimChartDown >= 0) {
      finalChart.unshift(finalChartFatDown[slimChartDown])
@@ -163,7 +170,11 @@ const rowOne = document.getElementById('rowOne')
      slimChartUp--
    }
 
+   technicalIndicators(finalChart)
  } 
+ 
+
+ 
  // ---------------------- TECHNICAL INDICATOR FUNCTIONS ------------------------------------------------------------------------------------
  
      // SMA FUNCTION ------------------------------------------------------------------------------------------------------------------------------------------
@@ -1184,30 +1195,45 @@ const rowOne = document.getElementById('rowOne')
     }
 
  // TA FUNCTION ---------------------------------------------------------------------
- async function technicalIndicators() {
+ async function technicalIndicators(finalArr) {
  
     let j = 0
     
     while (j < finalChart.length) { // LOOP FOR TECHNICAL SYMBOL
-
+       
         // THIS IS THE ALL MIGHTY SYMBOL USED FOR PULLS
         const {symbol} = finalChart[j]
-        
-        //THIS PULL IS FOR CLOSE PRICES TO CALC TAs PAST CLOSE DATA // 
-        const resSMA = await  fetch(`https://financialmodelingprep.com/api/v3/historical-price-full/${symbol}?apikey=4d4593bc9e6bc106ee9d1cbd6400b218`)
-        const dataSMA = await resSMA.json() // SMA PULL USED FOR OTHER CALCS
-         //THIS PULL IS FOR OSCILLATORS ALL CURRENT CLOSE DATA
-         const resOscPulled = await fetch(`https://financialmodelingprep.com/api/v3/quote-short/${symbol}?apikey=4d4593bc9e6bc106ee9d1cbd6400b218`)
-         const dataRecentPulled = await resOscPulled.json()
-                    
-        // VWAP ------------------------------------------------------------------------------------------------------------------------------------------------
-        const resVWAP = await  fetch(`https://financialmodelingprep.com/api/v3/historical-chart/5min/${symbol}?apikey=4d4593bc9e6bc106ee9d1cbd6400b218`)
-        const dataVWAP = await resVWAP.json()
+            //THIS PULL IS FOR CLOSE PRICES TO CALC TAs PAST CLOSE DATA // 
+            const resSMA = await  fetch(`https://financialmodelingprep.com/api/v3/historical-price-full/${symbol}?apikey=4d4593bc9e6bc106ee9d1cbd6400b218`)
+            const dataSMA = await resSMA.json() // SMA PULL USED FOR OTHER CALCS
+                // ERROR CHECK FOR EMPTY PULL
+                if (Object.keys(dataSMA).length === 0 && dataSMA.constructor === Object)
+                {
+                    return;
+                }
+
+            //THIS PULL IS FOR OSCILLATORS ALL CURRENT CLOSE DATA
+            const resOscPulled = await fetch(`https://financialmodelingprep.com/api/v3/quote-short/${symbol}?apikey=4d4593bc9e6bc106ee9d1cbd6400b218`)
+            const dataRecentPulled = await resOscPulled.json()
+                // ERROR CHECK FOR EMPTY PULL
+                if (Object.keys(dataRecentPulled).length === 0 && dataRecentPulled.constructor === Object)
+                {
+                    return;
+                }
+
+            // VWAP ------------------------------------------------------------------------------------------------------------------------------------------------
+            const resVWAP = await  fetch(`https://financialmodelingprep.com/api/v3/historical-chart/5min/${symbol}?apikey=4d4593bc9e6bc106ee9d1cbd6400b218`)
+            const dataVWAP = await resVWAP.json()
+                // ERROR CHECK FOR EMPTY PULL
+                if (Object.keys(dataVWAP).length === 0 && dataVWAP.constructor === Object)
+                {
+                    return;
+                }
 
             vwapFunction(finalChart, dataVWAP, j)
          
             // SMA -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-           smaFunction(finalChart, dataSMA, dataRecentPulled, j)
+            smaFunction(finalChart, dataSMA, dataRecentPulled, j)
 
             // WMA ------------------------------------------------------------------------------------------------------------------------------------------------------------------
             wmaFunction(finalChart, dataSMA, dataRecentPulled, j) 
@@ -1231,13 +1257,13 @@ const rowOne = document.getElementById('rowOne')
             cciFunction(finalChart, dataSMA, dataRecentPulled, j)
 
             // BOLLINGER BANDS ------------------------------------------------------------------------------------------------------------------------------------------------------------------
-           bollingerBandsFunction(finalChart, dataSMA, dataRecentPulled, j)
+            bollingerBandsFunction(finalChart, dataSMA, dataRecentPulled, j)
            
             // SET VOLUME PROPERTIES
             setVolume(finalChart, dataSMA, dataRecentPulled, j)
 
         j++ // UPDATE WHILE LOOP
-
+         
     }// THIS IS THE END OF LOOP
            
 } 
@@ -1452,9 +1478,9 @@ const rowOne = document.getElementById('rowOne')
      const {avgVolumeDown, volumeYesterdayDown, changeDown, changesPercentageDown, priceDown, symbolDown, volumeDown, vwapDown, smaFiveTeenDown, smaTwentyDown, smaThirtyDown, smaFiftyDown, smaOneHunDown, smaTwoHunDown, emaTwelveDown, emaTwentySixDown, emaFiftyDown, emaTwoHunDown, wmaFiveTeenDown, wmaTwentyDown, wmaThirtyDown, wmaFiftyDown, wmaOneHunDown, wmaTwoHunDown, vwmaFiveTeenDown, vwmaTwentyDown, vwmaThirtyDown, vwmaFiftyDown, vwmaOneHunDown, vwmaTwoHunDown, macdDown, macdHistogramDown, macdSignalLineDown, rsiDown, stochasticDDown, stochasticKDown, stochasticSignalDown, cciDown, bbMiddleDown, bbLowerDown, bbUpperDown , williamsRDown} = stocksDown[i]
  
 
-// VOLUME INCREASE TODAY ------------------------
+    // VOLUME INCREASE TODAY ------------------------
 
-// UP VOLUME INCREASE ----------------------------
+    // UP VOLUME INCREASE ----------------------------
 
    let volumeIncreaseUp = 0;
 
@@ -1467,7 +1493,7 @@ const rowOne = document.getElementById('rowOne')
         let decrease = avgVolumeUp - volumeUp;
         volumeIncreaseUp = (decrease / avgVolumeUp) * -100
     }
-// DOWN VOLUME INCREASE ----------------------------
+        // DOWN VOLUME INCREASE ----------------------------
      let volumeIncreaseDown = 0;
 
     if (volumeDown > avgVolumeDown) {
@@ -1480,9 +1506,9 @@ const rowOne = document.getElementById('rowOne')
         volumeIncreaseDown = (decrease / avgVolumeDown) * -100
     }
 
-// TO GET AVERAGE DAILY VOLUME FOR YESTERDAY ----------------
+    // TO GET AVERAGE DAILY VOLUME FOR YESTERDAY ----------------
 
-// YESTERDAY UP VOLUME INCREASE ----------------------------
+    // YESTERDAY UP VOLUME INCREASE ----------------------------
 
    let yesterdayVolIncreaseUp = 0;
 
@@ -1496,7 +1522,7 @@ const rowOne = document.getElementById('rowOne')
         yesterdayVolIncreaseUp = (decrease / avgVolumeUp) * -100
     }
 
-// YESTERDAY DOWN VOLUME INCREASE ----------------------------
+    // YESTERDAY DOWN VOLUME INCREASE ----------------------------
 
    let yesterdayVolIncreaseDown = 0;
 

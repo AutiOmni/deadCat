@@ -1203,35 +1203,38 @@ if ($(window).width() > 700)
     async function technicalIndicators(symbol, searchedSymbol) {
     
         let j = 0
+
         try {
+
         while (j < 1) { // LOOP FOR TECHNICAL SEARCHED TICKER
 
-            try {
-            // ------ FETCH NASDAQ
-        const resTwo = await fetch('https://financialmodelingprep.com/api/v3/quotes/nasdaq?apikey=4d4593bc9e6bc106ee9d1cbd6400b218')
-        const dataNas = await resTwo.json()
+        try {
+                // ------ FETCH NASDAQ
+            const resTwo = await fetch('https://financialmodelingprep.com/api/v3/quotes/nasdaq?apikey=4d4593bc9e6bc106ee9d1cbd6400b218')
+            const dataNas = await resTwo.json()
 
-                    for (let i = 0; i < dataNas.length; i++)
-                    {
-                        if (dataNas[i].symbol == symbol) {
-                            searchedSymbol = dataNas[i]
-                            break;
+                        for (let i = 0; i < dataNas.length; i++)
+                        {
+                            if (dataNas[i].symbol == symbol) {
+                                searchedSymbol = dataNas[i]
+                                break;
+                            }
                         }
-                    }
-                
-            // ------ FETCH NYSE
-        const res = await fetch('https://financialmodelingprep.com/api/v3/quotes/nyse?apikey=4d4593bc9e6bc106ee9d1cbd6400b218')
-        const dataNyse = await res.json()
+                    
+                // ------ FETCH NYSE
+            const res = await fetch('https://financialmodelingprep.com/api/v3/quotes/nyse?apikey=4d4593bc9e6bc106ee9d1cbd6400b218')
+            const dataNyse = await res.json()
 
-                    for (let i = 0; i < dataNyse.length; i++)
-                    {
-                        if (dataNyse[i].symbol == symbol) {
-                            searchedSymbol = dataNyse[i]
-                            break;
+                        for (let i = 0; i < dataNyse.length; i++)
+                        {
+                            if (dataNyse[i].symbol == symbol) {
+                                searchedSymbol = dataNyse[i]
+                                break;
+                            }
                         }
-                    }
+                        console.log(symbol, searchedSymbol)
                 }
-                catch(e) 
+            catch(e) 
                 {
                     alert('Unable locate stock ticker. Please check your input and try again!');
                 }
@@ -1245,14 +1248,36 @@ if ($(window).width() > 700)
             //THIS PULL IS FOR CLOSE PRICES TO CALC TAs PAST CLOSE DATA // 
             const resSMA = await  fetch(`https://financialmodelingprep.com/api/v3/historical-price-full/${symbol}?apikey=4d4593bc9e6bc106ee9d1cbd6400b218`)
             const dataSMA = await resSMA.json() // SMA PULL USED FOR OTHER CALCS
+                // ERROR CHECK FOR EMPTY PULL
+                if (Object.keys(dataSMA).length === 0 && dataSMA.constructor === Object)
+                {
+                    alert('There may be a technical issue with this ticker. Please check your input and try again later!');
+                    $('.loading-search').css('display', 'none');
+                    return;
+                }
 
             //THIS PULL IS FOR OSCILLATORS ALL CURRENT CLOSE DATA
             const resOscPulled = await fetch(`https://financialmodelingprep.com/api/v3/quote-short/${symbol}?apikey=4d4593bc9e6bc106ee9d1cbd6400b218`)
             const dataRecentPulled = await resOscPulled.json()
+                // ERROR CHECK FOR EMPTY PULL
+                if (Object.keys(dataRecentPulled).length === 0 && dataRecentPulled.constructor === Object)
+                {
+                    alert('There may be a technical issue with this ticker. Please check your input and try again later!');
+                    $('.loading-search').css('display', 'none');
+                    return;
+                }
 
             // VWAP ------------------------------------------------------------------------------------------------------------------------------------------------
             const resVWAP = await  fetch(`https://financialmodelingprep.com/api/v3/historical-chart/5min/${symbol}?apikey=4d4593bc9e6bc106ee9d1cbd6400b218`)
             const dataVWAP = await resVWAP.json()
+
+                // ERROR CHECK FOR EMPTY PULL
+                if (Object.keys(dataVWAP).length === 0 && dataVWAP.constructor === Object)
+                {
+                    alert('There may be a technical issue with this ticker. Please check your input and try again later!');
+                    $('.loading-search').css('display', 'none');
+                    return;
+                }
 
                 vwapFunction(searchedSymbol, dataVWAP)
             
