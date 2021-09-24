@@ -162,7 +162,6 @@ if ($(window).width() > 700)
         $('.search-text').blur(function() {
 
             if ($(this).val() == '') {
-                console.log('out')
                 return;
             }
                 // GET VALUE SYMBOL NAME
