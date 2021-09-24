@@ -1,13 +1,4 @@
-const rowOne = document.getElementById('rowOne') 
-
- //------------ ADD SECOND SCRIPT FOR RUN ---------------------- // 
- function addSecondScript() {
-    const scripty = document.createElement('script')
-    scripty.setAttribute('src', 'function.js')
-    document.body.appendChild(scripty)
-}
-
- /// DATE REFERENCE FOR MARKET DATA PULLS ----------------------------------------
+/// DATE REFERENCE FOR MARKET DATA PULLS ----------------------------------------
 
  const today = new Date
  const year = today.getFullYear()
@@ -48,10 +39,18 @@ const rowOne = document.getElementById('rowOne')
 
  if (todayDate === '2021-07-05') {
      todayDate = '2021-07-02'
- } 
+ }
+ 
+//------------ ADD SECOND SCRIPT FOR RUN ---------------------- // 
+function addSecondScript() {
+    const scripty = document.createElement('script')
+    scripty.setAttribute('src', 'function.js')
+    document.body.appendChild(scripty)
+}
+
 
  // ---------------------- FILTERS TRADABLE SYMBOLS THAT HAVE DROPPED BELOW THE THRESHOLD -------------------------------------
- async function filterTradableSymbols(arr1, arr2, compileCallback) {
+async function filterTradableSymbols(arr1, arr2, compileCallback) {
      let nyseHolderDown = [] //THESE ARRS NEED TO BE ACCESSIBLE TO COMPILE CALLBACK
      let nyseHolderUp = [] //THESE ARRS NEED TO BE ACCESSIBLE TO COMPILE CALLBACK
      let nasdaqHolderDown = []
@@ -1449,8 +1448,8 @@ function compileStocks(arr1, arr2, arr3, arr4, callback) {
  }
 
 // ------------------BUILD OUT HTML-----------------------------------
- function buildIt(arrUp,arrDown) {
-
+ function buildIt(arrUp, arrDown) {
+    const rowOne = document.getElementById('rowOne')
     rowOne.innerHTML = '' // THIS CLEARS PRIOR HTML BEFORE BUILD
   
  for (let i = 0; i < arrDown.length; i++) {
