@@ -819,6 +819,7 @@ nav {
 
     .symbol-box {
         width: calc(50%);
+        font-size: 12.5px;
     }
 
     .row-ex {
@@ -826,10 +827,6 @@ nav {
 
     #rowOne {
         width: 100%;
-    }
-
-    .symbol-box {
-        font-size: 12.5px;
     }
 
     .selector-info-r
@@ -889,17 +886,22 @@ nav {
     }
 
     .active-search .search-text {
-        width: 65px;
+        width: 67.5px;
         background-color: var(--light-text-color);
     }   
 
     .active-search .search-icon {
         height: 15px;
         width: 15px;
-        left: 57.5px;
+        left: 60px;
         color: var(--main-background)
       }
 
   }
 
 
+@media (max-width: 500px) {
+    .symbol-box {
+        font-size: 10.5px;
+    }
+}
