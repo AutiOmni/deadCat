@@ -862,6 +862,10 @@ nav {
       #deadCat-header {
         height: 30px;
       }
+
+      .header h1 {
+        left: 46.8%;
+    }
       
     .info-cont-one.active-info-one {
         transform: translateY(-25%);
@@ -881,6 +885,10 @@ nav {
 
     #tech-in {
         font-size: .65em;
+    }
+
+    #popup-close {
+        right: 0;
     }
 
   }
