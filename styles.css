@@ -737,6 +737,7 @@ nav {
    right: 5px;
    top: 50%;
    transform: translateY(-50%);
+   padding: 0;
   }
 
   #popup-close:hover {
@@ -885,10 +886,6 @@ nav {
 
     #tech-in {
         font-size: .65em;
-    }
-
-    #popup-close {
-        right: 0;
     }
 
   }
