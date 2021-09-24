@@ -888,6 +888,18 @@ nav {
         font-size: .65em;
     }
 
+    .active-search .search-text {
+        width: 65px;
+        background-color: var(--light-text-color);
+    }   
+
+    .active-search .search-icon {
+        height: 15px;
+        width: 15px;
+        left: 57.5px;
+        color: var(--main-background)
+      }
+
   }
 
 
