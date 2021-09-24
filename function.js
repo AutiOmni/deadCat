@@ -562,8 +562,8 @@ if ($(window).width() > 700)
                     let macdTwelve = [] // ARRs USED FOR MACD TWELVE HISTORY
                     let macdTwentySix = [] // ARRs USED FOR MACD TWENTY SIX HISTORY
                    
-// EMA TWELVE ----------------------------------------------------------------------
-try {
+        // EMA TWELVE ----------------------------------------------------------------------
+            try {
                     if (dataPull.historical.length <= 24) {
                         searchedTicker.emaTwelve = 'No Data'
                     } else {
@@ -598,7 +598,7 @@ try {
                         prevDayEmaSub = 0 
                     }
 
- // EMA TWENTY SIX ----------------------------------------------------------------------
+        // EMA TWENTY SIX ----------------------------------------------------------------------
 
                     if (dataPull.historical.length <= 51) {
                         searchedTicker.emaTwentySix = 'No Data'
@@ -630,12 +630,12 @@ try {
                         searchedTicker.emaTwentySix = arrEma[0].toFixed(2) 
                         arrEma.pop() 
                         prevDayEmaSub = 0
-                    }   
+                            }   
 
-// EMA FIFTY -----------------------------------------------------------------------------
+        // EMA FIFTY -----------------------------------------------------------------------------
 
-                    if (dataPull.historical.length <= 100) {
-                        searchedTicker.emaFifty = 'No Data'
+                     if (dataPull.historical.length <= 100) {
+                    searchedTicker.emaFifty = 'No Data'
                     } else {
                     while (emaFifty >= 49) {
                         prevDayEmaSub += dataPull.historical[emaFifty].close
@@ -662,7 +662,7 @@ try {
                         prevDayEmaSub = 0
                     }
 
-// EMA TWO HUNDRED -----------------------------------------------------------------------------
+            // EMA TWO HUNDRED -----------------------------------------------------------------------------
 
                     if (dataPull.historical.length <= 400) {
                         searchedTicker.emaTwoHun = 'No Data'
@@ -710,35 +710,35 @@ try {
         let averageMacd = []
         let iMacd = 8
 
-    try {
+        try {
 
-        while (iMacd >= 0) {
-            averageMacd.unshift(arr1[iMacd] - arr2[iMacd])
-            iMacd--
-        }
-        let averageSum = averageMacd.reduce((a,b) => a + b)
-        let finalAverageMacd = averageSum / 9
-        let macdSignalLine = (2/9) * (searchedTicker.macd - finalAverageMacd) + finalAverageMacd
-        searchedTicker.macdSignalLine = macdSignalLine.toFixed(2)
-        // HISTORGRAM CALC ------------------------------------- IF HISTOGRAM GOES FROM NEGATIVE TO POSITIVE IT IS BULLISH
-        let histogram = searchedTicker.macd - searchedTicker.macdSignalLine
-        searchedTicker.macdHistogram = histogram.toFixed(2)
-    // FOR NO DATA TO PULL FROM
-        if (searchedTicker.macdHistogram === 'NaN') {
-            searchedTicker.macdHistogram = 'No Data'
-        }
-        if (searchedTicker.macd === 'NaN') {
-            searchedTicker.macd = 'No Data'
-        }
-        if (searchedTicker.macdSignalLine === 'NaN') {
-            searchedTicker.macdSignalLine = 'No Data'
-        }
+            while (iMacd >= 0) {
+                averageMacd.unshift(arr1[iMacd] - arr2[iMacd])
+                iMacd--
+            }
+            let averageSum = averageMacd.reduce((a,b) => a + b)
+            let finalAverageMacd = averageSum / 9
+            let macdSignalLine = (2/9) * (searchedTicker.macd - finalAverageMacd) + finalAverageMacd
+            searchedTicker.macdSignalLine = macdSignalLine.toFixed(2)
+            // HISTORGRAM CALC ------------------------------------- IF HISTOGRAM GOES FROM NEGATIVE TO POSITIVE IT IS BULLISH
+            let histogram = searchedTicker.macd - searchedTicker.macdSignalLine
+            searchedTicker.macdHistogram = histogram.toFixed(2)
+        // FOR NO DATA TO PULL FROM
+            if (searchedTicker.macdHistogram === 'NaN') {
+                searchedTicker.macdHistogram = 'No Data'
+            }
+            if (searchedTicker.macd === 'NaN') {
+                searchedTicker.macd = 'No Data'
+            }
+            if (searchedTicker.macdSignalLine === 'NaN') {
+                searchedTicker.macdSignalLine = 'No Data'
+            }
 
-        }
-        catch(e) 
-        {
-            
-        }
+            }
+            catch(e) 
+            {
+                
+            }
 
     }
     // RSI FUNCTION ------------------------------------------------------------------------------------------------------------------------------------------      
@@ -756,44 +756,44 @@ try {
         let pastUpPeriod = 0
 
         try {
-    // CHECK TO SEE IF DATA PULL CAN PULL ENOUGH DATA TO BE EFFECTIVE 
-        if (dataPull.historical.length <= 14) {
-            searchedTicker.rsi = 'No Data'
-        } else {
-        // LOOP FOR AVERAGE
-        while (iRSI >= 0) {
-            if (dataPull.historical[iRSI].close > dataPull.historical[iRSIAdjusted].close) {
-                upMove += (dataPull.historical[iRSI].close - dataPull.historical[iRSIAdjusted].close)
+        // CHECK TO SEE IF DATA PULL CAN PULL ENOUGH DATA TO BE EFFECTIVE 
+            if (dataPull.historical.length <= 14) {
+                searchedTicker.rsi = 'No Data'
             } else {
-                downMove += (dataPull.historical[iRSIAdjusted].close - dataPull.historical[iRSI].close)
-            } 
-        iRSI--
-        iRSIAdjusted--
-        }
-
-        let averageUp = upMove / 14
-        let averageDown = downMove / 14
-
-        // MOST RECENT DIFFERENCE
-        if (newPrice > dataPull.historical[0].close) {
-                recentUpper = newPrice - dataPull.historical[0].close
-            } else {
-                recentDowner = dataPull.historical[0].close - newPrice
+            // LOOP FOR AVERAGE
+            while (iRSI >= 0) {
+                if (dataPull.historical[iRSI].close > dataPull.historical[iRSIAdjusted].close) {
+                    upMove += (dataPull.historical[iRSI].close - dataPull.historical[iRSIAdjusted].close)
+                } else {
+                    downMove += (dataPull.historical[iRSIAdjusted].close - dataPull.historical[iRSI].close)
+                } 
+            iRSI--
+            iRSIAdjusted--
             }
-    
-        pastUpPeriod = ((averageUp * 13) + recentUpper) / 14
-        pastDownPeriod = ((averageDown * 13) + recentDowner) / 14
 
-        let rsi = 100 - (100 / (1 + pastUpPeriod/pastDownPeriod))
-        searchedTicker.rsi = rsi.toFixed(2)
+            let averageUp = upMove / 14
+            let averageDown = downMove / 14
 
-        }
+            // MOST RECENT DIFFERENCE
+            if (newPrice > dataPull.historical[0].close) {
+                    recentUpper = newPrice - dataPull.historical[0].close
+                } else {
+                    recentDowner = dataPull.historical[0].close - newPrice
+                }
+        
+            pastUpPeriod = ((averageUp * 13) + recentUpper) / 14
+            pastDownPeriod = ((averageDown * 13) + recentDowner) / 14
 
-        }
-        catch(e) 
-        {
-            
-        }
+            let rsi = 100 - (100 / (1 + pastUpPeriod/pastDownPeriod))
+            searchedTicker.rsi = rsi.toFixed(2)
+
+            }
+
+            }
+            catch(e) 
+            {
+                
+            }
 
     } 
     // STOCHASTIC OSCILLATOR ------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -807,170 +807,91 @@ try {
         let soHighHolder = []
         let highestHigh = 0
         let lowestLow = 0
-    // FIRST %D
-        let topForm = []
-        let bottomForm = []
-    // SECOND %D
-        let topFormTwo = []
-        let bottomFormTwo = []
-    // THIRD %D
-        let topFormThree = []
-        let bottomFormThree = []
-    // HOLDING SET OF %D FOR 14 3 3 
-        let signalLineHolder = []
+            // FIRST %D
+                let topForm = []
+                let bottomForm = []
+            // SECOND %D
+                let topFormTwo = []
+                let bottomFormTwo = []
+            // THIRD %D
+                let topFormThree = []
+                let bottomFormThree = []
+            // HOLDING SET OF %D FOR 14 3 3 
+                let signalLineHolder = []
 
-       try { 
-    if (dataPull.historical.length < 18) {
-    searchedTicker.stochasticK = 'No Data'
-    } else {
+            try { 
+            if (dataPull.historical.length < 18) {
+            searchedTicker.stochasticK = 'No Data'
+            } else {
 
-    // GETTING HIGHS AND LOWS OF PERIOD------------------------------------------------------
+            // GETTING HIGHS AND LOWS OF PERIOD------------------------------------------------------
 
-            while (iSO >= 0) {
-                soLowHolder.push(dataPull.historical[iSO].low)
-                soHighHolder.push(dataPull.historical[iSO].high)
-                iSO--
-            }
-
-            soHighHolder.push(newPrice)
-            soLowHolder.push(newPrice)
-
-            
-            highestHigh = Math.max(...soHighHolder)
-            lowestLow = Math.min(...soLowHolder)
-
-            if (lowestLow === newPrice) {
-                newPrice = dataPull.historical[0].close
-            }
-
-            if (highestHigh === newPrice) {
-                newPrice = dataPull.historical[0].close
-            }
-            
-            topForm.push(newPrice - lowestLow)
-            bottomForm.push(highestHigh - lowestLow)
-
-            //FOR %K
-            searchedTicker.stochasticK = (((newPrice - lowestLow) / (highestHigh - lowestLow)) * 100).toFixed(2)
-                // VERY IMPORT - REWORK THE STOCHASTIC NAMES AND THATS WHY ITS UNDEFINDED. REWRITE TO SHOW IN TECHIN
-
-    // RESET HOLDER AND VARs --------------------------------------------------------
-
-        iSO = 14
-        soLowHolder = []
-        soHighHolder = []
-        highestHigh = 0
-        lowestLow = 0
-
-    // GETTING HIGHS AND LOWS OF PERIOD-----------------------------------------------
-
-                while (iSO >= 1) {
-                        soLowHolder.push(dataPull.historical[iSO].low)
-                        soHighHolder.push(dataPull.historical[iSO].high)
-                        iSO--
-                }
-
-                highestHigh = Math.max(...soHighHolder)
-                lowestLow = Math.min(...soLowHolder)
-
-                topForm.push(dataPull.historical[0].close - lowestLow)
-                bottomForm.push(highestHigh - lowestLow)
-
-                topFormTwo.push(dataPull.historical[0].close - lowestLow)
-                bottomFormTwo.push(highestHigh - lowestLow)
-
-
-    // RESET HOLDER AND VARs ------------------------------------------------
-
-            iSO = 15
-            soLowHolder = []
-            soHighHolder = []
-            highestHigh = 0
-            lowestLow = 0
-
-    // GETTING HIGHS AND LOWS OF PERIOD-----------------------------------
-
-                while (iSO >= 2) {
-                    
-                    soLowHolder.push(dataPull.historical[iSO].low)
-                    soHighHolder.push(dataPull.historical[iSO].high)
-                    iSO--
-                }
-                highestHigh = Math.max(...soHighHolder)
-                lowestLow = Math.min(...soLowHolder)
-
-                topForm.push(dataPull.historical[1].close - lowestLow)
-                bottomForm.push(highestHigh - lowestLow)
-
-                topFormTwo.push(dataPull.historical[1].close - lowestLow)
-                bottomFormTwo.push(highestHigh - lowestLow)
-
-                topFormThree.push(dataPull.historical[1].close - lowestLow)
-                bottomFormThree.push(highestHigh - lowestLow)
-
-    // AFTER 3 WE SUM IT UP --------------- TO GET 1 OF THE 3 SMOOTHS FOR 14 3 3------------------------------------------
-
-                let sumTop = topForm.reduce((a,b) => a + b, 0)
-                let sumBottom = bottomForm.reduce((a,b) => a + b, 0)
-
-                let slowD = (sumTop / sumBottom) * 100
-                
-                // FOR %D
-                searchedTicker.stochasticD = (slowD / 3).toFixed(2)
-
-                signalLineHolder.push(slowD)
-  
-
-    //RESET VARS ---------------------------------------------------------------------
-
-                iSO = 16
-                soLowHolder = []
-                soHighHolder = []
-                highestHigh = 0
-                lowestLow = 0
-                sumTop = 0
-                sumBottom = 0
-                slowD = 0
-
-    // GETTING HIGHS AND LOWS OF PERIOD------------------------------------------------
-
-                    while (iSO >= 3) { 
+                    while (iSO >= 0) {
                         soLowHolder.push(dataPull.historical[iSO].low)
                         soHighHolder.push(dataPull.historical[iSO].high)
                         iSO--
                     }
+
+                    soHighHolder.push(newPrice)
+                    soLowHolder.push(newPrice)
+
+                    
                     highestHigh = Math.max(...soHighHolder)
                     lowestLow = Math.min(...soLowHolder)
 
-                    topFormTwo.push(dataPull.historical[2].close - lowestLow)
-                    bottomFormTwo.push(highestHigh - lowestLow)
+                    if (lowestLow === newPrice) {
+                        newPrice = dataPull.historical[0].close
+                    }
 
-                    topFormThree.push(dataPull.historical[2].close - lowestLow)
-                    bottomFormThree.push(highestHigh - lowestLow)
+                    if (highestHigh === newPrice) {
+                        newPrice = dataPull.historical[0].close
+                    }
+                    
+                    topForm.push(newPrice - lowestLow)
+                    bottomForm.push(highestHigh - lowestLow)
 
-    // AFTER 3 WE SUM IT UP --------------- TO GET 2 OF THE 3 SMOOTHS FOR 14 3 3------------------------------------------
+                    //FOR %K
+                    searchedTicker.stochasticK = (((newPrice - lowestLow) / (highestHigh - lowestLow)) * 100).toFixed(2)
+                        // VERY IMPORT - REWORK THE STOCHASTIC NAMES AND THATS WHY ITS UNDEFINDED. REWRITE TO SHOW IN TECHIN
 
-                    sumTop = topFormTwo.reduce((a,b) => a + b, 0)
-                    sumBottom = bottomFormTwo.reduce((a,b) => a + b, 0)
+            // RESET HOLDER AND VARs --------------------------------------------------------
 
-                    slowD = (sumTop / sumBottom) * 100
+                iSO = 14
+                soLowHolder = []
+                soHighHolder = []
+                highestHigh = 0
+                lowestLow = 0
 
-                    signalLineHolder.push(slowD)
+            // GETTING HIGHS AND LOWS OF PERIOD-----------------------------------------------
 
-    //RESET VARS ---------------------------------------------
+                        while (iSO >= 1) {
+                                soLowHolder.push(dataPull.historical[iSO].low)
+                                soHighHolder.push(dataPull.historical[iSO].high)
+                                iSO--
+                        }
 
-                    iSO = 17
+                        highestHigh = Math.max(...soHighHolder)
+                        lowestLow = Math.min(...soLowHolder)
+
+                        topForm.push(dataPull.historical[0].close - lowestLow)
+                        bottomForm.push(highestHigh - lowestLow)
+
+                        topFormTwo.push(dataPull.historical[0].close - lowestLow)
+                        bottomFormTwo.push(highestHigh - lowestLow)
+
+
+            // RESET HOLDER AND VARs ------------------------------------------------
+
+                    iSO = 15
                     soLowHolder = []
                     soHighHolder = []
                     highestHigh = 0
                     lowestLow = 0
-                    sumTop = 0
-                    sumBottom = 0
-                    slowD = 0
 
-    // GETTING HIGHS AND LOWS OF PERIOD-----------------------------------
+            // GETTING HIGHS AND LOWS OF PERIOD-----------------------------------
 
-                        while (iSO >= 4) {
+                        while (iSO >= 2) {
+                            
                             soLowHolder.push(dataPull.historical[iSO].low)
                             soHighHolder.push(dataPull.historical[iSO].high)
                             iSO--
@@ -978,37 +899,116 @@ try {
                         highestHigh = Math.max(...soHighHolder)
                         lowestLow = Math.min(...soLowHolder)
 
-                        topFormThree.push(dataPull.historical[3].close - lowestLow)
+                        topForm.push(dataPull.historical[1].close - lowestLow)
+                        bottomForm.push(highestHigh - lowestLow)
+
+                        topFormTwo.push(dataPull.historical[1].close - lowestLow)
+                        bottomFormTwo.push(highestHigh - lowestLow)
+
+                        topFormThree.push(dataPull.historical[1].close - lowestLow)
                         bottomFormThree.push(highestHigh - lowestLow)
 
+            // AFTER 3 WE SUM IT UP --------------- TO GET 1 OF THE 3 SMOOTHS FOR 14 3 3------------------------------------------
 
-    // AFTER 3 WE SUM IT UP --------------- TO GET 3 OF THE 3 SMOOTHS FOR 14 3 3------------------------------------------
+                        let sumTop = topForm.reduce((a,b) => a + b, 0)
+                        let sumBottom = bottomForm.reduce((a,b) => a + b, 0)
+
+                        let slowD = (sumTop / sumBottom) * 100
                         
-                        sumTop = topFormThree.reduce((a,b) => a + b, 0)
-                        sumBottom = bottomFormThree.reduce((a,b) => a + b, 0)
-
-                        slowD = (sumTop / sumBottom) * 100
+                        // FOR %D
+                        searchedTicker.stochasticD = (slowD / 3).toFixed(2)
 
                         signalLineHolder.push(slowD)
+        
 
-                // ----------- TALLY UP LAST SMOOTHING -------------------------------
-                        const sumStochD = signalLineHolder.reduce((a,b) => a + b, 0)
-                        let smaD = sumStochD / 3
+            //RESET VARS ---------------------------------------------------------------------
 
-                        if (smaD < 0) {
-                            smaD *= -1
-                            searchedTicker.stochasticSignal = smaD.toFixed(2)
-                        } else {
-                            searchedTicker.stochasticSignal = smaD.toFixed(2)
+                        iSO = 16
+                        soLowHolder = []
+                        soHighHolder = []
+                        highestHigh = 0
+                        lowestLow = 0
+                        sumTop = 0
+                        sumBottom = 0
+                        slowD = 0
+
+            // GETTING HIGHS AND LOWS OF PERIOD------------------------------------------------
+
+                            while (iSO >= 3) { 
+                                soLowHolder.push(dataPull.historical[iSO].low)
+                                soHighHolder.push(dataPull.historical[iSO].high)
+                                iSO--
+                            }
+                            highestHigh = Math.max(...soHighHolder)
+                            lowestLow = Math.min(...soLowHolder)
+
+                            topFormTwo.push(dataPull.historical[2].close - lowestLow)
+                            bottomFormTwo.push(highestHigh - lowestLow)
+
+                            topFormThree.push(dataPull.historical[2].close - lowestLow)
+                            bottomFormThree.push(highestHigh - lowestLow)
+
+            // AFTER 3 WE SUM IT UP --------------- TO GET 2 OF THE 3 SMOOTHS FOR 14 3 3------------------------------------------
+
+                            sumTop = topFormTwo.reduce((a,b) => a + b, 0)
+                            sumBottom = bottomFormTwo.reduce((a,b) => a + b, 0)
+
+                            slowD = (sumTop / sumBottom) * 100
+
+                            signalLineHolder.push(slowD)
+
+            //RESET VARS ---------------------------------------------
+
+                            iSO = 17
+                            soLowHolder = []
+                            soHighHolder = []
+                            highestHigh = 0
+                            lowestLow = 0
+                            sumTop = 0
+                            sumBottom = 0
+                            slowD = 0
+
+            // GETTING HIGHS AND LOWS OF PERIOD-----------------------------------
+
+                                while (iSO >= 4) {
+                                    soLowHolder.push(dataPull.historical[iSO].low)
+                                    soHighHolder.push(dataPull.historical[iSO].high)
+                                    iSO--
+                                }
+                                highestHigh = Math.max(...soHighHolder)
+                                lowestLow = Math.min(...soLowHolder)
+
+                                topFormThree.push(dataPull.historical[3].close - lowestLow)
+                                bottomFormThree.push(highestHigh - lowestLow)
+
+
+            // AFTER 3 WE SUM IT UP --------------- TO GET 3 OF THE 3 SMOOTHS FOR 14 3 3------------------------------------------
+                                
+                                sumTop = topFormThree.reduce((a,b) => a + b, 0)
+                                sumBottom = bottomFormThree.reduce((a,b) => a + b, 0)
+
+                                slowD = (sumTop / sumBottom) * 100
+
+                                signalLineHolder.push(slowD)
+
+                        // ----------- TALLY UP LAST SMOOTHING -------------------------------
+                                const sumStochD = signalLineHolder.reduce((a,b) => a + b, 0)
+                                let smaD = sumStochD / 3
+
+                                if (smaD < 0) {
+                                    smaD *= -1
+                                    searchedTicker.stochasticSignal = smaD.toFixed(2)
+                                } else {
+                                    searchedTicker.stochasticSignal = smaD.toFixed(2)
+                                }
+
+                }
+
                         }
-
-        }
-
-                }
-                catch(e) 
-                {
-                    
-                }
+                        catch(e) 
+                        {
+                            
+                        }
 
     }
    // WILLIAMS %R 14 ------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -1101,7 +1101,7 @@ try {
 
         let smaCul = 0
         let closeHolder = []
-try {
+        try {
         if (dataPull.historical.length < 19) {
             searchedTicker.bbUpper = 'No Data'
             searchedTicker.bbLower = 'No Data'
@@ -1133,12 +1133,12 @@ try {
                 searchedTicker.bbUpper = bbUpper.toFixed(2)
                 searchedTicker.bbLower = bbLower.toFixed(2)
                 searchedTicker.bbMiddle = smaTwenty.toFixed(2)
-        }
-    }
-    catch(e) 
-    {
-          
-    }
+                    }
+                }
+                catch(e) 
+                {
+                    
+                }
 
     }
     // VWAP FUNCTION ------------------------------------------------------------------------------------------------------------------------------------------       
@@ -1203,8 +1203,8 @@ try {
     async function technicalIndicators(symbol, searchedSymbol) {
     
         let j = 0
-    try {
-        while (j < 1) { // LOOP FOR TECHNICAL searchedTicker
+        try {
+        while (j < 1) { // LOOP FOR TECHNICAL SEARCHED TICKER
 
             try {
             // ------ FETCH NASDAQ
@@ -1218,13 +1218,8 @@ try {
                             break;
                         }
                     }
-                }
-                catch(e) 
-                {
-                    alert('Unable locate stock ticker. Please check your input and try again!')
-                }
                 
-                try {
+            // ------ FETCH NYSE
         const res = await fetch('https://financialmodelingprep.com/api/v3/quotes/nyse?apikey=4d4593bc9e6bc106ee9d1cbd6400b218')
         const dataNyse = await res.json()
 
@@ -1239,6 +1234,13 @@ try {
                 catch(e) 
                 {
                     alert('Unable locate stock ticker. Please check your input and try again!');
+                }
+                // WILL BREAK OUT IF SYMBOL DOESNT EXIST
+                if (searchedSymbol.price == undefined) 
+                {
+                    alert('Unable locate stock ticker. Please check your input and try again!');
+                    $('.loading-search').css('display', 'none');
+                    return;
                 }
             //THIS PULL IS FOR CLOSE PRICES TO CALC TAs PAST CLOSE DATA // 
             const resSMA = await  fetch(`https://financialmodelingprep.com/api/v3/historical-price-full/${symbol}?apikey=4d4593bc9e6bc106ee9d1cbd6400b218`)
@@ -1345,7 +1347,7 @@ try {
         }
 
         techIn.html(   
-        `     <!----------------------------------- SEARCHED SYMBOL --------------------------------------->
+        `<!----------------------------------- SEARCHED SYMBOL --------------------------------------->
 
         <!----------------------------------- THIS WILL HOLD TECH ANALYSIS FOR HOVER POPULATE IN MIDDLE ---------------------------------------->
     
