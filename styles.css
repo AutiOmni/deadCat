@@ -706,6 +706,7 @@ nav {
     align-items: center;
     justify-content: center;
     border: 1px solid var(--light-text-color);
+    border-bottom: none;
     background-color: var(--main-cat-color);
     position: relative;
   }
