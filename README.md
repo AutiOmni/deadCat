@@ -1,3 +1,3 @@
-Dead Cat Chrome Extension - V 1.08
+Dead Cat Chrome Extension
 
 https://autiomni.github.io/deadCat/
