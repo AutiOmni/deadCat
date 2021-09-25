@@ -287,6 +287,15 @@ nav {
     transition: ease-in transform 500ms;
 }
 
+.move-link {
+    transition: all ease-in-out 500ms
+}
+.move-link:hover {
+    letter-spacing: 1px;
+}
+
+
+
 .selector-info-l
      {
         transform: translate(0%, 150%);
@@ -307,6 +316,7 @@ nav {
     -webkit-transform: translate(0%, 0%);
     opacity: 1;
 }
+
 
 #download {
     padding-top: 100px;
@@ -799,7 +809,7 @@ nav {
   }
 
 
-   /* --------------------- DOWNLOAD LINK ----------------------- */
+   /* --------------------- DOWNLOAD  ----------------------- */
 
    .download-link {
     font-size: 2em;
