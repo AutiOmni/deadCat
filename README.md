@@ -1,3 +1,3 @@
 Dead Cat Chrome Extension
 
-https://autiomni.github.io/deadCat/
+https://omniauti.github.io/deadCat/
