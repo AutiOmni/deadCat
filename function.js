@@ -164,7 +164,7 @@ if ($(window).width() > 700)
             if ($(this).val() == '') {
                 return;
             }
-                 $(window).scrollTop($("#download-box"));
+                
                 // GET VALUE SYMBOL NAME
                 let ticker = $('.search-text').val();
                 // SET OBJECT TO STORE PULL
