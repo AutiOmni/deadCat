@@ -133,6 +133,13 @@ const symbolBox = $('.symbol-box')
       }
   }
 
+const heightBlur = $(window).height()
+let heightFocus = 0;
+$('.search-text').focus(function() {
+    focusHeight = $(window).height()
+})
+
+
 if ($(window).width() > 700) 
 {
 
@@ -164,7 +171,7 @@ if ($(window).width() > 700)
             if ($(this).val() == '') {
                 return;
             }
-                
+ 
                 // GET VALUE SYMBOL NAME
                 let ticker = $('.search-text').val();
                 // SET OBJECT TO STORE PULL
@@ -1095,7 +1102,7 @@ if ($(window).width() > 700)
                 }
                 catch(e) 
                 {
-                      console.log(e)
+                      
                 }
     }
     // BOLLINGER BANDS ------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -1236,7 +1243,6 @@ if ($(window).width() > 700)
                                 break;
                             }
                         }
-                        console.log(symbol, searchedSymbol)
                 }
             catch(e) 
                 {
