@@ -17,7 +17,7 @@ let hour = today.getUTCHours()
 //CALC FOT UTC
 hour = hour - 4;
 // CALC FOR EARLY MORNING HOURS UTC
-   if (hour == 0)
+   if (hour < 0)
    {
        hourEastern = hourEastern + 23;
    }
