@@ -5,51 +5,54 @@ const year = today.getFullYear()
 let date = today.getUTCDate()
 let month = today.getUTCMonth() + 1
 
-const marketDay = today.getDay()
- // CHECK FOR MARKET OPEN - ADJUST DATE SO VWAP STILL PULLS DATA FROM LAST DAY
- if (marketDay == 0) {
-    date = date - 2
-} else if (marketDay == 6) {
-    date = date - 1
-}
-// GET TIME FOR CLOSING AND OPENING MARKET
-let hour = today.getUTCHours()
-//CALC FOT UTC
-hour = hour - 4;
-// CALC FOR EARLY MORNING HOURS UTC
-   if (hour < 0)
-   {
-       hourEastern = hourEastern + 23;
-   }
-// GET AND ADJUST MINUTES TO ADD 0 BELOW 10
-let min = today.getUTCMinutes()
-if (min < 10) {
-    min = `0${min}`
-}
-const time = `${hour}${min}`
-const timeNum = parseInt(time)
+    // GET TIME FOR CLOSING AND OPENING MARKET -----------------------------------
+    let hour = today.getUTCHours()
+    //CALC FOT UTC
+    hour = hour - 4;
+    // CALC FOR EARLY MORNING HOURS UTC
+    if (hour < 0)
+    {
+        hour = hour + 23;
+    }
+    // GET AND ADJUST MINUTES TO ADD 0 BELOW 10
+    let min = today.getUTCMinutes()
 
-// THIS IS TO CHECK FOR MARKET DAY OPEN DURING WEEKENDS WHEN MARKET IS CLOSED
-if (marketDay == 1 && timeNum < 930) {
-    date = date - 3
-} else if (marketDay >= 2 && marketDay < 6 && timeNum < 930) {
-    date = date - 1
-}
-// THIS IS TO CORRECT MISSING 0 ON SINGLE DIGITS OF MONTHS
-if (date < 10) {
-    date = `0${date}`
-}
-if (month < 10) {
-    month = `0${month}`
-}
+    if (min < 10) {
+        min = `0${min}`
+    }
 
-// DATE CHECK VARIBLE FOR DATA PERIOD PULLS
-let todayDate = `${year}-${month}-${date}`
-if (todayDate === '2021-07-05') {
-    todayDate = '2021-07-02'
-} 
+    const time = `${hour}${min}`
+    const timeNum = parseInt(time)
 
-console.log(time, timeNum, todayDate)
+    // GET DAY FOR CLOSING AND OPENING MARKET -------------------------------------------
+    const marketDay = today.getUTCDay()
+    // CHECK FOR MARKET OPEN - ADJUST DATE SO VWAP STILL PULLS DATA FROM LAST DAY
+    if (marketDay == 0) {
+        date = date - 2
+    } else if (marketDay == 6) {
+        date = date - 1
+    }
+    // THIS IS TO CHECK FOR MARKET DAY OPEN DURING WEEKENDS WHEN MARKET IS CLOSED
+    if (marketDay == 1 && timeNum < 930) {
+        date = date - 3
+    } else if (marketDay >= 2 && marketDay < 6 && timeNum < 930) {
+        date = date - 1
+    }
+    // THIS IS TO CORRECT MISSING 0 ON SINGLE DIGITS OF MONTHS
+    if (date < 10) {
+        date = `0${date}`
+    }
+    if (month < 10) {
+        month = `0${month}`
+    }
+
+    // DATE CHECK VARIBLE FOR DATA PERIOD PULLS
+    let todayDate = `${year}-${month}-${date}`
+    if (todayDate === '2021-07-05') {
+        todayDate = '2021-07-02'
+    } 
+
+
 //------------ ADD SECOND SCRIPT FOR RUN ---------------------- // 
 function addSecondScript() {
     const scripty = document.createElement('script')
