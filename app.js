@@ -52,7 +52,6 @@ let month = today.getUTCMonth() + 1
         todayDate = '2021-07-02'
     } 
 
-
 //------------ ADD SECOND SCRIPT FOR RUN ---------------------- // 
 function addSecondScript() {
     const scripty = document.createElement('script')
@@ -1562,6 +1561,7 @@ function compileStocks(arr1, arr2, arr3, arr4, callback) {
     <div class="tech-down-${i}">
  
      <h2 class="tech-title">Daily Indicators</h2>
+     <p class="tech-title-warn">For Educational Purposes Only</p>
  
          <div class="tech-vol-row">
          <a class="info-link" href="https://www.investopedia.com/terms/d/downvolume.asp" target="_blank"><h3 class='tech-header'>Volume</h3></a>
@@ -1569,7 +1569,7 @@ function compileStocks(arr1, arr2, arr3, arr4, callback) {
              <p>Today: <span class="tech-to-left">${volumeDown}</span></p>
              <p>Change: <span class="tech-to-left"> ${volumeIncreaseDown.toFixed(2)}%</span></p>
 
-             <p>Yesterday: <span class="tech-to-left"> ${volumeYesterdayDown}</span></p>
+             <p>Last Open Day: <span class="tech-to-left"> ${volumeYesterdayDown}</span></p>
              <p>Change: <span class="tech-to-left"> ${yesterdayVolIncreaseDown.toFixed(2)}%</span></p>
          </div>
  
@@ -1707,6 +1707,7 @@ function compileStocks(arr1, arr2, arr3, arr4, callback) {
      <div class="tech-up-${i}">
  
      <h2 class="tech-title">Daily Indicators</h2>
+     <p class="tech-title-warn">For Educational Purposes Only</p>
  
              <div class="tech-row">
              <a class="info-link" href="https://www.investopedia.com/terms/u/upvolume.asp" target="_blank"><h3 class='tech-header'>Volume</h3></a>
@@ -1714,7 +1715,7 @@ function compileStocks(arr1, arr2, arr3, arr4, callback) {
                  <p>Today:  <span class="tech-to-left"> ${volumeUp}</span></p>
                  <p>Change: <span class="tech-to-left"> ${volumeIncreaseUp.toFixed(2)}%</span></p>
 
-                 <p>Yesterday: <span class="tech-to-left"> ${volumeYesterdayUp}</span></p>
+                 <p>Last Open Day: <span class="tech-to-left"> ${volumeYesterdayUp}</span></p>
                  <p>Change: <span class="tech-to-left"> ${yesterdayVolIncreaseUp.toFixed(2)}%</span></p>
              </div>
  

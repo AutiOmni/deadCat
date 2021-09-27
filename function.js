@@ -1390,7 +1390,8 @@ if ($(window).width() > 700)
 
         <h2 class="tech-title">${symbol}'s</h2>
         <h2 class="tech-title">Daily Indicators</h2> <!--- put if else for if its up or down then out arrow next to it here --------->
-        
+        <p class="tech-title-warn">For Educational Purposes Only</p>
+
         <div class="tech-row">
         <p class="search-price-text">Price: $${price.toFixed(2)}</p>
         <div class="search-changes-row">
@@ -1406,7 +1407,7 @@ if ($(window).width() > 700)
                 <p>Current Day: <span class="tech-to-left">${volume}</span></p>
                 <p>Change: <span class="tech-to-left"> ${volumeIncrease.toFixed(2)}%</span></p>
 
-                <p>Yesterday: <span class="tech-to-left"> ${yesterdayVolume}</span></p>
+                <p>Last Open Day: <span class="tech-to-left"> ${yesterdayVolume}</span></p>
                 <p>Change: <span class="tech-to-left"> ${yesterdayVolIncrease.toFixed(2)}%</span></p>
             </div>
 

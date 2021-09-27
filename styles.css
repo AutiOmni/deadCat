@@ -509,6 +509,11 @@ nav {
     font-size: 2em;
 }
 
+.tech-title-warn {
+    width: 100%;
+    text-align: center;
+}
+
 .tech-header {
     width: 100%;
     text-align: center;
