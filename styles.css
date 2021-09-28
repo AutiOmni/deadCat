@@ -902,14 +902,14 @@ nav {
     }
 
     .active-search .search-text {
-        width: 67.5px;
+        width: 72.5px;
         background-color: var(--light-text-color);
     }   
 
     .active-search .search-icon {
         height: 15px;
         width: 15px;
-        left: 60px;
+        left: 65px;
         color: var(--main-background)
       }
 
