@@ -1640,48 +1640,48 @@ function compileStocks(arr1, arr2, arr3, arr4, callback) {
          </div>
 
          <div class="tech-row">
-         <a class="info-link macd-indicator" href="https://www.investopedia.com/terms/m/macd.asp" target="_blank"><h3 class='tech-header'>MACD (12 , 26)</h3></a>
-             <p class="osc-text">${macdDown}</p>
+         <a class="info-link macd-down-header-${i}" href="https://www.investopedia.com/terms/m/macd.asp" target="_blank"><h3 class='tech-header'>MACD (12 , 26)</h3></a>
+             <p class="osc-text macd-down-actual-${i}">${macdDown}</p>
                  <div class="macd-row">
-                     <p>Signal Line: ${macdSignalLineDown}</p>
-                     <p>Histogram: ${macdHistogramDown}</p>
+                     <p class="macd-signal-down-actual-${i}">Signal Line: ${macdSignalLineDown}</p>
+                     <p class="macd-histo-down-actual-${i}">Histogram: ${macdHistogramDown}</p>
                  </div>
          </div>
  
          <div class="flex-rsi-cci">
              <div class="tech-row">
-             <a class="info-link" href="https://www.investopedia.com/terms/s/stochrsi.asp" target="_blank"><h3 class='tech-header'>RSI</h3></a>
-                 <p class="osc-text tech-bullish ">${rsiDown}</p>
+             <a class="info-link rsi-down-header-${i}" href="https://www.investopedia.com/terms/s/stochrsi.asp" target="_blank"><h3 class='tech-header'>RSI</h3></a>
+                 <p class="osc-text rsi-down-actual-${i}">${rsiDown}</p>
              </div>
  
              <div class="tech-row">
-             <a class="info-link" href="https://www.investopedia.com/terms/c/commoditychannelindex.asp" target="_blank"><h3 class='tech-header'>CCI</h3></a>
-                 <p class="osc-text">${cciDown}</p>
+             <a class="info-link cci-down-header-${i}" href="https://www.investopedia.com/terms/c/commoditychannelindex.asp" target="_blank"><h3 class='tech-header'>CCI</h3></a>
+                 <p class="osc-text cci-down-actual-${i}">${cciDown}</p>
              </div>
 
          </div>
 
          <div class="tech-row">
-         <a class="info-link" href="https://www.investopedia.com/terms/w/williamsr.asp" target="_blank"><h3 class='tech-header'>Williams %R</h3></a>
-             <p class="osc-text">${williamsRDown}</p>
+         <a class="info-link williams-down-header-${i}" href="https://www.investopedia.com/terms/w/williamsr.asp" target="_blank"><h3 class='tech-header'>Williams %R</h3></a>
+             <p class="osc-text williams-down-actual-${i}">${williamsRDown}</p>
          </div>
 
  
          <div class="tech-row">
-         <a class="info-link" href="https://www.investopedia.com/terms/s/stochasticoscillator.asp" target="_blank"><h3 class='tech-header'>Stochastic Oscillator</h3></a>
+         <a class="info-link stochastic-down-header-${i}" href="https://www.investopedia.com/terms/s/stochasticoscillator.asp" target="_blank"><h3 class='tech-header'>Stochastic Oscillator</h3></a>
             <div class="averages-row">
-                <p class="osc-text">%K: ${stochasticKDown}</p>
-                <p class="osc-text">%D: ${stochasticDDown}</p>
+                <p class="osc-text stochasticK-down-actual-${i}">%K: ${stochasticKDown}</p>
+                <p class="osc-text stochasticD-down-actual-${i}">%D: ${stochasticDDown}</p>
             </div>
-                <p class="osc-text">Signal Line: ${stochasticSignalDown}</p>
+                <p class="osc-text stochasticSignal-down-actual-${i}">Signal Line: ${stochasticSignalDown}</p>
          </div>
  
          <div class="tech-row">
-         <a class="info-link" href="https://www.investopedia.com/terms/b/bollingerbands.asp" target="_blank"><h3 class='tech-header'>Bollinger Bands</h3></a>
-                 <p class="osc-text">Middle: ${bbMiddleDown}</p>
+         <a class="info-link bb-down-header-${i}" href="https://www.investopedia.com/terms/b/bollingerbands.asp" target="_blank"><h3 class='tech-header'>Bollinger Bands</h3></a>
+                 <p class="osc-text bbMiddle-down-actual-${i}">Middle: ${bbMiddleDown}</p>
              <div class="macd-row">
-                 <p class="osc-text">Upper: ${bbUpperDown}</p>
-                 <p class="osc-text">Lower: ${bbLowerDown}</p>
+                 <p class="osc-text bbUpper-down-actual-${i}">Upper: ${bbUpperDown}</p>
+                 <p class="osc-text bbLower-down-actual-${i}">Lower: ${bbLowerDown}</p>
              </div>
          </div>
 
@@ -1691,7 +1691,8 @@ function compileStocks(arr1, arr2, arr3, arr4, callback) {
 
      </div>
  
-         <!----------------------------------- UPPER ---------------------------------------->
+         <!----------------------------------- UPPER --------------------------------------------------------->
+
      <div class="upper symbol-box" data-index="${i}">
          <h2 id="symbol">${symbolUp}</h2>
          <p class="price price-up-${i}">Price: $${priceUp.toFixed(2)}</p>
@@ -1785,47 +1786,47 @@ function compileStocks(arr1, arr2, arr3, arr4, callback) {
          </div>
 
          <div class="tech-row">
-         <a class="info-link" href="https://www.investopedia.com/terms/m/macd.asp" target="_blank"><h3 class='tech-header'>MACD (12 , 26)</h3></a>
-             <p class="osc-text">${macdUp}</p>
+         <a class="info-link macd-up-header-${i}" href="https://www.investopedia.com/terms/m/macd.asp" target="_blank"><h3 class='tech-header'>MACD (12 , 26)</h3></a>
+             <p class="osc-text macd-up-actual-${i}">${macdUp}</p>
                  <div class="macd-row">
-                     <p>Signal Line: ${macdSignalLineUp}</p>
-                     <p>Histogram: ${macdHistogramUp}</p>
+                     <p class="macd-signal-up-actual-${i}">Signal Line: ${macdSignalLineUp}</p>
+                     <p class="macd-histo-up-actual-${i}">Histogram: ${macdHistogramUp}</p>
                  </div>
          </div>
  
          <div class="flex-rsi-cci">
              <div class="tech-row">
-             <a class="info-link" href="https://www.investopedia.com/terms/s/stochrsi.asp" target="_blank"><h3 class='tech-header'>RSI</h3></a>
-             <p class="osc-text">${rsiUp}</p>
+             <a class="info-link rsi-up-header-${i}" href="https://www.investopedia.com/terms/s/stochrsi.asp" target="_blank"><h3 class='tech-header'>RSI</h3></a>
+             <p class="osc-text rsi-up-actual-${i}">${rsiUp}</p>
              </div>
  
              <div class="tech-row">
-             <a class="info-link" href="https://www.investopedia.com/terms/c/commoditychannelindex.asp" target="_blank"><h3 class='tech-header'>CCI</h3></a>
-                 <p class="osc-text">${cciUp}</p>
+             <a class="info-link cci-up-header-${i}" href="https://www.investopedia.com/terms/c/commoditychannelindex.asp" target="_blank"><h3 class='tech-header'>CCI</h3></a>
+                 <p class="osc-text cci-up-actual-${i}">${cciUp}</p>
              </div>
 
          </div>
 
          <div class="tech-row">
-         <a class="info-link" href="https://www.investopedia.com/terms/w/williamsr.asp" target="_blank"><h3 class='tech-header'>Williams %R</h3></a>
-             <p class="osc-text">${williamsRUp}</p>
+         <a class="info-link williams-up-header-${i}" href="https://www.investopedia.com/terms/w/williamsr.asp" target="_blank"><h3 class='tech-header'>Williams %R</h3></a>
+             <p class="osc-text williams-up-actual-${i}">${williamsRUp}</p>
          </div>
  
          <div class="tech-row">
-         <a class="info-link" href="https://www.investopedia.com/terms/s/stochasticoscillator.asp" target="_blank"><h3 class='tech-header'>Stochastic Oscillator</h3></a>
+         <a class="info-link stochastic-up-header-${i}" href="https://www.investopedia.com/terms/s/stochasticoscillator.asp" target="_blank"><h3 class='tech-header'>Stochastic Oscillator</h3></a>
             <div class="averages-row">
-            <p class="osc-text">%K: ${stochasticKUp}</p>
-            <p class="osc-text">%D: ${stochasticDUp}</p>
+            <p class="osc-text stochasticK-up-actual-${i}">%K: ${stochasticKUp}</p>
+            <p class="osc-text stochasticD-up-actual-${i}">%D: ${stochasticDUp}</p>
             </div>
-            <p class="osc-text">Signal Line: ${stochasticSignalUp}</p>
+            <p class="osc-text stochasticSignal-up-actual-${i}">Signal Line: ${stochasticSignalUp}</p>
          </div>
  
          <div class="tech-row">
-         <a class="info-link" href="https://www.investopedia.com/terms/b/bollingerbands.asp" target="_blank"><h3 class='tech-header'>Bollinger Bands</h3></a>
-                 <p class="osc-text">Middle: ${bbMiddleUp}</p>
+         <a class="info-link bb-up-header-${i}" href="https://www.investopedia.com/terms/b/bollingerbands.asp" target="_blank"><h3 class='tech-header'>Bollinger Bands</h3></a>
+                 <p class="osc-text bbMiddle-up-actual-${i}">Middle: ${bbMiddleUp}</p>
              <div class="macd-row">
-                 <p class="osc-text">Upper: ${bbUpperUp}</p>
-                 <p class="osc-text">Lower: ${bbLowerUp}</p>
+                 <p class="osc-text bbUpper-up-actual-${i}">Upper: ${bbUpperUp}</p>
+                 <p class="osc-text bbLower-up-actual-${i}">Lower: ${bbLowerUp}</p>
              </div>
          </div>
 
