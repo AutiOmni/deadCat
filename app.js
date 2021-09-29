@@ -1472,9 +1472,9 @@ function compileStocks(arr1, arr2, arr3, arr4, callback) {
  for (let i = 0; i < arrDown.length; i++) {
  
  // DECONSTRUCTING UP AND DOWN VAR
-     const {avgVolumeUp, volumeYesterdayUp, changeUp, changesPercentageUp, priceUp, symbolUp, volumeUp, vwapUp, smaFiveTeenUp, smaTwentyUp, smaThirtyUp, smaFiftyUp, smaOneHunUp, smaTwoHunUp, emaTwelveUp, emaTwentySixUp, emaFiftyUp, emaTwoHunUp, wmaFiveTeenUp, wmaTwentyUp, wmaThirtyUp, wmaFiftyUp, wmaOneHunUp, wmaTwoHunUp, vwmaFiveTeenUp, vwmaTwentyUp, vwmaThirtyUp, vwmaFiftyUp, vwmaOneHunUp, vwmaTwoHunUp, macdUp, macdHistogramUp, macdSignalLineUp, rsiUp, stochasticDUp, stochasticKUp, stochasticSignalUp, cciUp, bbMiddleUp, bbLowerUp, bbUpperUp, williamsRUp} = arrUp[i]
+     let {avgVolumeUp, volumeYesterdayUp, changeUp, changesPercentageUp, priceUp, symbolUp, volumeUp, vwapUp, smaFiveTeenUp, smaTwentyUp, smaThirtyUp, smaFiftyUp, smaOneHunUp, smaTwoHunUp, emaTwelveUp, emaTwentySixUp, emaFiftyUp, emaTwoHunUp, wmaFiveTeenUp, wmaTwentyUp, wmaThirtyUp, wmaFiftyUp, wmaOneHunUp, wmaTwoHunUp, vwmaFiveTeenUp, vwmaTwentyUp, vwmaThirtyUp, vwmaFiftyUp, vwmaOneHunUp, vwmaTwoHunUp, macdUp, macdHistogramUp, macdSignalLineUp, rsiUp, stochasticDUp, stochasticKUp, stochasticSignalUp, cciUp, bbMiddleUp, bbLowerUp, bbUpperUp, williamsRUp} = arrUp[i]
  
-     const {avgVolumeDown, volumeYesterdayDown, changeDown, changesPercentageDown, priceDown, symbolDown, volumeDown, vwapDown, smaFiveTeenDown, smaTwentyDown, smaThirtyDown, smaFiftyDown, smaOneHunDown, smaTwoHunDown, emaTwelveDown, emaTwentySixDown, emaFiftyDown, emaTwoHunDown, wmaFiveTeenDown, wmaTwentyDown, wmaThirtyDown, wmaFiftyDown, wmaOneHunDown, wmaTwoHunDown, vwmaFiveTeenDown, vwmaTwentyDown, vwmaThirtyDown, vwmaFiftyDown, vwmaOneHunDown, vwmaTwoHunDown, macdDown, macdHistogramDown, macdSignalLineDown, rsiDown, stochasticDDown, stochasticKDown, stochasticSignalDown, cciDown, bbMiddleDown, bbLowerDown, bbUpperDown , williamsRDown} = arrDown[i]
+     let {avgVolumeDown, volumeYesterdayDown, changeDown, changesPercentageDown, priceDown, symbolDown, volumeDown, vwapDown, smaFiveTeenDown, smaTwentyDown, smaThirtyDown, smaFiftyDown, smaOneHunDown, smaTwoHunDown, emaTwelveDown, emaTwentySixDown, emaFiftyDown, emaTwoHunDown, wmaFiveTeenDown, wmaTwentyDown, wmaThirtyDown, wmaFiftyDown, wmaOneHunDown, wmaTwoHunDown, vwmaFiveTeenDown, vwmaTwentyDown, vwmaThirtyDown, vwmaFiftyDown, vwmaOneHunDown, vwmaTwoHunDown, macdDown, macdHistogramDown, macdSignalLineDown, rsiDown, stochasticDDown, stochasticKDown, stochasticSignalDown, cciDown, bbMiddleDown, bbLowerDown, bbUpperDown , williamsRDown} = arrDown[i]
  
 
     // VOLUME INCREASE TODAY --------------------------------------------------------
@@ -1541,9 +1541,100 @@ function compileStocks(arr1, arr2, arr3, arr4, callback) {
         changeDownAdjusted = changeDownAdjusted * -1
     }
   // ADJUST CERTAIN PARTS TO GIVE RIGHT PROMPT IF UNDEFINED
+  
+    if (vwapDown == undefined)
+    {
+        vwapDown = 'No Data'
+    }
+    if (vwapUp == undefined)
+    {
+        vwapUp = 'No Data'
+    }
+
+    if (macdDown == undefined)
+    {
+        macdDown = 'No Data'
+    }
+    if (macdUp == undefined)
+    {
+        macdUp = 'No Data'
+    }
+
+    if (rsiDown == undefined)
+    {
+        rsiDown = 'No Data'
+    }
+    if (rsiUp == undefined)
+    {
+        rsiUp = 'No Data'
+    }
+
+    if (cciDown == undefined)
+    {
+        cciDown = 'No Data'
+    }
+    if (cciUp == undefined)
+    {
+        cciUp = 'No Data'
+    }
+
     if (williamsRDown == undefined)
     {
-        console.log("got it")
+        williamsRDown = 'No Data'
+    }
+    if (williamsRUp == undefined)
+    {
+        williamsRUp = 'No Data'
+    }
+
+    if (stochasticKUp == undefined)
+    {
+        stochasticKUp = 'No Data'
+    }
+    if (stochasticKDown == undefined)
+    {
+        stochasticKDown = 'No Data'
+    }
+    if (stochasticDUp == undefined)
+    {
+        stochasticDUp = 'No Data'
+    }
+    if (stochasticDDown == undefined)
+    {
+        stochasticDDown = 'No Data'
+    }
+    if (stochasticSignalUp == undefined)
+    {
+        stochasticSignalUp = 'No Data'
+    }
+    if (stochasticSignalDown == undefined)
+    {
+        stochasticSignalDown = 'No Data'
+    }
+
+    if (bbMiddleDown == undefined)
+    {
+        bbMiddleDown = 'No Data'
+    }
+    if (bbMiddleUp == undefined)
+    {
+        bbMiddleUp = 'No Data'
+    }
+    if (bbLowerDown == undefined)
+    {
+        bbLowerDown = 'No Data'
+    }
+    if (bbLowerUp == undefined)
+    {
+        bbLowerUp = 'No Data'
+    }
+    if (bbUpperDown == undefined)
+    {
+        bbUpperDown = 'No Data'
+    }
+    if (bbUpperUp == undefined)
+    {
+        bbUpperUp = 'No Data'
     }
 
      const litter = document.createElement('div')
