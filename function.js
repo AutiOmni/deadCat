@@ -133,42 +133,119 @@ const symbolBox = $('.symbol-box')
     function indicatorColorsDown(i) {
 
         let price = $(`.price-down-${i}`).text().slice(8,)
-        let vwapIndicator = $(`.vwap-down-header-${i}`)
+
+        let vwapHeader = $(`.vwap-down-header-${i}`)
+        let macdHeader = $(`.macd-down-header-${i}`)
+        let rsiHeader = $(`.rsi-down-header-${i}`)
+        let cciHeader = $(`.cci-down-header-${i}`)
+        let williamsHeader = $(`.williams-down-header-${i}`)
+        let stochasticHeader = $(`.stochastic-down-header-${i}`)
+        let bbHeader = $(`.bb-down-header-${i}`)
+
+
         let vwap = $(`.vwap-down-actual-${i}`).text()
-      
+        let macd = $(`.macd-down-actual-${i}`).text()
+        let macdSignal = $(`.macd-signal-down-actual-${i}`).text().slice(13,)
+        let macdHisto = $(`.macd-histo-down-actual-${i}`).text().slice(11,)
+        let rsi = $(`.rsi-down-actual-${i}`).text()
+        let cci = $(`.cci-down-actual-${i}`).text()
+        let williams = $(`.williams-down-actual-${i}`).text()
+        let stochasticK = $(`.stochasticK-down-actual-${i}`).text().slice(4,)
+        let stochasticD = $(`.stochasticD-down-actual-${i}`).text().slice(4,)
+        let stochasticSignal = $(`.stochasticSignal-down-actual-${i}`).text().slice(13,)
+        let bbMiddle = $(`.bbMiddle-down-actual-${i}`).text().slice(8,)
+        let bbUpper= $(`.bbUpper-down-actual-${i}`).text().slice(7,)
+        let bbLower = $(`.bbLower-down-actual-${i}`).text().slice(7,)
+
+        console.log(vwap, macd, macdSignal, macdHisto, rsi, cci, williams, stochasticK, stochasticD, stochasticSignal, bbMiddle, bbUpper, bbLower)
+        // TURN STRING TO NUM
         price = parseFloat(price)
+        
         vwap = parseFloat(vwap)
+        macd = parseFloat(macd)
+        macdSignal = parseFloat(macdSignal)
+        macdHisto = parseFloat(macdHisto)
+        rsi = parseFloat(rsi)
+        cci = parseFloat(cci)
+        williams = parseFloat(williams)
+        stochasticK = parseFloat(stochasticK)
+        stochasticD = parseFloat(stochasticD)
+        stochasticSignal = parseFloat(stochasticSignal)
+        bbMiddle = parseFloat(bbMiddle)
+        bbUpper = parseFloat(bbUpper)
+        bbLower = parseFloat(bbLower)
+
+        console.log(vwap, macd, macdSignal, macdHisto, rsi, cci, williams, stochasticK, stochasticD, stochasticSignal, bbMiddle, bbUpper, bbLower)
+
 
         if (price < vwap)
         {
-            vwapIndicator.addClass('bullish-stuff')
+            vwapHeader.addClass('bullish-stuff')
         }
         else if (price > vwap)
         {
-            vwapIndicator.addClass('bearish-stuff')
+            vwapHeader.addClass('bearish-stuff')
         }
 
-            console.log(price, vwapIndicator, vwap)
     }
 
     function indicatorColorsUp(i) {
+
         let price = $(`.price-up-${i}`).text().slice(8,)
-        let vwapIndicator = $(`.vwap-up-header-${i}`)
+
+        let vwapHeader = $(`.vwap-up-header-${i}`)
+        let macdHeader = $(`.macd-up-header-${i}`)
+        let rsiHeader = $(`.rsi-up-header-${i}`)
+        let cciHeader = $(`.cci-up-header-${i}`)
+        let williamsHeader = $(`.williams-up-header-${i}`)
+        let stochasticHeader = $(`.stochastic-up-header-${i}`)
+        let bbHeader = $(`.bb-up-header-${i}`)
+
         let vwap = $(`.vwap-up-actual-${i}`).text()
-      
+        let macd = $(`.macd-up-actual-${i}`).text()
+        let macdSignal = $(`.macd-signal-up-actual-${i}`).text().slice(13,)
+        let macdHisto = $(`.macd-histo-up-actual-${i}`).text().slice(11,)
+        let rsi = $(`.rsi-up-actual-${i}`).text()
+        let cci = $(`.cci-up-actual-${i}`).text()
+        let williams = $(`.williams-up-actual-${i}`).text()
+        let stochasticK = $(`.stochasticK-up-actual-${i}`).text().slice(4,)
+        let stochasticD = $(`.stochasticD-up-actual-${i}`).text().slice(4,)
+        let stochasticSignal = $(`.stochasticSignal-up-actual-${i}`).text().slice(13,)
+        let bbMiddle = $(`.bbMiddle-up-actual-${i}`).text().slice(8,)
+        let bbUpper= $(`.bbUpper-up-actual-${i}`).text().slice(7,)
+        let bbLower = $(`.bbLower-up-actual-${i}`).text().slice(7,)
+
+        console.log(vwap, macd, macdSignal, macdHisto, rsi, cci, williams, stochasticK, stochasticD, stochasticSignal, bbMiddle, bbUpper, bbLower)
+        // TURN STRING TO NUM
         price = parseFloat(price)
+
         vwap = parseFloat(vwap)
+        vwap = parseFloat(vwap)
+        macd = parseFloat(macd)
+        macdSignal = parseFloat(macdSignal)
+        macdHisto = parseFloat(macdHisto)
+        rsi = parseFloat(rsi)
+        cci = parseFloat(cci)
+        williams = parseFloat(williams)
+        stochasticK = parseFloat(stochasticK)
+        stochasticD = parseFloat(stochasticD)
+        stochasticSignal = parseFloat(stochasticSignal)
+        bbMiddle = parseFloat(bbMiddle)
+        bbUpper = parseFloat(bbUpper)
+        bbLower = parseFloat(bbLower)
+
+        console.log(vwap, macd, macdSignal, macdHisto, rsi, cci, williams, stochasticK, stochasticD, stochasticSignal, bbMiddle, bbUpper, bbLower)
+
 
         if (price < vwap)
         {
-            vwapIndicator.addClass('bullish-stuff')
+            vwapHeader.addClass('bullish-stuff')
         }
         else if (price > vwap)
         {
-            vwapIndicator.addClass('bearish-stuff')
+            vwapHeader.addClass('bearish-stuff')
         }
 
-            console.log(price, vwapIndicator, vwap)
     }
 
 

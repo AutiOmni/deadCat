@@ -1023,7 +1023,7 @@ function compileStocks(arr1, arr2, arr3, arr4, callback) {
                         highestHigh = Math.max(...highs)
         
                         const williams = (highestHigh - dataPull.historical[0].close) / (highestHigh - lowestLow) * -100
-                        
+
                         chartArr[num].williamsR = williams.toFixed(2)
                     }
 
@@ -1539,6 +1539,11 @@ function compileStocks(arr1, arr2, arr3, arr4, callback) {
   // ADJUST PERCENTAGE TO POSITIVE - ARROW WILL SIGNAL UP OR DOWN 
     if (changeDownAdjusted < 0) {
         changeDownAdjusted = changeDownAdjusted * -1
+    }
+  // ADJUST CERTAIN PARTS TO GIVE RIGHT PROMPT IF UNDEFINED
+    if (williamsRDown == undefined)
+    {
+        console.log("got it")
     }
 
      const litter = document.createElement('div')
