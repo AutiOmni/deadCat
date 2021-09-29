@@ -89,8 +89,11 @@ const symbolBox = $('.symbol-box')
             $(this).click(function() {
 
                 let index = $(this).attr('data-index')
+
+                indicatorColorsDown(index)
                 
                 let downerTech = $(`.tech-down-${index}`).html()
+                
                 setTimeout(() => {
                     techIn.html(downerTech) 
                 }, 500)
@@ -106,6 +109,8 @@ const symbolBox = $('.symbol-box')
 
               
                 let index = $(this).attr('data-index')
+
+                indicatorColorsUp(index)
                 
                 let upperTech = $(`.tech-up-${index}`).html()
                 setTimeout(() => {
@@ -124,6 +129,39 @@ const symbolBox = $('.symbol-box')
             $('#tech-in').scrollTop(0)
         }, 500)
     }
+
+    function indicatorColorsDown(i) {
+
+        let price = $(`.price-down-${i}`).text().slice(8,)
+        let vwapIndicator = $(`.vwap-down-header-${i}`)
+        let vwap = $(`.vwap-down-actual-${i}`).text()
+      
+        price = parseFloat(price)
+        vwap = parseFloat(vwap)
+
+        if (price < vwap)
+        {
+            vwapIndicator.addClass('bullish-stuff')
+        }
+        else if (price > vwap)
+        {
+            vwapIndicator.addClass('bearish-stuff')
+        }
+
+            console.log(price, vwapIndicator, vwap)
+    }
+
+    function indicatorColorsUp(i) {
+        let price = $(`.price-up-${i}`).text().slice(8,)
+        let vwapIndicator = $(`.vwap-up-header-${i}`)
+        let vwap = $(`.vwap-up-actual-${i}`).text()
+      
+        price = parseFloat(price)
+        vwap = parseFloat(vwap)
+
+            console.log(price, vwapIndicator, vwap)
+    }
+
 
 // SEARCH STOCK ----------------------------------------------------
 
