@@ -1505,6 +1505,58 @@ if ($(window).width() > 700)
             yesterdayVolIncrease = (decrease / avgVolume) * -100
         }
 
+    // ADJUST CERTAIN PARTS TO GIVE RIGHT PROMPT IF UNDEFINED
+  
+    if (vwap == undefined)
+    {
+        vwap = 'No Data'
+    }
+
+    if (macd == undefined)
+    {
+        macd = 'No Data'
+    }
+
+    if (rsi == undefined)
+    {
+        rsi = 'No Data'
+    }
+    if (cciTwenty == undefined)
+    {
+        cciTwenty = 'No Data'
+    }
+
+    if (williamsR == undefined)
+    {
+        williamsR = 'No Data'
+    }
+
+    if (stochasticK == undefined)
+    {
+        stochasticK = 'No Data'
+    }
+    if (stochasticD == undefined)
+    {
+        stochasticD = 'No Data'
+    }
+    if (stochasticSignal == undefined)
+    {
+        stochasticSignal = 'No Data'
+    }
+
+    if (bbMiddle == undefined)
+    {
+        bbMiddle = 'No Data'
+    }
+    if (bbLower == undefined)
+    {
+        bbLower = 'No Data'
+    }
+    if (bbUpper == undefined)
+    {
+        bbUpper = 'No Data'
+    }
+
         techIn.html(   
         `<!----------------------------------- SEARCHED SYMBOL --------------------------------------->
 
