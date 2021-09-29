@@ -131,9 +131,9 @@ const symbolBox = $('.symbol-box')
     }
 
     function indicatorColorsDown(i) {
-
+        // ALL MIGHTY PRICE
         let price = $(`.price-down-${i}`).text().slice(8,)
-
+        // GET HEADERS FOR HOVER EFFECT
         let vwapHeader = $(`.vwap-down-header-${i}`)
         let macdHeader = $(`.macd-down-header-${i}`)
         let rsiHeader = $(`.rsi-down-header-${i}`)
@@ -141,8 +141,7 @@ const symbolBox = $('.symbol-box')
         let williamsHeader = $(`.williams-down-header-${i}`)
         let stochasticHeader = $(`.stochastic-down-header-${i}`)
         let bbHeader = $(`.bb-down-header-${i}`)
-
-
+        // GET ACTUALS FOR NUMBER CALCS AND HOVER COLOR
         let vwap = $(`.vwap-down-actual-${i}`).text()
         let macd = $(`.macd-down-actual-${i}`).text()
         let macdSignal = $(`.macd-signal-down-actual-${i}`).text().slice(13,)
@@ -177,7 +176,7 @@ const symbolBox = $('.symbol-box')
 
         console.log(vwap, macd, macdSignal, macdHisto, rsi, cci, williams, stochasticK, stochasticD, stochasticSignal, bbMiddle, bbUpper, bbLower)
 
-
+        // VWAP IF FOR CLASS ADD
         if (price < vwap)
         {
             vwapHeader.addClass('bullish-stuff')
@@ -186,13 +185,35 @@ const symbolBox = $('.symbol-box')
         {
             vwapHeader.addClass('bearish-stuff')
         }
+        // MACD IF FOR CLASS ADD
+        if (macd > 0)
+        {
+            macdHeader.addClass('bullish-stuff')
+        }
+        else if (macd < 0)
+        {
+            macdHeader.addClass('bearish-stuff')
+        }
+        // RSI IF FOR CLASS ADD
+        if (rsi < 30)
+        {
+            rsiHeader.addClass('bullish-stuff')
+        }
+        else if (rsi > 70)
+        {
+            rsiHeader.addClass('bearish-stuff')
+        }
+        else if (rsi < 70 && rsi > 30)
+        {
+            rsiHeader.addClass('neutral-stuff')
+        }
 
     }
 
     function indicatorColorsUp(i) {
-
+        // ALL MIGHTY PRICE
         let price = $(`.price-up-${i}`).text().slice(8,)
-
+        // GET HEADERS FOR HOVER EFFECT
         let vwapHeader = $(`.vwap-up-header-${i}`)
         let macdHeader = $(`.macd-up-header-${i}`)
         let rsiHeader = $(`.rsi-up-header-${i}`)
@@ -200,7 +221,7 @@ const symbolBox = $('.symbol-box')
         let williamsHeader = $(`.williams-up-header-${i}`)
         let stochasticHeader = $(`.stochastic-up-header-${i}`)
         let bbHeader = $(`.bb-up-header-${i}`)
-
+        // GET ACTUALS FOR NUMBER CALCS AND HOVER COLOR
         let vwap = $(`.vwap-up-actual-${i}`).text()
         let macd = $(`.macd-up-actual-${i}`).text()
         let macdSignal = $(`.macd-signal-up-actual-${i}`).text().slice(13,)
@@ -220,7 +241,6 @@ const symbolBox = $('.symbol-box')
         price = parseFloat(price)
 
         vwap = parseFloat(vwap)
-        vwap = parseFloat(vwap)
         macd = parseFloat(macd)
         macdSignal = parseFloat(macdSignal)
         macdHisto = parseFloat(macdHisto)
@@ -236,7 +256,7 @@ const symbolBox = $('.symbol-box')
 
         console.log(vwap, macd, macdSignal, macdHisto, rsi, cci, williams, stochasticK, stochasticD, stochasticSignal, bbMiddle, bbUpper, bbLower)
 
-
+        // VWAP IF FOR CLASS ADD
         if (price < vwap)
         {
             vwapHeader.addClass('bullish-stuff')
@@ -244,6 +264,28 @@ const symbolBox = $('.symbol-box')
         else if (price > vwap)
         {
             vwapHeader.addClass('bearish-stuff')
+        }
+        // MACD IF FOR CLASS ADD
+        if (macd > 0)
+        {
+            macdHeader.addClass('bullish-stuff')
+        }
+        else if (macd < 0)
+        {
+            macdHeader.addClass('bearish-stuff')
+        }
+        // RSI IF FOR CLASS ADD
+        if (rsi < 30)
+        {
+            rsiHeader.addClass('bullish-stuff')
+        }
+        else if (rsi > 70)
+        {
+            rsiHeader.addClass('bearish-stuff')
+        }
+        else if (rsi < 70 && rsi > 30)
+        {
+            rsiHeader.addClass('neutral-stuff')
         }
 
     }

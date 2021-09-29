@@ -6,6 +6,7 @@
     --main-background: #2f313b;
     --bear-market-color: #e66666;
     --bull-market-color: #59e48b;
+    --neutral-market-color: #f3f161;
     --main-cat-color: #575b6d;
     --light-text-color: #eeefee;
     --notification-color: #0a58ca;
@@ -575,12 +576,20 @@ nav {
     transition: all ease-in-out 500ms;
 }
 
+.neutral-stuff + p {
+    transition: all ease-in-out 500ms;
+}
+
 .bullish-stuff:hover + p {
-    color: var(--bear-market-color);
+    color: var(--bull-market-color);
 }
 
 .bearish-stuff:hover + p {
-    color: var(--bull-market-color);
+    color: var(--bear-market-color);
+}
+
+.neutral-stuff:hover + p {
+    color: var(--neutral-market-color);
 }
 
 /* ------- LOADING SCREEN ---------------------------- */
