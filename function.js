@@ -159,6 +159,15 @@ const symbolBox = $('.symbol-box')
         price = parseFloat(price)
         vwap = parseFloat(vwap)
 
+        if (price < vwap)
+        {
+            vwapIndicator.addClass('bullish-stuff')
+        }
+        else if (price > vwap)
+        {
+            vwapIndicator.addClass('bearish-stuff')
+        }
+
             console.log(price, vwapIndicator, vwap)
     }
 
