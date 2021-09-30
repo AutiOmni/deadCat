@@ -1829,8 +1829,8 @@ function compileStocks(arr1, arr2, arr3, arr4, callback) {
          <div class="tech-row">
          <a class="info-link stochastic-down-header-${i}" href="https://www.investopedia.com/terms/s/stochasticoscillator.asp" target="_blank"><h3 class='tech-header'>Stochastic Oscillator</h3></a>
             <div class="averages-row">
-                <p class="osc-text stochasticK-down-actual-${i}">%K: ${stochasticKDown}</p>
-                <p class="osc-text stochasticD-down-actual-${i}">%D: ${stochasticDDown}</p>
+                <p class="osc-text stochasticK-down-actual-${i} stochK">%K: ${stochasticKDown}</p>
+                <p class="osc-text stochasticD-down-actual-${i} stochD">%D: ${stochasticDDown}</p>
             </div>
                 <p class="osc-text stochasticSignal-down-actual-${i}">Signal Line: ${stochasticSignalDown}</p>
          </div>
@@ -1974,8 +1974,8 @@ function compileStocks(arr1, arr2, arr3, arr4, callback) {
          <div class="tech-row">
          <a class="info-link stochastic-up-header-${i}" href="https://www.investopedia.com/terms/s/stochasticoscillator.asp" target="_blank"><h3 class='tech-header'>Stochastic Oscillator</h3></a>
             <div class="averages-row">
-            <p class="osc-text stochasticK-up-actual-${i}">%K: ${stochasticKUp}</p>
-            <p class="osc-text stochasticD-up-actual-${i}">%D: ${stochasticDUp}</p>
+            <p class="osc-text stochasticK-up-actual-${i} stochK">%K: ${stochasticKUp}</p>
+            <p class="osc-text stochasticD-up-actual-${i} stochD">%D: ${stochasticDUp}</p>
             </div>
             <p class="osc-text stochasticSignal-up-actual-${i}">Signal Line: ${stochasticSignalUp}</p>
          </div>
