@@ -155,6 +155,7 @@ const symbolBox = $('.symbol-box')
         let bbMiddle = $(`.bbMiddle-down-actual-${i}`).text().slice(8,)
         let bbUpper= $(`.bbUpper-down-actual-${i}`).text().slice(7,)
         let bbLower = $(`.bbLower-down-actual-${i}`).text().slice(7,)
+        let bbPercent = $(`.bbPercent-down-actual-${i}`).text().slice(4,)
 
         // TURN STRING TO NUM
         price = parseFloat(price)
@@ -172,7 +173,7 @@ const symbolBox = $('.symbol-box')
         bbMiddle = parseFloat(bbMiddle)
         bbUpper = parseFloat(bbUpper)
         bbLower = parseFloat(bbLower)
-
+        bbPercent = parseFloat(bbPercent)
         // VWAP IF FOR CLASS ADD
         if (price < vwap)
         {
@@ -259,6 +260,28 @@ const symbolBox = $('.symbol-box')
         else if (stochasticD < 80 && stochasticD > 20) 
         {
             stochasticHeader.addClass('neutral-stuff-d')
+        }
+
+        //  STOCHASTIC IF FOR CLASS ADD
+        if (bbPercent < 0)
+        {
+            bbHeader.addClass('bullish-stuff')
+        }
+        else if (bbPercent > 1)
+        {
+            bbHeader.addClass('bearish-stuff')
+        }
+        else if (bbPercent > .8 && bbPercent < 1)
+        {
+            bbHeader.addClass('bullish-stuff')
+        }
+        else if (bbPercent < .2 && bbPercent > 0)
+        {
+            bbHeader.addClass('bearish-stuff')
+        }
+        else if (bbPercent <= .8 && bbPercent >= .2)
+        {
+            bbHeader.addClass('neutral-stuff')
         }
 
     }
@@ -288,6 +311,7 @@ const symbolBox = $('.symbol-box')
         let bbMiddle = $(`.bbMiddle-up-actual-${i}`).text().slice(8,)
         let bbUpper= $(`.bbUpper-up-actual-${i}`).text().slice(7,)
         let bbLower = $(`.bbLower-up-actual-${i}`).text().slice(7,)
+        let bbPercent = $(`.bbPercent-up-actual-${i}`).text().slice(4,)
 
         // TURN STRING TO NUM
         price = parseFloat(price)
@@ -305,6 +329,7 @@ const symbolBox = $('.symbol-box')
         bbMiddle = parseFloat(bbMiddle)
         bbUpper = parseFloat(bbUpper)
         bbLower = parseFloat(bbLower)
+        bbPercent = parseFloat(bbPercent)
 
         // VWAP IF FOR CLASS ADD
         if (price < vwap)
@@ -393,6 +418,30 @@ const symbolBox = $('.symbol-box')
         {
             stochasticHeader.addClass('neutral-stuff-d')
         }
+
+        //  STOCHASTIC IF FOR CLASS ADD
+        if (bbPercent < 0)
+        {
+            bbHeader.addClass('bullish-stuff')
+        }
+        else if (bbPercent > 1)
+        {
+            bbHeader.addClass('bearish-stuff')
+        }
+        else if (bbPercent > .8 && bbPercent < 1)
+        {
+            bbHeader.addClass('bullish-stuff')
+        }
+        else if (bbPercent < .2 && bbPercent > 0)
+        {
+            bbHeader.addClass('bearish-stuff')
+        }
+        else if (bbPercent < .8 && bbPercent > .2)
+        {
+            bbHeader.addClass('neutral-stuff')
+        }
+
+
 
     }
 
