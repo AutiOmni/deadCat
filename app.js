@@ -1133,52 +1133,53 @@ function compileStocks(arr1, arr2, arr3, arr4, callback) {
             let tpvCul = 0
             let volumeCul = 0
             let tempVWAP = [] // HOLD VWAP PERIOD - TAKES FROM 0 INDEX FOR MOST CURRENT
-        try {
-        
-        // ADJUST PULL FOR TIME FO DAY AND MONTH
+
+                // ADJUST PULL FOR TIME FO DAY AND MONTH
 
          // AFTER HOURS ADJUST
 
-        let newDateString = todayDate;
+         let newDateString = todayDate;
 
-        if ((hour + 4) >= 24) 
-        {
-            const dateNumSlice = parseInt(date);
-            const dateSliceStart = todayDate.slice(0,8);
-            let newDateNum = dateNumSlice - 1
-            if (newDateNum < 10)
-            {
-                newDateNum = `0${newDateNum}`
-            }
-            newDateString = `${dateSliceStart}${newDateNum}`
-            newDateString = newDateString.toString()
+         if ((hour + 4) >= 24) 
+         {
+             const dateNumSlice = parseInt(date);
+             const dateSliceStart = todayDate.slice(0,8);
+             let newDateNum = dateNumSlice - 1
+             if (newDateNum < 10)
+             {
+                 newDateNum = `0${newDateNum}`
+             }
+             newDateString = `${dateSliceStart}${newDateNum}`
+             newDateString = newDateString.toString()
+             // NEED TO CHECK FOR NEW MONTH CHANGE OVER FROM UTC TIME TO ADJUST FOR EST
+             if (month == 1 || month == 3 || month ==  5 || month == 7 || month ==  8 || month == 10 || month == 12) // 31 MONTH
+             {
+             }
+             else if (month == 4 || month == 6 || month ==  9 || month == 11) // 30 MONTHS
+             {
+             }
+             else if (month == 2 && (year & 4) == 0) // 29 MONTH
+             {
+             }
+             else  // 28 MONTH
+             {
+             }
+ 
+         }
+         // MORNING ADJUSTMENT FOR VWAP
+         let hourAdjust = (hour * 100) + minutes;
+         if (hourAdjust <= 935)
+         {
+             const dateSliceStart = todayDate.slice(0,8);
+             newDateString = `${dateSliceStart}${date}`
+             newDateString = newDateString.toString()
+         }
 
-            if (month == 1 || month == 3 || month ==  5 || month == 7 || month ==  8 || month == 10 || month == 12) // 31 MONTH
-            {
-            }
-            else if (month == 4 || month == 6 || month ==  9 || month == 11) // 30 MONTHS
-            {
-            }
-            else if (month == 2 && (year & 4) == 0) // 29 MONTH
-            {
-            }
-            else  // 28 MONTH
-            {
-            }
-
-        }
-        // MORNING ADJUSTMENT FOR VWAP
-        let hourAdjust = (hour * 100) + minutes;
-        if (hourAdjust <= 935)
-        {
-            const dateSliceStart = todayDate.slice(0,8);
-            newDateString = `${dateSliceStart}${date}`
-            newDateString = newDateString.toString()
-        }
+    try {
 
         // -------------THIS IS FOR GETTING THE DAY LENGTH FOR VWAP
 
-        while (dataPull[dayLengthPeriod].date.slice(0,10) === newDateString) { 
+        while (dataPull[dayLengthPeriod].date.slice(0,10) == newDateString) { 
            dayLengthPeriod++    
            } 
 
