@@ -1585,6 +1585,24 @@ function compileStocks(arr1, arr2, arr3, arr4, callback) {
     if (changeDownAdjusted < 0) {
         changeDownAdjusted = changeDownAdjusted * -1
     }
+
+  // ADJUST TO POSITIVE 
+   if (stochasticDUp < 0)
+    {
+      stochasticDUp = stochasticDUp * -1
+    }
+   if (stochasticKUp < 0)
+    {
+        stochasticKUp = stochasticKUp * -1
+    }
+   if (stochasticDDown < 0)
+    {
+      stochasticDDown = stochasticDDown * -1
+    }
+   if (stochasticKDown < 0)
+    {
+        stochasticKDown = stochasticKDown * -1
+    }
   // ADJUST CERTAIN PARTS TO GIVE RIGHT PROMPT IF UNDEFINED
   
     if (vwapDown == undefined)

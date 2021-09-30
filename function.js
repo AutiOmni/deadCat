@@ -1390,7 +1390,7 @@ if ($(window).width() > 700)
 
             try {
         // -------------THIS IS FOR GETTING THE DAY LENGTH FOR VWAP
-        while (dataPull[dayLengthPeriod].date.slice(0,10) === todayDate) { 
+        while (dataPull[dayLengthPeriod].date.slice(0,10) == newDateString) { 
            dayLengthPeriod++ 
            } 
 
@@ -1400,7 +1400,7 @@ if ($(window).width() > 700)
                 
                 const {volume, high, close, low, date} = dataPull[i];   
                 let tpv = (high + low + close) / 3;
-                if (date.slice(0,10) == todayDate) {
+                if (date.slice(0,10) == newDateString) {
                 tpvCul += tpv * volume
                 volumeCul += volume
                 }
@@ -1608,6 +1608,24 @@ if ($(window).width() > 700)
             let decrease = avgVolume - yesterdayVolume;
             yesterdayVolIncrease = (decrease / avgVolume) * -100
         }
+
+    // ADJUST TO POSITIVE 
+   if (stochasticD < 0)
+   {
+     stochasticD = stochasticD * -1
+   }
+  if (stochasticK < 0)
+   {
+       stochasticK = stochasticK * -1
+   }
+  if (stochasticD < 0)
+   {
+     stochasticD = stochasticD * -1
+   }
+  if (stochasticK < 0)
+   {
+       stochasticK = stochasticK * -1
+   }
 
     // ADJUST CERTAIN PARTS TO GIVE RIGHT PROMPT IF UNDEFINED
   
