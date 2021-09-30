@@ -54,6 +54,42 @@ let hour = today.getUTCHours()
     if (todayDate === '2021-07-05') {
         todayDate = '2021-07-02'
     } 
+// THIS IS AN ADJUSTMENT OF DATE FOR MARKET CLOSES EST VS UTC TIME
+    let newDateString = todayDate;
+    if ((hour + 4) >= 24) 
+    {
+        const dateNumSlice = parseInt(date);
+        const dateSliceStart = todayDate.slice(0,8);
+        let newDateNum = dateNumSlice - 1
+        if (newDateNum < 10)
+        {
+            newDateNum = `0${newDateNum}`
+        }
+        newDateString = `${dateSliceStart}${newDateNum}`
+        newDateString = newDateString.toString()
+        // NEED TO CHECK FOR NEW MONTH CHANGE OVER FROM UTC TIME TO ADJUST FOR EST
+        if (month == 1 || month == 3 || month ==  5 || month == 7 || month ==  8 || month == 10 || month == 12) // 31 MONTH
+        {
+        }
+        else if (month == 4 || month == 6 || month ==  9 || month == 11) // 30 MONTHS
+        {
+        }
+        else if (month == 2 && (year & 4) == 0) // 29 MONTH
+        {
+        }
+        else  // 28 MONTH
+        {
+        }
+
+    }
+    // MORNING ADJUSTMENT FOR VWAP
+    let hourAdjust = (hour * 100) + minutes;
+    if (hourAdjust <= 935)
+    {
+        const dateSliceStart = todayDate.slice(0,8);
+        newDateString = `${dateSliceStart}${date}`
+        newDateString = newDateString.toString()
+    }
     //---------------------------------------------------------------------------------------------------------------------
 
 //------------ ADD SECOND SCRIPT FOR RUN ---------------------- // 
@@ -1146,41 +1182,6 @@ function compileStocks(arr1, arr2, arr3, arr4, callback) {
 
          // AFTER HOURS ADJUST
 
-         let newDateString = todayDate;
-         if ((hour + 4) >= 24) 
-         {
-             const dateNumSlice = parseInt(date);
-             const dateSliceStart = todayDate.slice(0,8);
-             let newDateNum = dateNumSlice - 1
-             if (newDateNum < 10)
-             {
-                 newDateNum = `0${newDateNum}`
-             }
-             newDateString = `${dateSliceStart}${newDateNum}`
-             newDateString = newDateString.toString()
-             // NEED TO CHECK FOR NEW MONTH CHANGE OVER FROM UTC TIME TO ADJUST FOR EST
-             if (month == 1 || month == 3 || month ==  5 || month == 7 || month ==  8 || month == 10 || month == 12) // 31 MONTH
-             {
-             }
-             else if (month == 4 || month == 6 || month ==  9 || month == 11) // 30 MONTHS
-             {
-             }
-             else if (month == 2 && (year & 4) == 0) // 29 MONTH
-             {
-             }
-             else  // 28 MONTH
-             {
-             }
- 
-         }
-         // MORNING ADJUSTMENT FOR VWAP
-         let hourAdjust = (hour * 100) + minutes;
-         if (hourAdjust <= 935)
-         {
-             const dateSliceStart = todayDate.slice(0,8);
-             newDateString = `${dateSliceStart}${date}`
-             newDateString = newDateString.toString()
-         }
 
     try {
 
