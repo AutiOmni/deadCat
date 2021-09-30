@@ -1900,11 +1900,12 @@ if ($(window).width() > 700)
 
             <div class="tech-row">
             <a class="info-link" href="https://www.investopedia.com/terms/b/bollingerbands.asp" target="_blank"><h3 class='tech-header'>Bollinger Bands</h3></a>
-                    <p class="osc-text">Middle: ${bbMiddle}</p>
-                <div class="macd-row">
+                <div class="averages-row">
                     <p class="osc-text">Upper: ${bbUpper}</p>
                     <p class="osc-text">Lower: ${bbLower}</p>
                 </div>
+                    <p class="osc-text">Middle: ${bbMiddle}</p>
+
             </div>
 
             <div class="news-row">

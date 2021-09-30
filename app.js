@@ -1837,11 +1837,13 @@ function compileStocks(arr1, arr2, arr3, arr4, callback) {
  
          <div class="tech-row">
          <a class="info-link bb-down-header-${i}" href="https://www.investopedia.com/terms/b/bollingerbands.asp" target="_blank"><h3 class='tech-header'>Bollinger Bands</h3></a>
-                 <p class="osc-text bbMiddle-down-actual-${i}">Middle: ${bbMiddleDown}</p>
-             <div class="macd-row">
-                 <p class="osc-text bbUpper-down-actual-${i}">Upper: ${bbUpperDown}</p>
-                 <p class="osc-text bbLower-down-actual-${i}">Lower: ${bbLowerDown}</p>
-             </div>
+            <div class="averages-row">
+                <p class="osc-text bbUpper-down-actual-${i}">Upper: ${bbUpperDown}</p>
+                <p class="osc-text bbLower-down-actual-${i}">Lower: ${bbLowerDown}</p>
+            </div>
+         
+            <p class="osc-text bbMiddle-down-actual-${i}">Middle: ${bbMiddleDown}</p>
+    
          </div>
 
          <div class="news-row">
@@ -1982,11 +1984,13 @@ function compileStocks(arr1, arr2, arr3, arr4, callback) {
  
          <div class="tech-row">
          <a class="info-link bb-up-header-${i}" href="https://www.investopedia.com/terms/b/bollingerbands.asp" target="_blank"><h3 class='tech-header'>Bollinger Bands</h3></a>
-                 <p class="osc-text bbMiddle-up-actual-${i}">Middle: ${bbMiddleUp}</p>
-             <div class="macd-row">
-                 <p class="osc-text bbUpper-up-actual-${i}">Upper: ${bbUpperUp}</p>
-                 <p class="osc-text bbLower-up-actual-${i}">Lower: ${bbLowerUp}</p>
-             </div>
+            <div class="averages-row">
+                <p class="osc-text bbUpper-up-actual-${i}">Upper: ${bbUpperUp}</p>
+                <p class="osc-text bbLower-up-actual-${i}">Lower: ${bbLowerUp}</p>
+            </div>
+         
+                <p class="osc-text bbMiddle-up-actual-${i}">Middle: ${bbMiddleUp}</p>
+   
          </div>
 
          <div class="news-row">
