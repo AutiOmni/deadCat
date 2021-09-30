@@ -5,9 +5,10 @@ const year = today.getFullYear()
 let date = today.getUTCDate()
 let month = today.getUTCMonth() + 1
 let minutes = today.getUTCMinutes()
+let hour = today.getUTCHours()
 
     // GET TIME FOR CLOSING AND OPENING MARKET -----------------------------------
-    let hour = today.getUTCHours()
+    
     //CALC FOT UTC
     hour = hour - 4;
     // CALC FOR EARLY MORNING HOURS UTC
@@ -33,9 +34,12 @@ let minutes = today.getUTCMinutes()
     // THIS IS TO CHECK FOR MARKET DAY OPEN DURING WEEKENDS WHEN MARKET IS CLOSED
     if (marketDay == 1 && timeNum < 930) {
         date = date - 3
-    } else if (marketDay >= 2 && marketDay < 6 && timeNum < 930) {
+    } else if (marketDay >= 2 && marketDay < 6 && timeNum < 930) { // ADJUSTS DURING WEEK BEFORE OPEN TO GET DAY BEFORE INDICATORS
         date = date - 1
     }
+
+    // NEED TO TEST MONTH CHANGE OVER TONIGHT !!!!!!!!
+
     // THIS IS TO CORRECT MISSING 0 ON SINGLE DIGITS OF MONTHS
     if (date < 10) {
         date = `0${date}`
@@ -46,9 +50,11 @@ let minutes = today.getUTCMinutes()
 
     // DATE CHECK VARIBLE FOR DATA PERIOD PULLS
     let todayDate = `${year}-${month}-${date}`
+    //CHECK FOR HOLIDAYS OR CLOSED MARKET HOLIDAYS
     if (todayDate === '2021-07-05') {
         todayDate = '2021-07-02'
     } 
+    //---------------------------------------------------------------------------------------------------------------------
 
 //------------ ADD SECOND SCRIPT FOR RUN ---------------------- // 
 function addSecondScript() {
