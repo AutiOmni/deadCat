@@ -592,6 +592,37 @@ nav {
     color: var(--neutral-market-color);
 }
 
+
+.bullish-stuff-k + div .stochK,
+.bullish-stuff-d + div .stochD {
+    transition: all ease-in-out 500ms;
+}
+
+.bearish-stuff-k + div .stochK,
+.bearish-stuff-d + div .stochD {
+    transition: all ease-in-out 500ms;
+}
+
+.neutral-stuff-k + div .stochK,
+.neutral-stuff-d + div .stochD {
+    transition: all ease-in-out 500ms;
+}
+
+.bullish-stuff-k:hover + div .stochK,
+.bullish-stuff-d:hover + div .stochD {
+    color: var(--bull-market-color);
+}
+
+.bearish-stuff-k:hover + div .stochK,
+.bearish-stuff-d:hover + .stochD {
+    color: var(--bear-market-color);
+}
+
+.neutral-stuff-k:hover + div .stochK,
+.neutral-stuff-d:hover + div .stochD {
+    color: var(--neutral-market-color);
+}
+
 /* ------- LOADING SCREEN ---------------------------- */
 
 .loading-screen {
