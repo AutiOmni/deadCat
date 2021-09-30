@@ -1147,7 +1147,6 @@ function compileStocks(arr1, arr2, arr3, arr4, callback) {
          // AFTER HOURS ADJUST
 
          let newDateString = todayDate;
-
          if ((hour + 4) >= 24) 
          {
              const dateNumSlice = parseInt(date);
@@ -1846,7 +1845,7 @@ function compileStocks(arr1, arr2, arr3, arr4, callback) {
                 <p class="osc-text stochasticK-down-actual-${i} stochK">%K: ${stochasticKDown}</p>
                 <p class="osc-text stochasticD-down-actual-${i} stochD">%D: ${stochasticDDown}</p>
             </div>
-                <p class="osc-text stochasticSignal-down-actual-${i}">Signal Line: ${stochasticSignalDown}</p>
+                <p class="osc-text">Signal Line: ${stochasticSignalDown}</p>
          </div>
  
          <div class="tech-row">
@@ -1994,7 +1993,7 @@ function compileStocks(arr1, arr2, arr3, arr4, callback) {
             <p class="osc-text stochasticK-up-actual-${i} stochK">%K: ${stochasticKUp}</p>
             <p class="osc-text stochasticD-up-actual-${i} stochD">%D: ${stochasticDUp}</p>
             </div>
-            <p class="osc-text stochasticSignal-up-actual-${i}">Signal Line: ${stochasticSignalUp}</p>
+            <p class="osc-text">Signal Line: ${stochasticSignalUp}</p>
          </div>
  
          <div class="tech-row">

@@ -144,17 +144,11 @@ const symbolBox = $('.symbol-box')
         // GET ACTUALS FOR NUMBER CALCS AND HOVER COLOR
         let vwap = $(`.vwap-down-actual-${i}`).text()
         let macd = $(`.macd-down-actual-${i}`).text()
-        let macdSignal = $(`.macd-signal-down-actual-${i}`).text().slice(13,)
-        let macdHisto = $(`.macd-histo-down-actual-${i}`).text().slice(11,)
         let rsi = $(`.rsi-down-actual-${i}`).text()
         let cci = $(`.cci-down-actual-${i}`).text()
         let williams = $(`.williams-down-actual-${i}`).text()
         let stochasticK = $(`.stochasticK-down-actual-${i}`).text().slice(4,)
         let stochasticD = $(`.stochasticD-down-actual-${i}`).text().slice(4,)
-        let stochasticSignal = $(`.stochasticSignal-down-actual-${i}`).text().slice(13,)
-        let bbMiddle = $(`.bbMiddle-down-actual-${i}`).text().slice(8,)
-        let bbUpper= $(`.bbUpper-down-actual-${i}`).text().slice(7,)
-        let bbLower = $(`.bbLower-down-actual-${i}`).text().slice(7,)
         let bbPercent = $(`.bbPercent-down-actual-${i}`).text().slice(4,)
 
         // TURN STRING TO NUM
@@ -162,17 +156,11 @@ const symbolBox = $('.symbol-box')
         
         vwap = parseFloat(vwap)
         macd = parseFloat(macd)
-        macdSignal = parseFloat(macdSignal)
-        macdHisto = parseFloat(macdHisto)
         rsi = parseFloat(rsi)
         cci = parseFloat(cci)
         williams = parseFloat(williams)
         stochasticK = parseFloat(stochasticK)
         stochasticD = parseFloat(stochasticD)
-        stochasticSignal = parseFloat(stochasticSignal)
-        bbMiddle = parseFloat(bbMiddle)
-        bbUpper = parseFloat(bbUpper)
-        bbLower = parseFloat(bbLower)
         bbPercent = parseFloat(bbPercent)
         // VWAP IF FOR CLASS ADD
         if (price < vwap)
@@ -300,17 +288,11 @@ const symbolBox = $('.symbol-box')
         // GET ACTUALS FOR NUMBER CALCS AND HOVER COLOR
         let vwap = $(`.vwap-up-actual-${i}`).text()
         let macd = $(`.macd-up-actual-${i}`).text()
-        let macdSignal = $(`.macd-signal-up-actual-${i}`).text().slice(13,)
-        let macdHisto = $(`.macd-histo-up-actual-${i}`).text().slice(11,)
         let rsi = $(`.rsi-up-actual-${i}`).text()
         let cci = $(`.cci-up-actual-${i}`).text()
         let williams = $(`.williams-up-actual-${i}`).text()
         let stochasticK = $(`.stochasticK-up-actual-${i}`).text().slice(4,)
         let stochasticD = $(`.stochasticD-up-actual-${i}`).text().slice(4,)
-        let stochasticSignal = $(`.stochasticSignal-up-actual-${i}`).text().slice(13,)
-        let bbMiddle = $(`.bbMiddle-up-actual-${i}`).text().slice(8,)
-        let bbUpper= $(`.bbUpper-up-actual-${i}`).text().slice(7,)
-        let bbLower = $(`.bbLower-up-actual-${i}`).text().slice(7,)
         let bbPercent = $(`.bbPercent-up-actual-${i}`).text().slice(4,)
 
         // TURN STRING TO NUM
@@ -318,17 +300,11 @@ const symbolBox = $('.symbol-box')
 
         vwap = parseFloat(vwap)
         macd = parseFloat(macd)
-        macdSignal = parseFloat(macdSignal)
-        macdHisto = parseFloat(macdHisto)
         rsi = parseFloat(rsi)
         cci = parseFloat(cci)
         williams = parseFloat(williams)
         stochasticK = parseFloat(stochasticK)
         stochasticD = parseFloat(stochasticD)
-        stochasticSignal = parseFloat(stochasticSignal)
-        bbMiddle = parseFloat(bbMiddle)
-        bbUpper = parseFloat(bbUpper)
-        bbLower = parseFloat(bbLower)
         bbPercent = parseFloat(bbPercent)
 
         // VWAP IF FOR CLASS ADD
@@ -445,6 +421,151 @@ const symbolBox = $('.symbol-box')
 
     }
 
+    function indicatorColorsSearch() {
+               // ALL MIGHTY PRICE
+               let price = $(`.price-search`).text().slice(8,)
+               // GET HEADERS FOR HOVER EFFECT
+               let vwapHeader = $(`.vwap-search-header`)
+               let macdHeader = $(`.macd-search-header`)
+               let rsiHeader = $(`.rsi-search-header`)
+               let cciHeader = $(`.cci-search-header`)
+               let williamsHeader = $(`.williams-search-header`)
+               let stochasticHeader = $(`.stochastic-search-header`)
+               let bbHeader = $(`.bb-search-header`)
+               // GET ACTUALS FOR NUMBER CALCS AND HOVER COLOR
+               let vwap = $(`.vwap-search-actual`).text()
+               let macd = $(`.macd-search-actual`).text()
+               let rsi = $(`.rsi-search-actual`).text()
+               let cci = $(`.cci-search-actual`).text()
+               let williams = $(`.williams-search-actual`).text()
+               let stochasticK = $(`.stochasticK-search-actual`).text().slice(4,)
+               let stochasticD = $(`.stochasticD-search-actual`).text().slice(4,)
+               let bbPercent = $(`.bbPercent-search-actual`).text().slice(4,)
+       
+               // TURN STRING TO NUM
+               price = parseFloat(price)
+       
+               vwap = parseFloat(vwap)
+               macd = parseFloat(macd)
+               rsi = parseFloat(rsi)
+               cci = parseFloat(cci)
+               williams = parseFloat(williams)
+               stochasticK = parseFloat(stochasticK)
+               stochasticD = parseFloat(stochasticD)
+               bbPercent = parseFloat(bbPercent)
+       
+               // VWAP IF FOR CLASS ADD
+               if (price < vwap)
+               {
+                   vwapHeader.addClass('bullish-stuff')
+               }
+               else if (price > vwap)
+               {
+                   vwapHeader.addClass('bearish-stuff')
+               }
+               else if (price == vwap)
+               {
+                   vwapHeader.addClass('neutral-stuff')
+               }
+               // MACD IF FOR CLASS ADD
+               if (macd > 0)
+               {
+                   macdHeader.addClass('bullish-stuff')
+               }
+               else if (macd < 0)
+               {
+                   macdHeader.addClass('bearish-stuff')
+               }
+               else if (macd == 0)
+               {
+                   macdHeader.addClass('neutral-stuff')
+               }
+               // RSI IF FOR CLASS ADD
+               if (rsi < 30)
+               {
+                   rsiHeader.addClass('bullish-stuff')
+               }
+               else if (rsi > 70)
+               {
+                   rsiHeader.addClass('bearish-stuff')
+               }
+               else if (rsi < 70 && rsi > 30)
+               {
+                   rsiHeader.addClass('neutral-stuff')
+               }
+               // CCI IF FOR CLASS ADD
+               if (cci > 100) 
+               {
+                   cciHeader.addClass('bullish-stuff')
+               }
+               else if (cci < -100) 
+               {
+                   cciHeader.addClass('bearish-stuff')
+               }
+               else if (cci < 100 && cci > -100)
+               {
+                   cciHeader.addClass('neutral-stuff')
+               }
+               //  WILLIAMS IF FOR CLASS ADD
+               if (williams > -50)
+               {
+                   williamsHeader.addClass('bullish-stuff')
+               }
+               else if (williams < -50)
+               {
+                   williamsHeader.addClass('bearish-stuff')
+               }
+               //  STOCHASTIC IF FOR CLASS ADD
+               if (stochasticK > 85)
+               {
+                   stochasticHeader.addClass('bearish-stuff-k')
+               }
+               else if (stochasticK < 15)
+               {
+                   stochasticHeader.addClass('bullish-stuff-k')
+               }
+               else if (stochasticK < 85 && stochasticK > 15) 
+               {
+                   stochasticHeader.addClass('neutral-stuff-k')
+               }
+       
+               if (stochasticD > 80)
+               {
+                   stochasticHeader.addClass('bearish-stuff-d')
+               }
+               else if (stochasticD < 20)
+               {
+                   stochasticHeader.addClass('bullish-stuff-d')
+               }
+               else if (stochasticD < 80 && stochasticD > 20) 
+               {
+                   stochasticHeader.addClass('neutral-stuff-d')
+               }
+       
+               //  STOCHASTIC IF FOR CLASS ADD
+               if (bbPercent < 0)
+               {
+                   bbHeader.addClass('bullish-stuff')
+               }
+               else if (bbPercent > 1)
+               {
+                   bbHeader.addClass('bearish-stuff')
+               }
+               else if (bbPercent > .8 && bbPercent < 1)
+               {
+                   bbHeader.addClass('bullish-stuff')
+               }
+               else if (bbPercent < .2 && bbPercent > 0)
+               {
+                   bbHeader.addClass('bearish-stuff')
+               }
+               else if (bbPercent < .8 && bbPercent > .2)
+               {
+                   bbHeader.addClass('neutral-stuff')
+               }
+       
+       
+    }
 
 // SEARCH STOCK ----------------------------------------------------
 
@@ -1833,7 +1954,7 @@ if ($(window).width() > 700)
         <p class="tech-title-warn">For Educational Purposes Only</p>
 
         <div class="tech-row">
-        <p class="search-price-text">Price: $${price.toFixed(2)}</p>
+        <p class="search-price-text price-search">Price: $${price.toFixed(2)}</p>
         <div class="search-changes-row">
         <p>${changesPercentage.toFixed(2)}%</p>
         <div id="search-arrow-${directionArrow}"></div>
@@ -1913,13 +2034,13 @@ if ($(window).width() > 700)
             </div>
 
             <div class="tech-row">
-            <a class="info-link" href="https://www.investopedia.com/terms/v/vwap.asp" target="_blank"><h3 class='tech-header'>VWAP (5 Minute)</h3></a>
-                <p class="osc-text">${vwap}</p>
+            <a class="info-link vwap-search-header" href="https://www.investopedia.com/terms/v/vwap.asp" target="_blank"><h3 class='tech-header'>VWAP (5 Minute)</h3></a>
+                <p class="osc-text vwap-search-actual">${vwap}</p>
             </div>
 
             <div class="tech-row">
-            <a class="info-link" href="https://www.investopedia.com/terms/m/macd.asp" target="_blank"><h3 class='tech-header'>MACD (12 , 26)</h3></a>
-                <p class="osc-text">${macd}</p>
+            <a class="info-link macd-search-header" href="https://www.investopedia.com/terms/m/macd.asp" target="_blank"><h3 class='tech-header'>MACD (12 , 26)</h3></a>
+                <p class="osc-text macd-search-actual">${macd}</p>
                     <div class="macd-row">
                         <p>Signal Line: ${macdSignalLine}</p>
                         <p>Histogram: ${macdHistogram}</p>
@@ -1928,35 +2049,35 @@ if ($(window).width() > 700)
 
             <div class="flex-rsi-cci">
                 <div class="tech-row">
-                <a class="info-link" href="https://www.investopedia.com/terms/s/stochrsi.asp" target="_blank"><h3 class='tech-header'>RSI</h3></a>
-                    <p class="osc-text">${rsi}</p>
+                <a class="info-link rsi-search-header" href="https://www.investopedia.com/terms/s/stochrsi.asp" target="_blank"><h3 class='tech-header'>RSI</h3></a>
+                    <p class="osc-text rsi-search-actual">${rsi}</p>
                 </div>
 
                 <div class="tech-row">
-                <a class="info-link" href="https://www.investopedia.com/terms/c/commoditychannelindex.asp" target="_blank"><h3 class='tech-header'>CCI</h3></a>
-                    <p class="osc-text">${cciTwenty}</p>
+                <a class="info-link cci-search-header" href="https://www.investopedia.com/terms/c/commoditychannelindex.asp" target="_blank"><h3 class='tech-header'>CCI</h3></a>
+                    <p class="osc-text cci-search-actual">${cciTwenty}</p>
                 </div>
 
             </div>
 
             <div class="tech-row">
-            <a class="info-link" href="https://www.investopedia.com/terms/w/williamsr.asp" target="_blank"><h3 class='tech-header'>Williams %R</h3></a>
-                <p class="osc-text">${williamsR}</p>
+            <a class="info-link williams-search-header" href="https://www.investopedia.com/terms/w/williamsr.asp" target="_blank"><h3 class='tech-header'>Williams %R</h3></a>
+                <p class="osc-text williams-search-actual">${williamsR}</p>
             </div>
 
 
             <div class="tech-row">
-            <a class="info-link" href="https://www.investopedia.com/terms/s/stochasticoscillator.asp" target="_blank"><h3 class='tech-header'>Stochastic Oscillator</h3></a>
+            <a class="info-link stochastic-search-header" href="https://www.investopedia.com/terms/s/stochasticoscillator.asp" target="_blank"><h3 class='tech-header'>Stochastic Oscillator</h3></a>
             <div class="averages-row">
-                <p class="osc-text">%K: ${stochasticK}</p>
-                <p class="osc-text">%D: ${stochasticD}</p>
+                <p class="osc-text stochasticK-search-actual stochK">%K: ${stochasticK}</p>
+                <p class="osc-text stochasticD-search-actual stochD">%D: ${stochasticD}</p>
             </div>
                 <p class="osc-text">Signal Line: ${stochasticSignal}</p>
             </div>
 
             <div class="tech-row">
-            <a class="info-link" href="https://www.investopedia.com/terms/b/bollingerbands.asp" target="_blank"><h3 class='tech-header'>Bollinger Bands</h3></a>
-                <p class="osc-text">%B: ${bbPercent}</p>
+            <a class="info-link bb-search-header" href="https://www.investopedia.com/terms/b/bollingerbands.asp" target="_blank"><h3 class='tech-header'>Bollinger Bands</h3></a>
+                <p class="osc-text bbPercent-search-actual">%B: ${bbPercent}</p>
                 <div class="averages-row">
                     <p class="osc-text">Upper: ${bbUpper}</p>
                     <p class="osc-text">Lower: ${bbLower}</p>
@@ -1974,5 +2095,5 @@ if ($(window).width() > 700)
 
         // GET RID OF LOADING SCREEN
         $('.loading-search').css('display', 'none');
-
+        indicatorColorsSearch()
     }
