@@ -207,6 +207,19 @@ const symbolBox = $('.symbol-box')
         {
             rsiHeader.addClass('neutral-stuff')
         }
+        // CCI IF FOR CLASS ADD
+        if (cci > 100) 
+        {
+            cciHeader.addClass('bullish-stuff')
+        }
+        else if (cci < -100) 
+        {
+            cciHeader.addClass('bearish-stuff')
+        }
+        else if (cci < 100 && cci > -100)
+        {
+            cciHeader.addClass('neutral-stuff')
+        }
 
     }
 
@@ -286,6 +299,19 @@ const symbolBox = $('.symbol-box')
         else if (rsi < 70 && rsi > 30)
         {
             rsiHeader.addClass('neutral-stuff')
+        }
+        // CCI IF FOR CLASS ADD
+        if (cci > 100) 
+        {
+            cciHeader.addClass('bullish-stuff')
+        }
+        else if (cci < -100) 
+        {
+            cciHeader.addClass('bearish-stuff')
+        }
+        else if (cci < 100 && cci > -100)
+        {
+            cciHeader.addClass('neutral-stuff')
         }
 
     }

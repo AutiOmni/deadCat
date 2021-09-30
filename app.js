@@ -1129,25 +1129,105 @@ function compileStocks(arr1, arr2, arr3, arr4, callback) {
     }
     // VWAP FUNCTION ------------------------------------------------------------------------------------------------------------------------------------------       
     function vwapFunction(chartArr, dataPull, num) {
-      
+
         // ----------- VWAP CALUC -------------------------------------------
             let dayLengthPeriod = 0
             let tpvCul = 0
             let volumeCul = 0
             let tempVWAP = [] // HOLD VWAP PERIOD - TAKES FROM 0 INDEX FOR MOST CURRENT
         try {
+        let newDateString = '';
+        
+        // ADJUST PULL FOR TIME FO DAY AND MONTH
+    if (month == 1 || month == 3 || month ==  5 || month == 7 || month ==  8 || month == 10 || month == 12) // 31 MONTH
+    {
+        const dateNumSlice = parseInt(date);
+
+        if ((hour + 4) >= 24) 
+        {
+            
+            const dateSliceStart = todayDate.slice(0,8);
+            let newDateNum = dateNumSlice - 1
+            if (newDateNum < 10)
+            {
+                newDateNum = `0${newDateNum}`
+            }
+            newDateString = `${dateSliceStart}${newDateNum}`
+            newDateString = newDateString.toString()
+        }
+        
+    }
+    else if (month == 4 || month == 6 || month ==  9 || month == 11) // 30 MONTHS
+    {
+        const dateNumSlice = parseInt(date);
+
+        if ((hour + 4) >= 24) 
+        {
+            
+            const dateSliceStart = todayDate.slice(0,8);
+            let newDateNum = dateNumSlice - 1
+            if (newDateNum < 10)
+            {
+                newDateNum = `0${newDateNum}`
+            }
+            newDateString = `${dateSliceStart}${newDateNum}`
+            newDateString = newDateString.toString()
+            console.log(newDateString)
+        }
+        
+    }
+    else if (month == 2 && (year & 4) == 0) // 29 MONTH
+    {
+        const dateNumSlice = parseInt(date);
+
+        if ((hour + 4) >= 24) 
+        {
+            
+            const dateSliceStart = todayDate.slice(0,8);
+            let newDateNum = dateNumSlice - 1
+            if (newDateNum < 10)
+            {
+                newDateNum = `0${newDateNum}`
+            }
+            newDateString = `${dateSliceStart}${newDateNum}`
+            newDateString = newDateString.toString()
+        }
+        
+    }
+    else  // 28 MONTH
+    {
+        const dateNumSlice = parseInt(date);
+
+        if ((hour + 4) >= 24) 
+        {
+            
+            const dateSliceStart = todayDate.slice(0,8);
+            let newDateNum = dateNumSlice - 1
+            if (newDateNum < 10)
+            {
+                newDateNum = `0${newDateNum}`
+            }
+            newDateString = `${dateSliceStart}${newDateNum}`
+            newDateString = newDateString.toString()
+        }
+
+
+
+     
+        
+    }
         // -------------THIS IS FOR GETTING THE DAY LENGTH FOR VWAP
-        while (dataPull[dayLengthPeriod].date.slice(0,10) === todayDate) { 
+
+        while (dataPull[dayLengthPeriod].date.slice(0,10) === newDateString) { 
            dayLengthPeriod++ 
            } 
 
         // --------------------THIS IS FOR CALCULATING THE VWAP AND PUSHING TO 
         
             for (let i = 0; i < dayLengthPeriod; i++) {
-                
                 const {volume, high, close, low, date} = dataPull[i];   
                 let tpv = (high + low + close) / 3;
-                if (date.slice(0,10) == todayDate) {
+                if (date.slice(0,10) == newDateString) {
                 tpvCul += tpv * volume
                 volumeCul += volume
                 }
@@ -1156,7 +1236,6 @@ function compileStocks(arr1, arr2, arr3, arr4, callback) {
                 }
                 let vwap =  tempVWAP[0].toFixed(2)
                 chartArr[num].vwap = vwap  
-                
             }
             catch(e) 
             {
@@ -1476,10 +1555,9 @@ function compileStocks(arr1, arr2, arr3, arr4, callback) {
  
      let {avgVolumeDown, volumeYesterdayDown, changeDown, changesPercentageDown, priceDown, symbolDown, volumeDown, vwapDown, smaFiveTeenDown, smaTwentyDown, smaThirtyDown, smaFiftyDown, smaOneHunDown, smaTwoHunDown, emaTwelveDown, emaTwentySixDown, emaFiftyDown, emaTwoHunDown, wmaFiveTeenDown, wmaTwentyDown, wmaThirtyDown, wmaFiftyDown, wmaOneHunDown, wmaTwoHunDown, vwmaFiveTeenDown, vwmaTwentyDown, vwmaThirtyDown, vwmaFiftyDown, vwmaOneHunDown, vwmaTwoHunDown, macdDown, macdHistogramDown, macdSignalLineDown, rsiDown, stochasticDDown, stochasticKDown, stochasticSignalDown, cciDown, bbMiddleDown, bbLowerDown, bbUpperDown , williamsRDown} = arrDown[i]
  
+  // VOLUME INCREASE TODAY --------------------------------------------------------
 
-    // VOLUME INCREASE TODAY --------------------------------------------------------
-
-    // UP VOLUME INCREASE ----------------------------
+  // UP VOLUME INCREASE ----------------------------
 
    let volumeIncreaseUp = 0;
 
