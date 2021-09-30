@@ -592,7 +592,6 @@ nav {
     color: var(--neutral-market-color);
 }
 
-
 .bullish-stuff-k + div .stochK,
 .bullish-stuff-d + div .stochD {
     transition: all ease-in-out 500ms;

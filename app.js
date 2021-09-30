@@ -1120,16 +1120,18 @@ function compileStocks(arr1, arr2, arr3, arr4, callback) {
                     const bbUpper = smaTwenty + (standardDev * 2)
                     const bbLower = smaTwenty - (standardDev * 2)
 
+                    const bbPercent = (newPrice - bbLower) / (bbUpper - bbLower)
+
                     chartArr[num].bbUpper = bbUpper.toFixed(2)
                     chartArr[num].bbLower = bbLower.toFixed(2)
                     chartArr[num].bbMiddle = smaTwenty.toFixed(2)
+                    chartArr[num].bbPercent = bbPercent.toFixed(2)
             }
         }
         catch(e) 
         {
             
         }
-
     }
     // VWAP FUNCTION ------------------------------------------------------------------------------------------------------------------------------------------       
     function vwapFunction(chartArr, dataPull, num) {
@@ -1420,6 +1422,8 @@ function compileStocks(arr1, arr2, arr3, arr4, callback) {
          delete stocksUp[i].bbLower
          stocksUp[i].bbMiddleUp = stocksUp[i].bbMiddle
          delete stocksUp[i].bbMiddle
+         stocksUp[i].bbPercentUp = stocksUp[i].bbPercent
+         delete stocksUp[i].bbPercent
          // DOWNERS ------------------------------------------------------------------------------
          stocksDown[i].symbolDown = stocksDown[i].symbol
          delete stocksDown[i].symbol
@@ -1505,6 +1509,8 @@ function compileStocks(arr1, arr2, arr3, arr4, callback) {
          delete stocksDown[i].bbLower
          stocksDown[i].bbMiddleDown = stocksDown[i].bbMiddle
          delete stocksDown[i].bbMiddle
+         stocksDown[i].bbPercentDown = stocksDown[i].bbPercent
+         delete stocksDown[i].bbPercent
      }
 
      callback(stocksUp, stocksDown)
@@ -1518,9 +1524,9 @@ function compileStocks(arr1, arr2, arr3, arr4, callback) {
  for (let i = 0; i < arrDown.length; i++) {
  
  // DECONSTRUCTING UP AND DOWN VAR
-     let {avgVolumeUp, volumeYesterdayUp, changeUp, changesPercentageUp, priceUp, symbolUp, volumeUp, vwapUp, smaFiveTeenUp, smaTwentyUp, smaThirtyUp, smaFiftyUp, smaOneHunUp, smaTwoHunUp, emaTwelveUp, emaTwentySixUp, emaFiftyUp, emaTwoHunUp, wmaFiveTeenUp, wmaTwentyUp, wmaThirtyUp, wmaFiftyUp, wmaOneHunUp, wmaTwoHunUp, vwmaFiveTeenUp, vwmaTwentyUp, vwmaThirtyUp, vwmaFiftyUp, vwmaOneHunUp, vwmaTwoHunUp, macdUp, macdHistogramUp, macdSignalLineUp, rsiUp, stochasticDUp, stochasticKUp, stochasticSignalUp, cciUp, bbMiddleUp, bbLowerUp, bbUpperUp, williamsRUp} = arrUp[i]
+     let {avgVolumeUp, volumeYesterdayUp, changeUp, changesPercentageUp, priceUp, symbolUp, volumeUp, vwapUp, smaFiveTeenUp, smaTwentyUp, smaThirtyUp, smaFiftyUp, smaOneHunUp, smaTwoHunUp, emaTwelveUp, emaTwentySixUp, emaFiftyUp, emaTwoHunUp, wmaFiveTeenUp, wmaTwentyUp, wmaThirtyUp, wmaFiftyUp, wmaOneHunUp, wmaTwoHunUp, vwmaFiveTeenUp, vwmaTwentyUp, vwmaThirtyUp, vwmaFiftyUp, vwmaOneHunUp, vwmaTwoHunUp, macdUp, macdHistogramUp, macdSignalLineUp, rsiUp, stochasticDUp, stochasticKUp, stochasticSignalUp, cciUp, bbMiddleUp, bbLowerUp, bbUpperUp, bbPercentUp, williamsRUp} = arrUp[i]
  
-     let {avgVolumeDown, volumeYesterdayDown, changeDown, changesPercentageDown, priceDown, symbolDown, volumeDown, vwapDown, smaFiveTeenDown, smaTwentyDown, smaThirtyDown, smaFiftyDown, smaOneHunDown, smaTwoHunDown, emaTwelveDown, emaTwentySixDown, emaFiftyDown, emaTwoHunDown, wmaFiveTeenDown, wmaTwentyDown, wmaThirtyDown, wmaFiftyDown, wmaOneHunDown, wmaTwoHunDown, vwmaFiveTeenDown, vwmaTwentyDown, vwmaThirtyDown, vwmaFiftyDown, vwmaOneHunDown, vwmaTwoHunDown, macdDown, macdHistogramDown, macdSignalLineDown, rsiDown, stochasticDDown, stochasticKDown, stochasticSignalDown, cciDown, bbMiddleDown, bbLowerDown, bbUpperDown , williamsRDown} = arrDown[i]
+     let {avgVolumeDown, volumeYesterdayDown, changeDown, changesPercentageDown, priceDown, symbolDown, volumeDown, vwapDown, smaFiveTeenDown, smaTwentyDown, smaThirtyDown, smaFiftyDown, smaOneHunDown, smaTwoHunDown, emaTwelveDown, emaTwentySixDown, emaFiftyDown, emaTwoHunDown, wmaFiveTeenDown, wmaTwentyDown, wmaThirtyDown, wmaFiftyDown, wmaOneHunDown, wmaTwoHunDown, vwmaFiveTeenDown, vwmaTwentyDown, vwmaThirtyDown, vwmaFiftyDown, vwmaOneHunDown, vwmaTwoHunDown, macdDown, macdHistogramDown, macdSignalLineDown, rsiDown, stochasticDDown, stochasticKDown, stochasticSignalDown, cciDown, bbMiddleDown, bbLowerDown, bbUpperDown, bbPercentDown, williamsRDown} = arrDown[i]
  
   // VOLUME INCREASE TODAY --------------------------------------------------------
 
@@ -1699,6 +1705,14 @@ function compileStocks(arr1, arr2, arr3, arr4, callback) {
     {
         bbUpperUp = 'No Data'
     }
+    if (bbPercentDown == undefined)
+    {
+        bbPercentDown = 'No Data'
+    }
+    if (bbPercentUp == undefined)
+    {
+        bbPercentUp = 'No Data'
+    }
 
      const litter = document.createElement('div')
      litter.classList.add('row-ex')
@@ -1837,6 +1851,7 @@ function compileStocks(arr1, arr2, arr3, arr4, callback) {
  
          <div class="tech-row">
          <a class="info-link bb-down-header-${i}" href="https://www.investopedia.com/terms/b/bollingerbands.asp" target="_blank"><h3 class='tech-header'>Bollinger Bands</h3></a>
+            <p class="osc-text bbPercent-down-actual-${i}">%B: ${bbPercentDown}</p>
             <div class="averages-row">
                 <p class="osc-text bbUpper-down-actual-${i}">Upper: ${bbUpperDown}</p>
                 <p class="osc-text bbLower-down-actual-${i}">Lower: ${bbLowerDown}</p>
@@ -1984,6 +1999,7 @@ function compileStocks(arr1, arr2, arr3, arr4, callback) {
  
          <div class="tech-row">
          <a class="info-link bb-up-header-${i}" href="https://www.investopedia.com/terms/b/bollingerbands.asp" target="_blank"><h3 class='tech-header'>Bollinger Bands</h3></a>
+            <p class="osc-text bbPercent-up-actual-${i}">%B: ${bbPercentUp}</p>
             <div class="averages-row">
                 <p class="osc-text bbUpper-up-actual-${i}">Upper: ${bbUpperUp}</p>
                 <p class="osc-text bbLower-up-actual-${i}">Lower: ${bbLowerUp}</p>

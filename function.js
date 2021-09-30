@@ -1413,9 +1413,12 @@ if ($(window).width() > 700)
                 const bbUpper = smaTwenty + (standardDev * 2)
                 const bbLower = smaTwenty - (standardDev * 2)
 
+                const bbPercent = (newPrice - bbLower) / (bbUpper - bbLower)
+
                 searchedTicker.bbUpper = bbUpper.toFixed(2)
                 searchedTicker.bbLower = bbLower.toFixed(2)
                 searchedTicker.bbMiddle = smaTwenty.toFixed(2)
+                searchedTicker.bbPercent = bbPercent.toFixed(2)
                     }
                 }
                 catch(e) 
@@ -1651,7 +1654,7 @@ if ($(window).width() > 700)
 
     // BUILD OUT HTML ------------------------------------------------------   
     async function buildSearchTech(obj) {
-        let {symbol, price, change, changesPercentage, avgVolume, volume, yesterdayVolume, vwap, smaFiveTeen, smaTwenty, smaThirty, smaFifty, smaOneHun, smaTwoHun, emaTwelve, emaTwentySix, emaFifty, emaTwoHun, wmaFiveTeen, wmaTwenty, wmaThirty, wmaFifty, wmaOneHun, wmaTwoHun, vwmaFiveTeen, vwmaTwenty, vwmaThirty, vwmaFifty, vwmaOneHun, vwmaTwoHun, macd, macdHistogram, macdSignalLine, rsi, stochasticD, stochasticK, stochasticSignal, cciTwenty, bbMiddle, bbLower, bbUpper, williamsR} = obj;
+        let {symbol, price, change, changesPercentage, avgVolume, volume, yesterdayVolume, vwap, smaFiveTeen, smaTwenty, smaThirty, smaFifty, smaOneHun, smaTwoHun, emaTwelve, emaTwentySix, emaFifty, emaTwoHun, wmaFiveTeen, wmaTwenty, wmaThirty, wmaFifty, wmaOneHun, wmaTwoHun, vwmaFiveTeen, vwmaTwenty, vwmaThirty, vwmaFifty, vwmaOneHun, vwmaTwoHun, macd, macdHistogram, macdSignalLine, rsi, stochasticD, stochasticK, stochasticSignal, cciTwenty, bbMiddle, bbLower, bbUpper, bbPercent, williamsR} = obj;
 
         let directionArrow = 'up'
 
@@ -1763,6 +1766,10 @@ if ($(window).width() > 700)
     if (bbUpper == undefined)
     {
         bbUpper = 'No Data'
+    }
+    if (bbPercent == undefined)
+    {
+        bbPercent = 'No Data'
     }
 
         techIn.html(   
@@ -1900,6 +1907,7 @@ if ($(window).width() > 700)
 
             <div class="tech-row">
             <a class="info-link" href="https://www.investopedia.com/terms/b/bollingerbands.asp" target="_blank"><h3 class='tech-header'>Bollinger Bands</h3></a>
+                <p class="osc-text">%B: ${bbPercent}</p>
                 <div class="averages-row">
                     <p class="osc-text">Upper: ${bbUpper}</p>
                     <p class="osc-text">Lower: ${bbLower}</p>
