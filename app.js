@@ -4,6 +4,7 @@ const today = new Date
 const year = today.getFullYear()
 let date = today.getUTCDate()
 let month = today.getUTCMonth() + 1
+let minutes = today.getUTCMinutes()
 
     // GET TIME FOR CLOSING AND OPENING MARKET -----------------------------------
     let hour = today.getUTCHours()
@@ -15,13 +16,10 @@ let month = today.getUTCMonth() + 1
         hour = hour + 24;
     }
     // GET AND ADJUST MINUTES TO ADD 0 BELOW 10
-    let min = today.getUTCMinutes()
-
-    if (min < 10) {
-        min = `0${min}`
+    if (minutes < 10) {
+        minutes = `0${minutes}`
     }
-
-    const time = `${hour}${min}`
+    const time = `${hour}${minutes}`
     const timeNum = parseInt(time)
 
     // GET DAY FOR CLOSING AND OPENING MARKET -------------------------------------------
@@ -1136,16 +1134,16 @@ function compileStocks(arr1, arr2, arr3, arr4, callback) {
             let volumeCul = 0
             let tempVWAP = [] // HOLD VWAP PERIOD - TAKES FROM 0 INDEX FOR MOST CURRENT
         try {
-        let newDateString = '';
         
         // ADJUST PULL FOR TIME FO DAY AND MONTH
-    if (month == 1 || month == 3 || month ==  5 || month == 7 || month ==  8 || month == 10 || month == 12) // 31 MONTH
-    {
-        const dateNumSlice = parseInt(date);
+
+         // AFTER HOURS ADJUST
+
+        let newDateString = todayDate;
 
         if ((hour + 4) >= 24) 
         {
-            
+            const dateNumSlice = parseInt(date);
             const dateSliceStart = todayDate.slice(0,8);
             let newDateNum = dateNumSlice - 1
             if (newDateNum < 10)
@@ -1154,71 +1152,34 @@ function compileStocks(arr1, arr2, arr3, arr4, callback) {
             }
             newDateString = `${dateSliceStart}${newDateNum}`
             newDateString = newDateString.toString()
-        }
-        
-    }
-    else if (month == 4 || month == 6 || month ==  9 || month == 11) // 30 MONTHS
-    {
-        const dateNumSlice = parseInt(date);
 
-        if ((hour + 4) >= 24) 
-        {
-            
-            const dateSliceStart = todayDate.slice(0,8);
-            let newDateNum = dateNumSlice - 1
-            if (newDateNum < 10)
+            if (month == 1 || month == 3 || month ==  5 || month == 7 || month ==  8 || month == 10 || month == 12) // 31 MONTH
             {
-                newDateNum = `0${newDateNum}`
             }
-            newDateString = `${dateSliceStart}${newDateNum}`
-            newDateString = newDateString.toString()
-        }
-        
-    }
-    else if (month == 2 && (year & 4) == 0) // 29 MONTH
-    {
-        const dateNumSlice = parseInt(date);
+            else if (month == 4 || month == 6 || month ==  9 || month == 11) // 30 MONTHS
+            {
+            }
+            else if (month == 2 && (year & 4) == 0) // 29 MONTH
+            {
+            }
+            else  // 28 MONTH
+            {
+            }
 
-        if ((hour + 4) >= 24) 
-        {
-            
-            const dateSliceStart = todayDate.slice(0,8);
-            let newDateNum = dateNumSlice - 1
-            if (newDateNum < 10)
-            {
-                newDateNum = `0${newDateNum}`
-            }
-            newDateString = `${dateSliceStart}${newDateNum}`
-            newDateString = newDateString.toString()
         }
-        
-    }
-    else  // 28 MONTH
-    {
-        const dateNumSlice = parseInt(date);
-
-        if ((hour + 4) >= 24) 
+        // MORNING ADJUSTMENT FOR VWAP
+        let hourAdjust = (hour * 100) + minutes;
+        if (hourAdjust <= 935)
         {
-            
             const dateSliceStart = todayDate.slice(0,8);
-            let newDateNum = dateNumSlice - 1
-            if (newDateNum < 10)
-            {
-                newDateNum = `0${newDateNum}`
-            }
-            newDateString = `${dateSliceStart}${newDateNum}`
+            newDateString = `${dateSliceStart}${date}`
             newDateString = newDateString.toString()
         }
 
-
-
-     
-        
-    }
         // -------------THIS IS FOR GETTING THE DAY LENGTH FOR VWAP
 
         while (dataPull[dayLengthPeriod].date.slice(0,10) === newDateString) { 
-           dayLengthPeriod++ 
+           dayLengthPeriod++    
            } 
 
         // --------------------THIS IS FOR CALCULATING THE VWAP AND PUSHING TO 
@@ -1238,7 +1199,7 @@ function compileStocks(arr1, arr2, arr3, arr4, callback) {
             }
             catch(e) 
             {
-                  
+                
             }
     }
     // SET VOLUME ------------------------------------------------------------------
