@@ -12,7 +12,7 @@ let month = today.getUTCMonth() + 1
     // CALC FOR EARLY MORNING HOURS UTC
     if (hour < 0)
     {
-        hour = hour + 23;
+        hour = hour + 24;
     }
     // GET AND ADJUST MINUTES TO ADD 0 BELOW 10
     let min = today.getUTCMinutes()
@@ -1172,7 +1172,6 @@ function compileStocks(arr1, arr2, arr3, arr4, callback) {
             }
             newDateString = `${dateSliceStart}${newDateNum}`
             newDateString = newDateString.toString()
-            console.log(newDateString)
         }
         
     }

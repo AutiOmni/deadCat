@@ -156,7 +156,6 @@ const symbolBox = $('.symbol-box')
         let bbUpper= $(`.bbUpper-down-actual-${i}`).text().slice(7,)
         let bbLower = $(`.bbLower-down-actual-${i}`).text().slice(7,)
 
-        console.log(vwap, macd, macdSignal, macdHisto, rsi, cci, williams, stochasticK, stochasticD, stochasticSignal, bbMiddle, bbUpper, bbLower)
         // TURN STRING TO NUM
         price = parseFloat(price)
         
@@ -173,8 +172,6 @@ const symbolBox = $('.symbol-box')
         bbMiddle = parseFloat(bbMiddle)
         bbUpper = parseFloat(bbUpper)
         bbLower = parseFloat(bbLower)
-
-        console.log(vwap, macd, macdSignal, macdHisto, rsi, cci, williams, stochasticK, stochasticD, stochasticSignal, bbMiddle, bbUpper, bbLower)
 
         // VWAP IF FOR CLASS ADD
         if (price < vwap)
