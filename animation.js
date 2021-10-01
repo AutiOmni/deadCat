@@ -62,7 +62,6 @@ $(window).scroll(function() {
     var topInfoThreeL = $('.selector-info-l').offset().top
 
     var topInfoConfCover = $('.confused-cover').offset().top
-    var topInfoChoiceCover = $('.choice-cover').offset().top
 
 
 	if ((windowTop * 3.5) > topInfoOne)
@@ -86,18 +85,11 @@ $(window).scroll(function() {
         $('.confused-chart-left').addClass('active-info-two-l')       
     }
 
-    if ((windowTop * 1.5) > topInfoChoiceCover)
-    {
-        $('.choice-cover').css({'opacity': '0', 'z-index': '0'});
-        $('#download').css('background-color', 'var(--main-background)');
-
-    }
-
-	if ((windowTop * 1.45) > topInfoThreeR)
+	if ((windowTop * 1.5) > topInfoThreeR)
     {
         $('.selector-info-r').addClass('active-info-three-r')
     }
-	if ((windowTop * 1.45) > topInfoThreeL)
+	if ((windowTop * 1.5) > topInfoThreeL)
     {
         $('.selector-info-l').addClass('active-info-three-l')
         for (let i = 1; i <= 5; i++) {
