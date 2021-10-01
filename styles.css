@@ -897,6 +897,8 @@ nav {
     z-index: 99;
     white-space: nowrap;
     margin-bottom:0;
+    text-decoration: underline;
+    text-decoration-color: var(--light-text-color);
 }
 
 .download-link:active {
