@@ -336,18 +336,54 @@ nav {
     padding: 0;
 }
 
+.tilt-top {
+    fill: var(--main-background);    
+    position: absolute;
+    top: -5px;
+    width: 110%;
+    height: 60px;
+    padding: 0;
+}
+
+.tilt-download {
+    fill: var(--main-background);    
+    position: absolute;
+    top: -5px;
+    width: 110%;
+    height: 100px;
+    padding: 0;
+}
+
+.triangle {
+    fill: var(--main-background);    
+    position: absolute;
+    width: 101%;
+    bottom: 0;
+    padding: 0;
+    transform: rotateX(180deg);
+    height: 140px;
+    z-index: 0;
+}
 
 #download {
     padding-top: 100px;
     transition: all ease-out 2000ms;
     scroll-margin-top: -25px;
+    background-color: var(--light-text-color);
+    z-index: 99;
+}
+
+.d-text {
+    color: var(--main-background)
 }
 
 /* ------------------------------------------------------ STOCK DROPS CUSTOMIZE */
 
 #download-box {
-    background: var(--main-background);
+    background-color: var(--main-background);
     border-bottom: 1px solid var(--light-text-color);
+    box-shadow: 0px 0px 5px var(--main-background);
+    z-index: 99;
 }
 
 #rowOne {
@@ -653,7 +689,7 @@ nav {
 .loading-screen {
     position: absolute;
     width: 100%;
-    height: 100%;
+    height: 101%;
     z-index: 99;
     background: rgba(255, 255, 255, 0.3);    
     backdrop-filter: blur(8px);
@@ -851,10 +887,10 @@ nav {
 
    .download-link {
     font-size: 2em;
-    background-color: var(--main-background);
-    padding: 10px 25px;
     border-radius: 5px;
-    box-shadow: 0px 0px 2.5px var(--main-background);
+    z-index: 99;
+    white-space: nowrap;
+    margin-bottom:0;
 }
 
 .download-link:active {
@@ -880,7 +916,8 @@ nav {
     }
 
     .row-ex {
-        width: 100%;    }
+        width: 100%;    
+    }
 
     #rowOne {
         width: 100%;
@@ -928,7 +965,7 @@ nav {
     }
     
     .download-link {
-        font-size: 1em;
+        font-size: 1.25em;
     }
 
     .downer:hover {
@@ -956,6 +993,10 @@ nav {
 
       .tilt {
         bottom: -1px;
+    }
+
+    .triangle {
+        height: 100px;
     }
 
     .symbol-box {
