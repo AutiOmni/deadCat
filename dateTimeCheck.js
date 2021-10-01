@@ -7,8 +7,8 @@ let month = today.getUTCMonth() + 1
 let minutes = today.getUTCMinutes()
 let hour = today.getUTCHours()
  // GET TIME FOR CLOSING AND OPENING MARKET -----------------------------------
-    
-    //CALC FOR UTC TO EST
+
+ //CALC FOR UTC TO EST
     hour = hour - 4;
     // CALC FOR EARLY MORNING HOURS UTC
     if (hour < 0)
@@ -199,13 +199,13 @@ let hour = today.getUTCHours()
 
     // DATE CHECK VARIBLE FOR DATA PERIOD PULLS AND TO SLICE FROM
     let todayDate = `${year}-${month}-${date}`
-    //CHECK FOR HOLIDAYS OR CLOSED MARKET HOLIDAYS
+
+    //CHECK FOR HOLIDAYS OR CLOSED MARKET HOLIDAYS ----------------------------- NEED TO UPDATE
     if (todayDate === '2021-07-05') {
         todayDate = '2021-07-02'
     } 
 // THIS IS AN ADJUSTMENT OF DATE FOR MARKET CLOSES EST VS UTC TIME
     let newDateString = todayDate;
-
     if ((hour + 4) >= 24) 
     {
         const dateNumSlice = parseInt(date);
@@ -259,12 +259,7 @@ let hour = today.getUTCHours()
         }    
 
     }
-    // MORNING ADJUSTMENT FOR VWAP -----------------------------
-    let hourAdjust = (hour * 100) + minutes;
-    if (hourAdjust <= 935)
-    {
-        const dateSliceStart = todayDate.slice(0,8);
-        newDateString = `${dateSliceStart}${date}`
-        newDateString = newDateString.toString()
-    }
+
 //---------------------------------------------------------------------------------------------------------------------
+
+// TOOK OUT BOTTOM MORNING CHECK. DID NOT NEED

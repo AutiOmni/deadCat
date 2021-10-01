@@ -51,7 +51,7 @@ async function filterTradableSymbols(arr1, arr2, compileCallback) {
     } 
     catch(e) 
     {
-         
+         console.log(e)
     }
      
      compileCallback(nasdaqHolderDown, nyseHolderDown, nyseHolderUp, nasdaqHolderUp, technicalIndicators) // CALLBACK FOR STOCK FILTER
@@ -1085,10 +1085,6 @@ function compileStocks(arr1, arr2, arr3, arr4, callback) {
             let volumeCul = 0
             let tempVWAP = [] // HOLD VWAP PERIOD - TAKES FROM 0 INDEX FOR MOST CURRENT
 
-                // ADJUST PULL FOR TIME FO DAY AND MONTH
-
-         // AFTER HOURS ADJUST
-
 
     try {
 
@@ -1121,61 +1117,78 @@ function compileStocks(arr1, arr2, arr3, arr4, callback) {
     // SET VOLUME ------------------------------------------------------------------
     function setVolume(chartArr, dataPull, newestPull, num) {
         // SET RECENT YESTERDAY VOLUME
-        if (dataPull.historical.length < 0) 
-        {
-            chartArr[num].yesterdayVolume = 0
-        } 
-        else
-        {
-            chartArr[num].yesterdayVolume = dataPull.historical[0].volume
+        try {
+            if (dataPull.historical.length <= 0) 
+            {
+                chartArr[num].yesterdayVolume = 0
+            } 
+            else
+            {
+                chartArr[num].yesterdayVolume = dataPull.historical[0].volume
+            }
+            if (newestPull.length < 0) 
+            {
+                chartArr[num].volume = 0
+            }
+            else 
+            {
+            // SET RECENT VOLUME
+            chartArr[num].volume = newestPull[0].volume
+            }
         }
-        if (newestPull.length < 0) 
+        catch(e)
         {
-            chartArr[num].volume = 0
-        }
-        else 
-        {
-        // SET RECENT VOLUME
-        chartArr[num].volume = newestPull[0].volume
+
         }
     }
 
  // TA FUNCTION ---------------------------------------------------------------------
  async function technicalIndicators(finalArr, callback) {
- 
+
     let j = 0 
-    
     while (j < finalArr.length) { // LOOP FOR TECHNICAL SYMBOL
-
-        try {
-
             // THIS IS THE ALL MIGHTY SYMBOL USED FOR PULLS
             const {symbol} = finalArr[j]
             //THIS PULL IS FOR CLOSE PRICES TO CALC TAs PAST CLOSE DATA // 
             const resSMA = await  fetch(`https://financialmodelingprep.com/api/v3/historical-price-full/${symbol}?apikey=4d4593bc9e6bc106ee9d1cbd6400b218`)
             const dataSMA = await resSMA.json() // SMA PULL USED FOR OTHER CALCS
                 // ERROR CHECK FOR EMPTY PULL
-                if (Object.keys(dataSMA).length === 0 && dataSMA.constructor === Object)
+                try {
+                        if(!Object.keys(dataSMA).length){
+                            console.log("no SMA Pull data found");
+                        }
+                    }
+                catch(e)
                 {
-                    return;
+
                 }
 
             //THIS PULL IS FOR OSCILLATORS ALL CURRENT CLOSE DATA
             const resOscPulled = await fetch(`https://financialmodelingprep.com/api/v3/quote-short/${symbol}?apikey=4d4593bc9e6bc106ee9d1cbd6400b218`)
             const dataRecentPulled = await resOscPulled.json()
                 // ERROR CHECK FOR EMPTY PULL
-                if (Object.keys(dataRecentPulled).length === 0 && dataRecentPulled.constructor === Object)
+                try {
+                        if(!Object.keys(dataRecentPulled).length){
+                            console.log("no Recent Pull data found");
+                        }
+                    }
+                catch(e)
                 {
-                    return;
+                    
                 }
 
             // VWAP ------------------------------------------------------------------------------------------------------------------------------------------------
             const resVWAP = await  fetch(`https://financialmodelingprep.com/api/v3/historical-chart/5min/${symbol}?apikey=4d4593bc9e6bc106ee9d1cbd6400b218`)
             const dataVWAP = await resVWAP.json()
                 // ERROR CHECK FOR EMPTY PULL
-                if (Object.keys(dataVWAP).length === 0 && dataVWAP.constructor === Object)
+                try {
+                    if(!Object.keys(dataVWAP).length){
+                        console.log("no VWAP Pull data found");
+                    }
+                }
+                catch(e)
                 {
-                    return;
+                    
                 }
 
             vwapFunction(finalArr, dataVWAP, j)
@@ -1212,18 +1225,13 @@ function compileStocks(arr1, arr2, arr3, arr4, callback) {
 
             j++ // UPDATE WHILE LOOP
 
-        }
-        catch(e)
-        {
-
-        }
-    }// THIS IS THE END OF LOOP
+        }// THIS IS THE END OF LOOP
     callback(finalArr, buildIt)
 } 
 
 // FILTER TO PROPER UP AND DOWN GROUPS ---------------------------
  function filterUpDownStocks(finalArr, callback) {
- 
+
     let stocksUp = []
     let stocksDown = []
 
@@ -1435,7 +1443,16 @@ function compileStocks(arr1, arr2, arr3, arr4, callback) {
  
      let {avgVolumeDown, volumeYesterdayDown, changeDown, changesPercentageDown, priceDown, symbolDown, volumeDown, vwapDown, smaFiveTeenDown, smaTwentyDown, smaThirtyDown, smaFiftyDown, smaOneHunDown, smaTwoHunDown, emaTwelveDown, emaTwentySixDown, emaFiftyDown, emaTwoHunDown, wmaFiveTeenDown, wmaTwentyDown, wmaThirtyDown, wmaFiftyDown, wmaOneHunDown, wmaTwoHunDown, vwmaFiveTeenDown, vwmaTwentyDown, vwmaThirtyDown, vwmaFiftyDown, vwmaOneHunDown, vwmaTwoHunDown, macdDown, macdHistogramDown, macdSignalLineDown, rsiDown, stochasticDDown, stochasticKDown, stochasticSignalDown, cciDown, bbMiddleDown, bbLowerDown, bbUpperDown, bbPercentDown, williamsRDown} = arrDown[i]
  
-  // VOLUME INCREASE TODAY --------------------------------------------------------
+  // ADJUST TO FIXED --------------------------------------------------------
+
+  priceUp = priceUp.toFixed(2)
+  priceDown = priceDown.toFixed(2)
+
+  changesPercentageUp = changesPercentageUp.toFixed(2)
+  changesPercentageDown = changesPercentageDown.toFixed(2)
+
+  changeUp = changeUp.toFixed(2)
+  changeDown = changeDown.toFixed(2)
 
   // UP VOLUME INCREASE ----------------------------
 
@@ -1463,6 +1480,9 @@ function compileStocks(arr1, arr2, arr3, arr4, callback) {
         volumeIncreaseDown = (decrease / avgVolumeDown) * -100
     }
 
+    volumeIncreaseDown = volumeIncreaseDown.toFixed(2)
+    volumeIncreaseUp = volumeIncreaseUp.toFixed(2)
+
     // TO GET AVERAGE DAILY VOLUME FOR YESTERDAY ----------------
 
     // YESTERDAY UP VOLUME INCREASE ----------------------------
@@ -1479,6 +1499,7 @@ function compileStocks(arr1, arr2, arr3, arr4, callback) {
         yesterdayVolIncreaseUp = (decrease / avgVolumeUp) * -100
     }
 
+    yesterdayVolIncreaseUp = yesterdayVolIncreaseUp.toFixed(2) 
     // YESTERDAY DOWN VOLUME INCREASE ----------------------------
 
    let yesterdayVolIncreaseDown = 0;
@@ -1492,13 +1513,25 @@ function compileStocks(arr1, arr2, arr3, arr4, callback) {
         let decrease = avgVolumeDown - volumeYesterdayDown;
         yesterdayVolIncreaseDown = (decrease / avgVolumeDown) * -100
     }
-    
-     let changeDownAdjusted = changeDown
+
+       yesterdayVolIncreaseDown = yesterdayVolIncreaseDown.toFixed(2)
+
   // ADJUST PERCENTAGE TO POSITIVE - ARROW WILL SIGNAL UP OR DOWN 
+  let changeDownAdjusted = changeDown
+
     if (changeDownAdjusted < 0) {
         changeDownAdjusted = changeDownAdjusted * -1
+        changeDownAdjusted = changeDownAdjusted.toFixed(2)
     }
-
+    
+    if (isNaN(yesterdayVolIncreaseDown))
+    {
+        yesterdayVolIncreaseDown = 'No Data'
+    }
+    if (isNaN(yesterdayVolIncreaseUp))
+    {
+        yesterdayVolIncreaseUp = 'No Data'
+    }
   // ADJUST TO POSITIVE 
    if (stochasticDUp < 0)
     {
@@ -1516,8 +1549,223 @@ function compileStocks(arr1, arr2, arr3, arr4, callback) {
     {
         stochasticKDown = stochasticKDown * -1
     }
-  // ADJUST CERTAIN PARTS TO GIVE RIGHT PROMPT IF UNDEFINED
-  
+
+    // ================================= UNDEFINED CHECKS
+    if (avgVolumeUp == undefined)
+    {
+        avgVolumeUp = 'No Data'
+    }
+    if (avgVolumeDown== undefined)
+    {
+        avgVolumeDown = 'No Data'
+    }
+    if (volumeUp == undefined)
+    {
+        volumeUp = 'No Data'
+    }
+    if (volumeDown== undefined)
+    {
+        volumeDown = 'No Data'
+    }
+    if (volumeIncreaseUp == undefined)
+    {
+        volumeIncreaseUp = 'No Data'
+    }
+    if (volumeIncreaseDown== undefined)
+    {
+        volumeIncreaseDown = 'No Data'
+    }
+    if (volumeYesterdayUp == undefined)
+    {
+        volumeYesterdayUp = 'No Data'
+    }
+    if (volumeYesterdayDown == undefined)
+    {
+        volumeYesterdayDown = 'No Data'
+    }
+        
+    if (smaFiveTeenUp == undefined)
+    {
+        smaFiveTeenUp = 'No Data'
+    }
+    if (smaFiveTeenDown == undefined)
+    {
+        smaFiveTeenDown = 'No Data'
+    }
+    if (smaTwentyUp == undefined)
+    {
+        smaTwentyUp = 'No Data'
+    }
+    if (smaTwentyDown == undefined)
+    {
+        smaTwentyDown = 'No Data'
+    }
+    if (smaThirtyUp == undefined)
+    {
+        smaThirtyUp = 'No Data'
+    }
+    if (smaThirtyDown == undefined)
+    {
+        smaThirtyDown = 'No Data'
+    }
+    if (smaFiftyUp == undefined)
+    {
+        smaFiftyUp = 'No Data'
+    }
+    if (smaFiftyDown == undefined)
+    {
+        smaFiftyDown = 'No Data'
+    }
+    if (smaOneHunUp == undefined)
+    {
+        smaOneHunUp = 'No Data'
+    }
+    if (smaOneHunDown == undefined)
+    {
+        smaOneHunDown = 'No Data'
+    }
+    if (smaTwoHunUp == undefined)
+    {
+        smaTwoHunUp = 'No Data'
+    }
+    if (smaTwoHunDown == undefined)
+    {
+        smaTwoHunDown = 'No Data'
+    }
+
+    if (emaTwelveUp == undefined)
+    {
+        emaTwelveUp = 'No Data'
+    }
+    if (emaTwelveDown == undefined)
+    {
+        emaTwelveDown = 'No Data'
+    }
+    if (emaTwentySixUp == undefined)
+    {
+        emaTwentySixUp = 'No Data'
+    }
+    if (emaTwentySixDown == undefined)
+    {
+        emaTwentySixDown = 'No Data'
+    }
+    if (emaFiftyUp == undefined)
+    {
+        emaFiftyUp = 'No Data'
+    }
+    if (emaFiftyDown == undefined)
+    {
+        emaFiftyDown = 'No Data'
+    }
+    if (emaTwoHunUp == undefined)
+    {
+        emaTwoHunUp = 'No Data'
+    }
+    if (emaTwoHunDown == undefined)
+    {
+        emaTwoHunDown = 'No Data'
+    }
+
+    
+    if (wmaFiveTeenUp == undefined)
+    {
+        wmaFiveTeenUp = 'No Data'
+    }
+    if (wmaFiveTeenDown == undefined)
+    {
+        wmaFiveTeenDown = 'No Data'
+    }
+    if (wmaTwentyUp == undefined)
+    {
+        wmaTwentyUp = 'No Data'
+    }
+    if (wmaTwentyDown == undefined)
+    {
+        wmaTwentyDown = 'No Data'
+    }
+    if (wmaThirtyUp == undefined)
+    {
+        wmaThirtyUp = 'No Data'
+    }
+    if (wmaThirtyDown == undefined)
+    {
+        wmaThirtyDown = 'No Data'
+    }
+    if (wmaFiftyUp == undefined)
+    {
+        wmaFiftyUp = 'No Data'
+    }
+    if (wmaFiftyDown == undefined)
+    {
+        wmaFiftyDown = 'No Data'
+    }
+    if (wmaOneHunUp == undefined)
+    {
+        wmaOneHunUp = 'No Data'
+    }
+    if (wmaOneHunDown == undefined)
+    {
+        wmaOneHunDown = 'No Data'
+    }
+    if (wmaTwoHunUp == undefined)
+    {
+        wmaTwoHunUp = 'No Data'
+    }
+    if (wmaTwoHunDown == undefined)
+    {
+        wmaTwoHunDown = 'No Data'
+    }
+
+    
+    if (vwmaFiveTeenUp == undefined)
+    {
+        vwmaFiveTeenUp = 'No Data'
+    }
+    if (vwmaFiveTeenDown == undefined)
+    {
+        vwmaFiveTeenDown = 'No Data'
+    }
+    if (vwmaTwentyUp == undefined)
+    {
+        vwmaTwentyUp = 'No Data'
+    }
+    if (vwmaTwentyDown == undefined)
+    {
+        vwmaTwentyDown = 'No Data'
+    }
+    if (vwmaThirtyUp == undefined)
+    {
+        vwmaThirtyUp = 'No Data'
+    }
+    if (vwmaThirtyDown == undefined)
+    {
+        vwmaThirtyDown = 'No Data'
+    }
+    if (vwmaFiftyUp == undefined)
+    {
+        vwmaFiftyUp = 'No Data'
+    }
+    if (vwmaFiftyDown == undefined)
+    {
+        vwmaFiftyDown = 'No Data'
+    }
+    if (vwmaOneHunUp == undefined)
+    {
+        vwmaOneHunUp = 'No Data'
+    }
+    if (vwmaOneHunDown == undefined)
+    {
+        vwmaOneHunDown = 'No Data'
+    }
+    if (vwmaTwoHunUp == undefined)
+    {
+        wmaTwoHunUp = 'No Data'
+    }
+    if (vwmaTwoHunDown == undefined)
+    {
+        vwmaTwoHunDown = 'No Data'
+    }
+
     if (vwapDown == undefined)
     {
         vwapDown = 'No Data'
@@ -1620,6 +1868,8 @@ function compileStocks(arr1, arr2, arr3, arr4, callback) {
     {
         bbPercentUp = 'No Data'
     }
+try {
+
 
      const litter = document.createElement('div')
      litter.classList.add('row-ex')
@@ -1629,11 +1879,11 @@ function compileStocks(arr1, arr2, arr3, arr4, callback) {
      <!----------------------------------- DOWNER --------------------------------------->
      <div class="downer symbol-box" data-index="${i}">
          <h2 id="symbol">${symbolDown}</h2>
-         <p class="price price-down-${i}">Price: $${priceDown.toFixed(2)}</p>
+         <p class="price price-down-${i}">Price: $${priceDown}</p>
          <div class="changes-row">
-         <p>${changesPercentageDown.toFixed(2)}%</p>
+         <p>${changesPercentageDown}%</p>
          <svg id="downArrow" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 100 400" shape-rendering="geometricPrecision" text-rendering="geometricPrecision"><g id="eJjdz69mVex2" transform="matrix(0.99132899255994 0.00125353493548 0.00179456906301 -1.41919326774185 0 5360)"><g id="eJjdz69mVex3" transform="matrix(0.10000000000000 0 0 0.10000000000000 0.00000000000023 0.00000000000023)"><path id="eJjdz69mVex4" d="M29164.905156,10134.800000L28991.385074,10784.799602L28821.634757,10614.426482L27244.542329,12197.305156L27102.400000,12054.641316L28679.492428,10471.762642L28517.281642,10308.956716L29164.905156,10134.800000" transform="matrix(0.70853823648212 -0.70567242219234 0.70567242219234 0.70853823648212 -27361.22396364336601 48339.92537327134050)" fill="rgb(230,102,102)" stroke="none" stroke-width="1"/><path id="eJjdz69mVex5" d="M36131.700000,8167.800000C36128.200000,8167.800000,36124.700000,8168.900000,36121.700000,8170.900000C34563.300000,9219.200000,32199.200000,8231.400000,32175.500000,8221.300000C32169.500000,8218.300000,32162.200000,8218.800000,32156.700000,8222.800000C32151.200000,8226.700000,32148.300000,8233.400000,32149.300000,8240.100000C32150.300000,8246.800000,32154.900000,8252.400000,32161.300000,8254.600000C32185.300000,8264.700000,34566.400000,9259.600000,36142.200000,8200.900000C36148.700000,8196.400000,36151.500000,8188.300000,36149.200000,8180.800000C36146.900000,8173.300000,36140,8168.100000,36132.200000,8167.900000L36131.700000,8167.800000" transform="matrix(1 0 0 1 -23974.95002737504910 24467.33418583546154)" fill="rgb(255,255,255)" stroke="none" stroke-width="1"/><path id="eJjdz69mVex6" d="M24267.800000,8167.800000C24260,8167.900000,24253.100000,8173.100000,24250.800000,8180.600000C24248.500000,8188.200000,24251.300000,8196.300000,24257.800000,8200.800000C25833.100000,9259.500000,28214.600000,8264.500000,28238.700000,8254.500000C28243.100000,8252.600000,28246.600000,8249.100000,28248.400000,8244.600000C28250.200000,8240.100000,28250.200000,8235.100000,28248.300000,8230.700000C28244.200000,8221.700000,28233.700000,8217.500000,28224.500000,8221.100000C28200.700000,8231.100000,25837.100000,9218.400000,24278.300000,8170.800000C24275.200000,8168.700000,24271.500000,8167.700000,24267.800000,8167.800000" transform="matrix(1 0 0 1 -23974.95002737508185 24467.33418583546154)" fill="rgb(255,255,255)" stroke="none" stroke-width="1"/></g></g></svg>
-         <p>$${changeDownAdjusted.toFixed(2)}</p>
+         <p>$${changeDownAdjusted}</p>
          </div>
      </div>
      <!----------------------------------- THIS WILL HOLD TECH ANALYSIS FOR HOVER POPULATE IN MIDDLE ---------------------------------------->
@@ -1647,10 +1897,10 @@ function compileStocks(arr1, arr2, arr3, arr4, callback) {
          <a class="info-link" href="https://www.investopedia.com/terms/d/downvolume.asp" target="_blank"><h3 class='tech-header'>Volume</h3></a>
          <p>Average: <span class="tech-to-left">${avgVolumeDown}</span></p>
              <p>Today: <span class="tech-to-left">${volumeDown}</span></p>
-             <p>Change: <span class="tech-to-left"> ${volumeIncreaseDown.toFixed(2)}%</span></p>
+             <p>Change: <span class="tech-to-left"> ${volumeIncreaseDown}%</span></p>
 
              <p>Last Open Day: <span class="tech-to-left"> ${volumeYesterdayDown}</span></p>
-             <p>Change: <span class="tech-to-left"> ${yesterdayVolIncreaseDown.toFixed(2)}%</span></p>
+             <p>Change: <span class="tech-to-left"> ${yesterdayVolIncreaseDown}%</span></p>
          </div>
  
          <div class="tech-row">
@@ -1778,11 +2028,11 @@ function compileStocks(arr1, arr2, arr3, arr4, callback) {
 
      <div class="upper symbol-box" data-index="${i}">
          <h2 id="symbol">${symbolUp}</h2>
-         <p class="price price-up-${i}">Price: $${priceUp.toFixed(2)}</p>
+         <p class="price price-up-${i}">Price: $${priceUp}</p>
          <div class="changes-row">
-         <p>${changesPercentageUp.toFixed(2)}%</p>
+         <p>${changesPercentageUp}%</p>
          <svg id="upArrow" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 100 400" shape-rendering="geometricPrecision" text-rendering="geometricPrecision"><g id="ewG75ifXDmx2" transform="matrix(0.99132899255994 0.00125353493548 0.00179456906301 -1.41919326774185 0 5360)"><g id="ewG75ifXDmx3" transform="matrix(0.10000000000000 0 0 0.10000000000000 0.00000000000023 0.00000000000023)"><path id="ewG75ifXDmx4" d="M29164.905156,10134.800000L28991.385074,10784.799602L28821.634757,10614.426482L27244.542329,12197.305156L27102.400000,12054.641316L28679.492428,10471.762642L28517.281642,10308.956716L29164.905156,10134.800000" transform="matrix(-0.70853823648212 0.70567242219234 -0.70567242219234 -0.70853823648212 28243.81608984843479 24398.89755446932395)" fill="rgb(89,228,139)" stroke="none" stroke-width="1"/><path id="ewG75ifXDmx5" d="M36131.700000,8167.800000C36128.200000,8167.800000,36124.700000,8168.900000,36121.700000,8170.900000C34563.300000,9219.200000,32199.200000,8231.400000,32175.500000,8221.300000C32169.500000,8218.300000,32162.200000,8218.800000,32156.700000,8222.800000C32151.200000,8226.700000,32148.300000,8233.400000,32149.300000,8240.100000C32150.300000,8246.800000,32154.900000,8252.400000,32161.300000,8254.600000C32185.300000,8264.700000,34566.400000,9259.600000,36142.200000,8200.900000C36148.700000,8196.400000,36151.500000,8188.300000,36149.200000,8180.800000C36146.900000,8173.300000,36140,8168.100000,36132.200000,8167.900000L36131.700000,8167.800000" transform="matrix(1 0 0 1 -23974.95002737504910 24467.33418583546154)" fill="rgb(255,255,255)" stroke="none" stroke-width="1"/><path id="ewG75ifXDmx6" d="M24267.800000,8167.800000C24260,8167.900000,24253.100000,8173.100000,24250.800000,8180.600000C24248.500000,8188.200000,24251.300000,8196.300000,24257.800000,8200.800000C25833.100000,9259.500000,28214.600000,8264.500000,28238.700000,8254.500000C28243.100000,8252.600000,28246.600000,8249.100000,28248.400000,8244.600000C28250.200000,8240.100000,28250.200000,8235.100000,28248.300000,8230.700000C28244.200000,8221.700000,28233.700000,8217.500000,28224.500000,8221.100000C28200.700000,8231.100000,25837.100000,9218.400000,24278.300000,8170.800000C24275.200000,8168.700000,24271.500000,8167.700000,24267.800000,8167.800000" transform="matrix(1 0 0 1 -23974.95002737508185 24467.33418583546154)" fill="rgb(255,255,255)" stroke="none" stroke-width="1"/></g></g></svg>
-         <p>$${changeUp.toFixed(2)}</p>
+         <p>$${changeUp}</p>
          </div>
      </div>
  
@@ -1797,10 +2047,10 @@ function compileStocks(arr1, arr2, arr3, arr4, callback) {
              <a class="info-link" href="https://www.investopedia.com/terms/u/upvolume.asp" target="_blank"><h3 class='tech-header'>Volume</h3></a>
                  <p>Average: <span class="tech-to-left"> ${avgVolumeUp}</span></p>
                  <p>Today:  <span class="tech-to-left"> ${volumeUp}</span></p>
-                 <p>Change: <span class="tech-to-left"> ${volumeIncreaseUp.toFixed(2)}%</span></p>
+                 <p>Change: <span class="tech-to-left"> ${volumeIncreaseUp}%</span></p>
 
                  <p>Last Open Day: <span class="tech-to-left"> ${volumeYesterdayUp}</span></p>
-                 <p>Change: <span class="tech-to-left"> ${yesterdayVolIncreaseUp.toFixed(2)}%</span></p>
+                 <p>Change: <span class="tech-to-left"> ${yesterdayVolIncreaseUp}%</span></p>
              </div>
  
          <div class="tech-row">
@@ -1923,8 +2173,14 @@ function compileStocks(arr1, arr2, arr3, arr4, callback) {
      </div> `
 
      rowOne.appendChild(litter)
+}
+catch(e)
+{
+    console.log(e)
+}
 
      }
+     
  
   //------------ ADD SECOND SCRIPT FOR JAVASCRIPT FUNCTIONALITY TO NEW ELEMENTS ---------------------- // 
  
