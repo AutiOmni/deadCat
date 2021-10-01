@@ -42,7 +42,7 @@ section {
 
 a {
     text-decoration: none;
-    transition: all ease-in-out 750ms;
+    transition: all ease-in-out 500ms;
 }
 
 a:hover {
@@ -210,7 +210,6 @@ nav {
     padding-top: 50px;
     padding-bottom: 50px;
     transition: all ease-out 2000ms;
-    background-color: var(--light-text-color);
 }
 
 #chart-alert-text {
@@ -319,19 +318,44 @@ nav {
 }
 
 
+.tilt {
+    fill: var(--main-background);    
+    position: absolute;
+    transform: rotate(180deg);
+    bottom: -10px;
+    width: 110%;
+    padding: 0;
+}
+
+.tilt-top {
+    fill: var(--main-background);    
+    position: absolute;
+    top: -5px;
+    width: 110%;
+    height: 60px;
+    padding: 0;
+}
+
+
 #download {
     padding-top: 100px;
-    background-color: var(--light-text-color);
     transition: all ease-out 2000ms;
     scroll-margin-top: -25px;
 }
+
 /* ------------------------------------------------------ STOCK DROPS CUSTOMIZE */
+
+#download-box {
+    background: var(--main-background);
+    border-bottom: 1px solid var(--light-text-color);
+}
 
 #rowOne {
     width: 500px;
-    height: 600px;
+    height: 598px;
     border: 1px solid var(--light-text-color);
     position: relative;
+    border-top: none;
 }
 
 #litter-box {
@@ -497,6 +521,8 @@ nav {
     overflow-y: scroll;
     z-index:2;
     font-size: .8em;
+    background-color: var(--main-background);
+
 }
 
 #tech-in::-webkit-scrollbar {
@@ -653,7 +679,25 @@ nav {
     font-size: 40px;
     color: var(--main-cat-color);
     text-shadow: 0px 0px 2px var(--light-text-color);
+    animation-name: load-one;
+    animation-timing-function: linear;
+    animation-duration: 1000ms;
+    animation-iteration-count: infinite;
+    font-weight:500;
+    letter-spacing: 2.5px;
   }
+
+  @keyframes load-one {
+    0% {
+        text-shadow: 0px 0px 2px var(--light-text-color);
+    }
+    50% {
+        text-shadow: 0px 0px 20px var(--light-text-color);
+    }
+    100% {
+        text-shadow: 0px 0px 2px var(--light-text-color);
+    }
+}
 
 #deadCatLoad {
     width: 150px;
@@ -685,73 +729,6 @@ nav {
     }
 }
 
-#load-one {
-    color: var(--main-cat-color);
-    text-shadow: 0px 0px 2px var(--light-text-color);
-    font-size: 75px;
-    margin: 0 10px;
-    opacity: 0;
-    animation-delay: 500ms;
-    animation-name: load-one;
-    animation-timing-function: linear;
-    animation-duration: 2000ms;
-    animation-iteration-count: infinite;
-}
-
-@keyframes load-one {
-    0% {
-        opacity: 0;
-    }
-
-    100% {
-        opacity: 1;
-    }
-}
-#load-two {
-    color: var(--main-cat-color);
-    text-shadow: 0px 0px 2px var(--light-text-color);
-    font-size: 55px;
-    margin: 0 10px;
-    opacity: 0;
-    animation-name: load-two;
-    animation-delay: 1250ms;
-    animation-timing-function: linear;
-    animation-duration: 2000ms;
-    animation-iteration-count: infinite;
-}
-
-@keyframes load-two {
-    0% {
-        opacity: 0;
-    }
-
-    100% {
-        opacity: 1;
-    }
-}
-#load-three {
-    color: var(--main-cat-color);
-    text-shadow: 0px 0px 2px var(--light-text-color);
-    font-size: 35px;
-    margin: 0 10px;
-    opacity: 0;
-    animation-delay: 2000ms;
-    animation-name: load-three;
-    animation-timing-function: linear;
-    animation-duration: 2000ms;
-    animation-iteration-count: infinite;
-}
-
-@keyframes load-three {
-    0% {
-        opacity: 0;
-    }
-
-    100% {
-        opacity: 1;
-    }
-}
-
 /* ------------------------------------ GOOGLE SEARCH TICKER NEWS ---- */
 .stock-news-link {
     color: var(--notification-color);    
@@ -778,8 +755,7 @@ nav {
     align-items: center;
     justify-content: center;
     border: 1px solid var(--light-text-color);
-    border-bottom: none;
-    background-color: var(--main-cat-color);
+    background-color: var(--main-background);
     position: relative;
   }
 
@@ -875,6 +851,14 @@ nav {
 
    .download-link {
     font-size: 2em;
+    background-color: var(--main-background);
+    padding: 10px 25px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 2.5px var(--main-background);
+}
+
+.download-link:active {
+    transform: scale(.98);
 }
 
   @media (max-width: 500px) {
@@ -970,11 +954,12 @@ nav {
         color: var(--main-background)
       }
 
-  }
+      .tilt {
+        bottom: -1px;
+    }
 
-
-@media (max-width: 500px) {
     .symbol-box {
         font-size: 10.5px;
     }
-}
+
+  }
