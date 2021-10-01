@@ -99,10 +99,6 @@ a:hover {
     color: var(--light-text-color) !important;
 }
 
-.nav-link {
-    transition: all ease-in-out 250ms;
-}
-
 .nav-link:hover {
     transform: scale(1.10);
 }
