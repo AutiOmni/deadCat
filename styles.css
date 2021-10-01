@@ -639,6 +639,29 @@ nav {
 }
 
 /* ------- TECHNICAL INDICATOR COLORS ---------------------------- */
+.bullish-stuff-mobile {
+    transition: all ease-in-out 500ms;
+}
+
+.bearish-stuff-mobile {
+    transition: all ease-in-out 500ms;
+}
+
+.neutral-stuff-mobile {
+    transition: all ease-in-out 500ms;
+}
+
+.bullish-stuff-mobile:hover {
+    color: var(--bull-market-color);
+}
+
+.bearish-stuff-mobile:hover {
+    color: var(--bear-market-color);
+}
+
+.neutral-stuff-mobile:hover {
+    color: var(--neutral-market-color);
+}
 
 .bullish-stuff + p {
     transition: all ease-in-out 500ms;
