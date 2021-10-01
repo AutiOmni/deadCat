@@ -2019,7 +2019,7 @@ try {
          </div>
 
          <div class="news-row">
-         <a class="stock-news-link" href="http://www.google.com/search?q=${symbolDown}+stock+news&source=lnms&tbm=nws&sa=X&ved=2ahUKEwj7_6eMpbPyAhXaVs0KHfuADvoQ_AUoAXoECAEQAw&biw=1280&bih=614" target="_blank"><h3 class='tech-header'>News About This Stock</h3></a>
+         <a class="tech-header" href="http://www.google.com/search?q=${symbolDown}+stock+news&source=lnms&tbm=nws&sa=X&ved=2ahUKEwj7_6eMpbPyAhXaVs0KHfuADvoQ_AUoAXoECAEQAw&biw=1280&bih=614" target="_blank">News About This Stock</a>
          </div>
 
      </div>
@@ -2167,7 +2167,7 @@ try {
          </div>
 
          <div class="news-row">
-         <a class="stock-news-link" href="http://www.google.com/search?q=${symbolUp}+stock+news&source=lnms&tbm=nws&sa=X&ved=2ahUKEwj7_6eMpbPyAhXaVs0KHfuADvoQ_AUoAXoECAEQAw&biw=1280&bih=614" target="_blank"><h3 class='tech-header'>News About This Stock</h3></a>
+         <a class="tech-header" href="http://www.google.com/search?q=${symbolUp}+stock+news&source=lnms&tbm=nws&sa=X&ved=2ahUKEwj7_6eMpbPyAhXaVs0KHfuADvoQ_AUoAXoECAEQAw&biw=1280&bih=614" target="_blank">News About This Stock</a>
          </div>
 
      </div> `

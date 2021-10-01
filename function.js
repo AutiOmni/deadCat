@@ -2398,7 +2398,7 @@ if ($(window).width() > 700)
             </div>
 
             <div class="news-row">
-            <a class="stock-news-link" href="http://www.google.com/search?q=${symbol}+stock+news&source=lnms&tbm=nws&sa=X&ved=2ahUKEwj7_6eMpbPyAhXaVs0KHfuADvoQ_AUoAXoECAEQAw&biw=1280&bih=614" target="_blank">News About This Stock</a>
+            <a class="tech-header" href="http://www.google.com/search?q=${symbol}+stock+news&source=lnms&tbm=nws&sa=X&ved=2ahUKEwj7_6eMpbPyAhXaVs0KHfuADvoQ_AUoAXoECAEQAw&biw=1280&bih=614" target="_blank">News About This Stock</a>
             </div>
 
         </div>`

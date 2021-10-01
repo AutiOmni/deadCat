@@ -95,17 +95,16 @@ a:hover {
 
 /* ------------------------------------------------------ NAV */
 
-nav {
-    background-color: var(--main-background);
-}
-
 .nav-link-color {
     color: var(--light-text-color) !important;
 }
 
+.nav-link {
+    transition: all ease-in-out 250ms;
+}
+
 .nav-link:hover {
-    color: var(--main-cat-color) !important;
-    transform: scale(.98);
+    transform: scale(1.10);
 }
 
 /* ------------------------------------------------------ HERO */
@@ -799,9 +798,6 @@ nav {
 }
 
 /* ------------------------------------ GOOGLE SEARCH TICKER NEWS ---- */
-    .stock-news-link {
-        color: var(--notification-color);    
-    }
 
   .news-row {
     display: flex;
