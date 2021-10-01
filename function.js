@@ -129,6 +129,7 @@ const symbolBox = $('.symbol-box')
             $('#tech-in').scrollTop(0)
         }, 500)
     }
+// THIS IS FOR COLOR INDICATIONS OF TECHINCAL INDICATORS 
 
     function indicatorColorsDown(i) {
         // ALL MIGHTY PRICE
@@ -425,22 +426,22 @@ const symbolBox = $('.symbol-box')
                // ALL MIGHTY PRICE
                let price = $(`.price-search`).text().slice(8,)
                // GET HEADERS FOR HOVER EFFECT
-               let vwapHeader = $(`.vwap-search-header`)
-               let macdHeader = $(`.macd-search-header`)
-               let rsiHeader = $(`.rsi-search-header`)
-               let cciHeader = $(`.cci-search-header`)
-               let williamsHeader = $(`.williams-search-header`)
-               let stochasticHeader = $(`.stochastic-search-header`)
-               let bbHeader = $(`.bb-search-header`)
+               let vwapHeader = $('.vwap-search-header')
+               let macdHeader = $('.macd-search-header')
+               let rsiHeader = $('.rsi-search-header')
+               let cciHeader = $('.cci-search-header')
+               let williamsHeader = $('.williams-search-header')
+               let stochasticHeader = $('.stochastic-search-header')
+               let bbHeader = $('.bb-search-header')
                // GET ACTUALS FOR NUMBER CALCS AND HOVER COLOR
-               let vwap = $(`.vwap-search-actual`).text()
-               let macd = $(`.macd-search-actual`).text()
-               let rsi = $(`.rsi-search-actual`).text()
-               let cci = $(`.cci-search-actual`).text()
-               let williams = $(`.williams-search-actual`).text()
-               let stochasticK = $(`.stochasticK-search-actual`).text().slice(4,)
-               let stochasticD = $(`.stochasticD-search-actual`).text().slice(4,)
-               let bbPercent = $(`.bbPercent-search-actual`).text().slice(4,)
+               let vwap = $('.vwap-search-actual').text()
+               let macd = $('.macd-search-actual').text()
+               let rsi = $('.rsi-search-actual').text()
+               let cci = $('.cci-search-actual').text()
+               let williams = $('.williams-search-actual').text()
+               let stochasticK = $('.stochasticK-search-actual').text().slice(4,)
+               let stochasticD = $('.stochasticD-search-actual').text().slice(4,)
+               let bbPercent = $('.bbPercent-search-actual').text().slice(4,)
        
                // TURN STRING TO NUM
                price = parseFloat(price)
@@ -1605,47 +1606,6 @@ if ($(window).width() > 700)
             let tpvCul = 0
             let volumeCul = 0
             let tempVWAP = [] // HOLD VWAP PERIOD - TAKES FROM 0 INDEX FOR MOST CURRENT
-
-                // ADJUST PULL FOR TIME FO DAY AND MONTH
-
-        let newDateString = todayDate; // DEFAULT TO TODAY DATE - CHANGE IF IN RESTRICTIONS OF TIME AND DATE
-
-        // AFTER HOURS ADJUST
-            if ((hour + 4) >= 24) 
-                {
-                    const dateNumSlice = parseInt(date);
-                    const dateSliceStart = todayDate.slice(0,8);
-                    let newDateNum = dateNumSlice - 1
-                    if (newDateNum < 10)
-                    {
-                        newDateNum = `0${newDateNum}`
-                    }
-                    newDateString = `${dateSliceStart}${newDateNum}`
-                    newDateString = newDateString.toString()
-    
-                    if (month == 1 || month == 3 || month ==  5 || month == 7 || month ==  8 || month == 10 || month == 12) // 31 MONTH
-                    {
-                    }
-                    else if (month == 4 || month == 6 || month ==  9 || month == 11) // 30 MONTHS
-                    {
-                    }
-                    else if (month == 2 && (year & 4) == 0) // 29 MONTH
-                    {
-                    }
-                    else  // 28 MONTH
-                    {
-                    }
-    
-                }
-        // MORNING ADJUSTMENT FOR VWAP
-            let hourAdjust = (hour * 100) + minutes;
-    
-            if (hourAdjust <= 930) // NEED TO CHECK FOR TOMORROW!!!!
-            {
-                const dateSliceStart = todayDate.slice(0,8);
-                newDateString = `${dateSliceStart}${date}`
-                newDateString = newDateString.toString()
-            }
 
             try {
         // -------------THIS IS FOR GETTING THE DAY LENGTH FOR VWAP
