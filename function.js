@@ -132,145 +132,261 @@ const symbolBox = $('.symbol-box')
 // THIS IS FOR COLOR INDICATIONS OF TECHINCAL INDICATORS 
 
     function indicatorColorsDown(i) {
-        // ALL MIGHTY PRICE
-        let price = $(`.price-down-${i}`).text().slice(8,)
-        // GET HEADERS FOR HOVER EFFECT
-        let vwapHeader = $(`.vwap-down-header-${i}`)
-        let macdHeader = $(`.macd-down-header-${i}`)
-        let rsiHeader = $(`.rsi-down-header-${i}`)
-        let cciHeader = $(`.cci-down-header-${i}`)
-        let williamsHeader = $(`.williams-down-header-${i}`)
-        let stochasticHeader = $(`.stochastic-down-header-${i}`)
-        let bbHeader = $(`.bb-down-header-${i}`)
-        // GET ACTUALS FOR NUMBER CALCS AND HOVER COLOR
-        let vwap = $(`.vwap-down-actual-${i}`).text()
-        let macd = $(`.macd-down-actual-${i}`).text()
-        let rsi = $(`.rsi-down-actual-${i}`).text()
-        let cci = $(`.cci-down-actual-${i}`).text()
-        let williams = $(`.williams-down-actual-${i}`).text()
-        let stochasticK = $(`.stochasticK-down-actual-${i}`).text().slice(4,)
-        let stochasticD = $(`.stochasticD-down-actual-${i}`).text().slice(4,)
-        let bbPercent = $(`.bbPercent-down-actual-${i}`).text().slice(4,)
+            // ALL MIGHTY PRICE
+            let price = $(`.price-down-${i}`).text().slice(8,)
+            // GET HEADERS FOR HOVER EFFECT
+            let vwapHeader = $(`.vwap-down-header-${i}`)
+            let macdHeader = $(`.macd-down-header-${i}`)
+            let rsiHeader = $(`.rsi-down-header-${i}`)
+            let cciHeader = $(`.cci-down-header-${i}`)
+            let williamsHeader = $(`.williams-down-header-${i}`)
+            let stochasticHeader = $(`.stochastic-down-header-${i}`)
+            let bbHeader = $(`.bb-down-header-${i}`)
+            // GET ACTUALS FOR NUMBER CALCS AND HOVER COLOR
+            let vwap = $(`.vwap-down-actual-${i}`).text()
+            let macd = $(`.macd-down-actual-${i}`).text()
+            let rsi = $(`.rsi-down-actual-${i}`).text()
+            let cci = $(`.cci-down-actual-${i}`).text()
+            let williams = $(`.williams-down-actual-${i}`).text()
+            let stochasticK = $(`.stochasticK-down-actual-${i}`).text().slice(4,)
+            let stochasticD = $(`.stochasticD-down-actual-${i}`).text().slice(4,)
+            let bbPercent = $(`.bbPercent-down-actual-${i}`).text().slice(4,)
 
-        // TURN STRING TO NUM
-        price = parseFloat(price)
-        
-        vwap = parseFloat(vwap)
-        macd = parseFloat(macd)
-        rsi = parseFloat(rsi)
-        cci = parseFloat(cci)
-        williams = parseFloat(williams)
-        stochasticK = parseFloat(stochasticK)
-        stochasticD = parseFloat(stochasticD)
-        bbPercent = parseFloat(bbPercent)
-        // VWAP IF FOR CLASS ADD
-        if (price < vwap)
+            // TURN STRING TO NUM
+            price = parseFloat(price)
+            
+            vwap = parseFloat(vwap)
+            macd = parseFloat(macd)
+            rsi = parseFloat(rsi)
+            cci = parseFloat(cci)
+            williams = parseFloat(williams)
+            stochasticK = parseFloat(stochasticK)
+            stochasticD = parseFloat(stochasticD)
+            bbPercent = parseFloat(bbPercent)
+            // IF FOR CLASS ADD
+        if ($(window).width() > 700)
         {
-            vwapHeader.addClass('bullish-stuff')
-        }
-        else if (price > vwap)
-        {
-            vwapHeader.addClass('bearish-stuff')
-        }
-        else if (price == vwap)
-        {
-            vwapHeader.addClass('neutral-stuff')
-        }
-        // MACD IF FOR CLASS ADD
-        if (macd > 0)
-        {
-            macdHeader.addClass('bullish-stuff')
-        }
-        else if (macd < 0)
-        {
-            macdHeader.addClass('bearish-stuff')
-        }
-        else if (macd == 0)
-        {
-            macdHeader.addClass('neutral-stuff')
-        }
-        // RSI IF FOR CLASS ADD
-        if (rsi < 30)
-        {
-            rsiHeader.addClass('bullish-stuff')
-        }
-        else if (rsi > 70)
-        {
-            rsiHeader.addClass('bearish-stuff')
-        }
-        else if (rsi < 70 && rsi > 30)
-        {
-            rsiHeader.addClass('neutral-stuff')
-        }
-        // CCI IF FOR CLASS ADD
-        if (cci > 100) 
-        {
-            cciHeader.addClass('bullish-stuff')
-        }
-        else if (cci < -100) 
-        {
-            cciHeader.addClass('bearish-stuff')
-        }
-        else if (cci < 100 && cci > -100)
-        {
-            cciHeader.addClass('neutral-stuff')
-        }
-        //  WILLIAMS IF FOR CLASS ADD
-        if (williams > -50)
-        {
-            williamsHeader.addClass('bullish-stuff')
-        }
-        else if (williams < -50)
-        {
-            williamsHeader.addClass('bearish-stuff')
-        }
-        //  STOCHASTIC IF FOR CLASS ADD
-        if (stochasticK > 85)
-        {
-            stochasticHeader.addClass('bearish-stuff-k')
-        }
-        else if (stochasticK < 15)
-        {
-            stochasticHeader.addClass('bullish-stuff-k')
-        }
-        else if (stochasticK < 85 && stochasticK > 15) 
-        {
-            stochasticHeader.addClass('neutral-stuff-k')
-        }
+            if (price < vwap)
+            {
+                vwapHeader.addClass('bullish-stuff')
+            }
+            else if (price > vwap)
+            {
+                vwapHeader.addClass('bearish-stuff')
+            }
+            else if (price == vwap)
+            {
+                vwapHeader.addClass('neutral-stuff')
+            }
+            // MACD IF FOR CLASS ADD
+            if (macd > 0)
+            {
+                macdHeader.addClass('bullish-stuff')
+            }
+            else if (macd < 0)
+            {
+                macdHeader.addClass('bearish-stuff')
+            }
+            else if (macd == 0)
+            {
+                macdHeader.addClass('neutral-stuff')
+            }
+            // RSI IF FOR CLASS ADD
+            if (rsi < 30)
+            {
+                rsiHeader.addClass('bullish-stuff')
+            }
+            else if (rsi > 70)
+            {
+                rsiHeader.addClass('bearish-stuff')
+            }
+            else if (rsi < 70 && rsi > 30)
+            {
+                rsiHeader.addClass('neutral-stuff')
+            }
+            // CCI IF FOR CLASS ADD
+            if (cci > 100) 
+            {
+                cciHeader.addClass('bullish-stuff')
+            }
+            else if (cci < -100) 
+            {
+                cciHeader.addClass('bearish-stuff')
+            }
+            else if (cci < 100 && cci > -100)
+            {
+                cciHeader.addClass('neutral-stuff')
+            }
+            //  WILLIAMS IF FOR CLASS ADD
+            if (williams > -50)
+            {
+                williamsHeader.addClass('bullish-stuff')
+            }
+            else if (williams < -50)
+            {
+                williamsHeader.addClass('bearish-stuff')
+            }
+            //  STOCHASTIC IF FOR CLASS ADD
+            if (stochasticK > 85)
+            {
+                stochasticHeader.addClass('bearish-stuff-k')
+            }
+            else if (stochasticK < 15)
+            {
+                stochasticHeader.addClass('bullish-stuff-k')
+            }
+            else if (stochasticK < 85 && stochasticK > 15) 
+            {
+                stochasticHeader.addClass('neutral-stuff-k')
+            }
 
-        if (stochasticD > 80)
-        {
-            stochasticHeader.addClass('bearish-stuff-d')
-        }
-        else if (stochasticD < 20)
-        {
-            stochasticHeader.addClass('bullish-stuff-d')
-        }
-        else if (stochasticD < 80 && stochasticD > 20) 
-        {
-            stochasticHeader.addClass('neutral-stuff-d')
-        }
+            if (stochasticD > 80)
+            {
+                stochasticHeader.addClass('bearish-stuff-d')
+            }
+            else if (stochasticD < 20)
+            {
+                stochasticHeader.addClass('bullish-stuff-d')
+            }
+            else if (stochasticD < 80 && stochasticD > 20) 
+            {
+                stochasticHeader.addClass('neutral-stuff-d')
+            }
 
-        //  STOCHASTIC IF FOR CLASS ADD
-        if (bbPercent < 0)
-        {
-            bbHeader.addClass('bullish-stuff')
+            //  STOCHASTIC IF FOR CLASS ADD
+            if (bbPercent < 0)
+            {
+                bbHeader.addClass('bullish-stuff')
+            }
+            else if (bbPercent > 1)
+            {
+                bbHeader.addClass('bearish-stuff')
+            }
+            else if (bbPercent > .8 && bbPercent < 1)
+            {
+                bbHeader.addClass('bullish-stuff')
+            }
+            else if (bbPercent < .2 && bbPercent > 0)
+            {
+                bbHeader.addClass('bearish-stuff')
+            }
+            else if (bbPercent <= .8 && bbPercent >= .2)
+            {
+                bbHeader.addClass('neutral-stuff')
+            }
+
         }
-        else if (bbPercent > 1)
+        else
         {
-            bbHeader.addClass('bearish-stuff')
-        }
-        else if (bbPercent > .8 && bbPercent < 1)
-        {
-            bbHeader.addClass('bullish-stuff')
-        }
-        else if (bbPercent < .2 && bbPercent > 0)
-        {
-            bbHeader.addClass('bearish-stuff')
-        }
-        else if (bbPercent <= .8 && bbPercent >= .2)
-        {
-            bbHeader.addClass('neutral-stuff')
+            if (price < vwap)
+            {
+                $(`.vwap-down-actual-${i}`).addClass('bullish-stuff-mobile')
+            }
+            else if (price > vwap)
+            {
+                $(`.vwap-down-actual-${i}`).addClass('bearish-stuff-mobile')
+            }
+            else if (price == vwap)
+            {
+                $(`.vwap-down-actual-${i}`).addClass('neutral-stuff-mobile')
+            }
+            // MACD IF FOR CLASS ADD
+            if (macd > 0)
+            {
+                $(`.macd-down-actual-${i}`).addClass('bullish-stuff-mobile')
+            }
+            else if (macd < 0)
+            {
+                $(`.macd-down-actual-${i}`).addClass('bearish-stuff-mobile')
+            }
+            else if (macd == 0)
+            {
+                $(`.macd-down-actual-${i}`).addClass('neutral-stuff-mobile')
+            }
+            // RSI IF FOR CLASS ADD
+            if (rsi < 30)
+            {
+                $(`.rsi-down-actual-${i}`).addClass('bullish-stuff-mobile')
+            }
+            else if (rsi > 70)
+            {
+                $(`.rsi-down-actual-${i}`).addClass('bearish-stuff-mobile')
+            }
+            else if (rsi < 70 && rsi > 30)
+            {
+                $(`.rsi-down-actual-${i}`).addClass('neutral-stuff-mobile')
+            }
+            // CCI IF FOR CLASS ADD
+            if (cci > 100) 
+            {
+                $(`.cci-down-actual-${i}`).addClass('bullish-stuff-mobile')
+            }
+            else if (cci < -100) 
+            {
+                $(`.cci-down-actual-${i}`).addClass('bearish-stuff-mobile')
+            }
+            else if (cci < 100 && cci > -100)
+            {
+                $(`.cci-down-actual-${i}`).addClass('neutral-stuff-mobile')
+            }
+            //  WILLIAMS IF FOR CLASS ADD
+            if (williams > -50)
+            {
+                $(`.williams-down-actual-${i}`).addClass('bullish-stuff-mobile')
+            }
+            else if (williams < -50)
+            {
+                $(`.williams-down-actual-${i}`).addClass('bearish-stuff-mobile')
+            }
+            //  STOCHASTIC IF FOR CLASS ADD
+            if (stochasticK > 85)
+            {
+                $(`.stochasticK-down-actual-${i}`).addClass('bearish-stuff-mobile')
+            }
+            else if (stochasticK < 15)
+            {
+                $(`.stochasticK-down-actual-${i}`).addClass('bullish-stuff-mobile')
+            }
+            else if (stochasticK < 85 && stochasticK > 15) 
+            {
+                $(`.stochasticK-down-actual-${i}`).addClass('neutral-stuff-mobile')
+            }
+
+            if (stochasticD > 80)
+            {
+                $(`.stochasticD-down-actual-${i}`).addClass('bearish-stuff-mobile')
+            }
+            else if (stochasticD < 20)
+            {
+                $(`.stochasticD-down-actual-${i}`).addClass('bullish-stuff-mobile')
+            }
+            else if (stochasticD < 80 && stochasticD > 20) 
+            {
+                $(`.stochasticD-down-actual-${i}`).addClass('neutral-stuff-mobile')
+            }
+
+            //  STOCHASTIC IF FOR CLASS ADD
+            if (bbPercent < 0)
+            {
+                $(`.bbPercent-down-actual-${i}`).addClass('bullish-stuff-mobile')
+            }
+            else if (bbPercent > 1)
+            {
+                $(`.bbPercent-down-actual-${i}`).addClass('bearish-stuff-mobile')
+            }
+            else if (bbPercent > .8 && bbPercent < 1)
+            {
+                $(`.bbPercent-down-actual-${i}`).addClass('bullish-stuff-mobile')
+            }
+            else if (bbPercent < .2 && bbPercent > 0)
+            {
+                $(`.bbPercent-down-actual-${i}`).addClass('bearish-stuff-mobile')
+            }
+            else if (bbPercent <= .8 && bbPercent >= .2)
+            {
+                $(`.bbPercent-down-actual-${i}`).addClass('neutral-stuff-mobile')
+            }
+
         }
 
     }
@@ -308,117 +424,230 @@ const symbolBox = $('.symbol-box')
         stochasticD = parseFloat(stochasticD)
         bbPercent = parseFloat(bbPercent)
 
-        // VWAP IF FOR CLASS ADD
-        if (price < vwap)
+        // IF FOR CLASS ADD
+        if ($(window).width() > 700)
         {
-            vwapHeader.addClass('bullish-stuff')
-        }
-        else if (price > vwap)
-        {
-            vwapHeader.addClass('bearish-stuff')
-        }
-        else if (price == vwap)
-        {
-            vwapHeader.addClass('neutral-stuff')
-        }
-        // MACD IF FOR CLASS ADD
-        if (macd > 0)
-        {
-            macdHeader.addClass('bullish-stuff')
-        }
-        else if (macd < 0)
-        {
-            macdHeader.addClass('bearish-stuff')
-        }
-        else if (macd == 0)
-        {
-            macdHeader.addClass('neutral-stuff')
-        }
-        // RSI IF FOR CLASS ADD
-        if (rsi < 30)
-        {
-            rsiHeader.addClass('bullish-stuff')
-        }
-        else if (rsi > 70)
-        {
-            rsiHeader.addClass('bearish-stuff')
-        }
-        else if (rsi < 70 && rsi > 30)
-        {
-            rsiHeader.addClass('neutral-stuff')
-        }
-        // CCI IF FOR CLASS ADD
-        if (cci > 100) 
-        {
-            cciHeader.addClass('bullish-stuff')
-        }
-        else if (cci < -100) 
-        {
-            cciHeader.addClass('bearish-stuff')
-        }
-        else if (cci < 100 && cci > -100)
-        {
-            cciHeader.addClass('neutral-stuff')
-        }
-        //  WILLIAMS IF FOR CLASS ADD
-        if (williams > -50)
-        {
-            williamsHeader.addClass('bullish-stuff')
-        }
-        else if (williams < -50)
-        {
-            williamsHeader.addClass('bearish-stuff')
-        }
-        //  STOCHASTIC IF FOR CLASS ADD
-        if (stochasticK > 85)
-        {
-            stochasticHeader.addClass('bearish-stuff-k')
-        }
-        else if (stochasticK < 15)
-        {
-            stochasticHeader.addClass('bullish-stuff-k')
-        }
-        else if (stochasticK < 85 && stochasticK > 15) 
-        {
-            stochasticHeader.addClass('neutral-stuff-k')
-        }
+            if (price < vwap)
+            {
+                vwapHeader.addClass('bullish-stuff')
+            }
+            else if (price > vwap)
+            {
+                vwapHeader.addClass('bearish-stuff')
+            }
+            else if (price == vwap)
+            {
+                vwapHeader.addClass('neutral-stuff')
+            }
+            // MACD IF FOR CLASS ADD
+            if (macd > 0)
+            {
+                macdHeader.addClass('bullish-stuff')
+            }
+            else if (macd < 0)
+            {
+                macdHeader.addClass('bearish-stuff')
+            }
+            else if (macd == 0)
+            {
+                macdHeader.addClass('neutral-stuff')
+            }
+            // RSI IF FOR CLASS ADD
+            if (rsi < 30)
+            {
+                rsiHeader.addClass('bullish-stuff')
+            }
+            else if (rsi > 70)
+            {
+                rsiHeader.addClass('bearish-stuff')
+            }
+            else if (rsi < 70 && rsi > 30)
+            {
+                rsiHeader.addClass('neutral-stuff')
+            }
+            // CCI IF FOR CLASS ADD
+            if (cci > 100) 
+            {
+                cciHeader.addClass('bullish-stuff')
+            }
+            else if (cci < -100) 
+            {
+                cciHeader.addClass('bearish-stuff')
+            }
+            else if (cci < 100 && cci > -100)
+            {
+                cciHeader.addClass('neutral-stuff')
+            }
+            //  WILLIAMS IF FOR CLASS ADD
+            if (williams > -50)
+            {
+                williamsHeader.addClass('bullish-stuff')
+            }
+            else if (williams < -50)
+            {
+                williamsHeader.addClass('bearish-stuff')
+            }
+            //  STOCHASTIC IF FOR CLASS ADD
+            if (stochasticK > 85)
+            {
+                stochasticHeader.addClass('bearish-stuff-k')
+            }
+            else if (stochasticK < 15)
+            {
+                stochasticHeader.addClass('bullish-stuff-k')
+            }
+            else if (stochasticK < 85 && stochasticK > 15) 
+            {
+                stochasticHeader.addClass('neutral-stuff-k')
+            }
 
-        if (stochasticD > 80)
-        {
-            stochasticHeader.addClass('bearish-stuff-d')
-        }
-        else if (stochasticD < 20)
-        {
-            stochasticHeader.addClass('bullish-stuff-d')
-        }
-        else if (stochasticD < 80 && stochasticD > 20) 
-        {
-            stochasticHeader.addClass('neutral-stuff-d')
-        }
+            if (stochasticD > 80)
+            {
+                stochasticHeader.addClass('bearish-stuff-d')
+            }
+            else if (stochasticD < 20)
+            {
+                stochasticHeader.addClass('bullish-stuff-d')
+            }
+            else if (stochasticD < 80 && stochasticD > 20) 
+            {
+                stochasticHeader.addClass('neutral-stuff-d')
+            }
 
-        //  STOCHASTIC IF FOR CLASS ADD
-        if (bbPercent < 0)
-        {
-            bbHeader.addClass('bullish-stuff')
+            //  STOCHASTIC IF FOR CLASS ADD
+            if (bbPercent < 0)
+            {
+                bbHeader.addClass('bullish-stuff')
+            }
+            else if (bbPercent > 1)
+            {
+                bbHeader.addClass('bearish-stuff')
+            }
+            else if (bbPercent > .8 && bbPercent < 1)
+            {
+                bbHeader.addClass('bullish-stuff')
+            }
+            else if (bbPercent < .2 && bbPercent > 0)
+            {
+                bbHeader.addClass('bearish-stuff')
+            }
+            else if (bbPercent < .8 && bbPercent > .2)
+            {
+                bbHeader.addClass('neutral-stuff')
+            }
         }
-        else if (bbPercent > 1)
+        else
         {
-            bbHeader.addClass('bearish-stuff')
-        }
-        else if (bbPercent > .8 && bbPercent < 1)
-        {
-            bbHeader.addClass('bullish-stuff')
-        }
-        else if (bbPercent < .2 && bbPercent > 0)
-        {
-            bbHeader.addClass('bearish-stuff')
-        }
-        else if (bbPercent < .8 && bbPercent > .2)
-        {
-            bbHeader.addClass('neutral-stuff')
-        }
+            if (price < vwap)
+            {
+                $(`.vwap-up-actual-${i}`).addClass('bullish-stuff-mobile')
+            }
+            else if (price > vwap)
+            {
+                $(`.vwap-up-actual-${i}`).addClass('bearish-stuff-mobile')
+            }
+            else if (price == vwap)
+            {
+                $(`.vwap-up-actual-${i}`).addClass('neutral-stuff-mobile')
+            }
+            // MACD IF FOR CLASS ADD
+            if (macd > 0)
+            {
+                $(`.macd-up-actual-${i}`).addClass('bullish-stuff-mobile')
+            }
+            else if (macd < 0)
+            {
+                $(`.macd-up-actual-${i}`).addClass('bearish-stuff-mobile')
+            }
+            else if (macd == 0)
+            {
+                $(`.macd-up-actual-${i}`).addClass('neutral-stuff-mobile')
+            }
+            // RSI IF FOR CLASS ADD
+            if (rsi < 30)
+            {
+                $(`.rsi-up-actual-${i}`).addClass('bullish-stuff-mobile')
+            }
+            else if (rsi > 70)
+            {
+                $(`.rsi-up-actual-${i}`).addClass('bearish-stuff-mobile')
+            }
+            else if (rsi < 70 && rsi > 30)
+            {
+                $(`.rsi-up-actual-${i}`).addClass('neutral-stuff-mobile')
+            }
+            // CCI IF FOR CLASS ADD
+            if (cci > 100) 
+            {
+                $(`.cci-up-actual-${i}`).addClass('bullish-stuff-mobile')
+            }
+            else if (cci < -100) 
+            {
+                $(`.cci-up-actual-${i}`).addClass('bearish-stuff-mobile')
+            }
+            else if (cci < 100 && cci > -100)
+            {
+                $(`.cci-up-actual-${i}`).addClass('neutral-stuff-mobile')
+            }
+            //  WILLIAMS IF FOR CLASS ADD
+            if (williams > -50)
+            {
+                $(`.williams-up-actual-${i}`).addClass('bullish-stuff-mobile')
+            }
+            else if (williams < -50)
+            {
+                $(`.williams-up-actual-${i}`).addClass('bearish-stuff-mobile')
+            }
+            //  STOCHASTIC IF FOR CLASS ADD
+            if (stochasticK > 85)
+            {
+                $(`.stochasticK-up-actual-${i}`).addClass('bearish-stuff-mobile')
+            }
+            else if (stochasticK < 15)
+            {
+                $(`.stochasticK-up-actual-${i}`).addClass('bullish-stuff-mobile')
+            }
+            else if (stochasticK < 85 && stochasticK > 15) 
+            {
+                $(`.stochasticK-up-actual-${i}`).addClass('neutral-stuff-mobile')
+            }
 
+            if (stochasticD > 80)
+            {
+                $(`.stochasticD-up-actual-${i}`).addClass('bearish-stuff-mobile')
+            }
+            else if (stochasticD < 20)
+            {
+                $(`.stochasticD-up-actual-${i}`).addClass('bullish-stuff-mobile')
+            }
+            else if (stochasticD < 80 && stochasticD > 20) 
+            {
+                $(`.stochasticD-up-actual-${i}`).addClass('neutral-stuff-mobile')
+            }
 
+            //  STOCHASTIC IF FOR CLASS ADD
+            if (bbPercent < 0)
+            {
+                $(`.bbPercent-up-actual-${i}`).addClass('bullish-stuff-mobile')
+            }
+            else if (bbPercent > 1)
+            {
+                $(`.bbPercent-up-actual-${i}`).addClass('bearish-stuff-mobile')
+            }
+            else if (bbPercent > .8 && bbPercent < 1)
+            {
+                $(`.bbPercent-up-actual-${i}`).addClass('bullish-stuff-mobile')
+            }
+            else if (bbPercent < .2 && bbPercent > 0)
+            {
+                $(`.bbPercent-up-actual-${i}`).addClass('bearish-stuff-mobile')
+            }
+            else if (bbPercent <= .8 && bbPercent >= .2)
+            {
+                $(`.bbPercent-up-actual-${i}`).addClass('neutral-stuff-mobile')
+            }
+
+        }
 
     }
 
@@ -454,8 +683,12 @@ const symbolBox = $('.symbol-box')
                stochasticK = parseFloat(stochasticK)
                stochasticD = parseFloat(stochasticD)
                bbPercent = parseFloat(bbPercent)
-       
-               // VWAP IF FOR CLASS ADD
+       try {
+
+      
+               // IF FOR CLASS ADD
+            if ($(window).width() > 700)
+            {
                if (price < vwap)
                {
                    vwapHeader.addClass('bullish-stuff')
@@ -564,7 +797,125 @@ const symbolBox = $('.symbol-box')
                {
                    bbHeader.addClass('neutral-stuff')
                }
-       
+            }
+            else
+            {
+                if (price < vwap)
+                {
+                    $(`.vwap-search-actual`).addClass('bullish-stuff-mobile')
+                }
+                else if (price > vwap)
+                {
+                    $(`.vwap-search-actual`).addClass('bearish-stuff-mobile')
+                }
+                else if (price == vwap)
+                {
+                    $(`.vwap-search-actual`).addClass('neutral-stuff-mobile')
+                }
+                // MACD IF FOR CLASS ADD
+                if (macd > 0)
+                {
+                    $(`.macd-search-actual`).addClass('bullish-stuff-mobile')
+                }
+                else if (macd < 0)
+                {
+                    $(`.macd-search-actual`).addClass('bearish-stuff-mobile')
+                }
+                else if (macd == 0)
+                {
+                    $(`.macd-search-actual`).addClass('neutral-stuff-mobile')
+                }
+                // RSI IF FOR CLASS ADD
+                if (rsi < 30)
+                {
+                    $(`.rsi-search-actual`).addClass('bullish-stuff-mobile')
+                }
+                else if (rsi > 70)
+                {
+                    $(`.rsi-search-actual`).addClass('bearish-stuff-mobile')
+                }
+                else if (rsi < 70 && rsi > 30)
+                {
+                    $(`.rsi-search-actual`).addClass('neutral-stuff-mobile')
+                }
+                // CCI IF FOR CLASS ADD
+                if (cci > 100) 
+                {
+                    $(`.cci-search-actual`).addClass('bullish-stuff-mobile')
+                }
+                else if (cci < -100) 
+                {
+                    $(`.cci-search-actual`).addClass('bearish-stuff-mobile')
+                }
+                else if (cci < 100 && cci > -100)
+                {
+                    $(`.cci-search-actual`).addClass('neutral-stuff-mobile')
+                }
+                //  WILLIAMS IF FOR CLASS ADD
+                if (williams > -50)
+                {
+                    $(`.williams-search-actual`).addClass('bullish-stuff-mobile')
+                }
+                else if (williams < -50)
+                {
+                    $(`.williams-search-actual`).addClass('bearish-stuff-mobile')
+                }
+                //  STOCHASTIC IF FOR CLASS ADD
+                if (stochasticK > 85)
+                {
+                    $(`.stochasticK-search-actual`).addClass('bearish-stuff-mobile')
+                }
+                else if (stochasticK < 15)
+                {
+                    $(`.stochasticK-search-actual`).addClass('bullish-stuff-mobile')
+                }
+                else if (stochasticK < 85 && stochasticK > 15) 
+                {
+                    $(`.stochasticK-search-actual`).addClass('neutral-stuff-mobile')
+                }
+    
+                if (stochasticD > 80)
+                {
+                    $(`.stochasticD-search-actual`).addClass('bearish-stuff-mobile')
+                }
+                else if (stochasticD < 20)
+                {
+                    $(`.stochasticD-search-actual`).addClass('bullish-stuff-mobile')
+                }
+                else if (stochasticD < 80 && stochasticD > 20) 
+                {
+                    $(`.stochasticD-search-actual`).addClass('neutral-stuff-mobile')
+                }
+    
+                //  STOCHASTIC IF FOR CLASS ADD
+                if (bbPercent < 0)
+                {
+                    $(`.bbPercent-search-actual`).addClass('bullish-stuff-mobile')
+                }
+                else if (bbPercent > 1)
+                {
+                    $(`.bbPercent-search-actual`).addClass('bearish-stuff-mobile')
+                }
+                else if (bbPercent > .8 && bbPercent < 1)
+                {
+                    $(`.bbPercent-search-actual`).addClass('bullish-stuff-mobile')
+                }
+                else if (bbPercent < .2 && bbPercent > 0)
+                {
+                    $(`.bbPercent-search-actual`).addClass('bearish-stuff-mobile')
+                }
+                else if (bbPercent <= .8 && bbPercent >= .2)
+                {
+                    $(`.bbPercent-search-actual`).addClass('neutral-stuff-mobile')
+                }
+    
+            }
+        }
+        catch(e)
+       {
+        console.log(e)
+
+       }
        
     }
 
