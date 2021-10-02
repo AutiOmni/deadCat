@@ -131,7 +131,7 @@ else
     {
         $('.selector-info-r').addClass('active-info-three-r')
     }
-	if ((windowTop * 1.25) > topInfoThreeL)
+	if ((windowTop * 1.2) > topInfoThreeL)
     {
         $('.selector-info-l').addClass('active-info-three-l')
         for (let i = 1; i <= 5; i++) {
