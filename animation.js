@@ -65,7 +65,7 @@ $(window).scroll(function() {
 
     var topInfoConfCover = $('.confused-cover').offset().top
 
-if ($(window) > 700)
+if ($(window).width() > 700)
 {
 	if ((windowTop * 3.5) > topInfoOne)
     {
