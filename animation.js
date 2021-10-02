@@ -72,7 +72,7 @@ if ($(window).width() > 700)
         $('.info-cont-one').addClass('active-info-one')
     }
 
-	if ((windowTop * 1.25) > topInfoConfCover)
+	if ((windowTop * 1.35) > topInfoConfCover)
     {
         $('.confused-cover').css('transform', 'translateX(100%)') 
     }
@@ -115,7 +115,7 @@ else
         $('.info-cont-one').addClass('active-info-one')
     }
 
-	if ((windowTop * 1.3) > topInfoConfCover)
+	if ((windowTop * 1.4) > topInfoConfCover)
     {
         $('.confused-cover').css('transform', 'translateX(100%)') 
     }
