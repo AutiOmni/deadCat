@@ -138,11 +138,6 @@ else
 	if ((windowTop * 1.25) > topInfoThreeL)
     {
         $('.selector-info-l').addClass('active-info-three-l')
-        for (let i = 1; i <= 5; i++) {
-            setTimeout(() => {
-                $(`.alert-fly-${i}`).css('opacity', '1');
-            }, `${i}50`)
-        }
     }
     
 	if ((windowTop * 1.05) > topInfoThreeL)
