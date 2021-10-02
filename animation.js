@@ -106,18 +106,18 @@ if ($(window).width() > 700)
 else
 {
 
-    if ((windowTop * 3.5) > topInfoOne)
+    if ((windowTop * 3.6) > topInfoOne)
     {
         $('.info-cont-one').addClass('active-info-one')
     }
 
-	if ((windowTop * 1.25) > topInfoConfCover)
+	if ((windowTop * 1.3) > topInfoConfCover)
     {
         $('.confused-cover').css('transform', 'translateX(100%)') 
     }
 
 
-	if ((windowTop * 1.25) > topInfoTwoR)
+	if ((windowTop * 1.3) > topInfoTwoR)
     {
         $('.confused-chart-right').addClass('active-info-two-r')
     }
@@ -131,7 +131,7 @@ else
     {
         $('.selector-info-r').addClass('active-info-three-r')
     }
-	if ((windowTop * 1.2) > topInfoThreeL)
+	if ((windowTop * 1.15) > topInfoThreeL)
     {
         $('.selector-info-l').addClass('active-info-three-l')
         for (let i = 1; i <= 5; i++) {
