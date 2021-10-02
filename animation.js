@@ -122,7 +122,7 @@ else
         $('.confused-chart-right').addClass('active-info-two-r')
     }
 
-	if ((windowTop * 1.25) > topInfoTwoL)
+	if ((windowTop * 1.2) > topInfoTwoL)
     {
         $('.confused-chart-left').addClass('active-info-two-l')       
     }
