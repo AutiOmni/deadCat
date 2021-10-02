@@ -131,7 +131,7 @@ a:hover {
 .info-cont-one {
     transform: translateY(100%);
     opacity: 0;
-    transition: all ease-in 500ms;
+    transition: all ease-in 750ms;
 }
 
 .info-cont-one.active-info-one {
@@ -246,15 +246,15 @@ a:hover {
     transform: translate(150%, 0%);
     -webkit-transform: translate(150%, 0%);
     opacity: 0;
-    transition: all ease-in 500ms;
-    -webkit-transition: all ease-in 500ms;
+    transition: all ease-in 750ms;
+    -webkit-transition: all ease-in 750ms;
 }
 .confused-chart-left {
     transform: translate(-150%, 0%);
     -webkit-transform: translate(-150%, 0%);
     opacity: 0;
-    transition: all ease-in 500ms;
-    -webkit-transition: all ease-in 500ms;
+    transition: all ease-in 750ms;
+    -webkit-transition: all ease-in 750ms;
 }
 
 .active-info-two-r,
@@ -269,8 +269,8 @@ a:hover {
         transform: translate(0%, 150%);
         -webkit-transform: translate(0%, 150%);
         opacity: 0;
-        transition: all ease-in 500ms;
-        -webkit-transition: all ease-in 500ms;
+        transition: all ease-in 750ms;
+        -webkit-transition: all ease-in 750ms;
     }
 
 .alert-fly-1,
@@ -279,7 +279,7 @@ a:hover {
             .alert-fly-4,
                 .alert-fly-5  {
     transform: translate(0%, 500%);
-    transition: ease-in transform 500ms;
+    transition: ease-in transform 750ms;
 }
 
 
@@ -290,7 +290,7 @@ a:hover {
         -webkit-transform: translate(0%, 150%);
         opacity: 0;
         transition: all ease-in 500ms;
-        -webkit-transition: all ease-in 500ms;
+        -webkit-transition: all ease-in 750ms;
 
     }
 
@@ -1039,7 +1039,7 @@ a:hover {
             .alert-fly-4,
                 .alert-fly-5  {
     transform: translate(0%, 0%) !important;
-    transition: all ease-in 500ms;
+    transition: all ease-in 750ms;
     opacity: 0;
 }
   }
