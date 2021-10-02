@@ -1032,4 +1032,8 @@ a:hover {
     .display-4 {
         font-size: 1.25rem;
     }
+
+    #deadCat {
+        padding-top: 50px;
+    }
   }
