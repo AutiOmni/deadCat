@@ -106,7 +106,7 @@ if ($(window).width() > 700)
 else
 {
 
-    if ((windowTop * 3.6) > topInfoOne)
+    if ((windowTop * 3.65) > topInfoOne)
     {
         $('.info-cont-one').addClass('active-info-one')
     }
@@ -122,12 +122,12 @@ else
         $('.confused-chart-right').addClass('active-info-two-r')
     }
 
-	if ((windowTop * 1.35) > topInfoTwoL)
+	if ((windowTop * 1.4) > topInfoTwoL)
     {
         $('.confused-chart-left').addClass('active-info-two-l')       
     }
 
-	if ((windowTop * 1.25) > topInfoThreeR)
+	if ((windowTop * 1.3) > topInfoThreeR)
     {
         $('.selector-info-r').addClass('active-info-three-r')
     }
