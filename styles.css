@@ -362,8 +362,8 @@ a:hover {
 .triangle {
     fill: var(--main-background);    
     position: absolute;
-    width: 125%;
-    bottom: 0;
+    width: 350%;
+    bottom:-25px;
     padding: 0;
     transform: rotateX(180deg);
     height: 140px;
