@@ -140,7 +140,7 @@ else
         $('.selector-info-l').addClass('active-info-three-l')
     }
     
-	if ((windowTop * 1.15) > topInfoThreeL)
+	if ((windowTop * 1.20) > topInfoThreeL)
     {
         for (let i = 1; i <= 5; i++) {
             setTimeout(() => {
