@@ -106,7 +106,7 @@ if ($(window).width() > 700)
 else
 {
 
-    if ((windowTop * 2) > topInfoOne)
+    if ((windowTop * 3) > topInfoOne)
     {
         $('.info-cont-one').addClass('active-info-one')
     }
@@ -131,7 +131,7 @@ else
     {
         $('.selector-info-r').addClass('active-info-three-r')
     }
-	if ((windowTop * 1.25) > topInfoThreeL)
+	if ((windowTop * 1.35) > topInfoThreeL)
     {
         $('.selector-info-l').addClass('active-info-three-l')
         for (let i = 1; i <= 5; i++) {
