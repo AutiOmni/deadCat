@@ -145,7 +145,7 @@ else
         }
     }
     
-	if ((windowTop * 1.1) > topInfoThreeL)
+	if ((windowTop * 1.05) > topInfoThreeL)
     {
         for (let i = 1; i <= 5; i++) {
             setTimeout(() => {
