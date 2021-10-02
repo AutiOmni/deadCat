@@ -88,11 +88,11 @@ if ($(window).width() > 700)
         $('.confused-chart-left').addClass('active-info-two-l')       
     }
 
-	if ((windowTop * 1.6) > topInfoThreeR)
+	if ((windowTop * 1.65) > topInfoThreeR)
     {
         $('.selector-info-r').addClass('active-info-three-r')
     }
-	if ((windowTop * 1.6) > topInfoThreeL)
+	if ((windowTop * 1.65) > topInfoThreeL)
     {
         $('.selector-info-l').addClass('active-info-three-l')
         for (let i = 1; i <= 5; i++) {
@@ -127,11 +127,11 @@ else
         $('.confused-chart-left').addClass('active-info-two-l')       
     }
 
-	if ((windowTop * 3) > topInfoThreeR)
+	if ((windowTop * 1.25) > topInfoThreeR)
     {
         $('.selector-info-r').addClass('active-info-three-r')
     }
-	if ((windowTop * 3) > topInfoThreeL)
+	if ((windowTop * 1.25) > topInfoThreeL)
     {
         $('.selector-info-l').addClass('active-info-three-l')
         for (let i = 1; i <= 5; i++) {
