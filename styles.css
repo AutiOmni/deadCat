@@ -279,7 +279,7 @@ a:hover {
             .alert-fly-4,
                 .alert-fly-5  {
     transform: translate(0%, 250%);
-    transition: ease-in transform 750ms;
+    transition: ease-in transform 1000ms;
 }
 
 .move-link {
