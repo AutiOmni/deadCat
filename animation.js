@@ -95,6 +95,10 @@ if ($(window).width() > 700)
 	if ((windowTop * 1.65) > topInfoThreeL)
     {
         $('.selector-info-l').addClass('active-info-three-l')
+
+    }
+	if ((windowTop * 1.25) > topInfoThreeL)
+    {
         for (let i = 1; i <= 5; i++) {
             setTimeout(() => {
                 $(`.alert-fly-${i}`).css('transform', 'translate(0%, 0%)');
@@ -131,15 +135,20 @@ else
     {
         $('.selector-info-r').addClass('active-info-three-r')
     }
-	if ((windowTop * 1.15) > topInfoThreeL)
+	if ((windowTop * 1.25) > topInfoThreeL)
     {
         $('.selector-info-l').addClass('active-info-three-l')
+    }
+    
+	if ((windowTop * 1.15) > topInfoThreeL)
+    {
         for (let i = 1; i <= 5; i++) {
             setTimeout(() => {
                 $(`.alert-fly-${i}`).css('transform', 'translate(0%, 0%)');
             }, `${i}50`)
         }
     }
+    
 }
 
 });
