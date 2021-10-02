@@ -51,6 +51,8 @@ else if (($(window).width() < 700))
 var windowTop = window.pageYOffset
 
 $(window).scroll(function() {
+
+
     var windowTop = window.pageYOffset;
     var topInfoOne = $('.info-cont-one').offset().top
 
@@ -63,7 +65,8 @@ $(window).scroll(function() {
 
     var topInfoConfCover = $('.confused-cover').offset().top
 
-
+if ($(window) > 700)
+{
 	if ((windowTop * 3.5) > topInfoOne)
     {
         $('.info-cont-one').addClass('active-info-one')
@@ -99,6 +102,44 @@ $(window).scroll(function() {
         }
     }
 
+}
+else
+{
 
+    if ((windowTop * 3) > topInfoOne)
+    {
+        $('.info-cont-one').addClass('active-info-one')
+    }
+
+	if ((windowTop * 1.25) > topInfoConfCover)
+    {
+        $('.confused-cover').css('transform', 'translateX(100%)') 
+    }
+
+
+	if ((windowTop * 1.25) > topInfoTwoR)
+    {
+        $('.confused-chart-right').addClass('active-info-two-r')
+    }
+
+	if ((windowTop * 1.25) > topInfoTwoL)
+    {
+        $('.confused-chart-left').addClass('active-info-two-l')       
+    }
+
+	if ((windowTop * 3) > topInfoThreeR)
+    {
+        $('.selector-info-r').addClass('active-info-three-r')
+    }
+	if ((windowTop * 3) > topInfoThreeL)
+    {
+        $('.selector-info-l').addClass('active-info-three-l')
+        for (let i = 1; i <= 5; i++) {
+            setTimeout(() => {
+                $(`.alert-fly-${i}`).css('transform', 'translate(0%, 0%)');
+            }, `${i}50`)
+        }
+    }
+}
 
 });
