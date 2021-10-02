@@ -23,10 +23,10 @@ html  {
 body {
     background-color: var(--main-background);
     color: var(--light-text-color);
-    overflow-x: hidden;
     line-height: 1.5;
     transition: all ease-in-out 1000ms;
     overflow-x: hidden;
+
 }
 
 section {
@@ -278,8 +278,8 @@ a:hover {
         .alert-fly-3, 
             .alert-fly-4,
                 .alert-fly-5  {
-    transform: translate(0%, 200%);
-    transition: ease-in transform 500ms;
+    transform: translate(0%, 250%);
+    transition: ease-in transform 750ms;
 }
 
 .move-link {
@@ -363,7 +363,7 @@ a:hover {
     fill: var(--main-background);    
     position: absolute;
     width: 350%;
-    bottom:-25px;
+    bottom:0px;
     padding: 0;
     transform: rotateX(180deg);
     height: 140px;
