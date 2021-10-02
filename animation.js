@@ -106,7 +106,7 @@ if ($(window).width() > 700)
 else
 {
 
-    if ((windowTop * 3) > topInfoOne)
+    if ((windowTop * 1.5) > topInfoOne)
     {
         $('.info-cont-one').addClass('active-info-one')
     }
