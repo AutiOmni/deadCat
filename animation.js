@@ -97,7 +97,7 @@ if ($(window).width() > 700)
         $('.selector-info-l').addClass('active-info-three-l')
 
     }
-	if ((windowTop * 1.25) > topInfoThreeL)
+	if ((windowTop * 1.15) > topInfoThreeL)
     {
         for (let i = 1; i <= 5; i++) {
             setTimeout(() => {
@@ -138,10 +138,6 @@ else
 	if ((windowTop * 1.25) > topInfoThreeL)
     {
         $('.selector-info-l').addClass('active-info-three-l')
-    }
-    
-	if ((windowTop * 1.20) > topInfoThreeL)
-    {
         for (let i = 1; i <= 5; i++) {
             setTimeout(() => {
                 $(`.alert-fly-${i}`).css('transform', 'translate(0%, 0%)');
