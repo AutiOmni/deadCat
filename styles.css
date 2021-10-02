@@ -278,15 +278,8 @@ a:hover {
         .alert-fly-3, 
             .alert-fly-4,
                 .alert-fly-5  {
-    transform: translate(0%, 200%);
-    transition: ease-in transform 1000ms;
-}
-
-.move-link {
-    transition: all ease-in-out 500ms
-}
-.move-link:hover {
-    letter-spacing: 1px;
+    transform: translate(0%, 500%);
+    transition: ease-in transform 500ms;
 }
 
 
@@ -343,7 +336,7 @@ a:hover {
 .tilt-download-right {
     fill: var(--main-background);    
     position: absolute;
-    top: -5px;
+    top: -1px;
     width: 110%;
     height: 100px;
     padding: 0;
@@ -353,7 +346,7 @@ a:hover {
     fill: var(--main-background);    
     position: absolute;
     transform: rotateY(180deg);
-    top: -5px;
+    top: -1px;
     width: 110%;
     height: 100px;
     padding: 0;
@@ -920,7 +913,10 @@ a:hover {
     transform: scale(.98);
 }
 
-  @media (max-width: 500px) {
+   /* --------------------- @ MEDIA  ----------------------- */
+
+
+  @media (max-width: 700px) {
 
     #upArrow, #downArrow {
         margin: 0 5px 15px 5px;
@@ -1036,4 +1032,14 @@ a:hover {
     #deadCat {
         padding-top: 25px;
     }
+
+    .alert-fly-1,
+    .alert-fly-2,
+        .alert-fly-3, 
+            .alert-fly-4,
+                .alert-fly-5  {
+    transform: translate(0%, 0%) !important;
+    transition: all ease-in 500ms;
+    opacity: 0;
+}
   }
