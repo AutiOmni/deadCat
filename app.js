@@ -1125,8 +1125,11 @@ function compileStocks(arr1, arr2, arr3, arr4, callback) {
             else
             {
                 chartArr[num].yesterdayVolume = dataPull.historical[0].volume
+                if (marketDay == 0 || marketDay == 6) {
+                    chartArr[num].yesterdayVolume = dataPull.historical[1].volume
+                }
             }
-            if (newestPull.length < 0) 
+            if (newestPull.length <= 0) 
             {
                 chartArr[num].volume = 0
             }
@@ -1894,12 +1897,12 @@ try {
      <p class="tech-title-warn">For Educational Purposes Only</p>
  
          <div class="tech-vol-row">
-         <a class="info-link" href="https://www.investopedia.com/terms/d/downvolume.asp" target="_blank"><h3 class='tech-header'>Volume</h3></a>
+         <a class="info-link" href="https://www.investopedia.com/articles/technical/02/010702.asp" target="_blank"><h3 class='tech-header'>Volume</h3></a>
          <p>Average: <span class="tech-to-left">${avgVolumeDown}</span></p>
              <p>Today: <span class="tech-to-left">${volumeDown}</span></p>
              <p>Change: <span class="tech-to-left"> ${volumeIncreaseDown}%</span></p>
 
-             <p>Last Open Day: <span class="tech-to-left"> ${volumeYesterdayDown}</span></p>
+             <p>Day Before: <span class="tech-to-left"> ${volumeYesterdayDown}</span></p>
              <p>Change: <span class="tech-to-left"> ${yesterdayVolIncreaseDown}%</span></p>
          </div>
  
@@ -1907,60 +1910,65 @@ try {
 
              <a class="info-link" href="https://www.investopedia.com/terms/s/sma.asp" target="_blank"><h3 class='tech-header'>SMA</h3></a>
                  <div class="averages-row">
-                     <p>15: ${smaFiveTeenDown}</p>
-                     <p>20: ${smaTwentyDown}</p>
+                     <p class="smafifteen-down-actual-${i}">15: ${smaFiveTeenDown}</p>
+                     <p class="smatwenty-down-actual-${i}">20: ${smaTwentyDown}</p>
                  </div>
                  <div class="averages-row">
-                     <p>30: ${smaThirtyDown}</p>
-                     <p>50: ${smaFiftyDown}</p>
+                     <p class="smathirty-down-actual-${i}">30: ${smaThirtyDown}</p>
+                     <p class="smafifty-down-actual-${i}">50: ${smaFiftyDown}</p>
                  </div>
+
+                 <p class="golden-cross">Golden Cross</p>
+                 <p class="death-cross">Death Cross</p>
+
                  <div class="averages-row">
-                     <p>100: ${smaOneHunDown}</p>
-                     <p>200: ${smaTwoHunDown}</p>
+                     <p class="smaonehundred-down-actual-${i}">100: ${smaOneHunDown}</p>
+                     <p class="smatwohundred-down-actual-${i}">200: ${smaTwoHunDown}</p>
                  </div>
+
          </div>
  
          <div class="tech-row">
          <a class="info-link" href="https://www.investopedia.com/terms/e/ema.asp" target="_blank"><h3 class='tech-header'>EMA</h3></a>
                  <div class="averages-row">
-                     <p>12: ${emaTwelveDown}</p>
-                     <p>26: ${emaTwentySixDown}</p>
+                     <p class="ematwelve-down-actual-${i}">12: ${emaTwelveDown}</p>
+                     <p class="ematwentysix-down-actual-${i}">26: ${emaTwentySixDown}</p>
                  </div>
                  <div class="averages-row">
-                     <p>50: ${emaFiftyDown}</p>
-                     <p>200: ${emaTwoHunDown}</p>
+                     <p class="emafifty-down-actual-${i}">50: ${emaFiftyDown}</p>
+                     <p class="ematwohundred-down-actual-${i}">200: ${emaTwoHunDown}</p>
                  </div>           
          </div>
  
          <div class="tech-row">
          <a class="info-link" href="https://www.investopedia.com/ask/answers/071414/whats-difference-between-moving-average-and-weighted-moving-average.asp" target="_blank"><h3 class='tech-header'>WMA</h3></a>
                  <div class="averages-row">
-                     <p>15: ${wmaFiveTeenDown}</p>
-                     <p>20: ${wmaTwentyDown}</p>
+                     <p class="wmafifteen-down-actual-${i}">15: ${wmaFiveTeenDown}</p>
+                     <p class="wmatwenty-down-actual-${i}">20: ${wmaTwentyDown}</p>
                  </div>
                  <div class="averages-row">
-                     <p>30: ${wmaThirtyDown}</p>
-                     <p>50: ${wmaFiftyDown}</p>
+                     <p> class="wmathirty-down-actual-${i}"30: ${wmaThirtyDown}</p>
+                     <p class="wmafifty-down-actual-${i}">50: ${wmaFiftyDown}</p>
                  </div>
                  <div class="averages-row">
-                     <p>100: ${wmaOneHunDown}</p>
-                     <p>200: ${wmaTwoHunDown}</p>
+                     <p class="wmaonehundred-down-actual-${i}">100: ${wmaOneHunDown}</p>
+                     <p class="wmatwohundred-down-actual-${i}">200: ${wmaTwoHunDown}</p>
                  </div>
          </div>
  
          <div class="tech-row">
          <a class="info-link" href="https://www.tradingsetupsreview.com/volume-weighted-moving-average-vwma/" target="_blank"><h3 class='tech-header'>VWMA</h3></a>
                  <div class="averages-row">
-                     <p>15: ${vwmaFiveTeenDown}</p>
-                     <p>20: ${vwmaTwentyDown}</p>
+                     <p class="vwmafifteen-down-actual-${i}">15: ${vwmaFiveTeenDown}</p>
+                     <p class="vwmatwenty-down-actual-${i}">20: ${vwmaTwentyDown}</p>
                  </div>
                  <div class="averages-row">
-                     <p>30: ${vwmaThirtyDown}</p>
-                     <p>50: ${vwmaFiftyDown}</p>
+                     <p class="vwmathirty-down-actual-${i}">30: ${vwmaThirtyDown}</p>
+                     <p class="vwmafifty-down-actual-${i}">50: ${vwmaFiftyDown}</p>
                  </div>
                  <div class="averages-row">
-                     <p>100: ${vwmaOneHunDown}</p>
-                     <p>200: ${vwmaTwoHunDown}</p>
+                     <p class="vwmaonehundred-down-actual-${i}">100: ${vwmaOneHunDown}</p>
+                     <p class="vwmatwohundred-down-actual-${i}">200: ${vwmaTwoHunDown}</p>
                  </div>
          </div>
 
@@ -2044,72 +2052,76 @@ try {
      <p class="tech-title-warn">For Educational Purposes Only</p>
  
              <div class="tech-row">
-             <a class="info-link" href="https://www.investopedia.com/terms/u/upvolume.asp" target="_blank"><h3 class='tech-header'>Volume</h3></a>
+             <a class="info-link" href="https://www.investopedia.com/articles/technical/02/010702.asp" target="_blank"><h3 class='tech-header'>Volume</h3></a>
                  <p>Average: <span class="tech-to-left"> ${avgVolumeUp}</span></p>
                  <p>Today:  <span class="tech-to-left"> ${volumeUp}</span></p>
                  <p>Change: <span class="tech-to-left"> ${volumeIncreaseUp}%</span></p>
 
-                 <p>Last Open Day: <span class="tech-to-left"> ${volumeYesterdayUp}</span></p>
+                 <p>Day Before: <span class="tech-to-left"> ${volumeYesterdayUp}</span></p>
                  <p>Change: <span class="tech-to-left"> ${yesterdayVolIncreaseUp}%</span></p>
              </div>
  
          <div class="tech-row">
          <a class="info-link" href="https://www.investopedia.com/terms/s/sma.asp" target="_blank"><h3 class='tech-header'>SMA</h3></a>
                 <div class="averages-row">
-                     <p>15: ${smaFiveTeenUp}</p>
-                     <p>20: ${smaTwentyUp}</p>
+                     <p class="smafifteen-up-actual-${i}">15: ${smaFiveTeenUp}</p>
+                     <p class="smatwenty-up-actual-${i}">20: ${smaTwentyUp}</p>
                  </div>
                  <div class="averages-row">
-                     <p>30: ${smaThirtyUp}</p>
-                     <p>50: ${smaFiftyUp}</p>
+                     <p class="smathirty-up-actual-${i}">30: ${smaThirtyUp}</p>
+                     <p class="smafifty-up-actual-${i}">50: ${smaFiftyUp}</p>
                  </div>
+
+                 <p class="golden-cross">Golden Cross</p>
+                 <p class="death-cross">Death Cross</p>
+
                  <div class="averages-row">
-                     <p>100: ${smaOneHunUp}</p>
-                     <p>200: ${smaTwoHunUp}</p>
+                     <p class="smaonehundred-up-actual-${i}">100: ${smaOneHunUp}</p>
+                     <p class="smatwohundred-up-actual-${i}">200: ${smaTwoHunUp}</p>
                  </div>
          </div>
  
          <div class="tech-row">
          <a class="info-link" href="https://www.investopedia.com/terms/e/ema.asp" target="_blank"><h3 class='tech-header'>EMA</h3></a>
                  <div class="averages-row">
-                     <p>12: ${emaTwelveUp}</p>
-                     <p>26: ${emaTwentySixUp}</p>
+                     <p class="ematwelve-up-actual-${i}">12: ${emaTwelveUp}</p>
+                     <p class="ematwentysix-up-actual-${i}">26: ${emaTwentySixUp}</p>
                  </div>
                  <div class="averages-row">
-                     <p>50: ${emaFiftyUp}</p>
-                     <p>200: ${emaTwoHunUp}</p>
+                     <p class="emafifty-up-actual-${i}">50: ${emaFiftyUp}</p>
+                     <p class="ematwohundred-up-actual-${i}">200: ${emaTwoHunUp}</p>
                  </div>
          </div>
  
          <div class="tech-row">
          <a class="info-link" href="https://www.investopedia.com/ask/answers/071414/whats-difference-between-moving-average-and-weighted-moving-average.asp" target="_blank"><h3 class='tech-header'>WMA</h3></a>
                  <div class="averages-row">
-                     <p>15: ${wmaFiveTeenUp}</p>
-                     <p>20: ${wmaTwentyUp}</p>
+                     <p class="wmafiften-up-actual-${i}">15: ${wmaFiveTeenUp}</p>
+                     <p class="wmatwenty-up-actual-${i}">20: ${wmaTwentyUp}</p>
                  </div>
                  <div class="averages-row">
-                     <p>30: ${wmaThirtyUp}</p>
-                     <p>50: ${wmaFiftyUp}</p>
+                     <p class="wmathirty-up-actual-${i}">30: ${wmaThirtyUp}</p>
+                     <p class="wmafifty-up-actual-${i}">50: ${wmaFiftyUp}</p>
                  </div>
                  <div class="averages-row">
-                     <p>100: ${wmaOneHunUp}</p>
-                     <p>200: ${wmaTwoHunUp}</p>
+                     <p class="wmaonehundred-up-actual-${i}">100: ${wmaOneHunUp}</p>
+                     <p class="wmatwohundred-up-actual-${i}">200: ${wmaTwoHunUp}</p>
                  </div>
          </div>
  
          <div class="tech-row">
          <a class="info-link" href="https://www.tradingsetupsreview.com/volume-weighted-moving-average-vwma/" target="_blank"><h3 class='tech-header'>VWMA</h3></a>
                  <div class="averages-row">
-                     <p>15: ${vwmaFiveTeenUp}</p>
-                     <p>20: ${vwmaTwentyUp}</p>
+                     <p class="vwmafiften-up-actual-${i}">15: ${vwmaFiveTeenUp}</p>
+                     <p class="vwmatwenty-up-actual-${i}">20: ${vwmaTwentyUp}</p>
                  </div>
                  <div class="averages-row">
-                     <p>30: ${vwmaThirtyUp}</p>
-                     <p>50: ${vwmaFiftyUp}</p>
+                     <p class="vwmathirty-up-actual-${i}">30: ${vwmaThirtyUp}</p>
+                     <p class="vwmafifty-up-actual-${i}">50: ${vwmaFiftyUp}</p>
                  </div>
                  <div class="averages-row">
-                     <p>100: ${vwmaOneHunUp}</p>
-                     <p>200: ${vwmaTwoHunUp}</p>
+                     <p class="vwmaonehundred-up-actual-${i}">100: ${vwmaOneHunUp}</p>
+                     <p class="vwmatwohunded-up-actual-${i}">200: ${vwmaTwoHunUp}</p>
                  </div>
          </div>
 

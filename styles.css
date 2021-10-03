@@ -600,6 +600,7 @@ a:hover {
 
 .tech-row,
     .tech-vol-row {
+    position: relative;
     padding: 0 5px;
     margin-top: 10px;
     width: 100%;
@@ -714,6 +715,20 @@ a:hover {
 .neutral-stuff-k:hover + div .stochK,
 .neutral-stuff-d:hover + div .stochD {
     color: var(--neutral-market-color);
+}
+
+.golden-cross {
+    position: absolute;
+    right: 5px;
+    bottom: 18px;
+    display: none;
+}
+
+.death-cross {
+    position: absolute;
+    right: 5px;
+    bottom: 18px;
+    display: none;
 }
 
 /* ------- LOADING SCREEN ---------------------------- */

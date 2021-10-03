@@ -1996,8 +1996,11 @@ if ($(window).width() > 700)
         else
         {
             searchedTicker.yesterdayVolume = dataPull.historical[0].volume
+            if (marketDay == 0 || marketDay == 6) {
+                searchedTicker.yesterdayVolume = dataPull.historical[1].volume
+            }
         }
-        if (newestPull.length < 0) 
+        if (newestPull.length <= 0) 
         {
             searchedTicker.volume = 0
         }
@@ -2151,7 +2154,15 @@ if ($(window).width() > 700)
         // CHANGE TO POSITIVE BUT ARROW POINTS DOWN OR UP ----------
         if (change < 0) {
             change = change * -1
+            change = change.toFixed(2)
+
         }
+
+         // ADJUST TO FIXED --------------------------------------------------------
+
+    price = price.toFixed(2)
+
+    changesPercentage = changesPercentage.toFixed(2)
 
         // VOLUME INCREASE TODAY ----------
         let volumeIncrease = 0;
@@ -2166,6 +2177,8 @@ if ($(window).width() > 700)
             volumeIncrease = (decrease / avgVolume) * -100
         }
 
+        volumeIncrease = volumeIncrease.toFixed(2)
+
     // TO GET AVERAGE DAILY VOLUME FOR YESTERDAY ----------------
         let yesterdayVolIncrease = 0;
 
@@ -2178,6 +2191,16 @@ if ($(window).width() > 700)
             let decrease = avgVolume - yesterdayVolume;
             yesterdayVolIncrease = (decrease / avgVolume) * -100
         }
+
+        yesterdayVolIncrease = yesterdayVolIncrease.toFixed(2)
+
+         
+// NaN CHECK ----------------------------------------
+if (isNaN(yesterdayVolIncrease))
+{
+    yesterdayVolIncrease = 'No Data'
+}
+
 
     // ADJUST TO POSITIVE 
    if (stochasticD < 0)
@@ -2265,82 +2288,86 @@ if ($(window).width() > 700)
         <p class="tech-title-warn">For Educational Purposes Only</p>
 
         <div class="tech-row">
-        <p class="search-price-text price-search">Price: $${price.toFixed(2)}</p>
+        <p class="search-price-text price-search">Price: $${price}</p>
         <div class="search-changes-row">
-        <p>${changesPercentage.toFixed(2)}%</p>
+        <p>${changesPercentage}%</p>
         <div id="search-arrow-${directionArrow}"></div>
-        <p>$${change.toFixed(2)}</p>
+        <p>$${change}</p>
         </div>
 
 
             <div class="tech-vol-row">
-            <a class="info-link" href="https://www.investopedia.com/terms/d/downvolume.asp" target="_blank"><h3 class='tech-header'>Volume</h3></a>
+            <a class="info-link" href="https://www.investopedia.com/articles/technical/02/010702.asp" target="_blank"><h3 class='tech-header'>Volume</h3></a>
                 <p>Average: <span class="tech-to-left">${avgVolume}</span></p> 
                 <p>Current Day: <span class="tech-to-left">${volume}</span></p>
-                <p>Change: <span class="tech-to-left"> ${volumeIncrease.toFixed(2)}%</span></p>
+                <p>Change: <span class="tech-to-left"> ${volumeIncrease}%</span></p>
 
-                <p>Last Open Day: <span class="tech-to-left"> ${yesterdayVolume}</span></p>
-                <p>Change: <span class="tech-to-left"> ${yesterdayVolIncrease.toFixed(2)}%</span></p>
+                <p>Day Before: <span class="tech-to-left"> ${yesterdayVolume}</span></p>
+                <p>Change: <span class="tech-to-left"> ${yesterdayVolIncrease}%</span></p>
             </div>
 
             <div class="tech-row">
 
                 <a class="info-link" href="https://www.investopedia.com/terms/s/sma.asp" target="_blank"><h3 class='tech-header'>SMA</h3></a>
                     <div class="averages-row">
-                        <p>15: ${smaFiveTeen}</p>
-                        <p>20: ${smaTwenty}</p>
+                        <p class="smafifteen-search-actual">15: ${smaFiveTeen}</p>
+                        <p class="smatwenty-search-actual">20: ${smaTwenty}</p>
                     </div>
                     <div class="averages-row">
-                        <p>30: ${smaThirty}</p>
-                        <p>50: ${smaFifty}</p>
+                        <p class="smathirty-search-actual">30: ${smaThirty}</p>
+                        <p class="smafifty-search-actual">50: ${smaFifty}</p>
                     </div>
+                    
+                 <p class="golden-cross">Golden Cross</p>
+                 <p class="death-cross">Death Cross</p>
+
                     <div class="averages-row">
-                        <p>100: ${smaOneHun}</p>
-                        <p>200: ${smaTwoHun}</p>
+                        <p class="smaonehundred-search-actual">100: ${smaOneHun}</p>
+                        <p class="smatwohundred-search-actual">200: ${smaTwoHun}</p>
                     </div>
             </div>
 
             <div class="tech-row">
             <a class="info-link" href="https://www.investopedia.com/terms/e/ema.asp" target="_blank"><h3 class='tech-header'>EMA</h3></a>
                     <div class="averages-row">
-                        <p>12: ${emaTwelve}</p>
-                        <p>26: ${emaTwentySix}</p>
+                        <p class="ematwelve-search-actual">12: ${emaTwelve}</p>
+                        <p class="ematwentysix-search-actual">26: ${emaTwentySix}</p>
                     </div>
                     <div class="averages-row">
-                        <p>50: ${emaFifty}</p>
-                        <p>200: ${emaTwoHun}</p>
+                        <p class="emafifty-search-actual">50: ${emaFifty}</p>
+                        <p class="ematwohundred-search-actual">200: ${emaTwoHun}</p>
                     </div>           
             </div>
 
             <div class="tech-row">
             <a class="info-link" href="https://www.investopedia.com/ask/answers/071414/whats-difference-between-moving-average-and-weighted-moving-average.asp" target="_blank"><h3 class='tech-header'>WMA</h3></a>
                     <div class="averages-row">
-                        <p>15: ${wmaFiveTeen}</p>
-                        <p>20: ${wmaTwenty}</p>
+                        <p class="wmafifteen-search-actual">15: ${wmaFiveTeen}</p>
+                        <p class="wmatwenty-search-actual">20: ${wmaTwenty}</p>
                     </div>
                     <div class="averages-row">
-                        <p>30: ${wmaThirty}</p>
-                        <p>50: ${wmaFifty}</p>
+                        <p class="wmathirty-search-actual">30: ${wmaThirty}</p>
+                        <p class="wmafifty-search-actual">50: ${wmaFifty}</p>
                     </div>
                     <div class="averages-row">
-                        <p>100: ${wmaOneHun}</p>
-                        <p>200: ${wmaTwoHun}</p>
+                        <p class="wmaonehundred-search-actual">100: ${wmaOneHun}</p>
+                        <p class="wmatwohundred-search-actual">200: ${wmaTwoHun}</p>
                     </div>
             </div>
 
             <div class="tech-row">
             <a class="info-link" href="https://www.tradingsetupsreview.com/volume-weighted-moving-average-vwma/" target="_blank"><h3 class='tech-header'>VWMA</h3></a>
                     <div class="averages-row">
-                        <p>15: ${vwmaFiveTeen}</p>
-                        <p>20: ${vwmaTwenty}</p>
+                        <p class="vwmafifteen-search-actual">15: ${vwmaFiveTeen}</p>
+                        <p class="vwmatwenty-search-actual">20: ${vwmaTwenty}</p>
                     </div>
                     <div class="averages-row">
-                        <p>30: ${vwmaThirty}</p>
-                        <p>50: ${vwmaFifty}</p>
+                        <p class="vwmathirty-search-actual">30: ${vwmaThirty}</p>
+                        <p class="vwmafifty-search-actual">50: ${vwmaFifty}</p>
                     </div>
                     <div class="averages-row">
-                        <p>100: ${vwmaOneHun}</p>
-                        <p>200: ${vwmaTwoHun}</p>
+                        <p class="vwmaonehundred-search-actual">100: ${vwmaOneHun}</p>
+                        <p class="vwmatwohundred-search-actual">200: ${vwmaTwoHun}</p>
                     </div>
             </div>
 
