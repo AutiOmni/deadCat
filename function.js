@@ -2308,7 +2308,7 @@ if (isNaN(yesterdayVolIncrease))
 
             <div class="tech-row">
 
-                <a class="info-link" href="https://www.investopedia.com/terms/s/sma.asp" target="_blank"><h3 class='tech-header'>SMA</h3></a>
+                <a class="info-link sma-search-header" href="https://www.investopedia.com/terms/s/sma.asp" target="_blank"><h3 class='tech-header'>SMA</h3></a>
                     <div class="averages-row">
                         <p class="smafifteen-search-actual">15: ${smaFiveTeen}</p>
                         <p class="smatwenty-search-actual">20: ${smaTwenty}</p>
@@ -2328,7 +2328,7 @@ if (isNaN(yesterdayVolIncrease))
             </div>
 
             <div class="tech-row">
-            <a class="info-link" href="https://www.investopedia.com/terms/e/ema.asp" target="_blank"><h3 class='tech-header'>EMA</h3></a>
+            <a class="info-link ema-search-header" href="https://www.investopedia.com/terms/e/ema.asp" target="_blank"><h3 class='tech-header'>EMA</h3></a>
                     <div class="averages-row">
                         <p class="ematwelve-search-actual">12: ${emaTwelve}</p>
                         <p class="ematwentysix-search-actual">26: ${emaTwentySix}</p>
@@ -2340,7 +2340,7 @@ if (isNaN(yesterdayVolIncrease))
             </div>
 
             <div class="tech-row">
-            <a class="info-link" href="https://www.investopedia.com/ask/answers/071414/whats-difference-between-moving-average-and-weighted-moving-average.asp" target="_blank"><h3 class='tech-header'>WMA</h3></a>
+            <a class="info-link wma-search-header" href="https://www.investopedia.com/ask/answers/071414/whats-difference-between-moving-average-and-weighted-moving-average.asp" target="_blank"><h3 class='tech-header'>WMA</h3></a>
                     <div class="averages-row">
                         <p class="wmafifteen-search-actual">15: ${wmaFiveTeen}</p>
                         <p class="wmatwenty-search-actual">20: ${wmaTwenty}</p>
@@ -2356,7 +2356,7 @@ if (isNaN(yesterdayVolIncrease))
             </div>
 
             <div class="tech-row">
-            <a class="info-link" href="https://www.tradingsetupsreview.com/volume-weighted-moving-average-vwma/" target="_blank"><h3 class='tech-header'>VWMA</h3></a>
+            <a class="info-link vwma-search-header" href="https://www.tradingsetupsreview.com/volume-weighted-moving-average-vwma/" target="_blank"><h3 class='tech-header'>VWMA</h3></a>
                     <div class="averages-row">
                         <p class="vwmafifteen-search-actual">15: ${vwmaFiveTeen}</p>
                         <p class="vwmatwenty-search-actual">20: ${vwmaTwenty}</p>
