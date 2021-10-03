@@ -1947,7 +1947,7 @@ try {
                      <p class="wmatwenty-down-actual-${i}">20: ${wmaTwentyDown}</p>
                  </div>
                  <div class="averages-row">
-                     <p> class="wmathirty-down-actual-${i}"30: ${wmaThirtyDown}</p>
+                     <p class="wmathirty-down-actual-${i}">30: ${wmaThirtyDown}</p>
                      <p class="wmafifty-down-actual-${i}">50: ${wmaFiftyDown}</p>
                  </div>
                  <div class="averages-row">
