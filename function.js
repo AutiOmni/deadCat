@@ -142,6 +142,11 @@ const symbolBox = $('.symbol-box')
             let williamsHeader = $(`.williams-down-header-${i}`)
             let stochasticHeader = $(`.stochastic-down-header-${i}`)
             let bbHeader = $(`.bb-down-header-${i}`)
+
+            let smaHeader = $(`.sma-down-header-${i}`)
+            let emaHeader = $(`.ema-down-header-${i}`)
+            let wmaHeader = $(`.wma-down-header-${i}`)
+            let vwmaHeader = $(`.vwma-down-header-${i}`)
             // GET ACTUALS FOR NUMBER CALCS AND HOVER COLOR
             let vwap = $(`.vwap-down-actual-${i}`).text()
             let macd = $(`.macd-down-actual-${i}`).text()
@@ -151,6 +156,35 @@ const symbolBox = $('.symbol-box')
             let stochasticK = $(`.stochasticK-down-actual-${i}`).text().slice(4,)
             let stochasticD = $(`.stochasticD-down-actual-${i}`).text().slice(4,)
             let bbPercent = $(`.bbPercent-down-actual-${i}`).text().slice(4,)
+
+            let smaFifteen = $(`.smafifteen-down-actual-${i}`).text()            
+            let smaTwenty = $(`.smatwenty-down-actual-${i}`).text()            
+            let smaThirty = $(`.smathirty-down-actual-${i}`).text()            
+            let smaFifty = $(`.smafifty-down-actual-${i}`).text()            
+            let smaOneHun = $(`.smaonehundred-down-actual-${i}`).text()            
+            let smaTwoHun = $(`.smatwohundred-down-actual-${i}`).text()  
+
+            let emaTwelve = $(`.ematwelve-down-actual-${i}`).text()            
+            let ematwenty = $(`.ematwentysix-down-actual-${i}`).text()            
+            let emaFifty = $(`.emafifty-down-actual-${i}`).text()            
+            let emaTwoHun = $(`.ematwohundred-down-actual-${i}`).text()   
+
+            let wmaFifteen = $(`.wmafifteen-down-actual-${i}`).text()            
+            let wmaTwenty = $(`.wmatwenty-down-actual-${i}`).text()            
+            let wmaThirty = $(`.wmathirty-down-actual-${i}`).text()            
+            let wmaFifty = $(`.wmafifty-down-actual-${i}`).text()            
+            let wmaOneHu = $(`.wmaonehundred-down-actual-${i}`).text()            
+            let wmaTwoHun = $(`.wmatwohundred-down-actual-${i}`).text()            
+
+            let vwmaFifteen = $(`.vwmafifteen-down-actual-${i}`).text()            
+            let vwmaTwenty = $(`.vwmatwenty-down-actual-${i}`).text()            
+            let vwmaThirty = $(`.vwmathirty-down-actual-${i}`).text()            
+            let vwmaFifty = $(`.vwmafifty-down-actual-${i}`).text()            
+            let vwmaOneHun = $(`.vwmaonehundred-down-actual-${i}`).text()            
+            let vwmaTwoHun = $(`.vwmatwohundred-down-actual-${i}`).text()            
+
+
+
 
             // TURN STRING TO NUM
             price = parseFloat(price)
@@ -402,6 +436,11 @@ const symbolBox = $('.symbol-box')
         let williamsHeader = $(`.williams-up-header-${i}`)
         let stochasticHeader = $(`.stochastic-up-header-${i}`)
         let bbHeader = $(`.bb-up-header-${i}`)
+
+        let smaHeader = $(`.sma-up-header-${i}`)
+        let emaHeader = $(`.ema-up-header-${i}`)
+        let wmaHeader = $(`.wma-up-header-${i}`)
+        let vwmaHeader = $(`.vwma-up-header-${i}`)
         // GET ACTUALS FOR NUMBER CALCS AND HOVER COLOR
         let vwap = $(`.vwap-up-actual-${i}`).text()
         let macd = $(`.macd-up-actual-${i}`).text()
@@ -411,6 +450,32 @@ const symbolBox = $('.symbol-box')
         let stochasticK = $(`.stochasticK-up-actual-${i}`).text().slice(4,)
         let stochasticD = $(`.stochasticD-up-actual-${i}`).text().slice(4,)
         let bbPercent = $(`.bbPercent-up-actual-${i}`).text().slice(4,)
+
+        let smaFifteen = $(`.smafifteen-up-actual-${i}`).text()            
+        let smaTwenty = $(`.smatwenty-up-actual-${i}`).text()            
+        let smaThirty = $(`.smathirty-up-actual-${i}`).text()            
+        let smaFifty = $(`.smafifty-up-actual-${i}`).text()            
+        let smaOneHun = $(`.smaonehundred-up-actual-${i}`).text()            
+        let smaTwoHun = $(`.smatwohundred-up-actual-${i}`).text()  
+
+        let emaTwelve = $(`.ematwelve-up-actual-${i}`).text()            
+        let ematwenty = $(`.ematwentysix-up-actual-${i}`).text()            
+        let emaFifty = $(`.emafifty-up-actual-${i}`).text()            
+        let emaTwoHun = $(`.ematwohundred-up-actual-${i}`).text()   
+
+        let wmaFifteen = $(`.wmafifteen-up-actual-${i}`).text()            
+        let wmaTwenty = $(`.wmatwenty-up-actual-${i}`).text()            
+        let wmaThirty = $(`.wmathirty-up-actual-${i}`).text()            
+        let wmaFifty = $(`.wmafifty-up-actual-${i}`).text()            
+        let wmaOneHu = $(`.wmaonehundred-up-actual-${i}`).text()            
+        let wmaTwoHun = $(`.wmatwohundred-up-actual-${i}`).text()            
+
+        let vwmaFifteen = $(`.vwmafifteen-up-actual-${i}`).text()            
+        let vwmaTwenty = $(`.vwmatwenty-up-actual-${i}`).text()            
+        let vwmaThirty = $(`.vwmathirty-up-actual-${i}`).text()            
+        let vwmaFifty = $(`.vwmafifty-up-actual-${i}`).text()            
+        let vwmaOneHun = $(`.vwmaonehundred-up-actual-${i}`).text()            
+        let vwmaTwoHun = $(`.vwmatwohundred-up-actual-${i}`).text()   
 
         // TURN STRING TO NUM
         price = parseFloat(price)
@@ -662,6 +727,11 @@ const symbolBox = $('.symbol-box')
                let williamsHeader = $('.williams-search-header')
                let stochasticHeader = $('.stochastic-search-header')
                let bbHeader = $('.bb-search-header')
+
+               let smaHeader = $('.sma-search-header')
+               let emaHeader = $('.ema-search-header')
+               let wmaHeader = $('.wma-search-header')
+               let vwmaHeader = $('.vwma-search-header')
                // GET ACTUALS FOR NUMBER CALCS AND HOVER COLOR
                let vwap = $('.vwap-search-actual').text()
                let macd = $('.macd-search-actual').text()
@@ -671,6 +741,33 @@ const symbolBox = $('.symbol-box')
                let stochasticK = $('.stochasticK-search-actual').text().slice(4,)
                let stochasticD = $('.stochasticD-search-actual').text().slice(4,)
                let bbPercent = $('.bbPercent-search-actual').text().slice(4,)
+
+
+                let smaFifteen = $(`.smafifteen-search-actual`).text()            
+                let smaTwenty = $(`.smatwenty-search-actual`).text()            
+                let smaThirty = $(`.smathirty-search-actual`).text()            
+                let smaFifty = $(`.smafifty-search-actual`).text()            
+                let smaOneHun = $(`.smaonehundred-search-actual`).text()            
+                let smaTwoHun = $(`.smatwohundred-search-actual`).text()  
+
+                let emaTwelve = $(`.ematwelve-search-actual`).text()            
+                let ematwenty = $(`.ematwentysix-search-actual`).text()            
+                let emaFifty = $(`.emafifty-search-actual`).text()            
+                let emaTwoHun = $(`.ematwohundred-search-actual`).text()   
+
+                let wmaFifteen = $(`.wmafifteen-search-actual`).text()            
+                let wmaTwenty = $(`.wmatwenty-search-actual`).text()            
+                let wmaThirty = $(`.wmathirty-search-actual`).text()            
+                let wmaFifty = $(`.wmafifty-search-actual`).text()            
+                let wmaOneHu = $(`.wmaonehundred-search-actual`).text()            
+                let wmaTwoHun = $(`.wmatwohundred-search-actual`).text()            
+
+                let vwmaFifteen = $(`.vwmafifteen-search-actual`).text()            
+                let vwmaTwenty = $(`.vwmatwenty-search-actual`).text()            
+                let vwmaThirty = $(`.vwmathirty-search-actual`).text()            
+                let vwmaFifty = $(`.vwmafifty-search-actual`).text()            
+                let vwmaOneHun = $(`.vwmaonehundred-search-actual`).text()            
+                let vwmaTwoHun = $(`.vwmatwohundred-search-actual`).text()  
        
                // TURN STRING TO NUM
                price = parseFloat(price)
