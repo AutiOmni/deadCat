@@ -2096,7 +2096,7 @@ try {
          <div class="tech-row">
          <a class="info-link wma-up-header-${i}" href="https://www.investopedia.com/ask/answers/071414/whats-difference-between-moving-average-and-weighted-moving-average.asp" target="_blank"><h3 class='tech-header'>WMA</h3></a>
                  <div class="averages-row">
-                     <p class="wmafiften-up-actual-${i}">15: ${wmaFiveTeenUp}</p>
+                     <p class="wmafifteen-up-actual-${i}">15: ${wmaFiveTeenUp}</p>
                      <p class="wmatwenty-up-actual-${i}">20: ${wmaTwentyUp}</p>
                  </div>
                  <div class="averages-row">
@@ -2112,7 +2112,7 @@ try {
          <div class="tech-row">
          <a class="info-link vwma-up-header-${i}" href="https://www.tradingsetupsreview.com/volume-weighted-moving-average-vwma/" target="_blank"><h3 class='tech-header'>VWMA</h3></a>
                  <div class="averages-row">
-                     <p class="vwmafiften-up-actual-${i}">15: ${vwmaFiveTeenUp}</p>
+                     <p class="vwmafifteen-up-actual-${i}">15: ${vwmaFiveTeenUp}</p>
                      <p class="vwmatwenty-up-actual-${i}">20: ${vwmaTwentyUp}</p>
                  </div>
                  <div class="averages-row">
