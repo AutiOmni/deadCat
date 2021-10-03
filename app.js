@@ -1908,7 +1908,7 @@ try {
  
          <div class="tech-row">
 
-             <a class="info-link" href="https://www.investopedia.com/terms/s/sma.asp" target="_blank"><h3 class='tech-header'>SMA</h3></a>
+             <a class="info-link sma-down-header-${i}" href="https://www.investopedia.com/terms/s/sma.asp" target="_blank"><h3 class='tech-header'>SMA</h3></a>
                  <div class="averages-row">
                      <p class="smafifteen-down-actual-${i}">15: ${smaFiveTeenDown}</p>
                      <p class="smatwenty-down-actual-${i}">20: ${smaTwentyDown}</p>
@@ -1929,7 +1929,7 @@ try {
          </div>
  
          <div class="tech-row">
-         <a class="info-link" href="https://www.investopedia.com/terms/e/ema.asp" target="_blank"><h3 class='tech-header'>EMA</h3></a>
+         <a class="info-link ema-down-header-${i}" href="https://www.investopedia.com/terms/e/ema.asp" target="_blank"><h3 class='tech-header'>EMA</h3></a>
                  <div class="averages-row">
                      <p class="ematwelve-down-actual-${i}">12: ${emaTwelveDown}</p>
                      <p class="ematwentysix-down-actual-${i}">26: ${emaTwentySixDown}</p>
@@ -1941,7 +1941,7 @@ try {
          </div>
  
          <div class="tech-row">
-         <a class="info-link" href="https://www.investopedia.com/ask/answers/071414/whats-difference-between-moving-average-and-weighted-moving-average.asp" target="_blank"><h3 class='tech-header'>WMA</h3></a>
+         <a class="info-link wma-down-header-${i}" href="https://www.investopedia.com/ask/answers/071414/whats-difference-between-moving-average-and-weighted-moving-average.asp" target="_blank"><h3 class='tech-header'>WMA</h3></a>
                  <div class="averages-row">
                      <p class="wmafifteen-down-actual-${i}">15: ${wmaFiveTeenDown}</p>
                      <p class="wmatwenty-down-actual-${i}">20: ${wmaTwentyDown}</p>
@@ -1957,7 +1957,7 @@ try {
          </div>
  
          <div class="tech-row">
-         <a class="info-link" href="https://www.tradingsetupsreview.com/volume-weighted-moving-average-vwma/" target="_blank"><h3 class='tech-header'>VWMA</h3></a>
+         <a class="info-link vwma-down-header-${i}" href="https://www.tradingsetupsreview.com/volume-weighted-moving-average-vwma/" target="_blank"><h3 class='tech-header'>VWMA</h3></a>
                  <div class="averages-row">
                      <p class="vwmafifteen-down-actual-${i}">15: ${vwmaFiveTeenDown}</p>
                      <p class="vwmatwenty-down-actual-${i}">20: ${vwmaTwentyDown}</p>
@@ -2062,7 +2062,7 @@ try {
              </div>
  
          <div class="tech-row">
-         <a class="info-link" href="https://www.investopedia.com/terms/s/sma.asp" target="_blank"><h3 class='tech-header'>SMA</h3></a>
+         <a class="info-link sma-up-header-${i}" href="https://www.investopedia.com/terms/s/sma.asp" target="_blank"><h3 class='tech-header'>SMA</h3></a>
                 <div class="averages-row">
                      <p class="smafifteen-up-actual-${i}">15: ${smaFiveTeenUp}</p>
                      <p class="smatwenty-up-actual-${i}">20: ${smaTwentyUp}</p>
@@ -2082,7 +2082,7 @@ try {
          </div>
  
          <div class="tech-row">
-         <a class="info-link" href="https://www.investopedia.com/terms/e/ema.asp" target="_blank"><h3 class='tech-header'>EMA</h3></a>
+         <a class="info-link ema-up-header-${i}" href="https://www.investopedia.com/terms/e/ema.asp" target="_blank"><h3 class='tech-header'>EMA</h3></a>
                  <div class="averages-row">
                      <p class="ematwelve-up-actual-${i}">12: ${emaTwelveUp}</p>
                      <p class="ematwentysix-up-actual-${i}">26: ${emaTwentySixUp}</p>
@@ -2094,7 +2094,7 @@ try {
          </div>
  
          <div class="tech-row">
-         <a class="info-link" href="https://www.investopedia.com/ask/answers/071414/whats-difference-between-moving-average-and-weighted-moving-average.asp" target="_blank"><h3 class='tech-header'>WMA</h3></a>
+         <a class="info-link wma-up-header-${i}" href="https://www.investopedia.com/ask/answers/071414/whats-difference-between-moving-average-and-weighted-moving-average.asp" target="_blank"><h3 class='tech-header'>WMA</h3></a>
                  <div class="averages-row">
                      <p class="wmafiften-up-actual-${i}">15: ${wmaFiveTeenUp}</p>
                      <p class="wmatwenty-up-actual-${i}">20: ${wmaTwentyUp}</p>
@@ -2110,7 +2110,7 @@ try {
          </div>
  
          <div class="tech-row">
-         <a class="info-link" href="https://www.tradingsetupsreview.com/volume-weighted-moving-average-vwma/" target="_blank"><h3 class='tech-header'>VWMA</h3></a>
+         <a class="info-link vwma-up-header-${i}" href="https://www.tradingsetupsreview.com/volume-weighted-moving-average-vwma/" target="_blank"><h3 class='tech-header'>VWMA</h3></a>
                  <div class="averages-row">
                      <p class="vwmafiften-up-actual-${i}">15: ${vwmaFiveTeenUp}</p>
                      <p class="vwmatwenty-up-actual-${i}">20: ${vwmaTwentyUp}</p>
