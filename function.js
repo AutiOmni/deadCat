@@ -564,10 +564,6 @@ const symbolBox = $('.symbol-box')
         let stochasticHeader = $(`.stochastic-up-header-${i}`)
         let bbHeader = $(`.bb-up-header-${i}`)
 
-        let smaHeader = $(`.sma-up-header-${i}`)
-        let emaHeader = $(`.ema-up-header-${i}`)
-        let wmaHeader = $(`.wma-up-header-${i}`)
-        let vwmaHeader = $(`.vwma-up-header-${i}`)
         // GET ACTUALS FOR NUMBER CALCS AND HOVER COLOR
         let vwap = $(`.vwap-up-actual-${i}`).text()
         let macd = $(`.macd-up-actual-${i}`).text()
@@ -988,11 +984,6 @@ const symbolBox = $('.symbol-box')
                let williamsHeader = $('.williams-search-header')
                let stochasticHeader = $('.stochastic-search-header')
                let bbHeader = $('.bb-search-header')
-
-               let smaHeader = $('.sma-search-header')
-               let emaHeader = $('.ema-search-header')
-               let wmaHeader = $('.wma-search-header')
-               let vwmaHeader = $('.vwma-search-header')
                // GET ACTUALS FOR NUMBER CALCS AND HOVER COLOR
                let vwap = $('.vwap-search-actual').text()
                let macd = $('.macd-search-actual').text()

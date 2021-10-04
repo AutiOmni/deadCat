@@ -21,7 +21,6 @@ let hour = today.getUTCHours()
     }
     const time = `${hour}${minutes}`
     const timeNum = parseInt(time)
-
     // GET DAY FOR CLOSING AND OPENING MARKET -------------------------------------------
     const marketDay = today.getUTCDay()
     // CHECK FOR MARKET OPEN - ADJUST DATE SO VWAP STILL PULLS DATA FROM LAST DAY
@@ -111,7 +110,7 @@ let hour = today.getUTCHours()
                 }    
     }
     // THIS IS TO CHECK FOR MARKET DAY OPEN DURING WEEKENDS WHEN MARKET IS CLOSED
-    if (marketDay == 1 && timeNum < 930) {
+    if (marketDay == 1 && timeNum <= 930) {
         date = date - 3
         // NEED TO CHECK FOR NEW MONTH CHANGE OVER FROM UTC TIME TO ADJUST FOR EST
         if (date <= 0) {
@@ -154,7 +153,7 @@ let hour = today.getUTCHours()
             }
         }    
     } 
-    else if (marketDay >= 2 && marketDay < 6 && timeNum < 930) {// ADJUSTS DURING WEEK BEFORE OPEN TO GET DAY BEFORE INDICATORS
+    else if (marketDay >= 2 && marketDay < 6 && timeNum <= 930) {// ADJUSTS DURING WEEK BEFORE OPEN TO GET DAY BEFORE INDICATORS
         date = date - 1
         // NEED TO CHECK FOR NEW MONTH CHANGE OVER FROM UTC TIME TO ADJUST FOR EST
         if (date <= 0) {
@@ -199,7 +198,6 @@ let hour = today.getUTCHours()
 
     // DATE CHECK VARIBLE FOR DATA PERIOD PULLS AND TO SLICE FROM
     let todayDate = `${year}-${month}-${date}`
-
     //CHECK FOR HOLIDAYS OR CLOSED MARKET HOLIDAYS ----------------------------- NEED TO UPDATE
     if (todayDate === '2021-07-05') {
         todayDate = '2021-07-02'
@@ -260,4 +258,3 @@ let hour = today.getUTCHours()
 
     }
 //---------------------------------------------------------------------------------------------------------------------
-
