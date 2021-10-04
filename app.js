@@ -485,7 +485,9 @@ function compileStocks(arr1, arr2, arr3, arr4, callback) {
 
         const newPrice = newestPull[0].price
 
+                    let emaEight = 14
                     let emaTwelve = 22
+                    let emaTwenty = 38
                     let emaTwentySix = 50
                     let emaFifty = 98
                     let emaTwoHun = 398
@@ -494,6 +496,35 @@ function compileStocks(arr1, arr2, arr3, arr4, callback) {
 
                     let macdTwelve = [] // ARRs USED FOR MACD TWELVE HISTORY
                     let macdTwentySix = [] // ARRs USED FOR MACD TWENTY SIX HISTORY
+
+        // EMA EIGHT ----------------------------------------------------------------------
+            if (dataPull.historical.length <= 16) {
+                chartArr[num].emaEight = 'No Data'
+            } else {
+            while (emaEight >= 15) {
+                prevDayEmaSub += dataPull.historical[emaEight].close
+                emaEight--
+                } //CALCULATE EMA HERE TO GET PREVIOUS DAY EMA FOR ACCURATE CURRENT EMA
+                const subEMA = prevDayEmaSub / 16
+                //THIS GETS AN EMA USING SMA AS PREV EMA ----------------------------
+                const finalSubEma = ((2/17) * (dataPull.historical[emaEight].close - subEMA)) + subEMA
+                arrEma.unshift(finalSubEma)
+                emaEight--
+                while (emaEight >= 0) {
+                    let derp = ((2/17) * (dataPull.historical[emaEight].close - arrEma[0])) + arrEma[0]
+                    arrEma.unshift(derp)
+                    arrEma.pop()
+                    emaEight--
+                }
+
+                const finalEma = ((2/17) * (newPrice - arrEma[0])) + arrEma[0]
+                arrEma.unshift(finalEma)
+                arrEma.pop()
+
+                chartArr[num].emaEight = arrEma[0].toFixed(2) 
+                arrEma.pop() 
+                prevDayEmaSub = 0
+            }
                    
         // EMA TWELVE ----------------------------------------------------------------------
                 try {
@@ -530,10 +561,38 @@ function compileStocks(arr1, arr2, arr3, arr4, callback) {
                         arrEma.pop()
                             prevDayEmaSub = 0 
                         }
+    // EMA TWENTY ----------------------------------------------------------------------
+        if (dataPull.historical.length <= 40) {
+            chartArr[num].emaTwenty = 'No Data'
+        } else {
+        while (emaTwenty >= 19) {
+            prevDayEmaSub += dataPull.historical[emaTwenty].close
+            emaTwenty--
+            } //CALCULATE EMA HERE TO GET PREVIOUS DAY EMA FOR ACCURATE CURRENT EMA
+            const subEMA = prevDayEmaSub / 20
+            //THIS GETS AN EMA USING SMA AS PREV EMA ----------------------------
+            const finalSubEma = ((2/21) * (dataPull.historical[emaTwenty].close - subEMA)) + subEMA
+            arrEma.unshift(finalSubEma)
+            emaTwenty--
+            while (emaTwenty >= 0) {
+                let derp = ((2/21) * (dataPull.historical[emaTwenty].close - arrEma[0])) + arrEma[0]
+                arrEma.unshift(derp)
+                arrEma.pop()
+                emaTwenty--
+            }
+
+            const finalEma = ((2/21) * (newPrice - arrEma[0])) + arrEma[0]
+            arrEma.unshift(finalEma)
+            arrEma.pop()
+
+            chartArr[num].emaTwenty = arrEma[0].toFixed(2) 
+            arrEma.pop() 
+            prevDayEmaSub = 0
+        }                
 
         // EMA TWENTY SIX ----------------------------------------------------------------------
 
-                        if (dataPull.historical.length <= 51) {
+                        if (dataPull.historical.length <= 52) {
                             chartArr[num].emaTwentySix = 'No Data'
                         } else {
                         while (emaTwentySix >= 25) {
@@ -1232,14 +1291,14 @@ function compileStocks(arr1, arr2, arr3, arr4, callback) {
             setVolume(finalArr, dataSMA, dataRecentPulled, j)
 
             j++ // UPDATE WHILE LOOP
-
+                
         }// THIS IS THE END OF LOOP
     callback(finalArr, buildIt)
 } 
 
 // FILTER TO PROPER UP AND DOWN GROUPS ---------------------------
  function filterUpDownStocks(finalArr, callback) {
-
+console.log(finalArr)
     let stocksUp = []
     let stocksDown = []
 
@@ -1269,10 +1328,14 @@ function compileStocks(arr1, arr2, arr3, arr4, callback) {
          delete stocksUp[i].avgVolume
          stocksUp[i].changesPercentageUp = stocksUp[i].changesPercentage
          delete stocksUp[i].changesPercentage
+         stocksUp[i].emaEightUp = stocksUp[i].emaEight
+         delete stocksUp[i].emaEight
          stocksUp[i].emaTwelveUp = stocksUp[i].emaTwelve
          delete stocksUp[i].emaTwelve
          stocksUp[i].emaTwentySixUp = stocksUp[i].emaTwentySix
          delete stocksUp[i].emaTwentySix
+         stocksUp[i].emaTwentyUp = stocksUp[i].emaTwenty
+         delete stocksUp[i].emaTwenty
          stocksUp[i].emaFiftyUp = stocksUp[i].emaFifty
          delete stocksUp[i].emaFifty
          stocksUp[i].emaTwoHunUp = stocksUp[i].emaTwoHun
@@ -1356,8 +1419,12 @@ function compileStocks(arr1, arr2, arr3, arr4, callback) {
          delete stocksDown[i].avgVolume
          stocksDown[i].changesPercentageDown = stocksDown[i].changesPercentage
          delete stocksDown[i].changesPercentage
+         stocksDown[i].emaEightDown = stocksDown[i].emaEight
+         delete stocksDown[i].emaEight
          stocksDown[i].emaTwelveDown = stocksDown[i].emaTwelve
          delete stocksDown[i].emaTwelve
+         stocksDown[i].emaTwentyDown = stocksDown[i].emaTwenty
+         delete stocksDown[i].emaTwenty
          stocksDown[i].emaTwentySixDown = stocksDown[i].emaTwentySix
          delete stocksDown[i].emaTwentySix
          stocksDown[i].emaFiftyDown = stocksDown[i].emaFifty
@@ -1447,9 +1514,9 @@ function compileStocks(arr1, arr2, arr3, arr4, callback) {
  for (let i = 0; i < arrDown.length; i++) {
  
  // DECONSTRUCTING UP AND DOWN VAR
-     let {avgVolumeUp, volumeYesterdayUp, changeUp, changesPercentageUp, priceUp, symbolUp, volumeUp, vwapUp, smaFiveTeenUp, smaTwentyUp, smaThirtyUp, smaFiftyUp, smaOneHunUp, smaTwoHunUp, emaTwelveUp, emaTwentySixUp, emaFiftyUp, emaTwoHunUp, wmaFiveTeenUp, wmaTwentyUp, wmaThirtyUp, wmaFiftyUp, wmaOneHunUp, wmaTwoHunUp, vwmaFiveTeenUp, vwmaTwentyUp, vwmaThirtyUp, vwmaFiftyUp, vwmaOneHunUp, vwmaTwoHunUp, macdUp, macdHistogramUp, macdSignalLineUp, rsiUp, stochasticDUp, stochasticKUp, stochasticSignalUp, cciUp, bbMiddleUp, bbLowerUp, bbUpperUp, bbPercentUp, williamsRUp} = arrUp[i]
+     let {avgVolumeUp, volumeYesterdayUp, changeUp, changesPercentageUp, priceUp, symbolUp, volumeUp, vwapUp, smaFiveTeenUp, smaTwentyUp, smaThirtyUp, smaFiftyUp, smaOneHunUp, smaTwoHunUp, emaEightUp, emaTwelveUp, emaTwentyUp, emaTwentySixUp, emaFiftyUp, emaTwoHunUp, wmaFiveTeenUp, wmaTwentyUp, wmaThirtyUp, wmaFiftyUp, wmaOneHunUp, wmaTwoHunUp, vwmaFiveTeenUp, vwmaTwentyUp, vwmaThirtyUp, vwmaFiftyUp, vwmaOneHunUp, vwmaTwoHunUp, macdUp, macdHistogramUp, macdSignalLineUp, rsiUp, stochasticDUp, stochasticKUp, stochasticSignalUp, cciUp, bbMiddleUp, bbLowerUp, bbUpperUp, bbPercentUp, williamsRUp} = arrUp[i]
  
-     let {avgVolumeDown, volumeYesterdayDown, changeDown, changesPercentageDown, priceDown, symbolDown, volumeDown, vwapDown, smaFiveTeenDown, smaTwentyDown, smaThirtyDown, smaFiftyDown, smaOneHunDown, smaTwoHunDown, emaTwelveDown, emaTwentySixDown, emaFiftyDown, emaTwoHunDown, wmaFiveTeenDown, wmaTwentyDown, wmaThirtyDown, wmaFiftyDown, wmaOneHunDown, wmaTwoHunDown, vwmaFiveTeenDown, vwmaTwentyDown, vwmaThirtyDown, vwmaFiftyDown, vwmaOneHunDown, vwmaTwoHunDown, macdDown, macdHistogramDown, macdSignalLineDown, rsiDown, stochasticDDown, stochasticKDown, stochasticSignalDown, cciDown, bbMiddleDown, bbLowerDown, bbUpperDown, bbPercentDown, williamsRDown} = arrDown[i]
+     let {avgVolumeDown, volumeYesterdayDown, changeDown, changesPercentageDown, priceDown, symbolDown, volumeDown, vwapDown, smaFiveTeenDown, smaTwentyDown, smaThirtyDown, smaFiftyDown, smaOneHunDown, smaTwoHunDown, emaEightDown, emaTwelveDown, emaTwentyDown, emaTwentySixDown, emaFiftyDown, emaTwoHunDown, wmaFiveTeenDown, wmaTwentyDown, wmaThirtyDown, wmaFiftyDown, wmaOneHunDown, wmaTwoHunDown, vwmaFiveTeenDown, vwmaTwentyDown, vwmaThirtyDown, vwmaFiftyDown, vwmaOneHunDown, vwmaTwoHunDown, macdDown, macdHistogramDown, macdSignalLineDown, rsiDown, stochasticDDown, stochasticKDown, stochasticSignalDown, cciDown, bbMiddleDown, bbLowerDown, bbUpperDown, bbPercentDown, williamsRDown} = arrDown[i]
  
   // ADJUST TO FIXED --------------------------------------------------------
 
@@ -1641,6 +1708,14 @@ function compileStocks(arr1, arr2, arr3, arr4, callback) {
         smaTwoHunDown = 'No Data'
     }
 
+    if (emaEightUp == undefined)
+    {
+        emaEightUp = 'No Data'
+    }
+    if (emaEightDown == undefined)
+    {
+        emaEightDown = 'No Data'
+    }
     if (emaTwelveUp == undefined)
     {
         emaTwelveUp = 'No Data'
@@ -1648,6 +1723,14 @@ function compileStocks(arr1, arr2, arr3, arr4, callback) {
     if (emaTwelveDown == undefined)
     {
         emaTwelveDown = 'No Data'
+    }
+    if (emaTwentyUp == undefined)
+    {
+        emaTwentyUp = 'No Data'
+    }
+    if (emaTwentyDown == undefined)
+    {
+        emaTwentyDown = 'No Data'
     }
     if (emaTwentySixUp == undefined)
     {
@@ -1935,10 +2018,14 @@ try {
  
          <div class="tech-row">
          <a class="info-link ema-down-header-${i}" href="https://www.investopedia.com/terms/e/ema.asp" target="_blank"><h3 class='tech-header'>EMA</h3></a>
-                 <div class="averages-row">
-                     <p class="ematwelve-down-actual-${i}">12: ${emaTwelveDown}</p>
-                     <p class="ematwentysix-down-actual-${i}">26: ${emaTwentySixDown}</p>
-                 </div>
+                    <div class="averages-row">
+                    <p class="emaeight-down-actual-${i}">8: ${emaEightDown}</p>
+                    <p class="ematwelve-down-actual-${i}">12: ${emaTwelveDown}</p>
+                    </div>
+                    <div class="averages-row">
+                    <p class="ematwenty-down-actual-${i}">20: ${emaTwentyDown}</p>
+                    <p class="ematwentysix-down-actual-${i}">26: ${emaTwentySixDown}</p>
+                    </div>
                  <div class="averages-row">
                      <p class="emafifty-down-actual-${i}">50: ${emaFiftyDown}</p>
                      <p class="ematwohundred-down-actual-${i}">200: ${emaTwoHunDown}</p>
@@ -2089,9 +2176,13 @@ try {
          <div class="tech-row">
          <a class="info-link ema-up-header-${i}" href="https://www.investopedia.com/terms/e/ema.asp" target="_blank"><h3 class='tech-header'>EMA</h3></a>
                  <div class="averages-row">
+                     <p class="emaeight-up-actual-${i}">8: ${emaEightUp}</p>
                      <p class="ematwelve-up-actual-${i}">12: ${emaTwelveUp}</p>
-                     <p class="ematwentysix-up-actual-${i}">26: ${emaTwentySixUp}</p>
                  </div>
+                 <div class="averages-row">
+                 <p class="ematwenty-up-actual-${i}">20: ${emaTwentyUp}</p>
+                 <p class="ematwentysix-up-actual-${i}">26: ${emaTwentySixUp}</p>
+                </div>
                  <div class="averages-row">
                      <p class="emafifty-up-actual-${i}">50: ${emaFiftyUp}</p>
                      <p class="ematwohundred-up-actual-${i}">200: ${emaTwoHunUp}</p>

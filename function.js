@@ -164,8 +164,10 @@ const symbolBox = $('.symbol-box')
             let smaOneHun = $(`.smaonehundred-down-actual-${i}`)              
             let smaTwoHun = $(`.smatwohundred-down-actual-${i}`)    
 
+            let emaEight = $(`.emaeight-down-actual-${i}`)          
             let emaTwelve = $(`.ematwelve-down-actual-${i}`)          
-            let emaTwenty = $(`.ematwentysix-down-actual-${i}`)           
+            let emaTwenty = $(`.ematwenty-down-actual-${i}`)           
+            let emaTwentySix = $(`.ematwentysix-down-actual-${i}`)           
             let emaFifty = $(`.emafifty-down-actual-${i}`)           
             let emaTwoHun = $(`.ematwohundred-down-actual-${i}`)    
 
@@ -190,8 +192,10 @@ const symbolBox = $('.symbol-box')
             let smaOneHunNum = $(`.smaonehundred-down-actual-${i}`).text().slice(5,)              
             let smaTwoHunNum = $(`.smatwohundred-down-actual-${i}`).text().slice(5,)    
 
+            let emaEightNum = $(`.emaeight-down-actual-${i}`).text().slice(3,)            
             let emaTwelveNum = $(`.ematwelve-down-actual-${i}`).text().slice(4,)            
-            let emaTwentyNum = $(`.ematwentysix-down-actual-${i}`).text().slice(4,)            
+            let emaTwentyNum = $(`.ematwenty-down-actual-${i}`).text().slice(4,)            
+            let emaTwentySixNum = $(`.ematwentysix-down-actual-${i}`).text().slice(4,)            
             let emaFiftyNum = $(`.emafifty-down-actual-${i}`).text().slice(4,)            
             let emaTwoHunNum = $(`.ematwohundred-down-actual-${i}`).text().slice(5,)     
 
@@ -228,8 +232,10 @@ const symbolBox = $('.symbol-box')
             smaOneHunNum = parseFloat(smaOneHunNum)             
             smaTwoHunNum = parseFloat(smaTwoHunNum)
     
+            emaEightNum = parseFloat(emaEightNum)         
             emaTwelveNum = parseFloat(emaTwelveNum)         
             emaTwentyNum = parseFloat(emaTwentyNum)         
+            emaTwentySixNum = parseFloat(emaTwentySixNum)         
             emaFiftyNum = parseFloat(emaFiftyNum)            
             emaTwoHunNum = parseFloat(emaTwoHunNum)
     
@@ -584,13 +590,15 @@ const symbolBox = $('.symbol-box')
         let smaOneHun = $(`.smaonehundred-up-actual-${i}`)             
         let smaTwoHun = $(`.smatwohundred-up-actual-${i}`)   
 
+        let emaEight = $(`.emaeight-up-actual-${i}`)          
         let emaTwelve = $(`.ematwelve-up-actual-${i}`)          
-        let emaTwenty = $(`.ematwentysix-up-actual-${i}`)            
+        let emaTwenty = $(`.ematwenty-up-actual-${i}`)            
+        let emaTwentySix = $(`.ematwentysix-up-actual-${i}`)            
         let emaFifty = $(`.emafifty-up-actual-${i}`)           
         let emaTwoHun = $(`.ematwohundred-up-actual-${i}`)    
 
         let wmaFifteen = $(`.wmafifteen-up-actual-${i}`)           
-        let wmaTwenty = $(`.wmatwenty-up-actual-${i}`)            
+        let wmaTwentySix = $(`.wmatwenty-up-actual-${i}`)            
         let wmaThirty = $(`.wmathirty-up-actual-${i}`)            
         let wmaFifty = $(`.wmafifty-up-actual-${i}`)            
         let wmaOneHun = $(`.wmaonehundred-up-actual-${i}`)              
@@ -610,8 +618,10 @@ const symbolBox = $('.symbol-box')
         let smaOneHunNum = $(`.smaonehundred-up-actual-${i}`).text().slice(5,)              
         let smaTwoHunNum = $(`.smatwohundred-up-actual-${i}`).text().slice(5,)    
 
+        let emaEightNum = $(`.emaeight-up-actual-${i}`).text().slice(3,)            
         let emaTwelveNum = $(`.ematwelve-up-actual-${i}`).text().slice(4,)            
-        let emaTwentyNum = $(`.ematwentysix-up-actual-${i}`).text().slice(4,)            
+        let emaTwentyNum = $(`.ematwenty-up-actual-${i}`).text().slice(4,)            
+        let emaTwentySixNum = $(`.ematwentysix-up-actual-${i}`).text().slice(4,)            
         let emaFiftyNum = $(`.emafifty-up-actual-${i}`).text().slice(4,)            
         let emaTwoHunNum = $(`.ematwohundred-up-actual-${i}`).text().slice(5,)     
 
@@ -648,8 +658,10 @@ const symbolBox = $('.symbol-box')
         smaOneHunNum = parseFloat(smaOneHunNum)             
         smaTwoHunNum = parseFloat(smaTwoHunNum)
 
+        emaEightNum = parseFloat(emaEightNum)         
         emaTwelveNum = parseFloat(emaTwelveNum)         
         emaTwentyNum = parseFloat(emaTwentyNum)         
+        emaTwentySixNum = parseFloat(emaTwentySixNum)         
         emaFiftyNum = parseFloat(emaFiftyNum)            
         emaTwoHunNum = parseFloat(emaTwoHunNum)
 
@@ -1003,8 +1015,10 @@ const symbolBox = $('.symbol-box')
                let smaOneHun = $(`.smaonehundred-search-actual`)              
                let smaTwoHun = $(`.smatwohundred-search-actual`)    
 
+               let emaEight = $(`.emaeight-search-actual`)            
                let emaTwelve = $(`.ematwelve-search-actual`)            
-               let emaTwenty = $(`.ematwentysix-search-actual`)           
+               let emaTwenty = $(`.ematwenty-search-actual`)           
+               let emaTwentySix = $(`.ematwentysix-search-actual`)           
                let emaFifty = $(`.emafifty-search-actual`)          
                let emaTwoHun = $(`.ematwohundred-search-actual`)     
 
@@ -1029,8 +1043,10 @@ const symbolBox = $('.symbol-box')
                 let smaOneHunNum = $(`.smaonehundred-search-actual`).text().slice(5,)              
                 let smaTwoHunNum = $(`.smatwohundred-search-actual`).text().slice(5,)    
 
+                let emaEightNum = $(`.emaeight-search-actual`).text().slice(3,)
                 let emaTwelveNum = $(`.ematwelve-search-actual`).text().slice(4,)            
-                let emaTwentyNum = $(`.ematwentysix-search-actual`).text().slice(4,)            
+                let emaTwentyNum = $(`.ematwenty-search-actual`).text().slice(4,) 
+                let emaTwentySixNum = $(`.ematwentysix-search-actual`).text().slice(4,)            
                 let emaFiftyNum = $(`.emafifty-search-actual`).text().slice(4,)            
                 let emaTwoHunNum = $(`.ematwohundred-search-actual`).text().slice(5,)     
 
@@ -1067,8 +1083,10 @@ const symbolBox = $('.symbol-box')
                smaOneHunNum = parseFloat(smaOneHunNum)             
                smaTwoHunNum = parseFloat(smaTwoHunNum)
       
+               emaEightNum = parseFloat(emaEightNum)  
                emaTwelveNum = parseFloat(emaTwelveNum)         
-               emaTwentyNum = parseFloat(emaTwentyNum)         
+               emaTwentyNum = parseFloat(emaTwentyNum) 
+               emaTwentySixNum = parseFloat(emaTwentySixNum)         
                emaFiftyNum = parseFloat(emaFiftyNum)            
                emaTwoHunNum = parseFloat(emaTwoHunNum)
       
@@ -1832,9 +1850,12 @@ if ($(window).width() > 700)
     // EMA FUNCTION ------------------------------------------------------------------------------------------------------------------------------------------       
     function emaFunction(searchedTicker, dataPull, newestPull, macdCallBack) {
 
+       
         const newPrice = newestPull[0].price
 
+                    let emaEight = 14
                     let emaTwelve = 22
+                    let emaTwenty = 38
                     let emaTwentySix = 50
                     let emaFifty = 98
                     let emaTwoHun = 398
@@ -1843,9 +1864,38 @@ if ($(window).width() > 700)
 
                     let macdTwelve = [] // ARRs USED FOR MACD TWELVE HISTORY
                     let macdTwentySix = [] // ARRs USED FOR MACD TWENTY SIX HISTORY
+
+        // EMA EIGHT ----------------------------------------------------------------------
+            if (dataPull.historical.length <= 16) {
+                searchedTicker.emaEight = 'No Data'
+            } else {
+            while (emaEight >= 15) {
+                prevDayEmaSub += dataPull.historical[emaEight].close
+                emaEight--
+                } //CALCULATE EMA HERE TO GET PREVIOUS DAY EMA FOR ACCURATE CURRENT EMA
+                const subEMA = prevDayEmaSub / 16
+                //THIS GETS AN EMA USING SMA AS PREV EMA ----------------------------
+                const finalSubEma = ((2/17) * (dataPull.historical[emaEight].close - subEMA)) + subEMA
+                arrEma.unshift(finalSubEma)
+                emaEight--
+                while (emaEight >= 0) {
+                    let derp = ((2/17) * (dataPull.historical[emaEight].close - arrEma[0])) + arrEma[0]
+                    arrEma.unshift(derp)
+                    arrEma.pop()
+                    emaEight--
+                }
+
+                const finalEma = ((2/17) * (newPrice - arrEma[0])) + arrEma[0]
+                arrEma.unshift(finalEma)
+                arrEma.pop()
+
+                searchedTicker.emaEight = arrEma[0].toFixed(2) 
+                arrEma.pop() 
+                prevDayEmaSub = 0
+            }
                    
         // EMA TWELVE ----------------------------------------------------------------------
-            try {
+                try {
                     if (dataPull.historical.length <= 24) {
                         searchedTicker.emaTwelve = 'No Data'
                     } else {
@@ -1877,108 +1927,137 @@ if ($(window).width() > 700)
 
                         searchedTicker.emaTwelve = arrEma[0].toFixed(2) 
                         arrEma.pop()
-                        prevDayEmaSub = 0 
-                    }
+                            prevDayEmaSub = 0 
+                        }
 
         // EMA TWENTY SIX ----------------------------------------------------------------------
 
-                    if (dataPull.historical.length <= 51) {
-                        searchedTicker.emaTwentySix = 'No Data'
-                    } else {
-                    while (emaTwentySix >= 25) {
-                        prevDayEmaSub += dataPull.historical[emaTwentySix].close
-                        emaTwentySix--
-                        } //CALCULATE EMA HERE TO GET PREVIOUS DAY EMA FOR ACCURATE CURRENT EMA
-                        const subEMA = prevDayEmaSub / 26
-                        //THIS GETS AN EMA USING SMA AS PREV EMA ----------------------------
-                        const finalSubEma = ((2/27) * (dataPull.historical[emaTwentySix].close - subEMA)) + subEMA
-                        arrEma.unshift(finalSubEma)
-                        emaTwentySix--
-                        while (emaTwentySix >= 0) {
-                            let derp = ((2/27) * (dataPull.historical[emaTwentySix].close - arrEma[0])) + arrEma[0]
-                            arrEma.unshift(derp)
-                            arrEma.pop()
-                            if (emaTwentySix < 8 && emaTwentySix >= 0) { //THIS IF STATEMENT IS TO STORE VARIABLES FOR LATER MACD SIGNAL LINE
-                                macdTwentySix.unshift(derp)
-                            }
+                        if (dataPull.historical.length <= 52) {
+                            searchedTicker.emaTwentySix = 'No Data'
+                        } else {
+                        while (emaTwentySix >= 25) {
+                            prevDayEmaSub += dataPull.historical[emaTwentySix].close
                             emaTwentySix--
-                        }
+                            } //CALCULATE EMA HERE TO GET PREVIOUS DAY EMA FOR ACCURATE CURRENT EMA
+                            const subEMA = prevDayEmaSub / 26
+                            //THIS GETS AN EMA USING SMA AS PREV EMA ----------------------------
+                            const finalSubEma = ((2/27) * (dataPull.historical[emaTwentySix].close - subEMA)) + subEMA
+                            arrEma.unshift(finalSubEma)
+                            emaTwentySix--
+                            while (emaTwentySix >= 0) {
+                                let derp = ((2/27) * (dataPull.historical[emaTwentySix].close - arrEma[0])) + arrEma[0]
+                                arrEma.unshift(derp)
+                                arrEma.pop()
+                                if (emaTwentySix < 8 && emaTwentySix >= 0) { //THIS IF STATEMENT IS TO STORE VARIABLES FOR LATER MACD SIGNAL LINE
+                                    macdTwentySix.unshift(derp)
+                                }
+                                emaTwentySix--
+                            }
 
-                        const finalEma = ((2/27) * (newPrice - arrEma[0])) + arrEma[0]
-                        arrEma.unshift(finalEma)
-                        arrEma.pop()
-                        macdTwentySix.unshift(finalEma)
+                            const finalEma = ((2/27) * (newPrice - arrEma[0])) + arrEma[0]
+                            arrEma.unshift(finalEma)
+                            arrEma.pop()
+                            macdTwentySix.unshift(finalEma)
 
-                        searchedTicker.emaTwentySix = arrEma[0].toFixed(2) 
-                        arrEma.pop() 
-                        prevDayEmaSub = 0
-                            }   
+                            searchedTicker.emaTwentySix = arrEma[0].toFixed(2) 
+                            arrEma.pop() 
+                            prevDayEmaSub = 0
+                        }   
+
+        // EMA TWENTY ----------------------------------------------------------------------
+        if (dataPull.historical.length <= 40) {
+            searchedTicker.emaTwenty = 'No Data'
+        } else {
+        while (emaTwenty >= 19) {
+            prevDayEmaSub += dataPull.historical[emaTwenty].close
+            emaTwenty--
+            } //CALCULATE EMA HERE TO GET PREVIOUS DAY EMA FOR ACCURATE CURRENT EMA
+            const subEMA = prevDayEmaSub / 20
+            //THIS GETS AN EMA USING SMA AS PREV EMA ----------------------------
+            const finalSubEma = ((2/21) * (dataPull.historical[emaTwenty].close - subEMA)) + subEMA
+            arrEma.unshift(finalSubEma)
+            emaTwenty--
+            while (emaTwenty >= 0) {
+                let derp = ((2/21) * (dataPull.historical[emaTwenty].close - arrEma[0])) + arrEma[0]
+                arrEma.unshift(derp)
+                arrEma.pop()
+                emaTwenty--
+            }
+
+            const finalEma = ((2/21) * (newPrice - arrEma[0])) + arrEma[0]
+            arrEma.unshift(finalEma)
+            arrEma.pop()
+
+            searchedTicker.emaTwenty = arrEma[0].toFixed(2) 
+            arrEma.pop() 
+            prevDayEmaSub = 0
+        }                
 
         // EMA FIFTY -----------------------------------------------------------------------------
 
-                     if (dataPull.historical.length <= 100) {
-                    searchedTicker.emaFifty = 'No Data'
-                    } else {
-                    while (emaFifty >= 49) {
-                        prevDayEmaSub += dataPull.historical[emaFifty].close
-                        emaFifty--
-                        } //CALCULATE EMA HERE TO GET PREVIOUS DAY EMA FOR ACCURATE CURRENT EMA
-                        const subEMA = prevDayEmaSub / 50
-                        //THIS GETS AN EMA USING SMA AS PREV EMA ----------------------------
-                        const finalSubEma = ((2/51) * (dataPull.historical[emaFifty].close - subEMA)) + subEMA
-                        arrEma.unshift(finalSubEma)
-                        emaFifty--
-                        while (emaFifty >= 0) {
-                            let derp = ((2/51) * (dataPull.historical[emaFifty].close - arrEma[0])) + arrEma[0]
-                            arrEma.unshift(derp)
-                            arrEma.pop()
-                            emaFifty--
-                        }
+                            if (dataPull.historical.length <= 100) {
+                                searchedTicker.emaFifty = 'No Data'
+                            } else {
+                            while (emaFifty >= 49) {
+                                prevDayEmaSub += dataPull.historical[emaFifty].close
+                                emaFifty--
+                                } //CALCULATE EMA HERE TO GET PREVIOUS DAY EMA FOR ACCURATE CURRENT EMA
+                                const subEMA = prevDayEmaSub / 50
+                                //THIS GETS AN EMA USING SMA AS PREV EMA ----------------------------
+                                const finalSubEma = ((2/51) * (dataPull.historical[emaFifty].close - subEMA)) + subEMA
+                                arrEma.unshift(finalSubEma)
+                                emaFifty--
+                                while (emaFifty >= 0) {
+                                    let derp = ((2/51) * (dataPull.historical[emaFifty].close - arrEma[0])) + arrEma[0]
+                                    arrEma.unshift(derp)
+                                    arrEma.pop()
+                                    emaFifty--
+                                }
 
-                        const finalEma = ((2/51) * (newPrice - arrEma[0])) + arrEma[0]
-                        arrEma.unshift(finalEma)
-                        arrEma.pop()
+                                const finalEma = ((2/51) * (newPrice - arrEma[0])) + arrEma[0]
+                                arrEma.unshift(finalEma)
+                                arrEma.pop()
 
-                        searchedTicker.emaFifty = arrEma[0].toFixed(2) 
-                        arrEma.pop() 
-                        prevDayEmaSub = 0
-                    }
+                                searchedTicker.emaFifty = arrEma[0].toFixed(2) 
+                                arrEma.pop() 
+                                prevDayEmaSub = 0
+                            }
 
-            // EMA TWO HUNDRED -----------------------------------------------------------------------------
+        // EMA TWO HUNDRED -----------------------------------------------------------------------------
 
-                    if (dataPull.historical.length <= 400) {
-                        searchedTicker.emaTwoHun = 'No Data'
-                    } else {
-                    while (emaTwoHun >= 199) {
-                        prevDayEmaSub += dataPull.historical[emaTwoHun].close
-                        emaTwoHun--
-                        } //CALCULATE EMA HERE TO GET PREVIOUS DAY EMA FOR ACCURATE CURRENT EMA
-                        const subEMA = prevDayEmaSub / 200
-                        //THIS GETS AN EMA USING SMA AS PREV EMA ----------------------------
-                        const finalSubEma = ((2/201) * (dataPull.historical[emaTwoHun].close - subEMA)) + subEMA
-                        arrEma.unshift(finalSubEma)
-                        emaTwoHun--
-                        while (emaTwoHun >= 0) {
-                            let derp = ( (2/201) * (dataPull.historical[emaTwoHun].close - arrEma[0])) + arrEma[0]
-                            arrEma.unshift(derp)
-                            arrEma.pop()
+                        if (dataPull.historical.length <= 400) {
+                            searchedTicker.emaTwoHun = 'No Data'
+                        } else {
+                        while (emaTwoHun >= 199) {
+                            prevDayEmaSub += dataPull.historical[emaTwoHun].close
                             emaTwoHun--
+                            } //CALCULATE EMA HERE TO GET PREVIOUS DAY EMA FOR ACCURATE CURRENT EMA
+                            const subEMA = prevDayEmaSub / 200
+                            //THIS GETS AN EMA USING SMA AS PREV EMA ----------------------------
+                            const finalSubEma = ((2/201) * (dataPull.historical[emaTwoHun].close - subEMA)) + subEMA
+                            arrEma.unshift(finalSubEma)
+                            emaTwoHun--
+                            while (emaTwoHun >= 0) {
+                                let derp = ( (2/201) * (dataPull.historical[emaTwoHun].close - arrEma[0])) + arrEma[0]
+                                arrEma.unshift(derp)
+                                arrEma.pop()
+                                emaTwoHun--
+                            }
+
+                            const finalEma = ((2/201) * (newPrice - arrEma[0])) + arrEma[0]
+                            arrEma.unshift(finalEma)
+                            arrEma.pop()
+
+                            searchedTicker.emaTwoHun = arrEma[0].toFixed(2) 
+                            arrEma.pop() 
+                            prevDayEmaSub = 0
                         }
 
-                        const finalEma = ((2/201) * (newPrice - arrEma[0])) + arrEma[0]
-                        arrEma.unshift(finalEma)
-                        arrEma.pop()
-
-                        searchedTicker.emaTwoHun = arrEma[0].toFixed(2) 
-                        arrEma.pop() 
-                        prevDayEmaSub = 0
                     }
-
-                }
-                    catch(e) 
-                    {
-                          
-                    }
+                        catch(e) 
+                        {
+                            
+                        }
 
                 
                 // MACD CALLBACK -----------------------------------------------------------------------------------------------------------------------------------------       
@@ -2478,7 +2557,7 @@ if ($(window).width() > 700)
             }
             if (marketDay == 1 && timeNum <= 930)
             {
-                chartArr[num].yesterdayVolume = dataPull.historical[1].volume
+                searchedTicker.yesterdayVolume = dataPull.historical[1].volume
             }
         }
         if (newestPull.length <= 0) 
@@ -2494,7 +2573,7 @@ if ($(window).width() > 700)
 
 // TA FUNCTION ---------------------------------------------------------------------
     async function technicalIndicators(symbol, searchedSymbol) {
-    
+        
         let j = 0
 
         try {
@@ -2614,12 +2693,13 @@ if ($(window).width() > 700)
                                     }// END OF TRY
                                     catch(e) 
                                     {
-                                    }        
+                                        console.log(e)
+                                    }       
     } 
 
     // BUILD OUT HTML ------------------------------------------------------   
     async function buildSearchTech(obj) {
-        let {symbol, price, change, changesPercentage, avgVolume, volume, yesterdayVolume, vwap, smaFiveTeen, smaTwenty, smaThirty, smaFifty, smaOneHun, smaTwoHun, emaTwelve, emaTwentySix, emaFifty, emaTwoHun, wmaFiveTeen, wmaTwenty, wmaThirty, wmaFifty, wmaOneHun, wmaTwoHun, vwmaFiveTeen, vwmaTwenty, vwmaThirty, vwmaFifty, vwmaOneHun, vwmaTwoHun, macd, macdHistogram, macdSignalLine, rsi, stochasticD, stochasticK, stochasticSignal, cciTwenty, bbMiddle, bbLower, bbUpper, bbPercent, williamsR} = obj;
+        let {symbol, price, change, changesPercentage, avgVolume, volume, yesterdayVolume, vwap, smaFiveTeen, smaTwenty, smaThirty, smaFifty, smaOneHun, smaTwoHun, emaEight, emaTwelve, emaTwenty, emaTwentySix, emaFifty, emaTwoHun, wmaFiveTeen, wmaTwenty, wmaThirty, wmaFifty, wmaOneHun, wmaTwoHun, vwmaFiveTeen, vwmaTwenty, vwmaThirty, vwmaFifty, vwmaOneHun, vwmaTwoHun, macd, macdHistogram, macdSignalLine, rsi, stochasticD, stochasticK, stochasticSignal, cciTwenty, bbMiddle, bbLower, bbUpper, bbPercent, williamsR} = obj;
 
         let directionArrow = 'up'
 
@@ -2703,6 +2783,142 @@ if (isNaN(yesterdayVolIncrease))
 
     // ADJUST CERTAIN PARTS TO GIVE RIGHT PROMPT IF UNDEFINED
   
+    if (avgVolume == undefined)
+    {
+        avgVolume = 'No Data'
+    }
+
+    if (volume == undefined)
+    {
+        volume = 'No Data'
+    }
+
+    if (volumeIncrease == undefined)
+    {
+        volumeIncrease = 'No Data'
+    }
+
+    if (yesterdayVolume == undefined)
+    {
+        yesterdayVolume = 'No Data'
+    }
+
+        
+    if (smaFiveTeen == undefined)
+    {
+        smaFiveTeen = 'No Data'
+    }
+
+    if (smaTwenty == undefined)
+    {
+        smaTwenty = 'No Data'
+    }
+
+    if (smaThirty == undefined)
+    {
+        smaThirty = 'No Data'
+    }
+
+    if (smaFifty == undefined)
+    {
+        smaFifty = 'No Data'
+    }
+
+    if (smaOneHun == undefined)
+    {
+        smaOneHun = 'No Data'
+    }
+ 
+    if (smaTwoHun == undefined)
+    {
+        smaTwoHun = 'No Data'
+    }
+
+    if (emaEight == undefined)
+    {
+        emaEight = 'No Data'
+    }
+
+    if (emaTwelve == undefined)
+    {
+        emaTwelve = 'No Data'
+    }
+
+    if (emaTwenty == undefined)
+    {
+        emaTwenty = 'No Data'
+    }
+
+    if (emaTwentySix == undefined)
+    {
+        emaTwentySix = 'No Data'
+    }
+
+    if (emaFifty == undefined)
+    {
+        emaFifty = 'No Data'
+    }
+
+    if (emaTwoHun == undefined)
+    {
+        emaTwoHun = 'No Data'
+    }
+
+    if (wmaFiveTeen == undefined)
+    {
+        wmaFiveTeen = 'No Data'
+    }
+
+    if (wmaTwenty == undefined)
+    {
+        wmaTwenty = 'No Data'
+    }
+
+    if (wmaThirty == undefined)
+    {
+        wmaThirty = 'No Data'
+    }
+
+    if (wmaFifty == undefined)
+    {
+        wmaFifty = 'No Data'
+    }
+
+    if (wmaOneHun == undefined)
+    {
+        wmaOneHun = 'No Data'
+    }
+
+    if (wmaTwoHun == undefined)
+    {
+        wmaTwoHun = 'No Data'
+    }
+
+    if (vwmaFiveTeen == undefined)
+    {
+        vwmaFiveTeen = 'No Data'
+    }
+    if (vwmaTwenty == undefined)
+    {
+        vwmaTwenty = 'No Data'
+    }
+    if (vwmaThirty == undefined)
+    {
+        vwmaThirty = 'No Data'
+    }
+    if (vwmaFifty == undefined)
+    {
+        vwmaFifty = 'No Data'
+    }
+    if (vwmaOneHun == undefined)
+    {
+        vwmaOneHun = 'No Data'
+    }
+    if (vwmaTwoHun == undefined)
+    {
+        wmaTwoHun = 'No Data'
+    }
+
     if (vwap == undefined)
     {
         vwap = 'No Data'
@@ -2811,9 +3027,13 @@ if (isNaN(yesterdayVolIncrease))
             <div class="tech-row">
             <a class="info-link ema-search-header" href="https://www.investopedia.com/terms/e/ema.asp" target="_blank"><h3 class='tech-header'>EMA</h3></a>
                     <div class="averages-row">
+                        <p class="emaeight-search-actual">8: ${emaEight}</p>
                         <p class="ematwelve-search-actual">12: ${emaTwelve}</p>
-                        <p class="ematwentysix-search-actual">26: ${emaTwentySix}</p>
                     </div>
+                    <div class="averages-row">
+                    <p class="ematwenty-search-actual">20: ${emaTwenty}</p>
+                    <p class="ematwentysix-search-actual">26: ${emaTwentySix}</p>
+                    </div>    
                     <div class="averages-row">
                         <p class="emafifty-search-actual">50: ${emaFifty}</p>
                         <p class="ematwohundred-search-actual">200: ${emaTwoHun}</p>
