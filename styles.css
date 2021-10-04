@@ -708,13 +708,30 @@ a:hover {
 }
 
 .bearish-stuff-k:hover + div .stochK,
-.bearish-stuff-d:hover + .stochD {
+.bearish-stuff-d:hover + div .stochD {
     color: var(--bear-market-color);
 }
 
 .neutral-stuff-k:hover + div .stochK,
 .neutral-stuff-d:hover + div .stochD {
     color: var(--neutral-market-color);
+}
+
+.bullish-ma {
+    transition: all ease-in-out 500ms;
+}
+.bearish-ma {
+    transition: all ease-in-out 500ms;
+
+}
+.info-link:hover ~ .averages-row .bullish-ma {
+    color: var(--bull-market-color)
+}
+.info-link:hover ~ .averages-row .bearish-ma {
+    color: var(--bear-market-color)
+}
+.info-link:hover ~ .averages-row .neutral-ma {
+    color: var(--neutral-market-color)
 }
 
 .golden-cross {
@@ -938,6 +955,7 @@ a:hover {
 .download-link:active {
     transform: scale(.98);
 }
+
 
    /* --------------------- @ MEDIA  ----------------------- */
 

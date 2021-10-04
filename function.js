@@ -157,32 +157,57 @@ const symbolBox = $('.symbol-box')
             let stochasticD = $(`.stochasticD-down-actual-${i}`).text().slice(4,)
             let bbPercent = $(`.bbPercent-down-actual-${i}`).text().slice(4,)
 
-            let smaFifteen = $(`.smafifteen-down-actual-${i}`).text().slice(4,)            
-            let smaTwenty = $(`.smatwenty-down-actual-${i}`).text().slice(4,)            
-            let smaThirty = $(`.smathirty-down-actual-${i}`).text().slice(4,)            
-            let smaFifty = $(`.smafifty-down-actual-${i}`).text().slice(4,)            
-            let smaOneHun = $(`.smaonehundred-down-actual-${i}`).text().slice(5,)              
-            let smaTwoHun = $(`.smatwohundred-down-actual-${i}`).text().slice(5,)    
+            let smaFifteen = $(`.smafifteen-down-actual-${i}`)            
+            let smaTwenty = $(`.smatwenty-down-actual-${i}`)            
+            let smaThirty = $(`.smathirty-down-actual-${i}`)           
+            let smaFifty = $(`.smafifty-down-actual-${i}`)           
+            let smaOneHun = $(`.smaonehundred-down-actual-${i}`)              
+            let smaTwoHun = $(`.smatwohundred-down-actual-${i}`)    
 
-            let emaTwelve = $(`.ematwelve-down-actual-${i}`).text().slice(4,)            
-            let emaTwenty = $(`.ematwentysix-down-actual-${i}`).text().slice(4,)            
-            let emaFifty = $(`.emafifty-down-actual-${i}`).text().slice(4,)            
-            let emaTwoHun = $(`.ematwohundred-down-actual-${i}`).text().slice(5,)     
+            let emaTwelve = $(`.ematwelve-down-actual-${i}`)          
+            let emaTwenty = $(`.ematwentysix-down-actual-${i}`)           
+            let emaFifty = $(`.emafifty-down-actual-${i}`)           
+            let emaTwoHun = $(`.ematwohundred-down-actual-${i}`)    
 
-            let wmaFifteen = $(`.wmafifteen-down-actual-${i}`).text().slice(4,)            
-            let wmaTwenty = $(`.wmatwenty-down-actual-${i}`).text().slice(4,)            
-            let wmaThirty = $(`.wmathirty-down-actual-${i}`).text().slice(4,)            
-            let wmaFifty = $(`.wmafifty-down-actual-${i}`).text().slice(4,)            
-            let wmaOneHu = $(`.wmaonehundred-down-actual-${i}`).text().slice(5,)              
-            let wmaTwoHun = $(`.wmatwohundred-down-actual-${i}`).text().slice(5,)              
+            let wmaFifteen = $(`.wmafifteen-down-actual-${i}`)           
+            let wmaTwenty = $(`.wmatwenty-down-actual-${i}`)            
+            let wmaThirty = $(`.wmathirty-down-actual-${i}`)            
+            let wmaFifty = $(`.wmafifty-down-actual-${i}`)           
+            let wmaOneHun = $(`.wmaonehundred-down-actual-${i}`)          
+            let wmaTwoHun = $(`.wmatwohundred-down-actual-${i}`)              
 
-            let vwmaFifteen = $(`.vwmafifteen-down-actual-${i}`).text().slice(4,)            
-            let vwmaTwenty = $(`.vwmatwenty-down-actual-${i}`).text().slice(4,)            
-            let vwmaThirty = $(`.vwmathirty-down-actual-${i}`).text().slice(4,)            
-            let vwmaFifty = $(`.vwmafifty-down-actual-${i}`).text().slice(4,)            
-            let vwmaOneHun = $(`.vwmaonehundred-down-actual-${i}`).text().slice(5,)              
-            let vwmaTwoHun = $(`.vwmatwohundred-down-actual-${i}`).text().slice(5,)              
+            let vwmaFifteen = $(`.vwmafifteen-down-actual-${i}`)            
+            let vwmaTwenty = $(`.vwmatwenty-down-actual-${i}`)          
+            let vwmaThirty = $(`.vwmathirty-down-actual-${i}`)          
+            let vwmaFifty = $(`.vwmafifty-down-actual-${i}`)            
+            let vwmaOneHun = $(`.vwmaonehundred-down-actual-${i}`)             
+            let vwmaTwoHun = $(`.vwmatwohundred-down-actual-${i}`)            
+           
+            let smaFifteenNum = $(`.smafifteen-down-actual-${i}`).text().slice(4,)            
+            let smaTwentyNum = $(`.smatwenty-down-actual-${i}`).text().slice(4,)            
+            let smaThirtyNum = $(`.smathirty-down-actual-${i}`).text().slice(4,)            
+            let smaFiftyNum = $(`.smafifty-down-actual-${i}`).text().slice(4,)            
+            let smaOneHunNum = $(`.smaonehundred-down-actual-${i}`).text().slice(5,)              
+            let smaTwoHunNum = $(`.smatwohundred-down-actual-${i}`).text().slice(5,)    
 
+            let emaTwelveNum = $(`.ematwelve-down-actual-${i}`).text().slice(4,)            
+            let emaTwentyNum = $(`.ematwentysix-down-actual-${i}`).text().slice(4,)            
+            let emaFiftyNum = $(`.emafifty-down-actual-${i}`).text().slice(4,)            
+            let emaTwoHunNum = $(`.ematwohundred-down-actual-${i}`).text().slice(5,)     
+
+            let wmaFifteenNum = $(`.wmafifteen-down-actual-${i}`).text().slice(4,)            
+            let wmaTwentyNum = $(`.wmatwenty-down-actual-${i}`).text().slice(4,)            
+            let wmaThirtyNum = $(`.wmathirty-down-actual-${i}`).text().slice(4,)            
+            let wmaFiftyNum = $(`.wmafifty-down-actual-${i}`).text().slice(4,)            
+            let wmaOneHunNum = $(`.wmaonehundred-down-actual-${i}`).text().slice(5,)              
+            let wmaTwoHunNum = $(`.wmatwohundred-down-actual-${i}`).text().slice(5,)              
+
+            let vwmaFifteenNum = $(`.vwmafifteen-down-actual-${i}`).text().slice(4,)            
+            let vwmaTwentyNum = $(`.vwmatwenty-down-actual-${i}`).text().slice(4,)            
+            let vwmaThirtyNum = $(`.vwmathirty-down-actual-${i}`).text().slice(4,)            
+            let vwmaFiftyNum = $(`.vwmafifty-down-actual-${i}`).text().slice(4,)            
+            let vwmaOneHunNum = $(`.vwmaonehundred-down-actual-${i}`).text().slice(5,)              
+            let vwmaTwoHunNum = $(`.vwmatwohundred-down-actual-${i}`).text().slice(5,)              
 
             // TURN STRING TO NUM
             price = parseFloat(price)
@@ -196,35 +221,111 @@ const symbolBox = $('.symbol-box')
             stochasticD = parseFloat(stochasticD)
             bbPercent = parseFloat(bbPercent)
 
-            smaFifteen = parseFloat(smaFifteen)            
-            smaTwenty = parseFloat(smaTwenty)         
-            smaThirty = parseFloat(smaThirty)           
-            smaFifty = parseFloat(smaFifty)       
-            smaOneHun = parseFloat(smaOneHun)             
-            smaTwoHun = parseFloat(smaTwoHun)
-   
-            emaTwelve = parseFloat(emaTwelve)         
-            emaTwenty = parseFloat(emaTwenty)         
-            emaFifty = parseFloat(emaFifty)            
-            emaTwoHun = parseFloat(emaTwoHun)
-   
-            wmaFifteen = parseFloat(wmaFifteen)           
-            wmaTwenty = parseFloat(wmaTwenty)         
-            wmaThirty = parseFloat(wmaThirty)      
-            wmaFifty = parseFloat(wmaFifty)       
-            wmaOneHu = parseFloat(wmaOneHu)            
-            wmaTwoHun = parseFloat(wmaTwoHun)          
-   
-            vwmaFifteen = parseFloat(vwmaFifteen)            
-            vwmaTwenty = parseFloat(vwmaTwenty)           
-            vwmaThirty = parseFloat(vwmaThirty)         
-            vwmaFifty = parseFloat(vwmaFifty)          
-            vwmaOneHun = parseFloat(vwmaOneHun)              
-            vwmaTwoHun = parseFloat(vwmaTwoHun)   
+            smaFifteenNum = parseFloat(smaFifteenNum)            
+            smaTwentyNum = parseFloat(smaTwentyNum)         
+            smaThirtyNum = parseFloat(smaThirtyNum)           
+            smaFiftyNum = parseFloat(smaFiftyNum)       
+            smaOneHunNum = parseFloat(smaOneHunNum)             
+            smaTwoHunNum = parseFloat(smaTwoHunNum)
+    
+            emaTwelveNum = parseFloat(emaTwelveNum)         
+            emaTwentyNum = parseFloat(emaTwentyNum)         
+            emaFiftyNum = parseFloat(emaFiftyNum)            
+            emaTwoHunNum = parseFloat(emaTwoHunNum)
+    
+            wmaFifteenNum = parseFloat(wmaFifteenNum)           
+            wmaTwentyNum = parseFloat(wmaTwentyNum)         
+            wmaThirtyNum = parseFloat(wmaThirtyNum)      
+            wmaFiftyNum = parseFloat(wmaFiftyNum)       
+            wmaOneHunNum = parseFloat(wmaOneHunNum)            
+            wmaTwoHunNum = parseFloat(wmaTwoHunNum)          
+    
+            vwmaFifteenNum = parseFloat(vwmaFifteenNum)            
+            vwmaTwentyNum = parseFloat(vwmaTwentyNum)           
+            vwmaThirtyNum = parseFloat(vwmaThirtyNum)         
+            vwmaFiftyNum = parseFloat(vwmaFiftyNum)          
+            vwmaOneHunNum = parseFloat(vwmaOneHunNum)              
+            vwmaTwoHunNum = parseFloat(vwmaTwoHunNum)   
 
             // IF FOR CLASS ADD
         if ($(window).width() > 700)
         {
+
+               // MA CHECK --------------------
+               if (price > smaFifteenNum)
+               {
+                   smaFifteen.addClass('bullish-ma')
+               } 
+               else if (price < smaFifteenNum)
+               {
+                    smaFifteen.addClass('bearish-ma')
+               }
+               else if (price == smaFifteenNum)
+               {
+                    smaFifteen.addClass('neutral-ma')
+               }
+   
+               if (price > smaTwentyNum)
+               {
+                   smaTwenty.addClass('bullish-ma')
+               } 
+               else if (price < smaTwentyNum)
+               {
+                    smaTwenty.addClass('bearish-ma')
+               }
+               else if (price == smaTwentyNum)
+               {
+                    smaTwenty.addClass('neutral-ma')
+               }
+               if (price > smaThirtyNum)
+               {
+                   smaThirty.addClass('bullish-ma')
+               } 
+               else if (price < smaThirtyNum)
+               {
+                    smaThirty.addClass('bearish-ma')
+               }
+               else if (price == smaThirtyNum)
+               {
+                    smaThirty.addClass('neutral-ma')
+               }
+               if (price > smaFiftyNum)
+               {
+                   smaFifty.addClass('bullish-ma')
+               } 
+               else if (price < smaFiftyNum)
+               {
+                    smaFifty.addClass('bearish-ma')
+               }
+               else if (price == smaFiftyNum)
+               {
+                    smaFifty.addClass('neutral-ma')
+               }
+               if (price > smaOneHunNum)
+               {
+                   smaOneHun.addClass('bullish-ma')
+               } 
+               else if (price < smaOneHunNum)
+               {
+                    smaOneHun.addClass('bearish-ma')
+               }
+               else if (price == smaOneHunNum)
+               {
+                    smaOneHun.addClass('neutral-ma')
+               }
+               if (price > smaTwoHunNum)
+               {
+                   smaTwoHun.addClass('bullish-ma')
+               } 
+               else if (price < smaTwoHunNum)
+               {
+                    smaTwoHun.addClass('bearish-ma')
+               }
+               else if (price == smaTwoHunNum)
+               {
+                    smaTwoHun.addClass('neutral-ma')
+               }
+               // TECHNICAL CHECK ---------------
             if (price < vwap)
             {
                 vwapHeader.addClass('bullish-stuff')
@@ -476,34 +577,57 @@ const symbolBox = $('.symbol-box')
         let stochasticD = $(`.stochasticD-up-actual-${i}`).text().slice(4,)
         let bbPercent = $(`.bbPercent-up-actual-${i}`).text().slice(4,)
 
-        let smaFifteen = $(`.smafifteen-up-actual-${i}`).text().slice(4,)            
-        let smaTwenty = $(`.smatwenty-up-actual-${i}`).text().slice(4,)            
-        let smaThirty = $(`.smathirty-up-actual-${i}`).text().slice(4,)            
-        let smaFifty = $(`.smafifty-up-actual-${i}`).text().slice(4,)            
-        let smaOneHun = $(`.smaonehundred-up-actual-${i}`).text().slice(5,)              
-        let smaTwoHun = $(`.smatwohundred-up-actual-${i}`).text().slice(5,)    
+        let smaFifteen = $(`.smafifteen-up-actual-${i}`)          
+        let smaTwenty = $(`.smatwenty-up-actual-${i}`)           
+        let smaThirty = $(`.smathirty-up-actual-${i}`)           
+        let smaFifty = $(`.smafifty-up-actual-${i}`)            
+        let smaOneHun = $(`.smaonehundred-up-actual-${i}`)             
+        let smaTwoHun = $(`.smatwohundred-up-actual-${i}`)   
 
-        let emaTwelve = $(`.ematwelve-up-actual-${i}`).text().slice(4,)            
-        let emaTwenty = $(`.ematwentysix-up-actual-${i}`).text().slice(4,)            
-        let emaFifty = $(`.emafifty-up-actual-${i}`).text().slice(4,)            
-        let emaTwoHun = $(`.ematwohundred-up-actual-${i}`).text().slice(5,)     
+        let emaTwelve = $(`.ematwelve-up-actual-${i}`)          
+        let emaTwenty = $(`.ematwentysix-up-actual-${i}`)            
+        let emaFifty = $(`.emafifty-up-actual-${i}`)           
+        let emaTwoHun = $(`.ematwohundred-up-actual-${i}`)    
 
-        let wmaFifteen = $(`.wmafifteen-up-actual-${i}`).text().slice(4,)            
-        let wmaTwenty = $(`.wmatwenty-up-actual-${i}`).text().slice(4,)            
-        let wmaThirty = $(`.wmathirty-up-actual-${i}`).text().slice(4,)            
-        let wmaFifty = $(`.wmafifty-up-actual-${i}`).text().slice(4,)            
-        let wmaOneHu = $(`.wmaonehundred-up-actual-${i}`).text().slice(5,)              
-        let wmaTwoHun = $(`.wmatwohundred-up-actual-${i}`).text().slice(5,)              
-        console.log(wmaFifteen)
-        let vwmaFifteen = $(`.vwmafifteen-up-actual-${i}`).text().slice(4,)            
-        let vwmaTwenty = $(`.vwmatwenty-up-actual-${i}`).text().slice(4,)            
-        let vwmaThirty = $(`.vwmathirty-up-actual-${i}`).text().slice(4,)            
-        let vwmaFifty = $(`.vwmafifty-up-actual-${i}`).text().slice(4,)            
-        let vwmaOneHun = $(`.vwmaonehundred-up-actual-${i}`).text().slice(5,)              
-        let vwmaTwoHun = $(`.vwmatwohundred-up-actual-${i}`).text().slice(5,)     
+        let wmaFifteen = $(`.wmafifteen-up-actual-${i}`)           
+        let wmaTwenty = $(`.wmatwenty-up-actual-${i}`)            
+        let wmaThirty = $(`.wmathirty-up-actual-${i}`)            
+        let wmaFifty = $(`.wmafifty-up-actual-${i}`)            
+        let wmaOneHun = $(`.wmaonehundred-up-actual-${i}`)              
+        let wmaTwoHun = $(`.wmatwohundred-up-actual-${i}`)             
 
-        console.log(smaFifteen, smaOneHun, wmaFifteen, wmaTwoHun, vwmaFifteen, vwmaOneHun)
+        let vwmaFifteen = $(`.vwmafifteen-up-actual-${i}`)           
+        let vwmaTwenty = $(`.vwmatwenty-up-actual-${i}`)           
+        let vwmaThirty = $(`.vwmathirty-up-actual-${i}`)           
+        let vwmaFifty = $(`.vwmafifty-up-actual-${i}`)           
+        let vwmaOneHun = $(`.vwmaonehundred-up-actual-${i}`)              
+        let vwmaTwoHun = $(`.vwmatwohundred-up-actual-${i}`)     
+       
+        let smaFifteenNum = $(`.smafifteen-up-actual-${i}`).text().slice(4,)            
+        let smaTwentyNum = $(`.smatwenty-up-actual-${i}`).text().slice(4,)            
+        let smaThirtyNum = $(`.smathirty-up-actual-${i}`).text().slice(4,)            
+        let smaFiftyNum = $(`.smafifty-up-actual-${i}`).text().slice(4,)            
+        let smaOneHunNum = $(`.smaonehundred-up-actual-${i}`).text().slice(5,)              
+        let smaTwoHunNum = $(`.smatwohundred-up-actual-${i}`).text().slice(5,)    
 
+        let emaTwelveNum = $(`.ematwelve-up-actual-${i}`).text().slice(4,)            
+        let emaTwentyNum = $(`.ematwentysix-up-actual-${i}`).text().slice(4,)            
+        let emaFiftyNum = $(`.emafifty-up-actual-${i}`).text().slice(4,)            
+        let emaTwoHunNum = $(`.ematwohundred-up-actual-${i}`).text().slice(5,)     
+
+        let wmaFifteenNum = $(`.wmafifteen-up-actual-${i}`).text().slice(4,)            
+        let wmaTwentyNum = $(`.wmatwenty-up-actual-${i}`).text().slice(4,)            
+        let wmaThirtyNum = $(`.wmathirty-up-actual-${i}`).text().slice(4,)            
+        let wmaFiftyNum = $(`.wmafifty-up-actual-${i}`).text().slice(4,)            
+        let wmaOneHunNum = $(`.wmaonehundred-up-actual-${i}`).text().slice(5,)              
+        let wmaTwoHunNum = $(`.wmatwohundred-up-actual-${i}`).text().slice(5,)              
+
+        let vwmaFifteenNum = $(`.vwmafifteen-up-actual-${i}`).text().slice(4,)            
+        let vwmaTwentyNum = $(`.vwmatwenty-up-actual-${i}`).text().slice(4,)            
+        let vwmaThirtyNum = $(`.vwmathirty-up-actual-${i}`).text().slice(4,)            
+        let vwmaFiftyNum = $(`.vwmafifty-up-actual-${i}`).text().slice(4,)            
+        let vwmaOneHunNum = $(`.vwmaonehundred-up-actual-${i}`).text().slice(5,)              
+        let vwmaTwoHunNum = $(`.vwmatwohundred-up-actual-${i}`).text().slice(5,)     
 
         // TURN STRING TO NUM
         price = parseFloat(price)
@@ -517,38 +641,111 @@ const symbolBox = $('.symbol-box')
         stochasticD = parseFloat(stochasticD)
         bbPercent = parseFloat(bbPercent)
 
-         smaFifteen = parseFloat(smaFifteen)            
-         smaTwenty = parseFloat(smaTwenty)         
-         smaThirty = parseFloat(smaThirty)           
-         smaFifty = parseFloat(smaFifty)       
-         smaOneHun = parseFloat(smaOneHun)             
-         smaTwoHun = parseFloat(smaTwoHun)
+        smaFifteenNum = parseFloat(smaFifteenNum)            
+        smaTwentyNum = parseFloat(smaTwentyNum)         
+        smaThirtyNum = parseFloat(smaThirtyNum)           
+        smaFiftyNum = parseFloat(smaFiftyNum)       
+        smaOneHunNum = parseFloat(smaOneHunNum)             
+        smaTwoHunNum = parseFloat(smaTwoHunNum)
 
-         emaTwelve = parseFloat(emaTwelve)         
-         emaTwenty = parseFloat(emaTwenty)         
-         emaFifty = parseFloat(emaFifty)            
-         emaTwoHun = parseFloat(emaTwoHun)
+        emaTwelveNum = parseFloat(emaTwelveNum)         
+        emaTwentyNum = parseFloat(emaTwentyNum)         
+        emaFiftyNum = parseFloat(emaFiftyNum)            
+        emaTwoHunNum = parseFloat(emaTwoHunNum)
 
-         wmaFifteen = parseFloat(wmaFifteen)           
-         wmaTwenty = parseFloat(wmaTwenty)         
-         wmaThirty = parseFloat(wmaThirty)      
-         wmaFifty = parseFloat(wmaFifty)       
-         wmaOneHu = parseFloat(wmaOneHu)            
-         wmaTwoHun = parseFloat(wmaTwoHun)          
+        wmaFifteenNum = parseFloat(wmaFifteenNum)           
+        wmaTwentyNum = parseFloat(wmaTwentyNum)         
+        wmaThirtyNum = parseFloat(wmaThirtyNum)      
+        wmaFiftyNum = parseFloat(wmaFiftyNum)       
+        wmaOneHunNum = parseFloat(wmaOneHunNum)            
+        wmaTwoHunNum = parseFloat(wmaTwoHunNum)          
 
-         vwmaFifteen = parseFloat(vwmaFifteen)            
-         vwmaTwenty = parseFloat(vwmaTwenty)           
-         vwmaThirty = parseFloat(vwmaThirty)         
-         vwmaFifty = parseFloat(vwmaFifty)          
-         vwmaOneHun = parseFloat(vwmaOneHun)              
-         vwmaTwoHun = parseFloat(vwmaTwoHun)   
-
-         console.log(smaFifteen, smaOneHun, wmaFifteen, wmaTwoHun, vwmaFifteen, vwmaOneHun)
-
+        vwmaFifteenNum = parseFloat(vwmaFifteenNum)            
+        vwmaTwentyNum = parseFloat(vwmaTwentyNum)           
+        vwmaThirtyNum = parseFloat(vwmaThirtyNum)         
+        vwmaFiftyNum = parseFloat(vwmaFiftyNum)          
+        vwmaOneHunNum = parseFloat(vwmaOneHunNum)              
+        vwmaTwoHunNum = parseFloat(vwmaTwoHunNum)     
 
         // IF FOR CLASS ADD
         if ($(window).width() > 700)
         {
+
+            // MA CHECK --------------------
+            if (price > smaFifteenNum)
+            {
+                smaFifteen.addClass('bullish-ma')
+            } 
+            else if (price < smaFifteenNum)
+            {
+                 smaFifteen.addClass('bearish-ma')
+            }
+            else if (price == smaFifteenNum)
+            {
+                 smaFifteen.addClass('neutral-ma')
+            }
+
+            if (price > smaTwentyNum)
+            {
+                smaTwenty.addClass('bullish-ma')
+            } 
+            else if (price < smaTwentyNum)
+            {
+                 smaTwenty.addClass('bearish-ma')
+            }
+            else if (price == smaTwentyNum)
+            {
+                 smaTwenty.addClass('neutral-ma')
+            }
+            if (price > smaThirtyNum)
+            {
+                smaThirty.addClass('bullish-ma')
+            } 
+            else if (price < smaThirtyNum)
+            {
+                 smaThirty.addClass('bearish-ma')
+            }
+            else if (price == smaThirtyNum)
+            {
+                 smaThirty.addClass('neutral-ma')
+            }
+            if (price > smaFiftyNum)
+            {
+                smaFifty.addClass('bullish-ma')
+            } 
+            else if (price < smaFiftyNum)
+            {
+                 smaFifty.addClass('bearish-ma')
+            }
+            else if (price == smaFiftyNum)
+            {
+                 smaFifty.addClass('neutral-ma')
+            }
+            if (price > smaOneHunNum)
+            {
+                smaOneHun.addClass('bullish-ma')
+            } 
+            else if (price < smaOneHunNum)
+            {
+                 smaOneHun.addClass('bearish-ma')
+            }
+            else if (price == smaOneHunNum)
+            {
+                 smaOneHun.addClass('neutral-ma')
+            }
+            if (price > smaTwoHunNum)
+            {
+                smaTwoHun.addClass('bullish-ma')
+            } 
+            else if (price < smaTwoHunNum)
+            {
+                 smaTwoHun.addClass('bearish-ma')
+            }
+            else if (price == smaTwoHunNum)
+            {
+                 smaTwoHun.addClass('neutral-ma')
+            }
+            // TECHNICAL CHECK ---------------
             if (price < vwap)
             {
                 vwapHeader.addClass('bullish-stuff')
@@ -797,34 +994,59 @@ const symbolBox = $('.symbol-box')
                let williams = $('.williams-search-actual').text()
                let stochasticK = $('.stochasticK-search-actual').text().slice(4,)
                let stochasticD = $('.stochasticD-search-actual').text().slice(4,)
-               let bbPercent = $('.bbPercent-search-actual').text().slice(4,).slice(5,)  
+               let bbPercent = $('.bbPercent-search-actual').text().slice(4,) 
 
+               let smaFifteen = $(`.smafifteen-search-actual`)           
+               let smaTwenty = $(`.smatwenty-search-actual`)           
+               let smaThirty = $(`.smathirty-search-actual`)            
+               let smaFifty = $(`.smafifty-search-actual`)           
+               let smaOneHun = $(`.smaonehundred-search-actual`)              
+               let smaTwoHun = $(`.smatwohundred-search-actual`)    
 
-                let smaFifteen = $(`.smafifteen-search-actual`).text().slice(4,)            
-                let smaTwenty = $(`.smatwenty-search-actual`).text().slice(4,)            
-                let smaThirty = $(`.smathirty-search-actual`).text().slice(4,)            
-                let smaFifty = $(`.smafifty-search-actual`).text().slice(4,)            
-                let smaOneHun = $(`.smaonehundred-search-actual`).text().slice(5,)              
-                let smaTwoHun = $(`.smatwohundred-search-actual`).text().slice(5,)    
+               let emaTwelve = $(`.ematwelve-search-actual`)            
+               let emaTwenty = $(`.ematwentysix-search-actual`)           
+               let emaFifty = $(`.emafifty-search-actual`)          
+               let emaTwoHun = $(`.ematwohundred-search-actual`)     
 
-                let emaTwelve = $(`.ematwelve-search-actual`).text().slice(4,)            
-                let emaTwenty = $(`.ematwentysix-search-actual`).text().slice(4,)            
-                let emaFifty = $(`.emafifty-search-actual`).text().slice(4,)            
-                let emaTwoHun = $(`.ematwohundred-search-actual`).text().slice(5,)     
+               let wmaFifteen = $(`.wmafifteen-search-actual`)            
+               let wmaTwenty = $(`.wmatwenty-search-actual`)          
+               let wmaThirty = $(`.wmathirty-search-actual`)            
+               let wmaFifty = $(`.wmafifty-search-actual`)          
+               let wmaOneHu = $(`.wmaonehundred-search-actual`)              
+               let wmaTwoHun = $(`.wmatwohundred-search-actual`)            
 
-                let wmaFifteen = $(`.wmafifteen-search-actual`).text().slice(4,)            
-                let wmaTwenty = $(`.wmatwenty-search-actual`).text().slice(4,)            
-                let wmaThirty = $(`.wmathirty-search-actual`).text().slice(4,)            
-                let wmaFifty = $(`.wmafifty-search-actual`).text().slice(4,)           
-                let wmaOneHu = $(`.wmaonehundred-search-actual`).text().slice(5,)              
-                let wmaTwoHun = $(`.wmatwohundred-search-actual`).text().slice(5,)             
+               let vwmaFifteen = $(`.vwmafifteen-search-actual`)           
+               let vwmaTwenty = $(`.vwmatwenty-search-actual`)            
+               let vwmaThirty = $(`.vwmathirty-search-actual`)            
+               let vwmaFifty = $(`.vwmafifty-search-actual`)            
+               let vwmaOneHun = $(`.vwmaonehundred-search-actual`)              
+               let vwmaTwoHun = $(`.vwmatwohundred-search-actual`)
+               // BELOW TO GET NUMBER ONLY --------------------------------  
+                let smaFifteenNum = $(`.smafifteen-search-actual`).text().slice(4,)            
+                let smaTwentyNum = $(`.smatwenty-search-actual`).text().slice(4,)            
+                let smaThirtyNum = $(`.smathirty-search-actual`).text().slice(4,)            
+                let smaFiftyNum = $(`.smafifty-search-actual`).text().slice(4,)            
+                let smaOneHunNum = $(`.smaonehundred-search-actual`).text().slice(5,)              
+                let smaTwoHunNum = $(`.smatwohundred-search-actual`).text().slice(5,)    
 
-                let vwmaFifteen = $(`.vwmafifteen-search-actual`).text().slice(4,)            
-                let vwmaTwenty = $(`.vwmatwenty-search-actual`).text().slice(4,)            
-                let vwmaThirty = $(`.vwmathirty-search-actual`).text().slice(4,)            
-                let vwmaFifty = $(`.vwmafifty-search-actual`).text().slice(4,)            
-                let vwmaOneHun = $(`.vwmaonehundred-search-actual`).text().slice(5,)              
-                let vwmaTwoHun = $(`.vwmatwohundred-search-actual`).text().slice(5,)  
+                let emaTwelveNum = $(`.ematwelve-search-actual`).text().slice(4,)            
+                let emaTwentyNum = $(`.ematwentysix-search-actual`).text().slice(4,)            
+                let emaFiftyNum = $(`.emafifty-search-actual`).text().slice(4,)            
+                let emaTwoHunNum = $(`.ematwohundred-search-actual`).text().slice(5,)     
+
+                let wmaFifteenNum = $(`.wmafifteen-search-actual`).text().slice(4,)            
+                let wmaTwentyNum = $(`.wmatwenty-search-actual`).text().slice(4,)            
+                let wmaThirtyNum = $(`.wmathirty-search-actual`).text().slice(4,)            
+                let wmaFiftyNum = $(`.wmafifty-search-actual`).text().slice(4,)           
+                let wmaOneHunNum = $(`.wmaonehundred-search-actual`).text().slice(5,)              
+                let wmaTwoHunNum = $(`.wmatwohundred-search-actual`).text().slice(5,)             
+
+                let vwmaFifteenNum = $(`.vwmafifteen-search-actual`).text().slice(4,)            
+                let vwmaTwentyNum = $(`.vwmatwenty-search-actual`).text().slice(4,)            
+                let vwmaThirtyNum = $(`.vwmathirty-search-actual`).text().slice(4,)            
+                let vwmaFiftyNum = $(`.vwmafifty-search-actual`).text().slice(4,)            
+                let vwmaOneHunNum = $(`.vwmaonehundred-search-actual`).text().slice(5,)              
+                let vwmaTwoHunNum = $(`.vwmatwohundred-search-actual`).text().slice(5,)  
        
                // TURN STRING TO NUM
                price = parseFloat(price)
@@ -838,38 +1060,112 @@ const symbolBox = $('.symbol-box')
                stochasticD = parseFloat(stochasticD)
                bbPercent = parseFloat(bbPercent)
 
-               smaFifteen = parseFloat(smaFifteen)            
-               smaTwenty = parseFloat(smaTwenty)         
-               smaThirty = parseFloat(smaThirty)           
-               smaFifty = parseFloat(smaFifty)       
-               smaOneHun = parseFloat(smaOneHun)             
-               smaTwoHun = parseFloat(smaTwoHun)
+               smaFifteenNum = parseFloat(smaFifteenNum)            
+               smaTwentyNum = parseFloat(smaTwentyNum)         
+               smaThirtyNum = parseFloat(smaThirtyNum)           
+               smaFiftyNum = parseFloat(smaFiftyNum)       
+               smaOneHunNum = parseFloat(smaOneHunNum)             
+               smaTwoHunNum = parseFloat(smaTwoHunNum)
       
-               emaTwelve = parseFloat(emaTwelve)         
-               emaTwenty = parseFloat(emaTwenty)         
-               emaFifty = parseFloat(emaFifty)            
-               emaTwoHun = parseFloat(emaTwoHun)
+               emaTwelveNum = parseFloat(emaTwelveNum)         
+               emaTwentyNum = parseFloat(emaTwentyNum)         
+               emaFiftyNum = parseFloat(emaFiftyNum)            
+               emaTwoHunNum = parseFloat(emaTwoHunNum)
       
-               wmaFifteen = parseFloat(wmaFifteen)           
-               wmaTwenty = parseFloat(wmaTwenty)         
-               wmaThirty = parseFloat(wmaThirty)      
-               wmaFifty = parseFloat(wmaFifty)       
-               wmaOneHu = parseFloat(wmaOneHu)            
-               wmaTwoHun = parseFloat(wmaTwoHun)          
+               wmaFifteenNum = parseFloat(wmaFifteenNum)           
+               wmaTwentyNum = parseFloat(wmaTwentyNum)         
+               wmaThirtyNum = parseFloat(wmaThirtyNum)      
+               wmaFiftyNum = parseFloat(wmaFiftyNum)       
+               wmaOneHunNum = parseFloat(wmaOneHunNum)            
+               wmaTwoHunNum = parseFloat(wmaTwoHunNum)          
       
-               vwmaFifteen = parseFloat(vwmaFifteen)            
-               vwmaTwenty = parseFloat(vwmaTwenty)           
-               vwmaThirty = parseFloat(vwmaThirty)         
-               vwmaFifty = parseFloat(vwmaFifty)          
-               vwmaOneHun = parseFloat(vwmaOneHun)              
-               vwmaTwoHun = parseFloat(vwmaTwoHun)   
+               vwmaFifteenNum = parseFloat(vwmaFifteenNum)            
+               vwmaTwentyNum = parseFloat(vwmaTwentyNum)           
+               vwmaThirtyNum = parseFloat(vwmaThirtyNum)         
+               vwmaFiftyNum = parseFloat(vwmaFiftyNum)          
+               vwmaOneHunNum = parseFloat(vwmaOneHunNum)              
+               vwmaTwoHunNum = parseFloat(vwmaTwoHunNum)   
 
        try {
-
-      
                // IF FOR CLASS ADD
             if ($(window).width() > 700)
             {
+
+               if (price > smaFifteenNum)
+               {
+                   smaFifteen.addClass('bullish-ma')
+               } 
+               else if (price < smaFifteenNum)
+               {
+                    smaFifteen.addClass('bearish-ma')
+               }
+               else if (price == smaFifteenNum)
+               {
+                    smaFifteen.addClass('neutral-ma')
+               }
+
+               if (price > smaTwentyNum)
+               {
+                   smaTwenty.addClass('bullish-ma')
+               } 
+               else if (price < smaTwentyNum)
+               {
+                    smaTwenty.addClass('bearish-ma')
+               }
+               else if (price == smaTwentyNum)
+               {
+                    smaTwenty.addClass('neutral-ma')
+               }
+               if (price > smaThirtyNum)
+               {
+                   smaThirty.addClass('bullish-ma')
+               } 
+               else if (price < smaThirtyNum)
+               {
+                    smaThirty.addClass('bearish-ma')
+               }
+               else if (price == smaThirtyNum)
+               {
+                    smaThirty.addClass('neutral-ma')
+               }
+               if (price > smaFiftyNum)
+               {
+                   smaFifty.addClass('bullish-ma')
+               } 
+               else if (price < smaFiftyNum)
+               {
+                    smaFifty.addClass('bearish-ma')
+               }
+               else if (price == smaFiftyNum)
+               {
+                    smaFifty.addClass('neutral-ma')
+               }
+               if (price > smaOneHunNum)
+               {
+                   smaOneHun.addClass('bullish-ma')
+               } 
+               else if (price < smaOneHunNum)
+               {
+                    smaOneHun.addClass('bearish-ma')
+               }
+               else if (price == smaOneHunNum)
+               {
+                    smaOneHun.addClass('neutral-ma')
+               }
+               if (price > smaTwoHunNum)
+               {
+                   smaTwoHun.addClass('bullish-ma')
+               } 
+               else if (price < smaTwoHunNum)
+               {
+                    smaTwoHun.addClass('bearish-ma')
+               }
+               else if (price == smaTwoHunNum)
+               {
+                    smaTwoHun.addClass('neutral-ma')
+               }
+
+               // TECHNICAL START ------------------
                if (price < vwap)
                {
                    vwapHeader.addClass('bullish-stuff')
@@ -2179,6 +2475,10 @@ if ($(window).width() > 700)
             searchedTicker.yesterdayVolume = dataPull.historical[0].volume
             if (marketDay == 0 || marketDay == 6) {
                 searchedTicker.yesterdayVolume = dataPull.historical[1].volume
+            }
+            if (marketDay == 1 && timeNum <= 930)
+            {
+                chartArr[num].yesterdayVolume = dataPull.historical[1].volume
             }
         }
         if (newestPull.length <= 0) 
