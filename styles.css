@@ -722,7 +722,6 @@ a:hover {
 }
 .bearish-ma {
     transition: all ease-in-out 500ms;
-
 }
 .info-link:hover ~ .averages-row .bullish-ma {
     color: var(--bull-market-color)
@@ -738,14 +737,20 @@ a:hover {
     position: absolute;
     right: 5px;
     bottom: 18px;
-    display: none;
+    color: transparent;
+    transition: all ease-in-out 500ms;
 }
 
 .death-cross {
     position: absolute;
     right: 5px;
     bottom: 18px;
-    display: none;
+    color: transparent;
+    transition: all ease-in-out 500ms;
+}
+
+.info-link:hover ~ .cross-display {
+    color: var(--light-text-color);
 }
 
 /* ------- LOADING SCREEN ---------------------------- */

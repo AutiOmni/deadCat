@@ -1192,6 +1192,10 @@ function compileStocks(arr1, arr2, arr3, arr4, callback) {
                 {
                     chartArr[num].yesterdayVolume = dataPull.historical[1].volume
                 }
+                if (timeNum > 1830)
+                {
+                    chartArr[num].yesterdayVolume = dataPull.historical[1].volume
+                }
             }
 
             if (newestPull.length <= 0) 
@@ -1228,7 +1232,6 @@ function compileStocks(arr1, arr2, arr3, arr4, callback) {
                     }
                 catch(e)
                 {
-
                 }
 
             //THIS PULL IS FOR OSCILLATORS ALL CURRENT CLOSE DATA
@@ -1242,7 +1245,6 @@ function compileStocks(arr1, arr2, arr3, arr4, callback) {
                     }
                 catch(e)
                 {
-                    
                 }
 
             // VWAP ------------------------------------------------------------------------------------------------------------------------------------------------
@@ -1256,7 +1258,6 @@ function compileStocks(arr1, arr2, arr3, arr4, callback) {
                 }
                 catch(e)
                 {
-                    
                 }
 
             vwapFunction(finalArr, dataVWAP, j)
@@ -2006,8 +2007,8 @@ try {
                      <p class="smafifty-down-actual-${i}">50: ${smaFiftyDown}</p>
                  </div>
 
-                 <p class="golden-cross">Golden Cross</p>
-                 <p class="death-cross">Death Cross</p>
+                 <p class="golden-cross-down-${i} golden-cross">Golden Cross</p>
+                 <p class="death-cross-down-${i} death-cross">Death Cross</p>
 
                  <div class="averages-row">
                      <p class="smaonehundred-down-actual-${i}">100: ${smaOneHunDown}</p>
@@ -2164,8 +2165,8 @@ try {
                      <p class="smafifty-up-actual-${i}">50: ${smaFiftyUp}</p>
                  </div>
 
-                 <p class="golden-cross">Golden Cross</p>
-                 <p class="death-cross">Death Cross</p>
+                 <p class="golden-cross-up-${i} golden-cross">Golden Cross</p>
+                 <p class="death-cross-up-${i} death-cross">Death Cross</p>
 
                  <div class="averages-row">
                      <p class="smaonehundred-up-actual-${i}">100: ${smaOneHunUp}</p>

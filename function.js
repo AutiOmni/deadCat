@@ -159,6 +159,9 @@ const symbolBox = $('.symbol-box')
             let smaOneHun = $(`.smaonehundred-down-actual-${i}`)              
             let smaTwoHun = $(`.smatwohundred-down-actual-${i}`)    
 
+            let goldenCross = $(`.golden-cross-down-${i}`)
+            let deathCross = $(`.death-cross-down-${i}`)
+
             let emaEight = $(`.emaeight-down-actual-${i}`)          
             let emaTwelve = $(`.ematwelve-down-actual-${i}`)          
             let emaTwenty = $(`.ematwenty-down-actual-${i}`)           
@@ -326,7 +329,30 @@ const symbolBox = $('.symbol-box')
                {
                     smaTwoHun.addClass('neutral-ma')
                }
-               // TECHNICAL CHECK ---------------
+
+               if (smaFiftyNum > smaTwoHunNum)
+               {
+                    goldenCross.addClass('cross-display')
+               }
+               else if (smaFiftyNum < smaTwoHunNum)
+               {
+                    deathCross.addClass("cross-display")
+               }
+// THIS IS JUST A CHECK ABOUT CSS SELECTOR
+               if (emaEightNum > price) 
+               {
+                   emaEight.addClass('bullish-ma')
+               }
+               else if (emaEightNum < price)
+               {
+                emaEight.addClass('bearih-ma')
+               }
+               else if (emaEightNum == price)
+               {
+                emaEight.addClass('neautral-ma')
+               }
+
+            // TECHNICAL CHECK ---------------
             if (price < vwap)
             {
                 vwapHeader.addClass('bullish-stuff')
@@ -579,7 +605,10 @@ const symbolBox = $('.symbol-box')
         let smaThirty = $(`.smathirty-up-actual-${i}`)           
         let smaFifty = $(`.smafifty-up-actual-${i}`)            
         let smaOneHun = $(`.smaonehundred-up-actual-${i}`)             
-        let smaTwoHun = $(`.smatwohundred-up-actual-${i}`)   
+        let smaTwoHun = $(`.smatwohundred-up-actual-${i}`)  
+        
+        let goldenCross = $(`.golden-cross-up-${i}`)
+        let deathCross = $(`.death-cross-up-${i}`)
 
         let emaEight = $(`.emaeight-up-actual-${i}`)          
         let emaTwelve = $(`.ematwelve-up-actual-${i}`)          
@@ -747,6 +776,15 @@ const symbolBox = $('.symbol-box')
             else if (price == smaTwoHunNum)
             {
                  smaTwoHun.addClass('neutral-ma')
+            }
+
+            if (smaFiftyNum > smaTwoHunNum)
+            {
+                 goldenCross.addClass('cross-display')
+            }
+            else if (smaFiftyNum < smaTwoHunNum)
+            {
+                 deathCross.addClass("cross-display")
             }
             // TECHNICAL CHECK ---------------
             if (price < vwap)
@@ -1001,6 +1039,9 @@ const symbolBox = $('.symbol-box')
                let smaOneHun = $(`.smaonehundred-search-actual`)              
                let smaTwoHun = $(`.smatwohundred-search-actual`)    
 
+                let goldenCross = $('.golden-cross')
+                let deathCross = $('.death-cross')
+
                let emaEight = $(`.emaeight-search-actual`)            
                let emaTwelve = $(`.ematwelve-search-actual`)            
                let emaTwenty = $(`.ematwenty-search-actual`)           
@@ -1167,6 +1208,15 @@ const symbolBox = $('.symbol-box')
                else if (price == smaTwoHunNum)
                {
                     smaTwoHun.addClass('neutral-ma')
+               }
+
+               if (smaFiftyNum > smaTwoHunNum)
+               {
+                    goldenCross.addClass('cross-display')
+               }
+               else if (smaFiftyNum < smaTwoHunNum)
+               {
+                    deathCross.addClass('cross-display')
                }
 
                // TECHNICAL START ------------------
@@ -2545,6 +2595,10 @@ if ($(window).width() > 700)
                 searchedTicker.yesterdayVolume = dataPull.historical[1].volume
             }
             if (marketDay == 1 && timeNum <= 930)
+            {
+                searchedTicker.yesterdayVolume = dataPull.historical[1].volume
+            }
+            if (timeNum > 1830)
             {
                 searchedTicker.yesterdayVolume = dataPull.historical[1].volume
             }
