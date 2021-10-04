@@ -496,38 +496,38 @@ function compileStocks(arr1, arr2, arr3, arr4, callback) {
 
                     let macdTwelve = [] // ARRs USED FOR MACD TWELVE HISTORY
                     let macdTwentySix = [] // ARRs USED FOR MACD TWENTY SIX HISTORY
-
+        try {
         // EMA EIGHT ----------------------------------------------------------------------
-            if (dataPull.historical.length <= 16) {
-                chartArr[num].emaEight = 'No Data'
-            } else {
-            while (emaEight >= 15) {
-                prevDayEmaSub += dataPull.historical[emaEight].close
-                emaEight--
-                } //CALCULATE EMA HERE TO GET PREVIOUS DAY EMA FOR ACCURATE CURRENT EMA
-                const subEMA = prevDayEmaSub / 16
-                //THIS GETS AN EMA USING SMA AS PREV EMA ----------------------------
-                const finalSubEma = ((2/17) * (dataPull.historical[emaEight].close - subEMA)) + subEMA
-                arrEma.unshift(finalSubEma)
-                emaEight--
-                while (emaEight >= 0) {
-                    let derp = ((2/17) * (dataPull.historical[emaEight].close - arrEma[0])) + arrEma[0]
-                    arrEma.unshift(derp)
-                    arrEma.pop()
-                    emaEight--
-                }
+                    if (dataPull.historical.length <= 16) {
+                        chartArr[num].emaEight = 'No Data'
+                    } else {
+                    while (emaEight >= 15) {
+                        prevDayEmaSub += dataPull.historical[emaEight].close
+                        emaEight--
+                        } //CALCULATE EMA HERE TO GET PREVIOUS DAY EMA FOR ACCURATE CURRENT EMA
+                        const subEMA = prevDayEmaSub / 16
+                        //THIS GETS AN EMA USING SMA AS PREV EMA ----------------------------
+                        const finalSubEma = ((2/17) * (dataPull.historical[emaEight].close - subEMA)) + subEMA
+                        arrEma.unshift(finalSubEma)
+                        emaEight--
+                        while (emaEight >= 0) {
+                            let derp = ((2/17) * (dataPull.historical[emaEight].close - arrEma[0])) + arrEma[0]
+                            arrEma.unshift(derp)
+                            arrEma.pop()
+                            emaEight--
+                        }
 
-                const finalEma = ((2/17) * (newPrice - arrEma[0])) + arrEma[0]
-                arrEma.unshift(finalEma)
-                arrEma.pop()
+                        const finalEma = ((2/17) * (newPrice - arrEma[0])) + arrEma[0]
+                        arrEma.unshift(finalEma)
+                        arrEma.pop()
 
-                chartArr[num].emaEight = arrEma[0].toFixed(2) 
-                arrEma.pop() 
-                prevDayEmaSub = 0
-            }
+                        chartArr[num].emaEight = arrEma[0].toFixed(2) 
+                        arrEma.pop() 
+                        prevDayEmaSub = 0
+                    }
                    
         // EMA TWELVE ----------------------------------------------------------------------
-                try {
+               
                     if (dataPull.historical.length <= 24) {
                         chartArr[num].emaTwelve = 'No Data'
                     } else {
@@ -561,34 +561,35 @@ function compileStocks(arr1, arr2, arr3, arr4, callback) {
                         arrEma.pop()
                             prevDayEmaSub = 0 
                         }
+
     // EMA TWENTY ----------------------------------------------------------------------
-        if (dataPull.historical.length <= 40) {
-            chartArr[num].emaTwenty = 'No Data'
-        } else {
-        while (emaTwenty >= 19) {
-            prevDayEmaSub += dataPull.historical[emaTwenty].close
-            emaTwenty--
-            } //CALCULATE EMA HERE TO GET PREVIOUS DAY EMA FOR ACCURATE CURRENT EMA
-            const subEMA = prevDayEmaSub / 20
-            //THIS GETS AN EMA USING SMA AS PREV EMA ----------------------------
-            const finalSubEma = ((2/21) * (dataPull.historical[emaTwenty].close - subEMA)) + subEMA
-            arrEma.unshift(finalSubEma)
-            emaTwenty--
-            while (emaTwenty >= 0) {
-                let derp = ((2/21) * (dataPull.historical[emaTwenty].close - arrEma[0])) + arrEma[0]
-                arrEma.unshift(derp)
-                arrEma.pop()
-                emaTwenty--
-            }
+                        if (dataPull.historical.length <= 40) {
+                            chartArr[num].emaTwenty = 'No Data'
+                        } else {
+                        while (emaTwenty >= 19) {
+                            prevDayEmaSub += dataPull.historical[emaTwenty].close
+                            emaTwenty--
+                            } //CALCULATE EMA HERE TO GET PREVIOUS DAY EMA FOR ACCURATE CURRENT EMA
+                            const subEMA = prevDayEmaSub / 20
+                            //THIS GETS AN EMA USING SMA AS PREV EMA ----------------------------
+                            const finalSubEma = ((2/21) * (dataPull.historical[emaTwenty].close - subEMA)) + subEMA
+                            arrEma.unshift(finalSubEma)
+                            emaTwenty--
+                            while (emaTwenty >= 0) {
+                                let derp = ((2/21) * (dataPull.historical[emaTwenty].close - arrEma[0])) + arrEma[0]
+                                arrEma.unshift(derp)
+                                arrEma.pop()
+                                emaTwenty--
+                            }
 
-            const finalEma = ((2/21) * (newPrice - arrEma[0])) + arrEma[0]
-            arrEma.unshift(finalEma)
-            arrEma.pop()
+                            const finalEma = ((2/21) * (newPrice - arrEma[0])) + arrEma[0]
+                            arrEma.unshift(finalEma)
+                            arrEma.pop()
 
-            chartArr[num].emaTwenty = arrEma[0].toFixed(2) 
-            arrEma.pop() 
-            prevDayEmaSub = 0
-        }                
+                            chartArr[num].emaTwenty = arrEma[0].toFixed(2) 
+                            arrEma.pop() 
+                            prevDayEmaSub = 0
+                        }                
 
         // EMA TWENTY SIX ----------------------------------------------------------------------
 
@@ -1298,7 +1299,6 @@ function compileStocks(arr1, arr2, arr3, arr4, callback) {
 
 // FILTER TO PROPER UP AND DOWN GROUPS ---------------------------
  function filterUpDownStocks(finalArr, callback) {
-console.log(finalArr)
     let stocksUp = []
     let stocksDown = []
 
@@ -1332,10 +1332,10 @@ console.log(finalArr)
          delete stocksUp[i].emaEight
          stocksUp[i].emaTwelveUp = stocksUp[i].emaTwelve
          delete stocksUp[i].emaTwelve
-         stocksUp[i].emaTwentySixUp = stocksUp[i].emaTwentySix
-         delete stocksUp[i].emaTwentySix
          stocksUp[i].emaTwentyUp = stocksUp[i].emaTwenty
          delete stocksUp[i].emaTwenty
+         stocksUp[i].emaTwentySixUp = stocksUp[i].emaTwentySix
+         delete stocksUp[i].emaTwentySix
          stocksUp[i].emaFiftyUp = stocksUp[i].emaFifty
          delete stocksUp[i].emaFifty
          stocksUp[i].emaTwoHunUp = stocksUp[i].emaTwoHun

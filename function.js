@@ -142,11 +142,6 @@ const symbolBox = $('.symbol-box')
             let williamsHeader = $(`.williams-down-header-${i}`)
             let stochasticHeader = $(`.stochastic-down-header-${i}`)
             let bbHeader = $(`.bb-down-header-${i}`)
-
-            let smaHeader = $(`.sma-down-header-${i}`)
-            let emaHeader = $(`.ema-down-header-${i}`)
-            let wmaHeader = $(`.wma-down-header-${i}`)
-            let vwmaHeader = $(`.vwma-down-header-${i}`)
             // GET ACTUALS FOR NUMBER CALCS AND HOVER COLOR
             let vwap = $(`.vwap-down-actual-${i}`).text()
             let macd = $(`.macd-down-actual-${i}`).text()
@@ -1865,37 +1860,38 @@ if ($(window).width() > 700)
                     let macdTwelve = [] // ARRs USED FOR MACD TWELVE HISTORY
                     let macdTwentySix = [] // ARRs USED FOR MACD TWENTY SIX HISTORY
 
-        // EMA EIGHT ----------------------------------------------------------------------
-            if (dataPull.historical.length <= 16) {
-                searchedTicker.emaEight = 'No Data'
-            } else {
-            while (emaEight >= 15) {
-                prevDayEmaSub += dataPull.historical[emaEight].close
-                emaEight--
-                } //CALCULATE EMA HERE TO GET PREVIOUS DAY EMA FOR ACCURATE CURRENT EMA
-                const subEMA = prevDayEmaSub / 16
-                //THIS GETS AN EMA USING SMA AS PREV EMA ----------------------------
-                const finalSubEma = ((2/17) * (dataPull.historical[emaEight].close - subEMA)) + subEMA
-                arrEma.unshift(finalSubEma)
-                emaEight--
-                while (emaEight >= 0) {
-                    let derp = ((2/17) * (dataPull.historical[emaEight].close - arrEma[0])) + arrEma[0]
-                    arrEma.unshift(derp)
-                    arrEma.pop()
+        try {
+            // EMA EIGHT ----------------------------------------------------------------------
+                if (dataPull.historical.length <= 16) {
+                    searchedTicker.emaEight = 'No Data'
+                } else {
+                while (emaEight >= 15) {
+                    prevDayEmaSub += dataPull.historical[emaEight].close
                     emaEight--
+                    } //CALCULATE EMA HERE TO GET PREVIOUS DAY EMA FOR ACCURATE CURRENT EMA
+                    const subEMA = prevDayEmaSub / 16
+                    //THIS GETS AN EMA USING SMA AS PREV EMA ----------------------------
+                    const finalSubEma = ((2/17) * (dataPull.historical[emaEight].close - subEMA)) + subEMA
+                    arrEma.unshift(finalSubEma)
+                    emaEight--
+                    while (emaEight >= 0) {
+                        let derp = ((2/17) * (dataPull.historical[emaEight].close - arrEma[0])) + arrEma[0]
+                        arrEma.unshift(derp)
+                        arrEma.pop()
+                        emaEight--
+                    }
+
+                    const finalEma = ((2/17) * (newPrice - arrEma[0])) + arrEma[0]
+                    arrEma.unshift(finalEma)
+                    arrEma.pop()
+
+                    searchedTicker.emaEight = arrEma[0].toFixed(2) 
+                    arrEma.pop() 
+                    prevDayEmaSub = 0
                 }
-
-                const finalEma = ((2/17) * (newPrice - arrEma[0])) + arrEma[0]
-                arrEma.unshift(finalEma)
-                arrEma.pop()
-
-                searchedTicker.emaEight = arrEma[0].toFixed(2) 
-                arrEma.pop() 
-                prevDayEmaSub = 0
-            }
                    
         // EMA TWELVE ----------------------------------------------------------------------
-                try {
+               
                     if (dataPull.historical.length <= 24) {
                         searchedTicker.emaTwelve = 'No Data'
                     } else {
@@ -1930,6 +1926,37 @@ if ($(window).width() > 700)
                             prevDayEmaSub = 0 
                         }
 
+
+                        // EMA TWENTY ----------------------------------------------------------------------
+                        if (dataPull.historical.length <= 40) {
+                            searchedTicker.emaTwenty = 'No Data'
+                        } else {
+                        while (emaTwenty >= 19) {
+                            prevDayEmaSub += dataPull.historical[emaTwenty].close
+                            emaTwenty--
+                            } //CALCULATE EMA HERE TO GET PREVIOUS DAY EMA FOR ACCURATE CURRENT EMA
+                            const subEMA = prevDayEmaSub / 20
+                            //THIS GETS AN EMA USING SMA AS PREV EMA ----------------------------
+                            const finalSubEma = ((2/21) * (dataPull.historical[emaTwenty].close - subEMA)) + subEMA
+                            arrEma.unshift(finalSubEma)
+                            emaTwenty--
+                            while (emaTwenty >= 0) {
+                                let derp = ((2/21) * (dataPull.historical[emaTwenty].close - arrEma[0])) + arrEma[0]
+                                arrEma.unshift(derp)
+                                arrEma.pop()
+                                emaTwenty--
+                            }
+
+                            const finalEma = ((2/21) * (newPrice - arrEma[0])) + arrEma[0]
+                            arrEma.unshift(finalEma)
+                            arrEma.pop()
+
+                            searchedTicker.emaTwenty = arrEma[0].toFixed(2) 
+                            arrEma.pop() 
+                            prevDayEmaSub = 0
+                        }                
+
+
         // EMA TWENTY SIX ----------------------------------------------------------------------
 
                         if (dataPull.historical.length <= 52) {
@@ -1963,35 +1990,6 @@ if ($(window).width() > 700)
                             arrEma.pop() 
                             prevDayEmaSub = 0
                         }   
-
-        // EMA TWENTY ----------------------------------------------------------------------
-        if (dataPull.historical.length <= 40) {
-            searchedTicker.emaTwenty = 'No Data'
-        } else {
-        while (emaTwenty >= 19) {
-            prevDayEmaSub += dataPull.historical[emaTwenty].close
-            emaTwenty--
-            } //CALCULATE EMA HERE TO GET PREVIOUS DAY EMA FOR ACCURATE CURRENT EMA
-            const subEMA = prevDayEmaSub / 20
-            //THIS GETS AN EMA USING SMA AS PREV EMA ----------------------------
-            const finalSubEma = ((2/21) * (dataPull.historical[emaTwenty].close - subEMA)) + subEMA
-            arrEma.unshift(finalSubEma)
-            emaTwenty--
-            while (emaTwenty >= 0) {
-                let derp = ((2/21) * (dataPull.historical[emaTwenty].close - arrEma[0])) + arrEma[0]
-                arrEma.unshift(derp)
-                arrEma.pop()
-                emaTwenty--
-            }
-
-            const finalEma = ((2/21) * (newPrice - arrEma[0])) + arrEma[0]
-            arrEma.unshift(finalEma)
-            arrEma.pop()
-
-            searchedTicker.emaTwenty = arrEma[0].toFixed(2) 
-            arrEma.pop() 
-            prevDayEmaSub = 0
-        }                
 
         // EMA FIFTY -----------------------------------------------------------------------------
 
@@ -2693,7 +2691,6 @@ if ($(window).width() > 700)
                                     }// END OF TRY
                                     catch(e) 
                                     {
-                                        console.log(e)
                                     }       
     } 
 
@@ -2715,15 +2712,17 @@ if ($(window).width() > 700)
         // CHANGE TO POSITIVE BUT ARROW POINTS DOWN OR UP ----------
         if (change < 0) {
             change = change * -1
-            change = change.toFixed(2)
+          
 
         }
 
          // ADJUST TO FIXED --------------------------------------------------------
 
-    price = price.toFixed(2)
+        price = price.toFixed(2)
 
-    changesPercentage = changesPercentage.toFixed(2)
+        change = change.toFixed(2)
+
+        changesPercentage = changesPercentage.toFixed(2)
 
         // VOLUME INCREASE TODAY ----------
         let volumeIncrease = 0;
