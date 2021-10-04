@@ -2217,7 +2217,7 @@ try {
                  </div>
                  <div class="averages-row">
                      <p class="vwmaonehundred-up-actual-${i}">100: ${vwmaOneHunUp}</p>
-                     <p class="vwmatwohunded-up-actual-${i}">200: ${vwmaTwoHunUp}</p>
+                     <p class="vwmatwohundred-up-actual-${i}">200: ${vwmaTwoHunUp}</p>
                  </div>
          </div>
 
