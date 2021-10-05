@@ -433,9 +433,29 @@ a:hover {
     justify-content: space-around;
     align-items: center;
 }
+
+.symbol-search-box {
+    height: 120px;
+    border-bottom: 1px solid var(--light-text-color);
+    position: sticky;
+    top: -1px;
+    margin-top: -1px;
+    padding-top: 12px;
+    background-color: var(--main-background);
+    z-index: 99;
+}
+
 .symbol-box h2 {
     margin-bottom: 0;
-    margin-top: 10px
+    margin-top: 11px
+}
+
+.symbol-search-box h2 {
+    margin-bottom: 0;
+    width: 100%;
+    text-align: center;
+    margin-top: -1px;
+    margin-bottom: 2.5px;
 }
 
 .downer {
@@ -500,14 +520,14 @@ a:hover {
     content: url(SVGs/upArrow.svg);
     height: 25px;
     width: 10px;
-    margin: 0 10px;
+    margin: 0px 10px;
     margin-bottom: 15px;
 }
 #search-arrow-down {
     content: url(SVGs/downArrow.svg);
     height: 25px;
     width: 10px;
-    margin: 0 10px;
+    margin: 0px 10px;
     margin-bottom: 15px;
 }
 
@@ -522,6 +542,7 @@ a:hover {
     justify-content: center;
     align-items: center;
     font-size: 1rem;
+    margin-top: 4px;
 }
 
 .info-link {
@@ -585,9 +606,11 @@ a:hover {
     font-size: 2em;
 }
 
-.st {
+.st {  
+    padding-top: 1px;
     text-decoration: none;
-    padding-top: 6px;
+    letter-spacing: 0.5px;
+    font-size: 2rem;
 }
 
 .tech-title-warn {
@@ -633,6 +656,8 @@ a:hover {
     width: 100%;
     text-align: center;
     font-size: 1rem;
+    margin-top: 1px;
+    margin-bottom: -1px;
 }
 
 .macd-row {
@@ -758,6 +783,13 @@ a:hover {
     transition: all ease-in-out 500ms;
 }
 
+.ema-cross {
+    bottom: 54px;
+}
+
+.info-link:hover ~ .cross-display {
+    color: var(--light-text-color);
+}
 .info-link:hover ~ .cross-display {
     color: var(--light-text-color);
 }
@@ -791,7 +823,7 @@ a:hover {
 
 #loading-text {
     font-size: 40px;
-    color: var(--main-cat-color);
+    color: var(--main-background);
     text-shadow: 0px 0px 0px var(--light-text-color);
     animation-name: load-one;
     animation-timing-function: linear;
@@ -976,7 +1008,7 @@ a:hover {
 
   @media (max-width: 700px) {
 
-    #upArrow, #downArrow {
+    #upArrow, #downArrow, #search-arrow-up, #search-arrow-down {
         margin: 0 5px 15px 5px;
         height: 20px;
     }
@@ -990,6 +1022,22 @@ a:hover {
     .symbol-box {
         width: calc(50%);
         font-size: 11.5px;
+    }
+
+    .symbol-search-box {
+        padding-top: 16px;
+    }
+
+    .symbol-search-box h2 {
+        margin-bottom: 8px;
+    }
+
+    .symbol-search-box p {
+        font-size: 11.5px;
+    }
+
+    .search-price-text {
+        margin-bottom: 10px;
     }
 
     .row-ex {
@@ -1109,6 +1157,7 @@ a:hover {
          .epo {
             font-size: .52rem;
         }
+
 
        
 

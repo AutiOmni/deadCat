@@ -505,19 +505,19 @@ function compileStocks(arr1, arr2, arr3, arr4, callback) {
                         prevDayEmaSub += dataPull.historical[emaEight].close
                         emaEight--
                         } //CALCULATE EMA HERE TO GET PREVIOUS DAY EMA FOR ACCURATE CURRENT EMA
-                        const subEMA = prevDayEmaSub / 16
+                        const subEMA = prevDayEmaSub / 8
                         //THIS GETS AN EMA USING SMA AS PREV EMA ----------------------------
-                        const finalSubEma = ((2/17) * (dataPull.historical[emaEight].close - subEMA)) + subEMA
+                        const finalSubEma = ((2/9) * (dataPull.historical[emaEight].close - subEMA)) + subEMA
                         arrEma.unshift(finalSubEma)
                         emaEight--
                         while (emaEight >= 0) {
-                            let derp = ((2/17) * (dataPull.historical[emaEight].close - arrEma[0])) + arrEma[0]
+                            let derp = ((2/9) * (dataPull.historical[emaEight].close - arrEma[0])) + arrEma[0]
                             arrEma.unshift(derp)
                             arrEma.pop()
                             emaEight--
                         }
 
-                        const finalEma = ((2/17) * (newPrice - arrEma[0])) + arrEma[0]
+                        const finalEma = ((2/9) * (newPrice - arrEma[0])) + arrEma[0]
                         arrEma.unshift(finalEma)
                         arrEma.pop()
 
@@ -1189,7 +1189,7 @@ function compileStocks(arr1, arr2, arr3, arr4, callback) {
                     chartArr[num].yesterdayVolume = dataPull.historical[1].volume
                 }
 
-                if (marketDay >= 1 && marketDay <= 5 && timeNum < 930)
+                if (marketDay >= 1 && marketDay <= 5 && timeNum <= 930)
                 {
                     chartArr[num].yesterdayVolume = dataPull.historical[1].volume
                 }
@@ -1218,11 +1218,10 @@ function compileStocks(arr1, arr2, arr3, arr4, callback) {
 
  // TA FUNCTION ---------------------------------------------------------------------
  async function technicalIndicators(finalArr, callback) {
-
     let j = 0 
     while (j < finalArr.length) { // LOOP FOR TECHNICAL SYMBOL
             // THIS IS THE ALL MIGHTY SYMBOL USED FOR PULLS
-            const {symbol} = finalArr[j]
+            let {symbol} = finalArr[j]
             //THIS PULL IS FOR CLOSE PRICES TO CALC TAs PAST CLOSE DATA // 
             const resSMA = await  fetch(`https://financialmodelingprep.com/api/v3/historical-price-full/${symbol}?apikey=4d4593bc9e6bc106ee9d1cbd6400b218`)
             const dataSMA = await resSMA.json() // SMA PULL USED FOR OTHER CALCS
@@ -2009,8 +2008,8 @@ try {
                      <p class="smafifty-down-actual-${i} mobile-tap">50: ${smaFiftyDown}</p>
                  </div>
 
-                 <p class="golden-cross-down-${i} golden-cross">Golden Cross</p>
-                 <p class="death-cross-down-${i} death-cross">Death Cross</p>
+                 <p class="goldenSma-cross-down-${i} golden-cross">Golden Cross</p>
+                 <p class="deathSma-cross-down-${i} death-cross">Death Cross</p>
 
                  <div class="averages-row">
                      <p class="smaonehundred-down-actual-${i} mobile-tap">100: ${smaOneHunDown}</p>
@@ -2029,6 +2028,10 @@ try {
                     <p class="ematwenty-down-actual-${i} mobile-tap">20: ${emaTwentyDown}</p>
                     <p class="ematwentysix-down-actual-${i} mobile-tap">26: ${emaTwentySixDown}</p>
                     </div>
+                    
+                    <p class="goldenEma-cross-down-${i} golden-cross ema-cross">Golden Cross</p>
+                    <p class="deathEma-cross-down-${i} death-cross ema-cross">Death Cross</p>
+   
                  <div class="averages-row">
                      <p class="emafifty-down-actual-${i} mobile-tap">50: ${emaFiftyDown}</p>
                      <p class="ematwohundred-down-actual-${i} mobile-tap">200: ${emaTwoHunDown}</p>
@@ -2167,8 +2170,8 @@ try {
                      <p class="smafifty-up-actual-${i} mobile-tap">50: ${smaFiftyUp}</p>
                  </div>
 
-                 <p class="golden-cross-up-${i} golden-cross">Golden Cross</p>
-                 <p class="death-cross-up-${i} death-cross">Death Cross</p>
+                 <p class="goldenSma-cross-up-${i} golden-cross">Golden Cross</p>
+                 <p class="deathSma-cross-up-${i} death-cross">Death Cross</p>
 
                  <div class="averages-row">
                      <p class="smaonehundred-up-actual-${i} mobile-tap">100: ${smaOneHunUp}</p>
@@ -2182,6 +2185,10 @@ try {
                      <p class="emaeight-up-actual-${i} mobile-tap">8: ${emaEightUp}</p>
                      <p class="ematwelve-up-actual-${i} mobile-tap">12: ${emaTwelveUp}</p>
                  </div>
+
+                 <p class="goldenEma-cross-up-${i} golden-cross ema-cross">Golden Cross</p>
+                 <p class="deathEma-cross-up-${i} death-cross ema-cross">Death Cross</p>
+
                  <div class="averages-row">
                  <p class="ematwenty-up-actual-${i} mobile-tap">20: ${emaTwentyUp}</p>
                  <p class="ematwentysix-up-actual-${i} mobile-tap">26: ${emaTwentySixUp}</p>

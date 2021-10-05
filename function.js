@@ -159,9 +159,6 @@ const symbolBox = $('.symbol-box')
             let smaOneHun = $(`.smaonehundred-down-actual-${i}`)              
             let smaTwoHun = $(`.smatwohundred-down-actual-${i}`)    
 
-            let goldenCross = $(`.golden-cross-down-${i}`)
-            let deathCross = $(`.death-cross-down-${i}`)
-
             let emaEight = $(`.emaeight-down-actual-${i}`)          
             let emaTwelve = $(`.ematwelve-down-actual-${i}`)          
             let emaTwenty = $(`.ematwenty-down-actual-${i}`)           
@@ -209,7 +206,12 @@ const symbolBox = $('.symbol-box')
             let vwmaThirtyNum = $(`.vwmathirty-down-actual-${i}`).text().slice(4,)            
             let vwmaFiftyNum = $(`.vwmafifty-down-actual-${i}`).text().slice(4,)            
             let vwmaOneHunNum = $(`.vwmaonehundred-down-actual-${i}`).text().slice(5,)              
-            let vwmaTwoHunNum = $(`.vwmatwohundred-down-actual-${i}`).text().slice(5,)              
+            let vwmaTwoHunNum = $(`.vwmatwohundred-down-actual-${i}`).text().slice(5,)
+            
+            let goldenCrossSma = $(`.goldenSma-cross-down-${i}`)
+            let deathCrossSma = $(`.deathSma-cross-down-${i}`)
+            let goldenCrossEma = $(`.goldenEma-cross-down-${i}`)
+            let deathCrossEma = $(`.deathEma-cross-down-${i}`)
 
             // TURN STRING TO NUM
             price = parseFloat(price)
@@ -332,25 +334,260 @@ const symbolBox = $('.symbol-box')
 
                if (smaFiftyNum > smaTwoHunNum)
                {
-                    goldenCross.addClass('cross-display')
+                    goldenCrossSma.addClass('cross-display')
                }
                else if (smaFiftyNum < smaTwoHunNum)
                {
-                    deathCross.addClass("cross-display")
+                    deathCrossSma.addClass("cross-display")
                }
-// THIS IS JUST A CHECK ABOUT CSS SELECTOR
-               if (emaEightNum > price) 
-               {
-                   emaEight.addClass('bullish-ma')
-               }
-               else if (emaEightNum < price)
-               {
-                emaEight.addClass('bearih-ma')
-               }
-               else if (emaEightNum == price)
-               {
-                emaEight.addClass('neautral-ma')
-               }
+            //    EMA -----------------------------------
+        
+            if (price > emaEightNum)
+            {
+                emaEight.addClass('bullish-ma')
+            } 
+            else if (price < emaEightNum)
+            {
+                emaEight.addClass('bearish-ma')
+            }
+            else if (price == emaEightNum)
+            {
+                emaEight.addClass('neutral-ma')
+            }
+
+            if (price > emaTwelveNum)
+            {
+                emaTwelve.addClass('bullish-ma')
+            } 
+            else if (price < emaTwelveNum)
+            {
+                emaTwelve.addClass('bearish-ma')
+            }
+            else if (price == emaTwelveNum)
+            {
+                emaTwelve.addClass('neutral-ma')
+            }
+
+            if (price > emaTwentyNum)
+            {
+                emaTwenty.addClass('bullish-ma')
+            } 
+            else if (price < emaTwentyNum)
+            {
+                emaTwenty.addClass('bearish-ma')
+            }
+            else if (price == emaTwentyNum)
+            {
+                emaTwenty.addClass('neutral-ma')
+            }
+
+            if (price > emaTwentySixNum)
+            {
+                emaTwentySix.addClass('bullish-ma')
+            } 
+            else if (price < emaTwentySixNum)
+            {
+                emaTwentySix.addClass('bearish-ma')
+            }
+            else if (price == emaTwentySixNum)
+            {
+                emaTwentySix.addClass('neutral-ma')
+            }
+
+            if (price > emaFiftyNum)
+            {
+                emaFifty.addClass('bullish-ma')
+            } 
+            else if (price < emaFiftyNum)
+            {
+                emaFifty.addClass('bearish-ma')
+            }
+            else if (price == emaFiftyNum)
+            {
+                emaFifty.addClass('neutral-ma')
+            }
+
+            if (price > emaTwoHunNum)
+            {
+                emaTwoHun.addClass('bullish-ma')
+            } 
+            else if (price < emaTwoHunNum)
+            {
+                emaTwoHun.addClass('bearish-ma')
+            }
+            else if (price == emaTwoHunNum)
+            {
+                emaTwoHun.addClass('neutral-ma')
+            }
+
+            if (emaTwelveNum > emaTwentySixNum)
+            {
+                goldenCrossEma.addClass('cross-display')
+            }
+            else if (emaTwelveNum < emaTwentySixNum)
+            {
+                deathCrossEma.addClass('cross-display')
+            }
+
+             //    WMA -----------------------------------
+
+           if (price > wmaFifteenNum)
+           {
+                wmaFifteen.addClass('bullish-ma')
+           } 
+           else if (price < wmaFifteenNum)
+           {
+                wmaFifteen.addClass('bearish-ma')
+           }
+           else if (price == wmaFifteenNum)
+           {
+                wmaFifteen.addClass('neutral-ma')
+           }
+
+           if (price > wmaTwentyNum)
+           {
+                wmaTwenty.addClass('bullish-ma')
+           } 
+           else if (price < wmaTwentyNum)
+           {
+                wmaTwenty.addClass('bearish-ma')
+           }
+           else if (price == wmaTwentyNum)
+           {
+                wmaTwenty.addClass('neutral-ma')
+           }
+
+           if (price > wmaThirtyNum)
+           {
+                wmaThirty.addClass('bullish-ma')
+           } 
+           else if (price < wmaThirtyNum)
+           {
+                wmaThirty.addClass('bearish-ma')
+           }
+           else if (price == wmaThirtyNum)
+           {
+                wmaThirty.addClass('neutral-ma')
+           }
+
+           if (price > wmaFiftyNum)
+           {
+                wmaFifty.addClass('bullish-ma')
+           } 
+           else if (price < wmaFiftyNum)
+           {
+                wmaFifty.addClass('bearish-ma')
+           }
+           else if (price == wmaFiftyNum)
+           {
+                wmaFifty.addClass('neutral-ma')
+           }
+
+           if (price > wmaOneHunNum)
+           {
+                wmaOneHun.addClass('bullish-ma')
+           } 
+           else if (price < wmaOneHunNum)
+           {
+                wmaOneHun.addClass('bearish-ma')
+           }
+           else if (price == wmaOneHunNum)
+           {
+                wmaOneHun.addClass('neutral-ma')
+           }
+
+           if (price > wmaTwoHunNum)
+           {
+                wmaTwoHun.addClass('bullish-ma')
+           } 
+           else if (price < wmaTwoHunNum)
+           {
+                wmaTwoHun.addClass('bearish-ma')
+           }
+           else if (price == wmaTwoHunNum)
+           {
+                wmaTwoHun.addClass('neutral-ma')
+           }
+
+    //    WMA -----------------------------------
+
+             if (price > vwmaFifteenNum)
+             {
+                  vwmaFifteen.addClass('bullish-ma')
+             } 
+             else if (price < vwmaFifteenNum)
+             {
+                  vwmaFifteen.addClass('bearish-ma')
+             }
+             else if (price == vwmaFifteenNum)
+             {
+                  vwmaFifteen.addClass('neutral-ma')
+             }
+  
+             if (price > vwmaTwentyNum)
+             {
+                  vwmaTwenty.addClass('bullish-ma')
+             } 
+             else if (price < vwmaTwentyNum)
+             {
+                  vwmaTwenty.addClass('bearish-ma')
+             }
+             else if (price == vwmaTwentyNum)
+             {
+                  vwmaTwenty.addClass('neutral-ma')
+             }
+  
+             if (price > vwmaThirtyNum)
+             {
+                  vwmaThirty.addClass('bullish-ma')
+             } 
+             else if (price < vwmaThirtyNum)
+             {
+                  vwmaThirty.addClass('bearish-ma')
+             }
+             else if (price == vwmaThirtyNum)
+             {
+                  vwmaThirty.addClass('neutral-ma')
+             }
+  
+             if (price > vwmaFiftyNum)
+             {
+                  vwmaFifty.addClass('bullish-ma')
+             } 
+             else if (price < vwmaFiftyNum)
+             {
+                  vwmaFifty.addClass('bearish-ma')
+             }
+             else if (price == vwmaFiftyNum)
+             {
+                  vwmaFifty.addClass('neutral-ma')
+             }
+  
+             if (price > vwmaOneHunNum)
+             {
+                  vwmaOneHun.addClass('bullish-ma')
+             } 
+             else if (price < vwmaOneHunNum)
+             {
+                  vwmaOneHun.addClass('bearish-ma')
+             }
+             else if (price == vwmaOneHunNum)
+             {
+                  vwmaOneHun.addClass('neutral-ma')
+             }
+  
+             if (price > vwmaTwoHunNum)
+             {
+                  vwmaTwoHun.addClass('bullish-ma')
+             } 
+             else if (price < vwmaTwoHunNum)
+             {
+                  vwmaTwoHun.addClass('bearish-ma')
+             }
+             else if (price == vwmaTwoHunNum)
+             {
+                  vwmaTwoHun.addClass('neutral-ma')
+             }  
 
             // TECHNICAL CHECK ---------------
             if (price < vwap)
@@ -581,6 +818,7 @@ const symbolBox = $('.symbol-box')
     function indicatorColorsUp(i) {
         // ALL MIGHTY PRICE
         let price = $(`.price-up-${i}`).text().slice(8,)
+        console.log(price)
         // GET HEADERS FOR HOVER EFFECT
         let vwapHeader = $(`.vwap-up-header-${i}`)
         let macdHeader = $(`.macd-up-header-${i}`)
@@ -607,9 +845,6 @@ const symbolBox = $('.symbol-box')
         let smaOneHun = $(`.smaonehundred-up-actual-${i}`)             
         let smaTwoHun = $(`.smatwohundred-up-actual-${i}`)  
         
-        let goldenCross = $(`.golden-cross-up-${i}`)
-        let deathCross = $(`.death-cross-up-${i}`)
-
         let emaEight = $(`.emaeight-up-actual-${i}`)          
         let emaTwelve = $(`.ematwelve-up-actual-${i}`)          
         let emaTwenty = $(`.ematwenty-up-actual-${i}`)            
@@ -618,7 +853,7 @@ const symbolBox = $('.symbol-box')
         let emaTwoHun = $(`.ematwohundred-up-actual-${i}`)    
 
         let wmaFifteen = $(`.wmafifteen-up-actual-${i}`)           
-        let wmaTwentySix = $(`.wmatwenty-up-actual-${i}`)            
+        let wmaTwenty = $(`.wmatwenty-up-actual-${i}`)            
         let wmaThirty = $(`.wmathirty-up-actual-${i}`)            
         let wmaFifty = $(`.wmafifty-up-actual-${i}`)            
         let wmaOneHun = $(`.wmaonehundred-up-actual-${i}`)              
@@ -658,6 +893,11 @@ const symbolBox = $('.symbol-box')
         let vwmaFiftyNum = $(`.vwmafifty-up-actual-${i}`).text().slice(4,)            
         let vwmaOneHunNum = $(`.vwmaonehundred-up-actual-${i}`).text().slice(5,)              
         let vwmaTwoHunNum = $(`.vwmatwohundred-up-actual-${i}`).text().slice(5,)     
+
+        let goldenCrossSma = $(`.goldenSma-cross-up-${i}`)
+        let deathCrossSma = $(`.deathSma-cross-up-${i}`)
+        let goldenCrossEma = $(`.goldenEma-cross-up-${i}`)
+        let deathCrossEma = $(`.deathEma-cross-up-${i}`)
 
         // TURN STRING TO NUM
         price = parseFloat(price)
@@ -780,12 +1020,263 @@ const symbolBox = $('.symbol-box')
 
             if (smaFiftyNum > smaTwoHunNum)
             {
-                 goldenCross.addClass('cross-display')
+                 goldenCrossSma.addClass('cross-display')
             }
             else if (smaFiftyNum < smaTwoHunNum)
             {
-                 deathCross.addClass("cross-display")
+                 deathCrossSma.addClass("cross-display")
             }
+                //    EMA -----------------------------------
+  
+           if (price > emaEightNum)
+           {
+               emaEight.addClass('bullish-ma')
+           } 
+           else if (price < emaEightNum)
+           {
+                emaEight.addClass('bearish-ma')
+           }
+           else if (price == emaEightNum)
+           {
+                emaEight.addClass('neutral-ma')
+           }
+
+           if (price > emaTwelveNum)
+           {
+                emaTwelve.addClass('bullish-ma')
+           } 
+           else if (price < emaTwelveNum)
+           {
+                emaTwelve.addClass('bearish-ma')
+           }
+           else if (price == emaTwelveNum)
+           {
+                emaTwelve.addClass('neutral-ma')
+           }
+
+           if (price > emaTwentyNum)
+           {
+                emaTwenty.addClass('bullish-ma')
+           } 
+           else if (price < emaTwentyNum)
+           {
+                emaTwenty.addClass('bearish-ma')
+           }
+           else if (price == emaTwentyNum)
+           {
+                emaTwenty.addClass('neutral-ma')
+           }
+
+           if (price > emaTwentySixNum)
+           {
+                emaTwentySix.addClass('bullish-ma')
+           } 
+           else if (price < emaTwentySixNum)
+           {
+                emaTwentySix.addClass('bearish-ma')
+           }
+           else if (price == emaTwentySixNum)
+           {
+                emaTwentySix.addClass('neutral-ma')
+           }
+
+           if (price > emaFiftyNum)
+           {
+                emaFifty.addClass('bullish-ma')
+           } 
+           else if (price < emaFiftyNum)
+           {
+                emaFifty.addClass('bearish-ma')
+           }
+           else if (price == emaFiftyNum)
+           {
+                emaFifty.addClass('neutral-ma')
+           }
+
+           if (price > emaTwoHunNum)
+           {
+                emaTwoHun.addClass('bullish-ma')
+           } 
+           else if (price < emaTwoHunNum)
+           {
+                emaTwoHun.addClass('bearish-ma')
+           }
+           else if (price == emaTwoHunNum)
+           {
+                emaTwoHun.addClass('neutral-ma')
+           }
+
+           if (emaTwelveNum > emaTwentySixNum)
+           {
+                goldenCrossEma.addClass('cross-display')
+           }
+           else if (emaTwelveNum < emaTwentySixNum)
+           {
+                deathCrossEma.addClass('cross-display')
+           }
+
+            //    WMA -----------------------------------
+
+            if (price > wmaFifteenNum)
+            {
+                 wmaFifteen.addClass('bullish-ma')
+            } 
+            else if (price < wmaFifteenNum)
+            {
+                 wmaFifteen.addClass('bearish-ma')
+            }
+            else if (price == wmaFifteenNum)
+            {
+                 wmaFifteen.addClass('neutral-ma')
+            }
+ 
+            if (price > wmaTwentyNum)
+            {
+                 wmaTwenty.addClass('bullish-ma')
+            } 
+            else if (price < wmaTwentyNum)
+            {
+                 wmaTwenty.addClass('bearish-ma')
+            }
+            else if (price == wmaTwentyNum)
+            {
+                 wmaTwenty.addClass('neutral-ma')
+            }
+ 
+            if (price > wmaThirtyNum)
+            {
+                 wmaThirty.addClass('bullish-ma')
+            } 
+            else if (price < wmaThirtyNum)
+            {
+                 wmaThirty.addClass('bearish-ma')
+            }
+            else if (price == wmaThirtyNum)
+            {
+                 wmaThirty.addClass('neutral-ma')
+            }
+ 
+            if (price > wmaFiftyNum)
+            {
+                 wmaFifty.addClass('bullish-ma')
+            } 
+            else if (price < wmaFiftyNum)
+            {
+                 wmaFifty.addClass('bearish-ma')
+            }
+            else if (price == wmaFiftyNum)
+            {
+                 wmaFifty.addClass('neutral-ma')
+            }
+ 
+            if (price > wmaOneHunNum)
+            {
+                 wmaOneHun.addClass('bullish-ma')
+            } 
+            else if (price < wmaOneHunNum)
+            {
+                 wmaOneHun.addClass('bearish-ma')
+            }
+            else if (price == wmaOneHunNum)
+            {
+                 wmaOneHun.addClass('neutral-ma')
+            }
+ 
+            if (price > wmaTwoHunNum)
+            {
+                 wmaTwoHun.addClass('bullish-ma')
+            } 
+            else if (price < wmaTwoHunNum)
+            {
+                 wmaTwoHun.addClass('bearish-ma')
+            }
+            else if (price == wmaTwoHunNum)
+            {
+                 wmaTwoHun.addClass('neutral-ma')
+            }
+
+    //    VWMA -----------------------------------
+
+           if (price > vwmaFifteenNum)
+           {
+                vwmaFifteen.addClass('bullish-ma')
+           } 
+           else if (price < vwmaFifteenNum)
+           {
+                vwmaFifteen.addClass('bearish-ma')
+           }
+           else if (price == vwmaFifteenNum)
+           {
+                vwmaFifteen.addClass('neutral-ma')
+           }
+
+           if (price > vwmaTwentyNum)
+           {
+                vwmaTwenty.addClass('bullish-ma')
+           } 
+           else if (price < vwmaTwentyNum)
+           {
+                vwmaTwenty.addClass('bearish-ma')
+           }
+           else if (price == vwmaTwentyNum)
+           {
+                vwmaTwenty.addClass('neutral-ma')
+           }
+
+           if (price > vwmaThirtyNum)
+           {
+                vwmaThirty.addClass('bullish-ma')
+           } 
+           else if (price < vwmaThirtyNum)
+           {
+                vwmaThirty.addClass('bearish-ma')
+           }
+           else if (price == vwmaThirtyNum)
+           {
+                vwmaThirty.addClass('neutral-ma')
+           }
+
+           if (price > vwmaFiftyNum)
+           {
+                vwmaFifty.addClass('bullish-ma')
+           } 
+           else if (price < vwmaFiftyNum)
+           {
+                vwmaFifty.addClass('bearish-ma')
+           }
+           else if (price == vwmaFiftyNum)
+           {
+                vwmaFifty.addClass('neutral-ma')
+           }
+
+           if (price > vwmaOneHunNum)
+           {
+                vwmaOneHun.addClass('bullish-ma')
+           } 
+           else if (price < vwmaOneHunNum)
+           {
+                vwmaOneHun.addClass('bearish-ma')
+           }
+           else if (price == vwmaOneHunNum)
+           {
+                vwmaOneHun.addClass('neutral-ma')
+           }
+
+           if (price > vwmaTwoHunNum)
+           {
+                vwmaTwoHun.addClass('bullish-ma')
+           } 
+           else if (price < vwmaTwoHunNum)
+           {
+                vwmaTwoHun.addClass('bearish-ma')
+           }
+           else if (price == vwmaTwoHunNum)
+           {
+                vwmaTwoHun.addClass('neutral-ma')
+           }
+
+
+
             // TECHNICAL CHECK ---------------
             if (price < vwap)
             {
@@ -1039,9 +1530,6 @@ const symbolBox = $('.symbol-box')
                let smaOneHun = $(`.smaonehundred-search-actual`)              
                let smaTwoHun = $(`.smatwohundred-search-actual`)    
 
-                let goldenCross = $('.golden-cross')
-                let deathCross = $('.death-cross')
-
                let emaEight = $(`.emaeight-search-actual`)            
                let emaTwelve = $(`.ematwelve-search-actual`)            
                let emaTwenty = $(`.ematwenty-search-actual`)           
@@ -1053,7 +1541,7 @@ const symbolBox = $('.symbol-box')
                let wmaTwenty = $(`.wmatwenty-search-actual`)          
                let wmaThirty = $(`.wmathirty-search-actual`)            
                let wmaFifty = $(`.wmafifty-search-actual`)          
-               let wmaOneHu = $(`.wmaonehundred-search-actual`)              
+               let wmaOneHun = $(`.wmaonehundred-search-actual`)              
                let wmaTwoHun = $(`.wmatwohundred-search-actual`)            
 
                let vwmaFifteen = $(`.vwmafifteen-search-actual`)           
@@ -1091,6 +1579,11 @@ const symbolBox = $('.symbol-box')
                 let vwmaOneHunNum = $(`.vwmaonehundred-search-actual`).text().slice(5,)              
                 let vwmaTwoHunNum = $(`.vwmatwohundred-search-actual`).text().slice(5,)  
        
+                let goldenCrossSma = $(`.goldenSma-cross`)
+                let deathCrossSma = $(`.deathSma-cross`)
+                let goldenCrossEma = $(`.goldenEma-cross`)
+                let deathCrossEma = $(`.deathEma-cross`)
+    
                // TURN STRING TO NUM
                price = parseFloat(price)
        
@@ -1135,7 +1628,7 @@ const symbolBox = $('.symbol-box')
                // IF FOR CLASS ADD
             if ($(window).width() > 700)
             {
-
+                // SMA -----------------------
                if (price > smaFifteenNum)
                {
                    smaFifteen.addClass('bullish-ma')
@@ -1212,12 +1705,262 @@ const symbolBox = $('.symbol-box')
 
                if (smaFiftyNum > smaTwoHunNum)
                {
-                    goldenCross.addClass('cross-display')
+                    goldenCrossSma.addClass('cross-display')
                }
                else if (smaFiftyNum < smaTwoHunNum)
                {
-                    deathCross.addClass('cross-display')
+                    deathCrossSma.addClass('cross-display')
                }
+           //    EMA -----------------------------------
+  
+           if (price > emaEightNum)
+               {
+                   emaEight.addClass('bullish-ma')
+               } 
+               else if (price < emaEightNum)
+               {
+                    emaEight.addClass('bearish-ma')
+               }
+               else if (price == emaEightNum)
+               {
+                    emaEight.addClass('neutral-ma')
+               }
+
+               if (price > emaTwelveNum)
+               {
+                    emaTwelve.addClass('bullish-ma')
+               } 
+               else if (price < emaTwelveNum)
+               {
+                    emaTwelve.addClass('bearish-ma')
+               }
+               else if (price == emaTwelveNum)
+               {
+                    emaTwelve.addClass('neutral-ma')
+               }
+
+               if (price > emaTwentyNum)
+               {
+                    emaTwenty.addClass('bullish-ma')
+               } 
+               else if (price < emaTwentyNum)
+               {
+                    emaTwenty.addClass('bearish-ma')
+               }
+               else if (price == emaTwentyNum)
+               {
+                    emaTwenty.addClass('neutral-ma')
+               }
+
+               if (price > emaTwentySixNum)
+               {
+                    emaTwentySix.addClass('bullish-ma')
+               } 
+               else if (price < emaTwentySixNum)
+               {
+                    emaTwentySix.addClass('bearish-ma')
+               }
+               else if (price == emaTwentySixNum)
+               {
+                    emaTwentySix.addClass('neutral-ma')
+               }
+
+               if (price > emaFiftyNum)
+               {
+                    emaFifty.addClass('bullish-ma')
+               } 
+               else if (price < emaFiftyNum)
+               {
+                    emaFifty.addClass('bearish-ma')
+               }
+               else if (price == emaFiftyNum)
+               {
+                    emaFifty.addClass('neutral-ma')
+               }
+
+               if (price > emaTwoHunNum)
+               {
+                    emaTwoHun.addClass('bullish-ma')
+               } 
+               else if (price < emaTwoHunNum)
+               {
+                    emaTwoHun.addClass('bearish-ma')
+               }
+               else if (price == emaTwoHunNum)
+               {
+                    emaTwoHun.addClass('neutral-ma')
+               }
+
+               if (emaTwelveNum > emaTwentySixNum)
+               {
+                    goldenCrossEma.addClass('cross-display')
+               }
+               else if (emaTwelveNum < emaTwentySixNum)
+               {
+                    deathCrossEma.addClass('cross-display')
+               }
+
+    //    WMA -----------------------------------
+
+           if (price > wmaFifteenNum)
+           {
+                wmaFifteen.addClass('bullish-ma')
+           } 
+           else if (price < wmaFifteenNum)
+           {
+                wmaFifteen.addClass('bearish-ma')
+           }
+           else if (price == wmaFifteenNum)
+           {
+                wmaFifteen.addClass('neutral-ma')
+           }
+
+           if (price > wmaTwentyNum)
+           {
+                wmaTwenty.addClass('bullish-ma')
+           } 
+           else if (price < wmaTwentyNum)
+           {
+                wmaTwenty.addClass('bearish-ma')
+           }
+           else if (price == wmaTwentyNum)
+           {
+                wmaTwenty.addClass('neutral-ma')
+           }
+
+           if (price > wmaThirtyNum)
+           {
+                wmaThirty.addClass('bullish-ma')
+           } 
+           else if (price < wmaThirtyNum)
+           {
+                wmaThirty.addClass('bearish-ma')
+           }
+           else if (price == wmaThirtyNum)
+           {
+                wmaThirty.addClass('neutral-ma')
+           }
+
+           if (price > wmaFiftyNum)
+           {
+                wmaFifty.addClass('bullish-ma')
+           } 
+           else if (price < wmaFiftyNum)
+           {
+                wmaFifty.addClass('bearish-ma')
+           }
+           else if (price == wmaFiftyNum)
+           {
+                wmaFifty.addClass('neutral-ma')
+           }
+
+           if (price > wmaOneHunNum)
+           {
+                wmaOneHun.addClass('bullish-ma')
+           } 
+           else if (price < wmaOneHunNum)
+           {
+                wmaOneHun.addClass('bearish-ma')
+           }
+           else if (price == wmaOneHunNum)
+           {
+                wmaOneHun.addClass('neutral-ma')
+           }
+
+           if (price > wmaTwoHunNum)
+           {
+                wmaTwoHun.addClass('bullish-ma')
+           } 
+           else if (price < wmaTwoHunNum)
+           {
+                wmaTwoHun.addClass('bearish-ma')
+           }
+           else if (price == wmaTwoHunNum)
+           {
+                wmaTwoHun.addClass('neutral-ma')
+           }
+
+    //    VWMA -----------------------------------
+
+           if (price > vwmaFifteenNum)
+           {
+                vwmaFifteen.addClass('bullish-ma')
+           } 
+           else if (price < vwmaFifteenNum)
+           {
+                vwmaFifteen.addClass('bearish-ma')
+           }
+           else if (price == vwmaFifteenNum)
+           {
+                vwmaFifteen.addClass('neutral-ma')
+           }
+
+           if (price > vwmaTwentyNum)
+           {
+                vwmaTwenty.addClass('bullish-ma')
+           } 
+           else if (price < vwmaTwentyNum)
+           {
+                vwmaTwenty.addClass('bearish-ma')
+           }
+           else if (price == vwmaTwentyNum)
+           {
+                vwmaTwenty.addClass('neutral-ma')
+           }
+
+           if (price > vwmaThirtyNum)
+           {
+                vwmaThirty.addClass('bullish-ma')
+           } 
+           else if (price < vwmaThirtyNum)
+           {
+                vwmaThirty.addClass('bearish-ma')
+           }
+           else if (price == vwmaThirtyNum)
+           {
+                vwmaThirty.addClass('neutral-ma')
+           }
+
+           if (price > vwmaFiftyNum)
+           {
+                vwmaFifty.addClass('bullish-ma')
+           } 
+           else if (price < vwmaFiftyNum)
+           {
+                vwmaFifty.addClass('bearish-ma')
+           }
+           else if (price == vwmaFiftyNum)
+           {
+                vwmaFifty.addClass('neutral-ma')
+           }
+
+           if (price > vwmaOneHunNum)
+           {
+                vwmaOneHun.addClass('bullish-ma')
+           } 
+           else if (price < vwmaOneHunNum)
+           {
+                vwmaOneHun.addClass('bearish-ma')
+           }
+           else if (price == vwmaOneHunNum)
+           {
+                vwmaOneHun.addClass('neutral-ma')
+           }
+
+           if (price > vwmaTwoHunNum)
+           {
+                vwmaTwoHun.addClass('bullish-ma')
+           } 
+           else if (price < vwmaTwoHunNum)
+           {
+                vwmaTwoHun.addClass('bearish-ma')
+           }
+           else if (price == vwmaTwoHunNum)
+           {
+                vwmaTwoHun.addClass('neutral-ma')
+           }
+
+               
 
                // TECHNICAL START ------------------
                if (price < vwap)
@@ -1910,19 +2653,19 @@ if ($(window).width() > 700)
                     prevDayEmaSub += dataPull.historical[emaEight].close
                     emaEight--
                     } //CALCULATE EMA HERE TO GET PREVIOUS DAY EMA FOR ACCURATE CURRENT EMA
-                    const subEMA = prevDayEmaSub / 16
+                    const subEMA = prevDayEmaSub / 8
                     //THIS GETS AN EMA USING SMA AS PREV EMA ----------------------------
-                    const finalSubEma = ((2/17) * (dataPull.historical[emaEight].close - subEMA)) + subEMA
+                    const finalSubEma = ((2/9) * (dataPull.historical[emaEight].close - subEMA)) + subEMA
                     arrEma.unshift(finalSubEma)
                     emaEight--
                     while (emaEight >= 0) {
-                        let derp = ((2/17) * (dataPull.historical[emaEight].close - arrEma[0])) + arrEma[0]
+                        let derp = ((2/9) * (dataPull.historical[emaEight].close - arrEma[0])) + arrEma[0]
                         arrEma.unshift(derp)
                         arrEma.pop()
                         emaEight--
                     }
 
-                    const finalEma = ((2/17) * (newPrice - arrEma[0])) + arrEma[0]
+                    const finalEma = ((2/9) * (newPrice - arrEma[0])) + arrEma[0]
                     arrEma.unshift(finalEma)
                     arrEma.pop()
 
@@ -3026,17 +3769,19 @@ if (isNaN(yesterdayVolIncrease))
     
     <div class="tech-search">
 
-        <h2 class="tech-title st">${symbol}'s</h2>
+        <div class="symbol-search-box">
+            <h2 id="symbol" class="">${symbol}</h2>
+            <p class="search-price-text price-search">Price: $${price}</p>
+            <div class="search-changes-row">
+            <p>${changesPercentage}%</p>
+            <div id="search-arrow-${directionArrow}">
+            </div>
+            <p>$${change}</p>
+            </div>
+        </div>      
+
         <h2 class="tech-title t">Daily Indicators</h2> <!--- put if else for if its up or down then out arrow next to it here --------->
         <p class="tech-title-warn epo">For Educational Purposes Only</p>
-
-        <div class="tech-row">
-        <p class="search-price-text price-search">Price: $${price}</p>
-        <div class="search-changes-row">
-        <p>${changesPercentage}%</p>
-        <div id="search-arrow-${directionArrow}"></div>
-        <p>$${change}</p>
-        </div>
 
 
             <div class="tech-vol-row">
@@ -3061,8 +3806,8 @@ if (isNaN(yesterdayVolIncrease))
                         <p class="smafifty-search-actual mobile-tap">50: ${smaFifty}</p>
                     </div>
                     
-                 <p class="golden-cross">Golden Cross</p>
-                 <p class="death-cross">Death Cross</p>
+                 <p class="goldenSma-cross golden-cross">Golden Cross</p>
+                 <p class="deathSma-cross death-cross">Death Cross</p>
 
                     <div class="averages-row">
                         <p class="smaonehundred-search-actual mobile-tap">100: ${smaOneHun}</p>
@@ -3080,6 +3825,10 @@ if (isNaN(yesterdayVolIncrease))
                     <p class="ematwenty-search-actual mobile-tap">20: ${emaTwenty}</p>
                     <p class="ematwentysix-search-actual mobile-tap">26: ${emaTwentySix}</p>
                     </div>    
+
+                    <p class="goldenEma-cross golden-cross ema-cross">Golden Cross</p>
+                    <p class="deathEma-cross death-cross ema-cross">Death Cross</p>
+
                     <div class="averages-row">
                         <p class="emafifty-search-actual mobile-tap">50: ${emaFifty}</p>
                         <p class="ematwohundred-search-actual mobile-tap">200: ${emaTwoHun}</p>
