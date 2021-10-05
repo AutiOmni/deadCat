@@ -771,7 +771,7 @@ a:hover {
 .golden-cross {
     position: absolute;
     right: 5px;
-    bottom: 18px;
+    bottom: 19px;
     color: transparent;
     transition: all ease-in-out 500ms;
 }
@@ -779,7 +779,7 @@ a:hover {
 .death-cross {
     position: absolute;
     right: 5px;
-    bottom: 18px;
+    bottom: 19px;
     color: transparent;
     transition: all ease-in-out 500ms;
 }
@@ -794,6 +794,9 @@ a:hover {
 .info-link:hover ~ .cross-display {
     color: var(--light-text-color);
 }
+
+
+
 
 /* ------- LOADING SCREEN ---------------------------- */
 
