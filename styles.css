@@ -804,6 +804,10 @@ a:hover {
         .golden-cross {
             bottom: 18px;
         }
+
+        .ema-cross {
+            bottom: 52px;
+        }
 }
 
 /* ------- LOADING SCREEN ---------------------------- */
