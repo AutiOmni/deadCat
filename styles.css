@@ -433,6 +433,10 @@ a:hover {
     justify-content: space-around;
     align-items: center;
 }
+.symbol-box h2 {
+    margin-bottom: 0;
+    margin-top: 10px
+}
 
 .downer {
     width: 50%;
