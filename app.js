@@ -2013,7 +2013,7 @@ try {
 
                  <div class="averages-row">
                      <p class="smaonehundred-down-actual-${i} mobile-tap">100: ${smaOneHunDown}</p>
-                     <p class="smatwohundred-down-actual-${i} mobile-tap mobile-tap-cross">200: ${smaTwoHunDown}</p>
+                     <p class="smatwohundred-down-actual-${i} mobile-tap">200: ${smaTwoHunDown}</p>
                  </div>
 
          </div>
@@ -2022,11 +2022,11 @@ try {
          <a class="info-link ema-down-header-${i}" href="https://www.investopedia.com/terms/e/ema.asp" target="_blank"><h3 class='tech-header'>EMA</h3></a>
                     <div class="averages-row">
                     <p class="emaeight-down-actual-${i} mobile-tap">8: ${emaEightDown}</p>
-                    <p class="ematwelve-down-actual-${i} mobile-tap mobile-tap-cross">12: ${emaTwelveDown}</p>
+                    <p class="ematwelve-down-actual-${i} mobile-tap">12: ${emaTwelveDown}</p>
                     </div>
                     <div class="averages-row">
                     <p class="ematwenty-down-actual-${i} mobile-tap">20: ${emaTwentyDown}</p>
-                    <p class="ematwentysix-down-actual-${i} mobile-tap mobile-tap-cross">26: ${emaTwentySixDown}</p>
+                    <p class="ematwentysix-down-actual-${i} mobile-tap">26: ${emaTwentySixDown}</p>
                     </div>
                     
                     <p class="goldenEma-cross-down-${i} golden-cross ema-cross">Golden Cross</p>
@@ -2167,7 +2167,7 @@ try {
                  </div>
                  <div class="averages-row">
                      <p class="smathirty-up-actual-${i} mobile-tap">30: ${smaThirtyUp}</p>
-                     <p class="smafifty-up-actual-${i} mobile-tap mobile-tap-cross">50: ${smaFiftyUp}</p>
+                     <p class="smafifty-up-actual-${i} mobile-tap">50: ${smaFiftyUp}</p>
                  </div>
 
                  <p class="goldenSma-cross-up-${i} golden-cross">Golden Cross</p>
@@ -2175,7 +2175,7 @@ try {
 
                  <div class="averages-row">
                      <p class="smaonehundred-up-actual-${i} mobile-tap">100: ${smaOneHunUp}</p>
-                     <p class="smatwohundred-up-actual-${i} mobile-tap mobile-tap-cross">200: ${smaTwoHunUp}</p>
+                     <p class="smatwohundred-up-actual-${i} mobile-tap">200: ${smaTwoHunUp}</p>
                  </div>
          </div>
  
@@ -2183,7 +2183,7 @@ try {
          <a class="info-link ema-up-header-${i}" href="https://www.investopedia.com/terms/e/ema.asp" target="_blank"><h3 class='tech-header'>EMA</h3></a>
                  <div class="averages-row">
                      <p class="emaeight-up-actual-${i} mobile-tap">8: ${emaEightUp}</p>
-                     <p class="ematwelve-up-actual-${i} mobile-tap mobile-tap-cross">12: ${emaTwelveUp}</p>
+                     <p class="ematwelve-up-actual-${i} mobile-tap">12: ${emaTwelveUp}</p>
                  </div>
 
                  <p class="goldenEma-cross-up-${i} golden-cross ema-cross">Golden Cross</p>
@@ -2191,7 +2191,7 @@ try {
 
                  <div class="averages-row">
                  <p class="ematwenty-up-actual-${i} mobile-tap">20: ${emaTwentyUp}</p>
-                 <p class="ematwentysix-up-actual-${i} mobile-tap mobile-tap-cross">26: ${emaTwentySixUp}</p>
+                 <p class="ematwentysix-up-actual-${i} mobile-tap">26: ${emaTwentySixUp}</p>
                 </div>
                  <div class="averages-row">
                      <p class="emafifty-up-actual-${i} mobile-tap">50: ${emaFiftyUp}</p>

@@ -795,8 +795,16 @@ a:hover {
     color: var(--light-text-color);
 }
 
+@media (max-width: 700px) {
+    .tech-row:hover > .cross-display {
+        color: var(--light-text-color);
+    }
 
-
+    .death-cross,
+        .golden-cross {
+            bottom: 18px;
+        }
+}
 
 /* ------- LOADING SCREEN ---------------------------- */
 

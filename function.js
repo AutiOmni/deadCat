@@ -703,336 +703,336 @@ const symbolBox = $('.symbol-box')
         else
         {
               // SMA -----------------------
-            if (price > smaFifteenNum)
-            {
-                smaFifteen.addClass('bullish-stuff-mobile')
-            } 
-            else if (price < smaFifteenNum)
-            {
-                smaFifteen.addClass('bearish-stuff-mobile')
-            }
-            else if (price == smaFifteenNum)
-            {
-                smaFifteen.addClass('neutral-stuff-mobile')
-            }
+        if (price > smaFifteenNum)
+        {
+            smaFifteen.addClass('bullish-stuff-mobile')
+        } 
+        else if (price < smaFifteenNum)
+        {
+            smaFifteen.addClass('bearish-stuff-mobile')
+        }
+        else if (price == smaFifteenNum)
+        {
+            smaFifteen.addClass('neutral-stuff-mobile')
+        }
 
-            if (price > smaTwentyNum)
-            {
-                smaTwenty.addClass('bullish-stuff-mobile')
-            } 
-            else if (price < smaTwentyNum)
-            {
-                smaTwenty.addClass('bearish-stuff-mobile')
-            }
-            else if (price == smaTwentyNum)
-            {
-                smaTwenty.addClass('neutral-stuff-mobile')
-            }
-            if (price > smaThirtyNum)
-            {
-                smaThirty.addClass('bullish-stuff-mobile')
-            } 
-            else if (price < smaThirtyNum)
-            {
-                smaThirty.addClass('bearish-stuff-mobile')
-            }
-            else if (price == smaThirtyNum)
-            {
-                smaThirty.addClass('neutral-stuff-mobile')
-            }
-            if (price > smaFiftyNum)
-            {
-                smaFifty.addClass('bullish-stuff-mobile')
-            } 
-            else if (price < smaFiftyNum)
-            {
-                smaFifty.addClass('bearish-stuff-mobile')
-            }
-            else if (price == smaFiftyNum)
-            {
-                smaFifty.addClass('neutral-stuff-mobile')
-            }
-            if (price > smaOneHunNum)
-            {
-                smaOneHun.addClass('bullish-stuff-mobile')
-            } 
-            else if (price < smaOneHunNum)
-            {
-                smaOneHun.addClass('bearish-stuff-mobile')
-            }
-            else if (price == smaOneHunNum)
-            {
-                smaOneHun.addClass('neutral-stuff-mobile')
-            }
-            if (price > smaTwoHunNum)
-            {
-                smaTwoHun.addClass('bullish-stuff-mobile')
-            } 
-            else if (price < smaTwoHunNum)
-            {
-                smaTwoHun.addClass('bearish-stuff-mobile')
-            }
-            else if (price == smaTwoHunNum)
-            {
-                smaTwoHun.addClass('neutral-stuff-mobile')
-            }
+        if (price > smaTwentyNum)
+        {
+            smaTwenty.addClass('bullish-stuff-mobile')
+        } 
+        else if (price < smaTwentyNum)
+        {
+            smaTwenty.addClass('bearish-stuff-mobile')
+        }
+        else if (price == smaTwentyNum)
+        {
+            smaTwenty.addClass('neutral-stuff-mobile')
+        }
+        if (price > smaThirtyNum)
+        {
+            smaThirty.addClass('bullish-stuff-mobile')
+        } 
+        else if (price < smaThirtyNum)
+        {
+            smaThirty.addClass('bearish-stuff-mobile')
+        }
+        else if (price == smaThirtyNum)
+        {
+            smaThirty.addClass('neutral-stuff-mobile')
+        }
+        if (price > smaFiftyNum)
+        {
+            smaFifty.addClass('bullish-stuff-mobile')
+        } 
+        else if (price < smaFiftyNum)
+        {
+            smaFifty.addClass('bearish-stuff-mobile')
+        }
+        else if (price == smaFiftyNum)
+        {
+            smaFifty.addClass('neutral-stuff-mobile')
+        }
+        if (price > smaOneHunNum)
+        {
+            smaOneHun.addClass('bullish-stuff-mobile')
+        } 
+        else if (price < smaOneHunNum)
+        {
+            smaOneHun.addClass('bearish-stuff-mobile')
+        }
+        else if (price == smaOneHunNum)
+        {
+            smaOneHun.addClass('neutral-stuff-mobile')
+        }
+        if (price > smaTwoHunNum)
+        {
+            smaTwoHun.addClass('bullish-stuff-mobile')
+        } 
+        else if (price < smaTwoHunNum)
+        {
+            smaTwoHun.addClass('bearish-stuff-mobile')
+        }
+        else if (price == smaTwoHunNum)
+        {
+            smaTwoHun.addClass('neutral-stuff-mobile')
+        }
 
-            //    EMA -----------------------------------
+        if (smaFiftyNum > smaTwoHunNum)
+        {
+            goldenCrossSma.addClass('cross-display')
+        }
+        else if (smaFiftyNum < smaTwoHunNum)
+        {
+            deathCrossSma.addClass('cross-display')
+        }
+        //    EMA -----------------------------------
 
-            if (price > emaEightNum)
-            {
-                emaEight.addClass('bullish-stuff-mobile')
-            } 
-            else if (price < emaEightNum)
-            {
-                emaEight.addClass('bearish-stuff-mobile')
-            }
-            else if (price == emaEightNum)
-            {
-                emaEight.addClass('neutral-stuff-mobile')
-            }
+        if (price > emaEightNum)
+        {
+            emaEight.addClass('bullish-stuff-mobile')
+        } 
+        else if (price < emaEightNum)
+        {
+            emaEight.addClass('bearish-stuff-mobile')
+        }
+        else if (price == emaEightNum)
+        {
+            emaEight.addClass('neutral-stuff-mobile')
+        }
 
-            if (price > emaTwelveNum)
-            {
-                emaTwelve.addClass('bullish-stuff-mobile')
-            } 
-            else if (price < emaTwelveNum)
-            {
-                emaTwelve.addClass('bearish-stuff-mobile')
-            }
-            else if (price == emaTwelveNum)
-            {
-                emaTwelve.addClass('neutral-stuff-mobile')
-            }
+        if (price > emaTwelveNum)
+        {
+            emaTwelve.addClass('bullish-stuff-mobile')
+        } 
+        else if (price < emaTwelveNum)
+        {
+            emaTwelve.addClass('bearish-stuff-mobile')
+        }
+        else if (price == emaTwelveNum)
+        {
+            emaTwelve.addClass('neutral-stuff-mobile')
+        }
 
-            if (price > emaTwentyNum)
-            {
-                emaTwenty.addClass('bullish-stuff-mobile')
-            } 
-            else if (price < emaTwentyNum)
-            {
-                emaTwenty.addClass('bearish-stuff-mobile')
-            }
-            else if (price == emaTwentyNum)
-            {
-                emaTwenty.addClass('neutral-stuff-mobile')
-            }
+        if (price > emaTwentyNum)
+        {
+            emaTwenty.addClass('bullish-stuff-mobile')
+        } 
+        else if (price < emaTwentyNum)
+        {
+            emaTwenty.addClass('bearish-stuff-mobile')
+        }
+        else if (price == emaTwentyNum)
+        {
+            emaTwenty.addClass('neutral-stuff-mobile')
+        }
 
-            if (price > emaTwentySixNum)
-            {
-                emaTwentySix.addClass('bullish-stuff-mobile')
-            } 
-            else if (price < emaTwentySixNum)
-            {
-                emaTwentySix.addClass('bearish-stuff-mobile')
-            }
-            else if (price == emaTwentySixNum)
-            {
-                emaTwentySix.addClass('neutral-stuff-mobile')
-            }
+        if (price > emaTwentySixNum)
+        {
+            emaTwentySix.addClass('bullish-stuff-mobile')
+        } 
+        else if (price < emaTwentySixNum)
+        {
+            emaTwentySix.addClass('bearish-stuff-mobile')
+        }
+        else if (price == emaTwentySixNum)
+        {
+            emaTwentySix.addClass('neutral-stuff-mobile')
+        }
 
-            if (price > emaFiftyNum)
-            {
-                emaFifty.addClass('bullish-stuff-mobile')
-            } 
-            else if (price < emaFiftyNum)
-            {
-                emaFifty.addClass('bearish-stuff-mobile')
-            }
-            else if (price == emaFiftyNum)
-            {
-                emaFifty.addClass('neutral-stuff-mobile')
-            }
+        if (price > emaFiftyNum)
+        {
+            emaFifty.addClass('bullish-stuff-mobile')
+        } 
+        else if (price < emaFiftyNum)
+        {
+            emaFifty.addClass('bearish-stuff-mobile')
+        }
+        else if (price == emaFiftyNum)
+        {
+            emaFifty.addClass('neutral-stuff-mobile')
+        }
 
-            if (price > emaTwoHunNum)
-            {
-                emaTwoHun.addClass('bullish-stuff-mobile')
-            } 
-            else if (price < emaTwoHunNum)
-            {
-                emaTwoHun.addClass('bearish-stuff-mobile')
-            }
-            else if (price == emaTwoHunNum)
-            {
-                emaTwoHun.addClass('neutral-stuff-mobile')
-            }
- // CROSS ---------------------------------------------------
-            if (emaTwelveNum > emaTwentySixNum)
-            {
-                goldenCrossEma.addClass('cross-display')
-            }
-            else if (emaTwelveNum < emaTwentySixNum)
-            {
-                deathCrossEma.addClass('cross-display')
-            }
-            if (smaFiftyNum > smaTwoHunNum)
-            {
-                goldenCrossSma.addClass('cross-display')
-            }
-            else if (smaFiftyNum < smaTwoHunNum)
-            {
-                deathCrossSma.addClass('cross-display')
-            }
+        if (price > emaTwoHunNum)
+        {
+            emaTwoHun.addClass('bullish-stuff-mobile')
+        } 
+        else if (price < emaTwoHunNum)
+        {
+            emaTwoHun.addClass('bearish-stuff-mobile')
+        }
+        else if (price == emaTwoHunNum)
+        {
+            emaTwoHun.addClass('neutral-stuff-mobile')
+        }
 
-            //    WMA -----------------------------------
+        if (emaTwelveNum > emaTwentySixNum)
+        {
+            goldenCrossEma.addClass('cross-display')
+        }
+        else if (emaTwelveNum < emaTwentySixNum)
+        {
+            deathCrossEma.addClass('cross-display')
+        }
 
-            if (price > wmaFifteenNum)
-            {
-            wmaFifteen.addClass('bullish-stuff-mobile')
-            } 
-            else if (price < wmaFifteenNum)
-            {
-            wmaFifteen.addClass('bearish-stuff-mobile')
-            }
-            else if (price == wmaFifteenNum)
-            {
-            wmaFifteen.addClass('neutral-stuff-mobile')
-            }
+        //    WMA -----------------------------------
 
-            if (price > wmaTwentyNum)
-            {
-            wmaTwenty.addClass('bullish-stuff-mobile')
-            } 
-            else if (price < wmaTwentyNum)
-            {
-            wmaTwenty.addClass('bearish-stuff-mobile')
-            }
-            else if (price == wmaTwentyNum)
-            {
-            wmaTwenty.addClass('neutral-stuff-mobile')
-            }
+        if (price > wmaFifteenNum)
+        {
+        wmaFifteen.addClass('bullish-stuff-mobile')
+        } 
+        else if (price < wmaFifteenNum)
+        {
+        wmaFifteen.addClass('bearish-stuff-mobile')
+        }
+        else if (price == wmaFifteenNum)
+        {
+        wmaFifteen.addClass('neutral-stuff-mobile')
+        }
 
-            if (price > wmaThirtyNum)
-            {
-            wmaThirty.addClass('bullish-stuff-mobile')
-            } 
-            else if (price < wmaThirtyNum)
-            {
-            wmaThirty.addClass('bearish-stuff-mobile')
-            }
-            else if (price == wmaThirtyNum)
-            {
-            wmaThirty.addClass('neutral-stuff-mobile')
-            }
+        if (price > wmaTwentyNum)
+        {
+        wmaTwenty.addClass('bullish-stuff-mobile')
+        } 
+        else if (price < wmaTwentyNum)
+        {
+        wmaTwenty.addClass('bearish-stuff-mobile')
+        }
+        else if (price == wmaTwentyNum)
+        {
+        wmaTwenty.addClass('neutral-stuff-mobile')
+        }
 
-            if (price > wmaFiftyNum)
-            {
-            wmaFifty.addClass('bullish-stuff-mobile')
-            } 
-            else if (price < wmaFiftyNum)
-            {
-            wmaFifty.addClass('bearish-stuff-mobile')
-            }
-            else if (price == wmaFiftyNum)
-            {
-            wmaFifty.addClass('neutral-stuff-mobile')
-            }
+        if (price > wmaThirtyNum)
+        {
+        wmaThirty.addClass('bullish-stuff-mobile')
+        } 
+        else if (price < wmaThirtyNum)
+        {
+        wmaThirty.addClass('bearish-stuff-mobile')
+        }
+        else if (price == wmaThirtyNum)
+        {
+        wmaThirty.addClass('neutral-stuff-mobile')
+        }
 
-            if (price > wmaOneHunNum)
-            {
-            wmaOneHun.addClass('bullish-stuff-mobile')
-            } 
-            else if (price < wmaOneHunNum)
-            {
-            wmaOneHun.addClass('bearish-stuff-mobile')
-            }
-            else if (price == wmaOneHunNum)
-            {
-            wmaOneHun.addClass('neutral-stuff-mobile')
-            }
+        if (price > wmaFiftyNum)
+        {
+        wmaFifty.addClass('bullish-stuff-mobile')
+        } 
+        else if (price < wmaFiftyNum)
+        {
+        wmaFifty.addClass('bearish-stuff-mobile')
+        }
+        else if (price == wmaFiftyNum)
+        {
+        wmaFifty.addClass('neutral-stuff-mobile')
+        }
 
-            if (price > wmaTwoHunNum)
-            {
-            wmaTwoHun.addClass('bullish-stuff-mobile')
-            } 
-            else if (price < wmaTwoHunNum)
-            {
-            wmaTwoHun.addClass('bearish-stuff-mobile')
-            }
-            else if (price == wmaTwoHunNum)
-            {
-            wmaTwoHun.addClass('neutral-stuff-mobile')
-            }
+        if (price > wmaOneHunNum)
+        {
+        wmaOneHun.addClass('bullish-stuff-mobile')
+        } 
+        else if (price < wmaOneHunNum)
+        {
+        wmaOneHun.addClass('bearish-stuff-mobile')
+        }
+        else if (price == wmaOneHunNum)
+        {
+        wmaOneHun.addClass('neutral-stuff-mobile')
+        }
 
-            //    VWMA -----------------------------------
+        if (price > wmaTwoHunNum)
+        {
+        wmaTwoHun.addClass('bullish-stuff-mobile')
+        } 
+        else if (price < wmaTwoHunNum)
+        {
+        wmaTwoHun.addClass('bearish-stuff-mobile')
+        }
+        else if (price == wmaTwoHunNum)
+        {
+        wmaTwoHun.addClass('neutral-stuff-mobile')
+        }
 
-            if (price > vwmaFifteenNum)
-            {
-            vwmaFifteen.addClass('bullish-stuff-mobile')
-            } 
-            else if (price < vwmaFifteenNum)
-            {
-            vwmaFifteen.addClass('bearish-stuff-mobile')
-            }
-            else if (price == vwmaFifteenNum)
-            {
-            vwmaFifteen.addClass('neutral-stuff-mobile')
-            }
+        //    VWMA -----------------------------------
 
-            if (price > vwmaTwentyNum)
-            {
-            vwmaTwenty.addClass('bullish-stuff-mobile')
-            } 
-            else if (price < vwmaTwentyNum)
-            {
-            vwmaTwenty.addClass('bearish-stuff-mobile')
-            }
-            else if (price == vwmaTwentyNum)
-            {
-            vwmaTwenty.addClass('neutral-stuff-mobile')
-            }
+        if (price > vwmaFifteenNum)
+        {
+        vwmaFifteen.addClass('bullish-stuff-mobile')
+        } 
+        else if (price < vwmaFifteenNum)
+        {
+        vwmaFifteen.addClass('bearish-stuff-mobile')
+        }
+        else if (price == vwmaFifteenNum)
+        {
+        vwmaFifteen.addClass('neutral-stuff-mobile')
+        }
 
-            if (price > vwmaThirtyNum)
-            {
-            vwmaThirty.addClass('bullish-stuff-mobile')
-            } 
-            else if (price < vwmaThirtyNum)
-            {
-            vwmaThirty.addClass('bearish-stuff-mobile')
-            }
-            else if (price == vwmaThirtyNum)
-            {
-            vwmaThirty.addClass('neutral-stuff-mobile')
-            }
+        if (price > vwmaTwentyNum)
+        {
+        vwmaTwenty.addClass('bullish-stuff-mobile')
+        } 
+        else if (price < vwmaTwentyNum)
+        {
+        vwmaTwenty.addClass('bearish-stuff-mobile')
+        }
+        else if (price == vwmaTwentyNum)
+        {
+        vwmaTwenty.addClass('neutral-stuff-mobile')
+        }
 
-            if (price > vwmaFiftyNum)
-            {
-            vwmaFifty.addClass('bullish-stuff-mobile')
-            } 
-            else if (price < vwmaFiftyNum)
-            {
-            vwmaFifty.addClass('bearish-stuff-mobile')
-            }
-            else if (price == vwmaFiftyNum)
-            {
-            vwmaFifty.addClass('neutral-stuff-mobile')
-            }
+        if (price > vwmaThirtyNum)
+        {
+        vwmaThirty.addClass('bullish-stuff-mobile')
+        } 
+        else if (price < vwmaThirtyNum)
+        {
+        vwmaThirty.addClass('bearish-stuff-mobile')
+        }
+        else if (price == vwmaThirtyNum)
+        {
+        vwmaThirty.addClass('neutral-stuff-mobile')
+        }
 
-            if (price > vwmaOneHunNum)
-            {
-            vwmaOneHun.addClass('bullish-stuff-mobile')
-            } 
-            else if (price < vwmaOneHunNum)
-            {
-            vwmaOneHun.addClass('bearish-stuff-mobile')
-            }
-            else if (price == vwmaOneHunNum)
-            {
-            vwmaOneHun.addClass('neutral-stuff-mobile')
-            }
+        if (price > vwmaFiftyNum)
+        {
+        vwmaFifty.addClass('bullish-stuff-mobile')
+        } 
+        else if (price < vwmaFiftyNum)
+        {
+        vwmaFifty.addClass('bearish-stuff-mobile')
+        }
+        else if (price == vwmaFiftyNum)
+        {
+        vwmaFifty.addClass('neutral-stuff-mobile')
+        }
 
-            if (price > vwmaTwoHunNum)
-            {
-            vwmaTwoHun.addClass('bullish-stuff-mobile')
-            } 
-            else if (price < vwmaTwoHunNum)
-            {
-            vwmaTwoHun.addClass('bearish-stuff-mobile')
-            }
-            else if (price == vwmaTwoHunNum)
-            {
-            vwmaTwoHun.addClass('neutral-stuff-mobile')
-            }
+        if (price > vwmaOneHunNum)
+        {
+        vwmaOneHun.addClass('bullish-stuff-mobile')
+        } 
+        else if (price < vwmaOneHunNum)
+        {
+        vwmaOneHun.addClass('bearish-stuff-mobile')
+        }
+        else if (price == vwmaOneHunNum)
+        {
+        vwmaOneHun.addClass('neutral-stuff-mobile')
+        }
+
+        if (price > vwmaTwoHunNum)
+        {
+        vwmaTwoHun.addClass('bullish-stuff-mobile')
+        } 
+        else if (price < vwmaTwoHunNum)
+        {
+        vwmaTwoHun.addClass('bearish-stuff-mobile')
+        }
+        else if (price == vwmaTwoHunNum)
+        {
+        vwmaTwoHun.addClass('neutral-stuff-mobile')
+        }
 
             if (price < vwap)
             {
@@ -1796,6 +1796,14 @@ const symbolBox = $('.symbol-box')
                 smaTwoHun.addClass('neutral-stuff-mobile')
             }
 
+            if (smaFiftyNum > smaTwoHunNum)
+            {
+                goldenCrossSma.addClass('cross-display')
+            }
+            else if (smaFiftyNum < smaTwoHunNum)
+            {
+                deathCrossSma.addClass('cross-display')
+            }
             //    EMA -----------------------------------
 
             if (price > emaEightNum)
@@ -1875,23 +1883,16 @@ const symbolBox = $('.symbol-box')
             {
                 emaTwoHun.addClass('neutral-stuff-mobile')
             }
-  // CROSS ------------------------------------------
+
             if (emaTwelveNum > emaTwentySixNum)
             {
-                goldenCrossEma.addClass('mobile-tap-cross-ema')
+                goldenCrossEma.addClass('cross-display')
             }
             else if (emaTwelveNum < emaTwentySixNum)
             {
-                deathCrossEma.addClass('mobile-tap-cross-ema')
+                deathCrossEma.addClass('cross-display')
             }
-            if (smaFiftyNum > smaTwoHunNum)
-            {
-                goldenCrossSma.addClass('mobile-tap-cross-sma')
-            }
-            else if (smaFiftyNum < smaTwoHunNum)
-            {
-                deathCrossSma.addClass('mobile-tap-cross-sma')
-            }
+
             //    WMA -----------------------------------
 
             if (price > wmaFifteenNum)
@@ -2814,6 +2815,14 @@ const symbolBox = $('.symbol-box')
                     smaTwoHun.addClass('neutral-stuff-mobile')
                 }
 
+                if (smaFiftyNum > smaTwoHunNum)
+                {
+                    goldenCrossSma.addClass('cross-display')
+                }
+                else if (smaFiftyNum < smaTwoHunNum)
+                {
+                    deathCrossSma.addClass('cross-display')
+                }
                 //    EMA -----------------------------------
 
                 if (price > emaEightNum)
@@ -2893,22 +2902,14 @@ const symbolBox = $('.symbol-box')
                 {
                     emaTwoHun.addClass('neutral-stuff-mobile')
                 }
-     // CROSS --------------------------------------------------------
+
                 if (emaTwelveNum > emaTwentySixNum)
                 {
-                    goldenCrossEma.addClass('mobile-tap-cross-ema')
+                    goldenCrossEma.addClass('cross-display')
                 }
                 else if (emaTwelveNum < emaTwentySixNum)
                 {
-                    deathCrossEma.addClass('mobile-tap-cross-ema')
-                }
-                if (smaFiftyNum > smaTwoHunNum)
-                {
-                    goldenCrossSma.addClass('mobile-tap-cross-sma')
-                }
-                else if (smaFiftyNum < smaTwoHunNum)
-                {
-                    deathCrossSma.addClass('mobile-tap-cross-sma')
+                    deathCrossEma.addClass('cross-display')
                 }
 
                 //    WMA -----------------------------------
@@ -4818,11 +4819,11 @@ if (isNaN(yesterdayVolIncrease))
             <a class="info-link ema-search-header" href="https://www.investopedia.com/terms/e/ema.asp" target="_blank"><h3 class='tech-header'>EMA</h3></a>
                     <div class="averages-row">
                         <p class="emaeight-search-actual mobile-tap">8: ${emaEight}</p>
-                        <p class="ematwelve-search-actual mobile-tap mobile-tap-cross">12: ${emaTwelve}</p>
+                        <p class="ematwelve-search-actual mobile-tap">12: ${emaTwelve}</p>
                     </div>
                     <div class="averages-row">
                     <p class="ematwenty-search-actual mobile-tap">20: ${emaTwenty}</p>
-                    <p class="ematwentysix-search-actual mobile-tap mobile-tap-cross">26: ${emaTwentySix}</p>
+                    <p class="ematwentysix-search-actual mobile-tap">26: ${emaTwentySix}</p>
                     </div>    
 
                     <p class="goldenEma-cross golden-cross ema-cross">Golden Cross</p>
