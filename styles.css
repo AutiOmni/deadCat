@@ -613,7 +613,6 @@ a:hover {
 .averages-row {
     display: flex;
     justify-content: space-between;
-    align-items: center;
 }
 
 .osc-text {
@@ -981,6 +980,7 @@ a:hover {
 
     .symbol-box {
         width: calc(50%);
+        font-size: 11px;
     }
 
     .row-ex {
@@ -1044,7 +1044,7 @@ a:hover {
     }
 
     #tech-in {
-        font-size: .85em;
+        font-size: .75em;
     }
 
     .active-search .search-text {
@@ -1087,25 +1087,5 @@ a:hover {
     transition: all ease-in 750ms;
     opacity: 0;
                             }
-
-    .mobile-tap {
-        padding: 5px 0;
-        }
-
-        .averages-row p {
-            margin-bottom: 2.5;
-        }
-  }
-
-  @media (max-width: 400px) {
-
-    .symbol-box {
-        width: calc(50%);
-        font-size: 10px;
-    }
-
-    #tech-in {
-        font-size: .70em;
-    }
 
   }
