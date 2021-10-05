@@ -1188,10 +1188,12 @@ function compileStocks(arr1, arr2, arr3, arr4, callback) {
                 if (marketDay == 0 || marketDay == 6) {
                     chartArr[num].yesterdayVolume = dataPull.historical[1].volume
                 }
-                if (marketDay == 1 && timeNum <= 930)
+
+                if (marketDay >= 1 && marketDay <= 5 && timeNum < 930)
                 {
                     chartArr[num].yesterdayVolume = dataPull.historical[1].volume
                 }
+
                 if (timeNum > 1830)
                 {
                     chartArr[num].yesterdayVolume = dataPull.historical[1].volume

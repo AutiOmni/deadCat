@@ -2594,10 +2594,12 @@ if ($(window).width() > 700)
             if (marketDay == 0 || marketDay == 6) {
                 searchedTicker.yesterdayVolume = dataPull.historical[1].volume
             }
-            if (marketDay == 1 && timeNum <= 930)
+
+            if (marketDay >= 1 && marketDay <= 5 && timeNum < 930)
             {
                 searchedTicker.yesterdayVolume = dataPull.historical[1].volume
             }
+
             if (timeNum > 1830)
             {
                 searchedTicker.yesterdayVolume = dataPull.historical[1].volume
