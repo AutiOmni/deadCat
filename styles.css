@@ -1044,8 +1044,8 @@ a:hover {
     }
 
     #tech-in {
-        font-size: .65em;
-    }
+        font-size: .70em;
+    } 
 
     .active-search .search-text {
         width: 72.5px;
@@ -1090,6 +1090,11 @@ a:hover {
 
              .mobile-tap {
                  padding-top: 2.5px;
-             }       
+             }  
+             
+             .sl,
+             .h {
+             font-size: .65em;
+         }
 
   }
