@@ -981,7 +981,6 @@ a:hover {
 
     .symbol-box {
         width: calc(50%);
-        font-size: 12.5px;
     }
 
     .row-ex {
@@ -1045,7 +1044,7 @@ a:hover {
     }
 
     #tech-in {
-        font-size: .75em;
+        font-size: .85em;
     }
 
     .active-search .search-text {
@@ -1090,11 +1089,11 @@ a:hover {
                             }
 
     .mobile-tap {
-        padding: 7.5px 0;
+        padding: 5px 0;
         }
 
         .averages-row p {
-            margin-bottom: 0;
+            margin-bottom: 2.5;
         }
   }
 
