@@ -443,6 +443,7 @@ a:hover {
     padding-top: 12px;
     background-color: var(--main-background);
     z-index: 99;
+    box-shadow: none;
 }
 
 .symbol-box h2 {

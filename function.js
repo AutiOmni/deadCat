@@ -1503,6 +1503,7 @@ const symbolBox = $('.symbol-box')
     }
 
     function indicatorColorsSearch() {
+
                // ALL MIGHTY PRICE
                let price = $(`.price-search`).text().slice(8,)
                // GET HEADERS FOR HOVER EFFECT
@@ -3499,6 +3500,7 @@ if ($(window).width() > 700)
         {
             directionArrow = 'up'
         }
+
         // CHANGE TO POSITIVE BUT ARROW POINTS DOWN OR UP ----------
         if (change < 0) {
             change = change * -1
@@ -3927,7 +3929,16 @@ if (isNaN(yesterdayVolIncrease))
         </div>`
         )
 
-        // GET RID OF LOADING SCREEN
+       // SET BOX SHADOW OF BULL AND BEAR
+        if (changesPercentage < 0) {
+            $('.symbol-search-box').css('box-shadow', 'inset 0px 2.5px 2px var(--bear-market-color), inset 0px 2.5px 2px var(--bear-market-color)')
+        }
+        else if (changesPercentage > 0)
+        {
+            $('.symbol-search-box').css('box-shadow', 'inset 0px 2.5px 2px var(--bull-market-color), inset 0px 2.5px 2px var(--bull-market-color)')
+        }
+         // GET RID OF LOADING SCREEN
         $('.loading-search').css('display', 'none');
         indicatorColorsSearch()
+
     }
