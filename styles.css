@@ -581,6 +581,11 @@ a:hover {
     font-size: 2em;
 }
 
+.st {
+    text-decoration: none;
+    padding-top: 6px;
+}
+
 .tech-title-warn {
     width: 100%;
     text-align: center;
@@ -1093,9 +1098,14 @@ a:hover {
              }  
              
              .sl,
-             .h {
+                .h {
              font-size: .65rem;
              
          }
+         .epo {
+            font-size: .52rem;
+        }
+
+       
 
   }

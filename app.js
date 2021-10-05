@@ -1982,8 +1982,8 @@ try {
   
     <div class="tech-down-${i}">
  
-     <h2 class="tech-title">Daily Indicators</h2>
-     <p class="tech-title-warn">For Educational Purposes Only</p>
+     <h2 class="tech-title t">Daily Indicators</h2>
+     <p class="tech-title-warn epo">For Educational Purposes Only</p>
  
          <div class="tech-vol-row">
          <a class="info-link" href="https://www.investopedia.com/articles/technical/02/010702.asp" target="_blank"><h3 class='tech-header'>Volume</h3></a>
@@ -2074,8 +2074,8 @@ try {
          <a class="info-link macd-down-header-${i}" href="https://www.investopedia.com/terms/m/macd.asp" target="_blank"><h3 class='tech-header'>MACD (12 , 26)</h3></a>
              <p class="osc-text macd-down-actual-${i} mobile-tap">${macdDown}</p>
                  <div class="macd-row">
-                     <p class="macd-signal-down-actual-${i}">Signal Line: ${macdSignalLineDown}</p>
-                     <p class="macd-histo-down-actual-${i}">Histogram: ${macdHistogramDown}</p>
+                     <p class="macd-signal-down-actual-${i} sl">Signal Line: ${macdSignalLineDown}</p>
+                     <p class="macd-histo-down-actual-${i} h">Histogram: ${macdHistogramDown}</p>
                  </div>
          </div>
  
@@ -2141,8 +2141,8 @@ try {
  
      <div class="tech-up-${i}">
  
-     <h2 class="tech-title">Daily Indicators</h2>
-     <p class="tech-title-warn">For Educational Purposes Only</p>
+     <h2 class="tech-title t">Daily Indicators</h2>
+     <p class="tech-title-warn epo">For Educational Purposes Only</p>
  
              <div class="tech-row">
              <a class="info-link" href="https://www.investopedia.com/articles/technical/02/010702.asp" target="_blank"><h3 class='tech-header'>Volume</h3></a>
@@ -2231,8 +2231,8 @@ try {
          <a class="info-link macd-up-header-${i}" href="https://www.investopedia.com/terms/m/macd.asp" target="_blank"><h3 class='tech-header'>MACD (12 , 26)</h3></a>
              <p class="osc-text macd-up-actual-${i} mobile-tap">${macdUp}</p>
                  <div class="macd-row">
-                     <p class="macd-signal-up-actual-${i}">Signal Line: ${macdSignalLineUp}</p>
-                     <p class="macd-histo-up-actual-${i}">Histogram: ${macdHistogramUp}</p>
+                     <p class="macd-signal-up-actual-${i} sl">Signal Line: ${macdSignalLineUp}</p>
+                     <p class="macd-histo-up-actual-${i} h">Histogram: ${macdHistogramUp}</p>
                  </div>
          </div>
  

@@ -3024,9 +3024,9 @@ if (isNaN(yesterdayVolIncrease))
     
     <div class="tech-search">
 
-        <h2 class="tech-title">${symbol}'s</h2>
-        <h2 class="tech-title">Daily Indicators</h2> <!--- put if else for if its up or down then out arrow next to it here --------->
-        <p class="tech-title-warn">For Educational Purposes Only</p>
+        <h2 class="tech-title st">${symbol}'s</h2>
+        <h2 class="tech-title t">Daily Indicators</h2> <!--- put if else for if its up or down then out arrow next to it here --------->
+        <p class="tech-title-warn epo">For Educational Purposes Only</p>
 
         <div class="tech-row">
         <p class="search-price-text price-search">Price: $${price}</p>
@@ -3125,8 +3125,8 @@ if (isNaN(yesterdayVolIncrease))
             <a class="info-link macd-search-header" href="https://www.investopedia.com/terms/m/macd.asp" target="_blank"><h3 class='tech-header'>MACD (12 , 26)</h3></a>
                 <p class="osc-text macd-search-actual mobile-tap">${macd}</p>
                     <div class="macd-row">
-                        <p>Signal Line: ${macdSignalLine}</p>
-                        <p>Histogram: ${macdHistogram}</p>
+                        <p class="sl">Signal Line: ${macdSignalLine}</p>
+                        <p  class="h">Histogram: ${macdHistogram}</p>
                     </div>
             </div>
 
