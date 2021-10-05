@@ -3051,79 +3051,79 @@ if (isNaN(yesterdayVolIncrease))
 
                 <a class="info-link sma-search-header" href="https://www.investopedia.com/terms/s/sma.asp" target="_blank"><h3 class='tech-header'>SMA</h3></a>
                     <div class="averages-row">
-                        <p class="smafifteen-search-actual">15: ${smaFiveTeen}</p>
-                        <p class="smatwenty-search-actual">20: ${smaTwenty}</p>
+                        <p class="smafifteen-search-actual mobile-tap">15: ${smaFiveTeen}</p>
+                        <p class="smatwenty-search-actual mobile-tap">20: ${smaTwenty}</p>
                     </div>
                     <div class="averages-row">
-                        <p class="smathirty-search-actual">30: ${smaThirty}</p>
-                        <p class="smafifty-search-actual">50: ${smaFifty}</p>
+                        <p class="smathirty-search-actual mobile-tap">30: ${smaThirty}</p>
+                        <p class="smafifty-search-actual mobile-tap">50: ${smaFifty}</p>
                     </div>
                     
                  <p class="golden-cross">Golden Cross</p>
                  <p class="death-cross">Death Cross</p>
 
                     <div class="averages-row">
-                        <p class="smaonehundred-search-actual">100: ${smaOneHun}</p>
-                        <p class="smatwohundred-search-actual">200: ${smaTwoHun}</p>
+                        <p class="smaonehundred-search-actual mobile-tap">100: ${smaOneHun}</p>
+                        <p class="smatwohundred-search-actual mobile-tap">200: ${smaTwoHun}</p>
                     </div>
             </div>
 
             <div class="tech-row">
             <a class="info-link ema-search-header" href="https://www.investopedia.com/terms/e/ema.asp" target="_blank"><h3 class='tech-header'>EMA</h3></a>
                     <div class="averages-row">
-                        <p class="emaeight-search-actual">8: ${emaEight}</p>
-                        <p class="ematwelve-search-actual">12: ${emaTwelve}</p>
+                        <p class="emaeight-search-actual mobile-tap">8: ${emaEight}</p>
+                        <p class="ematwelve-search-actual mobile-tap">12: ${emaTwelve}</p>
                     </div>
                     <div class="averages-row">
-                    <p class="ematwenty-search-actual">20: ${emaTwenty}</p>
-                    <p class="ematwentysix-search-actual">26: ${emaTwentySix}</p>
+                    <p class="ematwenty-search-actual mobile-tap">20: ${emaTwenty}</p>
+                    <p class="ematwentysix-search-actual mobile-tap">26: ${emaTwentySix}</p>
                     </div>    
                     <div class="averages-row">
-                        <p class="emafifty-search-actual">50: ${emaFifty}</p>
-                        <p class="ematwohundred-search-actual">200: ${emaTwoHun}</p>
+                        <p class="emafifty-search-actual mobile-tap">50: ${emaFifty}</p>
+                        <p class="ematwohundred-search-actual mobile-tap">200: ${emaTwoHun}</p>
                     </div>           
             </div>
 
             <div class="tech-row">
             <a class="info-link wma-search-header" href="https://www.investopedia.com/ask/answers/071414/whats-difference-between-moving-average-and-weighted-moving-average.asp" target="_blank"><h3 class='tech-header'>WMA</h3></a>
                     <div class="averages-row">
-                        <p class="wmafifteen-search-actual">15: ${wmaFiveTeen}</p>
-                        <p class="wmatwenty-search-actual">20: ${wmaTwenty}</p>
+                        <p class="wmafifteen-search-actual mobile-tap">15: ${wmaFiveTeen}</p>
+                        <p class="wmatwenty-search-actual mobile-tap">20: ${wmaTwenty}</p>
                     </div>
                     <div class="averages-row">
-                        <p class="wmathirty-search-actual">30: ${wmaThirty}</p>
-                        <p class="wmafifty-search-actual">50: ${wmaFifty}</p>
+                        <p class="wmathirty-search-actual mobile-tap">30: ${wmaThirty}</p>
+                        <p class="wmafifty-search-actual mobile-tap">50: ${wmaFifty}</p>
                     </div>
                     <div class="averages-row">
-                        <p class="wmaonehundred-search-actual">100: ${wmaOneHun}</p>
-                        <p class="wmatwohundred-search-actual">200: ${wmaTwoHun}</p>
+                        <p class="wmaonehundred-search-actual mobile-tap">100: ${wmaOneHun}</p>
+                        <p class="wmatwohundred-search-actual mobile-tap">200: ${wmaTwoHun}</p>
                     </div>
             </div>
 
             <div class="tech-row">
             <a class="info-link vwma-search-header" href="https://www.tradingsetupsreview.com/volume-weighted-moving-average-vwma/" target="_blank"><h3 class='tech-header'>VWMA</h3></a>
                     <div class="averages-row">
-                        <p class="vwmafifteen-search-actual">15: ${vwmaFiveTeen}</p>
-                        <p class="vwmatwenty-search-actual">20: ${vwmaTwenty}</p>
+                        <p class="vwmafifteen-search-actual mobile-tap">15: ${vwmaFiveTeen}</p>
+                        <p class="vwmatwenty-search-actual mobile-tap">20: ${vwmaTwenty}</p>
                     </div>
                     <div class="averages-row">
-                        <p class="vwmathirty-search-actual">30: ${vwmaThirty}</p>
-                        <p class="vwmafifty-search-actual">50: ${vwmaFifty}</p>
+                        <p class="vwmathirty-search-actual mobile-tap">30: ${vwmaThirty}</p>
+                        <p class="vwmafifty-search-actual mobile-tap">50: ${vwmaFifty}</p>
                     </div>
                     <div class="averages-row">
-                        <p class="vwmaonehundred-search-actual">100: ${vwmaOneHun}</p>
-                        <p class="vwmatwohundred-search-actual">200: ${vwmaTwoHun}</p>
+                        <p class="vwmaonehundred-search-actual mobile-tap">100: ${vwmaOneHun}</p>
+                        <p class="vwmatwohundred-search-actual mobile-tap">200: ${vwmaTwoHun}</p>
                     </div>
             </div>
 
             <div class="tech-row">
             <a class="info-link vwap-search-header" href="https://www.investopedia.com/terms/v/vwap.asp" target="_blank"><h3 class='tech-header'>VWAP (5 Minute)</h3></a>
-                <p class="osc-text vwap-search-actual">${vwap}</p>
+                <p class="osc-text vwap-search-actual mobile-tap">${vwap}</p>
             </div>
 
             <div class="tech-row">
             <a class="info-link macd-search-header" href="https://www.investopedia.com/terms/m/macd.asp" target="_blank"><h3 class='tech-header'>MACD (12 , 26)</h3></a>
-                <p class="osc-text macd-search-actual">${macd}</p>
+                <p class="osc-text macd-search-actual mobile-tap">${macd}</p>
                     <div class="macd-row">
                         <p>Signal Line: ${macdSignalLine}</p>
                         <p>Histogram: ${macdHistogram}</p>
@@ -3133,34 +3133,34 @@ if (isNaN(yesterdayVolIncrease))
             <div class="flex-rsi-cci">
                 <div class="tech-row">
                 <a class="info-link rsi-search-header" href="https://www.investopedia.com/terms/s/stochrsi.asp" target="_blank"><h3 class='tech-header'>RSI</h3></a>
-                    <p class="osc-text rsi-search-actual">${rsi}</p>
+                    <p class="osc-text rsi-search-actual mobile-tap">${rsi}</p>
                 </div>
 
                 <div class="tech-row">
                 <a class="info-link cci-search-header" href="https://www.investopedia.com/terms/c/commoditychannelindex.asp" target="_blank"><h3 class='tech-header'>CCI</h3></a>
-                    <p class="osc-text cci-search-actual">${cciTwenty}</p>
+                    <p class="osc-text cci-search-actual mobile-tap">${cciTwenty}</p>
                 </div>
 
             </div>
 
             <div class="tech-row">
             <a class="info-link williams-search-header" href="https://www.investopedia.com/terms/w/williamsr.asp" target="_blank"><h3 class='tech-header'>Williams %R</h3></a>
-                <p class="osc-text williams-search-actual">${williamsR}</p>
+                <p class="osc-text williams-search-actual mobile-tap">${williamsR}</p>
             </div>
 
 
             <div class="tech-row">
             <a class="info-link stochastic-search-header" href="https://www.investopedia.com/terms/s/stochasticoscillator.asp" target="_blank"><h3 class='tech-header'>Stochastic Oscillator</h3></a>
             <div class="averages-row">
-                <p class="osc-text stochasticK-search-actual stochK">%K: ${stochasticK}</p>
-                <p class="osc-text stochasticD-search-actual stochD">%D: ${stochasticD}</p>
+                <p class="osc-text stochasticK-search-actual stochK mobile-tap">%K: ${stochasticK}</p>
+                <p class="osc-text stochasticD-search-actual stochD mobile-tap">%D: ${stochasticD}</p>
             </div>
                 <p class="osc-text">Signal Line: ${stochasticSignal}</p>
             </div>
 
             <div class="tech-row">
             <a class="info-link bb-search-header" href="https://www.investopedia.com/terms/b/bollingerbands.asp" target="_blank"><h3 class='tech-header'>Bollinger Bands</h3></a>
-                <p class="osc-text bbPercent-search-actual">%B: ${bbPercent}</p>
+                <p class="osc-text bbPercent-search-actual mobile-tap">%B: ${bbPercent}</p>
                 <div class="averages-row">
                     <p class="osc-text">Upper: ${bbUpper}</p>
                     <p class="osc-text">Lower: ${bbLower}</p>

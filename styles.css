@@ -1090,5 +1090,9 @@ a:hover {
     transform: translate(0%, 0%) !important;
     transition: all ease-in 750ms;
     opacity: 0;
-}
+                            }
+
+    .mobile-tap {
+        height: 25px;
+        }
   }
