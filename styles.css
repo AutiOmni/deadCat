@@ -1088,4 +1088,8 @@ a:hover {
     opacity: 0;
                             }
 
+             .mobile-tap {
+                 padding-top: 2.5px;
+             }       
+
   }
