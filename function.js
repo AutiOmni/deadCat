@@ -976,6 +976,15 @@ const symbolBox = $('.symbol-box')
         wmaTwoHun.addClass('neutral-stuff-mobile')
         }
 
+        if (wmaFiftyNum > wmaTwoHunNum)
+        {
+            goldenCrossWma.addClass('cross-display')
+        }
+        else if (wmaFiftyNum < wmaTwoHunNum)
+        {
+            deathCrossWma.addClass('cross-display')
+        }
+
         //    VWMA -----------------------------------
 
         if (price > vwmaFifteenNum)
@@ -1054,6 +1063,15 @@ const symbolBox = $('.symbol-box')
         else if (price == vwmaTwoHunNum)
         {
         vwmaTwoHun.addClass('neutral-stuff-mobile')
+        }
+
+        if (vwmaFiftyNum > vwmaTwoHunNum)
+        {
+            goldenCrossVwma.addClass('cross-display')
+        }
+        else if (vwmaFiftyNum < vwmaTwoHunNum)
+        {
+            deathCrossVwma.addClass('cross-display')
         }
 
             if (price < vwap)
@@ -2015,6 +2033,15 @@ const symbolBox = $('.symbol-box')
             wmaTwoHun.addClass('neutral-stuff-mobile')
             }
 
+            if (wmaFiftyNum > wmaTwoHunNum)
+            {
+                goldenCrossWma.addClass('cross-display')
+            }
+            else if (wmaFiftyNum < wmaTwoHunNum)
+            {
+                deathCrossWma.addClass('cross-display')
+            }
+
             //    VWMA -----------------------------------
 
             if (price > vwmaFifteenNum)
@@ -2093,6 +2120,15 @@ const symbolBox = $('.symbol-box')
             else if (price == vwmaTwoHunNum)
             {
             vwmaTwoHun.addClass('neutral-stuff-mobile')
+            }
+
+            if (vwmaFiftyNum > vwmaTwoHunNum)
+            {
+                goldenCrossVwma.addClass('cross-display')
+            }
+            else if (vwmaFiftyNum < vwmaTwoHunNum)
+            {
+                deathCrossVwma.addClass('cross-display')
             }
 
             if (price < vwap)
@@ -3054,6 +3090,15 @@ const symbolBox = $('.symbol-box')
                 wmaTwoHun.addClass('neutral-stuff-mobile')
                 }
 
+                if (wmaFiftyNum > wmaTwoHunNum)
+                {
+                    goldenCrossWma.addClass('cross-display')
+                }
+                else if (wmaFiftyNum < wmaTwoHunNum)
+                {
+                    deathCrossWma.addClass('cross-display')
+                }
+
                 //    VWMA -----------------------------------
 
                 if (price > vwmaFifteenNum)
@@ -3132,6 +3177,15 @@ const symbolBox = $('.symbol-box')
                 else if (price == vwmaTwoHunNum)
                 {
                 vwmaTwoHun.addClass('neutral-stuff-mobile')
+                }
+
+                if (vwmaFiftyNum > vwmaTwoHunNum)
+                {
+                    goldenCrossVwma.addClass('cross-display')
+                }
+                else if (vwmaFiftyNum < vwmaTwoHunNum)
+                {
+                    deathCrossVwma.addClass('cross-display')
                 }
 
                 
@@ -4907,7 +4961,6 @@ if (isNaN(yesterdayVolIncrease))
                         <p class="wmathirty-search-actual mobile-tap">30: ${wmaThirty}</p>
                         <p class="wmafifty-search-actual mobile-tap">50: ${wmaFifty}</p>
                     </div>
-
 
                     <p class="goldenWma-cross golden-cross wma-cross">Golden Cross</p>
                     <p class="deathWma-cross death-cross wma-cross">Death Cross</p>
