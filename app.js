@@ -2048,6 +2048,10 @@ try {
                      <p class="wmathirty-down-actual-${i} mobile-tap">30: ${wmaThirtyDown}</p>
                      <p class="wmafifty-down-actual-${i} mobile-tap">50: ${wmaFiftyDown}</p>
                  </div>
+
+                 <p class="goldenWma-cross-down-${i} golden-cross wma-cross">Golden Cross</p>
+                 <p class="deathWma-cross-down-${i} death-cross wma-cross">Death Cross</p>
+
                  <div class="averages-row">
                      <p class="wmaonehundred-down-actual-${i} mobile-tap">100: ${wmaOneHunDown}</p>
                      <p class="wmatwohundred-down-actual-${i} mobile-tap">200: ${wmaTwoHunDown}</p>
@@ -2064,6 +2068,10 @@ try {
                      <p class="vwmathirty-down-actual-${i} mobile-tap">30: ${vwmaThirtyDown}</p>
                      <p class="vwmafifty-down-actual-${i} mobile-tap">50: ${vwmaFiftyDown}</p>
                  </div>
+
+                 <p class="goldenVwma-cross-down-${i} golden-cross vwma-cross">Golden Cross</p>
+                 <p class="deathVwma-cross-down-${i} death-cross vwma-cross">Death Cross</p>
+
                  <div class="averages-row">
                      <p class="vwmaonehundred-down-actual-${i} mobile-tap">100: ${vwmaOneHunDown}</p>
                      <p class="vwmatwohundred-down-actual-${i} mobile-tap">200: ${vwmaTwoHunDown}</p>
@@ -2209,6 +2217,10 @@ try {
                      <p class="wmathirty-up-actual-${i} mobile-tap">30: ${wmaThirtyUp}</p>
                      <p class="wmafifty-up-actual-${i} mobile-tap">50: ${wmaFiftyUp}</p>
                  </div>
+
+                 <p class="goldenWma-cross-up-${i} golden-cross wma-cross">Golden Cross</p>
+                 <p class="deathWma-cross-up-${i} death-cross wma-cross">Death Cross</p>
+
                  <div class="averages-row">
                      <p class="wmaonehundred-up-actual-${i} mobile-tap">100: ${wmaOneHunUp}</p>
                      <p class="wmatwohundred-up-actual-${i} mobile-tap">200: ${wmaTwoHunUp}</p>
@@ -2225,6 +2237,10 @@ try {
                      <p class="vwmathirty-up-actual-${i} mobile-tap">30: ${vwmaThirtyUp}</p>
                      <p class="vwmafifty-up-actual-${i} mobile-tap">50: ${vwmaFiftyUp}</p>
                  </div>
+
+                 <p class="goldenVwma-cross-up-${i} golden-cross vwma-cross">Golden Cross</p>
+                 <p class="deathVwma-cross-up-${i} death-cross vwma-cross">Death Cross</p>
+
                  <div class="averages-row">
                      <p class="vwmaonehundred-up-actual-${i} mobile-tap">100: ${vwmaOneHunUp}</p>
                      <p class="vwmatwohundred-up-actual-${i} mobile-tap">200: ${vwmaTwoHunUp}</p>

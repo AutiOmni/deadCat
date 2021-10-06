@@ -212,6 +212,10 @@ const symbolBox = $('.symbol-box')
             let deathCrossSma = $(`.deathSma-cross-down-${i}`)
             let goldenCrossEma = $(`.goldenEma-cross-down-${i}`)
             let deathCrossEma = $(`.deathEma-cross-down-${i}`)
+            let goldenCrossWma = $(`.goldenWma-cross-down-${i}`)
+            let deathCrossWma = $(`.deathWma-cross-down-${i}`)
+            let goldenCrossVwma = $(`.goldenVwma-cross-down-${i}`)
+            let deathCrossVwma = $(`.deathVwma-cross-down-${i}`)
 
             // TURN STRING TO NUM
             price = parseFloat(price)
@@ -509,7 +513,16 @@ const symbolBox = $('.symbol-box')
                 wmaTwoHun.addClass('neutral-ma')
            }
 
-    //    WMA -----------------------------------
+           if (wmaFiftyNum > wmaTwoHunNum)
+           {
+               goldenCrossWma.addClass('cross-display')
+           }
+           else if (wmaFiftyNum < wmaTwoHunNum)
+           {
+               deathCrossWma.addClass('cross-display')
+           }
+
+    //    VWMA -----------------------------------
 
              if (price > vwmaFifteenNum)
              {
@@ -588,6 +601,15 @@ const symbolBox = $('.symbol-box')
              {
                   vwmaTwoHun.addClass('neutral-ma')
              }  
+
+             if (vwmaFiftyNum > vwmaTwoHunNum)
+             {
+                 goldenCrossVwma.addClass('cross-display')
+             }
+             else if (vwmaFiftyNum < vwmaTwoHunNum)
+             {
+                 deathCrossVwma.addClass('cross-display')
+             }
 
             // TECHNICAL CHECK ---------------
             if (price < vwap)
@@ -1230,6 +1252,10 @@ const symbolBox = $('.symbol-box')
         let deathCrossSma = $(`.deathSma-cross-up-${i}`)
         let goldenCrossEma = $(`.goldenEma-cross-up-${i}`)
         let deathCrossEma = $(`.deathEma-cross-up-${i}`)
+        let goldenCrossWma = $(`.goldenWma-cross-up-${i}`)
+        let deathCrossWma = $(`.deathWma-cross-up-${i}`)
+        let goldenCrossVwma = $(`.goldenVwma-cross-up-${i}`)
+        let deathCrossVwma = $(`.deathVwma-cross-up-${i}`)
 
         // TURN STRING TO NUM
         price = parseFloat(price)
@@ -1527,6 +1553,15 @@ const symbolBox = $('.symbol-box')
                  wmaTwoHun.addClass('neutral-ma')
             }
 
+            if (wmaFiftyNum > wmaTwoHunNum)
+            {
+                goldenCrossWma.addClass('cross-display')
+            }
+            else if (wmaFiftyNum < wmaTwoHunNum)
+            {
+                deathCrossWma.addClass('cross-display')
+            }
+
     //    VWMA -----------------------------------
 
            if (price > vwmaFifteenNum)
@@ -1607,7 +1642,14 @@ const symbolBox = $('.symbol-box')
                 vwmaTwoHun.addClass('neutral-ma')
            }
 
-
+           if (vwmaFiftyNum > vwmaTwoHunNum)
+           {
+               goldenCrossVwma.addClass('cross-display')
+           }
+           else if (vwmaFiftyNum < vwmaTwoHunNum)
+           {
+               deathCrossVwma.addClass('cross-display')
+           }
 
             // TECHNICAL CHECK ---------------
             if (price < vwap)
@@ -2248,6 +2290,10 @@ const symbolBox = $('.symbol-box')
                 let deathCrossSma = $(`.deathSma-cross`)
                 let goldenCrossEma = $(`.goldenEma-cross`)
                 let deathCrossEma = $(`.deathEma-cross`)
+                let goldenCrossWma = $(`.goldenWma-cross`)
+                let deathCrossWma = $(`.deathWma-cross`)
+                let goldenCrossVwma = $(`.goldenVwma-cross`)
+                let deathCrossVwma = $(`.deathVwma-cross`)
     
                // TURN STRING TO NUM
                price = parseFloat(price)
@@ -2545,6 +2591,15 @@ const symbolBox = $('.symbol-box')
                 wmaTwoHun.addClass('neutral-ma')
            }
 
+           if (wmaFiftyNum > wmaTwoHunNum)
+           {
+               goldenCrossWma.addClass('cross-display')
+           }
+           else if (wmaFiftyNum < wmaTwoHunNum)
+           {
+               deathCrossWma.addClass('cross-display')
+           }
+
     //    VWMA -----------------------------------
 
            if (price > vwmaFifteenNum)
@@ -2625,7 +2680,14 @@ const symbolBox = $('.symbol-box')
                 vwmaTwoHun.addClass('neutral-ma')
            }
 
-               
+           if (vwmaFiftyNum > vwmaTwoHunNum)
+           {
+               goldenCrossVwma.addClass('cross-display')
+           }
+           else if (vwmaFiftyNum < vwmaTwoHunNum)
+           {
+               deathCrossVwma.addClass('cross-display')
+           }
 
                // TECHNICAL START ------------------
                if (price < vwap)
@@ -4845,6 +4907,11 @@ if (isNaN(yesterdayVolIncrease))
                         <p class="wmathirty-search-actual mobile-tap">30: ${wmaThirty}</p>
                         <p class="wmafifty-search-actual mobile-tap">50: ${wmaFifty}</p>
                     </div>
+
+
+                    <p class="goldenWma-cross golden-cross wma-cross">Golden Cross</p>
+                    <p class="deathWma-cross death-cross wma-cross">Death Cross</p>
+
                     <div class="averages-row">
                         <p class="wmaonehundred-search-actual mobile-tap">100: ${wmaOneHun}</p>
                         <p class="wmatwohundred-search-actual mobile-tap">200: ${wmaTwoHun}</p>
@@ -4861,6 +4928,10 @@ if (isNaN(yesterdayVolIncrease))
                         <p class="vwmathirty-search-actual mobile-tap">30: ${vwmaThirty}</p>
                         <p class="vwmafifty-search-actual mobile-tap">50: ${vwmaFifty}</p>
                     </div>
+
+                    <p class="goldenVwma-cross golden-cross vwma-cross">Golden Cross</p>
+                    <p class="deathVwma-cross death-cross vwma-cross">Death Cross</p>
+
                     <div class="averages-row">
                         <p class="vwmaonehundred-search-actual mobile-tap">100: ${vwmaOneHun}</p>
                         <p class="vwmatwohundred-search-actual mobile-tap">200: ${vwmaTwoHun}</p>
