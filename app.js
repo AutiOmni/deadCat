@@ -1365,7 +1365,7 @@ try {
     let j = 0 
     while (j < finalArr.length) { // LOOP FOR TECHNICAL SYMBOL
             // THIS IS THE ALL MIGHTY SYMBOL USED FOR PULLS
-            let {symbol} = finalArr[j].symbol
+            let {symbol} = finalArr[j]
             //THIS PULL IS FOR CLOSE PRICES TO CALC TAs PAST CLOSE DATA // 
             const resSMA = await  fetch(`https://financialmodelingprep.com/api/v3/historical-price-full/${symbol}?apikey=4d4593bc9e6bc106ee9d1cbd6400b218`)
             const dataSMA = await resSMA.json() // SMA PULL USED FOR OTHER CALCS
