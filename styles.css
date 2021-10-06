@@ -150,6 +150,11 @@ a:hover {
     opacity: 1;
 }
 
+.explain-p:first-letter {
+    font-size: 2rem;
+    line-height: 0;
+}
+
 /* ------------------------------------------------------ INFO HUH */
 
 .huh {
