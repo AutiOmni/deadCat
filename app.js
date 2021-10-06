@@ -491,13 +491,14 @@ if (finalChartFatDown.length < 5)
         // VWMA FIVETEEN --------------------------------------------------------------------
 
 try {
-        let totalCul = newPrice * newVol
         let price = 0
         let volume = 0
         const newPrice = newestPull[0].price
         const newVol = newestPull[0].volume
 
         let volCul = newestPull[0].volume
+
+        let totalCul = newPrice * newVol
 
 
         if (dataPull.historical.length < 14) {
@@ -2036,7 +2037,7 @@ if (changeDown == undefined)
     }
     if (vwmaTwoHunUp == undefined)
     {
-        wmaTwoHunUp = 'No Data'
+        vwmaTwoHunUp = 'No Data'
     }
     if (vwmaTwoHunDown == undefined)
     {
