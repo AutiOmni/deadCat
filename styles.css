@@ -1147,6 +1147,10 @@ a:hover {
         height: 100px;
     }
 
+    .how-to-use p {
+        font-size: .75rem;
+    }
+
     .display-1 {
         font-size: 5rem;
     }
@@ -1184,5 +1188,8 @@ a:hover {
     }
     #tech-in {
         font-size: .60rem;
+    }
+    .how-to-use p {
+        font-size: .55rem;
     }
 }
