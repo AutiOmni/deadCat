@@ -5000,8 +5000,8 @@ if (isNaN(yesterdayVolIncrease))
             <a class="info-link macd-search-header" href="https://www.investopedia.com/terms/m/macd.asp" target="_blank"><h3 class='tech-header'>MACD (12 , 26)</h3></a>
                 <p class="osc-text macd-search-actual mobile-tap">${macd}</p>
                     <div class="macd-row">
-                        <p class="sl">Signal Line: ${macdSignalLine}</p>
-                        <p  class="h">Histogram: ${macdHistogram}</p>
+                        <p class="sl">Signal Line:<br>${macdSignalLine}</p>
+                        <p  class="h">Histogram:<br>${macdHistogram}</p>
                     </div>
             </div>
 

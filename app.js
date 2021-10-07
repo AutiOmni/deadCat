@@ -2272,8 +2272,8 @@ try {
          <a class="info-link macd-down-header-${i}" href="https://www.investopedia.com/terms/m/macd.asp" target="_blank"><h3 class='tech-header'>MACD (12 , 26)</h3></a>
              <p class="osc-text macd-down-actual-${i} mobile-tap">${macdDown}</p>
                  <div class="macd-row">
-                     <p class="macd-signal-down-actual-${i} sl">Signal Line: ${macdSignalLineDown}</p>
-                     <p class="macd-histo-down-actual-${i} h">Histogram: ${macdHistogramDown}</p>
+                     <p class="macd-signal-down-actual-${i} sl">Signal Line:<br>${macdSignalLineDown}</p>
+                     <p class="macd-histo-down-actual-${i} h">Histogram:<br>${macdHistogramDown}</p>
                  </div>
          </div>
  
@@ -2441,8 +2441,8 @@ try {
          <a class="info-link macd-up-header-${i}" href="https://www.investopedia.com/terms/m/macd.asp" target="_blank"><h3 class='tech-header'>MACD (12 , 26)</h3></a>
              <p class="osc-text macd-up-actual-${i} mobile-tap">${macdUp}</p>
                  <div class="macd-row">
-                     <p class="macd-signal-up-actual-${i} sl">Signal Line: ${macdSignalLineUp}</p>
-                     <p class="macd-histo-up-actual-${i} h">Histogram: ${macdHistogramUp}</p>
+                     <p class="macd-signal-up-actual-${i} sl">Signal Line:<br>${macdSignalLineUp}</p>
+                     <p class="macd-histo-up-actual-${i} h">Histogram:<br>${macdHistogramUp}</p>
                  </div>
          </div>
  
