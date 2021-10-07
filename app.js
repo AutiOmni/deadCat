@@ -2272,8 +2272,8 @@ try {
          <a class="info-link macd-down-header-${i}" href="https://www.investopedia.com/terms/m/macd.asp" target="_blank"><h3 class='tech-header'>MACD (12 , 26)</h3></a>
              <p class="osc-text macd-down-actual-${i} mobile-tap">${macdDown}</p>
                  <div class="macd-row">
-                     <p class="macd-signal-down-actual-${i}">Signal Line:<br> ${macdSignalLineDown}</p>
-                     <p class="macd-histo-down-actual-${i}">Histogram:<br> ${macdHistogramDown}</p>
+                     <p class="macd-signal-down-actual-${i}">Signal Line:<br>${macdSignalLineDown}</p>
+                     <p class="macd-histo-down-actual-${i}">Histogram:<br>${macdHistogramDown}</p>
                  </div>
          </div>
  
@@ -2309,8 +2309,8 @@ try {
          <a class="info-link bb-down-header-${i}" href="https://www.investopedia.com/terms/b/bollingerbands.asp" target="_blank"><h3 class='tech-header'>Bollinger Bands</h3></a>
             <p class="osc-text bbPercent-down-actual-${i} mobile-tap">%B: ${bbPercentDown}</p>
             <div class="averages-row">
-                <p class="osc-text bbUpper-down-actual-${i}">Upper: ${bbUpperDown}</p>
-                <p class="osc-text bbLower-down-actual-${i}">Lower: ${bbLowerDown}</p>
+                <p class="osc-text bbUpper-down-actual-${i}">Upper:<br>${bbUpperDown}</p>
+                <p class="osc-text bbLower-down-actual-${i}">Lower:<br>${bbLowerDown}</p>
             </div>
          
             <p class="osc-text bbMiddle-down-actual-${i}">Middle: ${bbMiddleDown}</p>
@@ -2441,8 +2441,8 @@ try {
          <a class="info-link macd-up-header-${i}" href="https://www.investopedia.com/terms/m/macd.asp" target="_blank"><h3 class='tech-header'>MACD (12 , 26)</h3></a>
              <p class="osc-text macd-up-actual-${i} mobile-tap">${macdUp}</p>
                  <div class="macd-row">
-                     <p class="macd-signal-up-actual-${i}">Signal Line: <br>${macdSignalLineUp}</p>
-                     <p class="macd-histo-up-actual-${i}">Histogram: <br>${macdHistogramUp}</p>
+                     <p class="macd-signal-up-actual-${i}">Signal Line:<br>${macdSignalLineUp}</p>
+                     <p class="macd-histo-up-actual-${i}">Histogram:<br>${macdHistogramUp}</p>
                  </div>
          </div>
  
@@ -2477,8 +2477,8 @@ try {
          <a class="info-link bb-up-header-${i}" href="https://www.investopedia.com/terms/b/bollingerbands.asp" target="_blank"><h3 class='tech-header'>Bollinger Bands</h3></a>
             <p class="osc-text bbPercent-up-actual-${i} mobile-tap">%B: ${bbPercentUp}</p>
             <div class="averages-row">
-                <p class="osc-text bbUpper-up-actual-${i}">Upper: ${bbUpperUp}</p>
-                <p class="osc-text bbLower-up-actual-${i}">Lower: ${bbLowerUp}</p>
+                <p class="osc-text bbUpper-up-actual-${i}">Upper:<br>${bbUpperUp}</p>
+                <p class="osc-text bbLower-up-actual-${i}">Lower:<br>${bbLowerUp}</p>
             </div>
          
                 <p class="osc-text bbMiddle-up-actual-${i}">Middle: ${bbMiddleUp}</p>

@@ -5000,8 +5000,8 @@ if (isNaN(yesterdayVolIncrease))
             <a class="info-link macd-search-header" href="https://www.investopedia.com/terms/m/macd.asp" target="_blank"><h3 class='tech-header'>MACD (12 , 26)</h3></a>
                 <p class="osc-text macd-search-actual mobile-tap">${macd}</p>
                     <div class="macd-row">
-                        <p class="">Signal Line:<br> ${macdSignalLine}</p>
-                        <p  class="">Histogram:<br> ${macdHistogram}</p>
+                        <p class="">Signal Line:<br>${macdSignalLine}</p>
+                        <p  class="">Histogram:<br>${macdHistogram}</p>
                     </div>
             </div>
 
@@ -5037,8 +5037,8 @@ if (isNaN(yesterdayVolIncrease))
             <a class="info-link bb-search-header" href="https://www.investopedia.com/terms/b/bollingerbands.asp" target="_blank"><h3 class='tech-header'>Bollinger Bands</h3></a>
                 <p class="osc-text bbPercent-search-actual mobile-tap">%B: ${bbPercent}</p>
                 <div class="averages-row">
-                    <p class="osc-text">Upper: ${bbUpper}</p>
-                    <p class="osc-text">Lower: ${bbLower}</p>
+                    <p class="osc-text">Upper:<br>${bbUpper}</p>
+                    <p class="osc-text">Lower:<br>${bbLower}</p>
                 </div>
                     <p class="osc-text">Middle: ${bbMiddle}</p>
 
