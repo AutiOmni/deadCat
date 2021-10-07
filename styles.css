@@ -1170,16 +1170,20 @@ a:hover {
                  padding-top: 2.5px;
              }  
              
-             .sl,
-                .h {
-             font-size: .65rem;
+             .sl {
+             font-size: .55rem;
              
          }
          .epo {
             font-size: .52rem;
         }
+  }
 
-
-       
-
+  @media (max-width: 385px) {
+      .symbol-box {
+          font-size: 10px;
+      }
+      #tech-in {
+          font-size: .60rem;
+      }
   }
