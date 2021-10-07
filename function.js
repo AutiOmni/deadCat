@@ -646,7 +646,7 @@ const symbolBox = $('.symbol-box')
             {
                 rsiHeader.addClass('bearish-stuff')
             }
-            else if (rsi < 70 && rsi > 30)
+            else if (rsi <= 70 && rsi >= 30)
             {
                 rsiHeader.addClass('neutral-stuff')
             }
@@ -659,7 +659,7 @@ const symbolBox = $('.symbol-box')
             {
                 cciHeader.addClass('bearish-stuff')
             }
-            else if (cci < 100 && cci > -100)
+            else if (cci <= 100 && cci >= -100)
             {
                 cciHeader.addClass('neutral-stuff')
             }
@@ -681,7 +681,7 @@ const symbolBox = $('.symbol-box')
             {
                 stochasticHeader.addClass('bullish-stuff-k')
             }
-            else if (stochasticK < 85 && stochasticK > 15) 
+            else if (stochasticK <= 85 && stochasticK >= 15) 
             {
                 stochasticHeader.addClass('neutral-stuff-k')
             }
@@ -694,7 +694,7 @@ const symbolBox = $('.symbol-box')
             {
                 stochasticHeader.addClass('bullish-stuff-d')
             }
-            else if (stochasticD < 80 && stochasticD > 20) 
+            else if (stochasticD <= 80 && stochasticD >= 20) 
             {
                 stochasticHeader.addClass('neutral-stuff-d')
             }
@@ -1108,7 +1108,7 @@ const symbolBox = $('.symbol-box')
             {
                 $(`.rsi-down-actual-${i}`).addClass('bearish-stuff-mobile')
             }
-            else if (rsi < 70 && rsi > 30)
+            else if (rsi <= 70 && rsi >= 30)
             {
                 $(`.rsi-down-actual-${i}`).addClass('neutral-stuff-mobile')
             }
@@ -1121,7 +1121,7 @@ const symbolBox = $('.symbol-box')
             {
                 $(`.cci-down-actual-${i}`).addClass('bearish-stuff-mobile')
             }
-            else if (cci < 100 && cci > -100)
+            else if (cci <= 100 && cci >= -100)
             {
                 $(`.cci-down-actual-${i}`).addClass('neutral-stuff-mobile')
             }
@@ -1143,7 +1143,7 @@ const symbolBox = $('.symbol-box')
             {
                 $(`.stochasticK-down-actual-${i}`).addClass('bullish-stuff-mobile')
             }
-            else if (stochasticK < 85 && stochasticK > 15) 
+            else if (stochasticK <= 85 && stochasticK >= 15) 
             {
                 $(`.stochasticK-down-actual-${i}`).addClass('neutral-stuff-mobile')
             }
@@ -1156,7 +1156,7 @@ const symbolBox = $('.symbol-box')
             {
                 $(`.stochasticD-down-actual-${i}`).addClass('bullish-stuff-mobile')
             }
-            else if (stochasticD < 80 && stochasticD > 20) 
+            else if (stochasticD <= 80 && stochasticD >= 20) 
             {
                 $(`.stochasticD-down-actual-${i}`).addClass('neutral-stuff-mobile')
             }
@@ -1704,7 +1704,7 @@ const symbolBox = $('.symbol-box')
             {
                 rsiHeader.addClass('bearish-stuff')
             }
-            else if (rsi < 70 && rsi > 30)
+            else if (rsi <= 70 && rsi >= 30)
             {
                 rsiHeader.addClass('neutral-stuff')
             }
@@ -1717,7 +1717,7 @@ const symbolBox = $('.symbol-box')
             {
                 cciHeader.addClass('bearish-stuff')
             }
-            else if (cci < 100 && cci > -100)
+            else if (cci <= 100 && cci >= -100)
             {
                 cciHeader.addClass('neutral-stuff')
             }
@@ -1739,7 +1739,7 @@ const symbolBox = $('.symbol-box')
             {
                 stochasticHeader.addClass('bullish-stuff-k')
             }
-            else if (stochasticK < 85 && stochasticK > 15) 
+            else if (stochasticK <= 85 && stochasticK >= 15) 
             {
                 stochasticHeader.addClass('neutral-stuff-k')
             }
@@ -1752,7 +1752,7 @@ const symbolBox = $('.symbol-box')
             {
                 stochasticHeader.addClass('bullish-stuff-d')
             }
-            else if (stochasticD < 80 && stochasticD > 20) 
+            else if (stochasticD <= 80 && stochasticD >= 20) 
             {
                 stochasticHeader.addClass('neutral-stuff-d')
             }
@@ -1774,7 +1774,7 @@ const symbolBox = $('.symbol-box')
             {
                 bbHeader.addClass('bearish-stuff')
             }
-            else if (bbPercent < .8 && bbPercent > .2)
+            else if (bbPercent <= .8 && bbPercent >= .2)
             {
                 bbHeader.addClass('neutral-stuff')
             }
@@ -2165,7 +2165,7 @@ const symbolBox = $('.symbol-box')
             {
                 $(`.rsi-up-actual-${i}`).addClass('bearish-stuff-mobile')
             }
-            else if (rsi < 70 && rsi > 30)
+            else if (rsi <= 70 && rsi >= 30)
             {
                 $(`.rsi-up-actual-${i}`).addClass('neutral-stuff-mobile')
             }
@@ -2178,7 +2178,7 @@ const symbolBox = $('.symbol-box')
             {
                 $(`.cci-up-actual-${i}`).addClass('bearish-stuff-mobile')
             }
-            else if (cci < 100 && cci > -100)
+            else if (cci <= 100 && cci >= -100)
             {
                 $(`.cci-up-actual-${i}`).addClass('neutral-stuff-mobile')
             }
@@ -2200,7 +2200,7 @@ const symbolBox = $('.symbol-box')
             {
                 $(`.stochasticK-up-actual-${i}`).addClass('bullish-stuff-mobile')
             }
-            else if (stochasticK < 85 && stochasticK > 15) 
+            else if (stochasticK <= 85 && stochasticK >= 15) 
             {
                 $(`.stochasticK-up-actual-${i}`).addClass('neutral-stuff-mobile')
             }
@@ -2213,7 +2213,7 @@ const symbolBox = $('.symbol-box')
             {
                 $(`.stochasticD-up-actual-${i}`).addClass('bullish-stuff-mobile')
             }
-            else if (stochasticD < 80 && stochasticD > 20) 
+            else if (stochasticD <= 80 && stochasticD >= 20) 
             {
                 $(`.stochasticD-up-actual-${i}`).addClass('neutral-stuff-mobile')
             }
@@ -2760,7 +2760,7 @@ const symbolBox = $('.symbol-box')
                {
                    rsiHeader.addClass('bearish-stuff')
                }
-               else if (rsi < 70 && rsi > 30)
+               else if (rsi <= 70 && rsi >= 30)
                {
                    rsiHeader.addClass('neutral-stuff')
                }
@@ -2773,7 +2773,7 @@ const symbolBox = $('.symbol-box')
                {
                    cciHeader.addClass('bearish-stuff')
                }
-               else if (cci < 100 && cci > -100)
+               else if (cci <= 100 && cci >= -100)
                {
                    cciHeader.addClass('neutral-stuff')
                }
@@ -2795,7 +2795,7 @@ const symbolBox = $('.symbol-box')
                {
                    stochasticHeader.addClass('bullish-stuff-k')
                }
-               else if (stochasticK < 85 && stochasticK > 15) 
+               else if (stochasticK <= 85 && stochasticK >= 15) 
                {
                    stochasticHeader.addClass('neutral-stuff-k')
                }
@@ -2808,7 +2808,7 @@ const symbolBox = $('.symbol-box')
                {
                    stochasticHeader.addClass('bullish-stuff-d')
                }
-               else if (stochasticD < 80 && stochasticD > 20) 
+               else if (stochasticD <= 80 && stochasticD >= 20) 
                {
                    stochasticHeader.addClass('neutral-stuff-d')
                }
@@ -2830,7 +2830,7 @@ const symbolBox = $('.symbol-box')
                {
                    bbHeader.addClass('bearish-stuff')
                }
-               else if (bbPercent < .8 && bbPercent > .2)
+               else if (bbPercent <= .8 && bbPercent >= .2)
                {
                    bbHeader.addClass('neutral-stuff')
                }
@@ -3223,7 +3223,7 @@ const symbolBox = $('.symbol-box')
                 {
                     $(`.rsi-search-actual`).addClass('bearish-stuff-mobile')
                 }
-                else if (rsi < 70 && rsi > 30)
+                else if (rsi <= 70 && rsi >= 30)
                 {
                     $(`.rsi-search-actual`).addClass('neutral-stuff-mobile')
                 }
@@ -3236,7 +3236,7 @@ const symbolBox = $('.symbol-box')
                 {
                     $(`.cci-search-actual`).addClass('bearish-stuff-mobile')
                 }
-                else if (cci < 100 && cci > -100)
+                else if (cci <= 100 && cci >= -100)
                 {
                     $(`.cci-search-actual`).addClass('neutral-stuff-mobile')
                 }
@@ -3258,7 +3258,7 @@ const symbolBox = $('.symbol-box')
                 {
                     $(`.stochasticK-search-actual`).addClass('bullish-stuff-mobile')
                 }
-                else if (stochasticK < 85 && stochasticK > 15) 
+                else if (stochasticK <= 85 && stochasticK >= 15) 
                 {
                     $(`.stochasticK-search-actual`).addClass('neutral-stuff-mobile')
                 }
@@ -3271,7 +3271,7 @@ const symbolBox = $('.symbol-box')
                 {
                     $(`.stochasticD-search-actual`).addClass('bullish-stuff-mobile')
                 }
-                else if (stochasticD < 80 && stochasticD > 20) 
+                else if (stochasticD <= 80 && stochasticD >= 20) 
                 {
                     $(`.stochasticD-search-actual`).addClass('neutral-stuff-mobile')
                 }
