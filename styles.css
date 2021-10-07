@@ -671,7 +671,10 @@ a:hover {
     text-align: center;
     display: flex;
     justify-content: space-around;
+    
 }
+
+
 
 .flex-rsi-cci {
     display: flex;
@@ -1059,7 +1062,7 @@ a:hover {
     .search-price-text {
         margin-bottom: 10px;
     }
-
+    
     .row-ex {
         width: 100%;    
     }
@@ -1169,14 +1172,9 @@ a:hover {
                  padding-top: 2.5px;
              }  
              
-             .sl,
-                .h {
-             font-size: .65rem;
-             
-         }
-         .epo {
-            font-size: .52rem;
-        }
+            .epo {
+                font-size: .52rem;
+            }
   }
 
 
