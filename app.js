@@ -2273,7 +2273,7 @@ try {
              <p class="osc-text macd-down-actual-${i} mobile-tap">${macdDown}</p>
                  <div class="macd-row">
                      <p class="macd-signal-down-actual-${i} sl">Signal Line: ${macdSignalLineDown}</p>
-                     <p class="macd-histo-down-actual-${i} sl">Histogram: ${macdHistogramDown}</p>
+                     <p class="macd-histo-down-actual-${i} h">Histogram: ${macdHistogramDown}</p>
                  </div>
          </div>
  
@@ -2302,18 +2302,18 @@ try {
                 <p class="osc-text stochasticK-down-actual-${i} stochK mobile-tap">%K: ${stochasticKDown}</p>
                 <p class="osc-text stochasticD-down-actual-${i} stochD mobile-tap">%D: ${stochasticDDown}</p>
             </div>
-                <p class="osc-text sl">Signal Line: ${stochasticSignalDown}</p>
+                <p class="osc-text">Signal Line: ${stochasticSignalDown}</p>
          </div>
  
          <div class="tech-row">
          <a class="info-link bb-down-header-${i}" href="https://www.investopedia.com/terms/b/bollingerbands.asp" target="_blank"><h3 class='tech-header'>Bollinger Bands</h3></a>
             <p class="osc-text bbPercent-down-actual-${i} mobile-tap">%B: ${bbPercentDown}</p>
             <div class="averages-row">
-                <p class="osc-text bbUpper-down-actual-${i} sl">Upper: ${bbUpperDown}</p>
-                <p class="osc-text bbLower-down-actual-${i} sl">Lower: ${bbLowerDown}</p>
+                <p class="osc-text bbUpper-down-actual-${i}">Upper: ${bbUpperDown}</p>
+                <p class="osc-text bbLower-down-actual-${i}">Lower: ${bbLowerDown}</p>
             </div>
          
-            <p class="osc-text bbMiddle-down-actual-${i} sl">Middle: ${bbMiddleDown}</p>
+            <p class="osc-text bbMiddle-down-actual-${i}">Middle: ${bbMiddleDown}</p>
     
          </div>
 
@@ -2442,7 +2442,7 @@ try {
              <p class="osc-text macd-up-actual-${i} mobile-tap">${macdUp}</p>
                  <div class="macd-row">
                      <p class="macd-signal-up-actual-${i} sl">Signal Line: ${macdSignalLineUp}</p>
-                     <p class="macd-histo-up-actual-${i} sl">Histogram: ${macdHistogramUp}</p>
+                     <p class="macd-histo-up-actual-${i} h">Histogram: ${macdHistogramUp}</p>
                  </div>
          </div>
  
@@ -2470,18 +2470,18 @@ try {
             <p class="osc-text stochasticK-up-actual-${i} stochK mobile-tap">%K: ${stochasticKUp}</p>
             <p class="osc-text stochasticD-up-actual-${i} stochD mobile-tap">%D: ${stochasticDUp}</p>
             </div>
-            <p class="osc-text sl">Signal Line: ${stochasticSignalUp}</p>
+            <p class="osc-text">Signal Line: ${stochasticSignalUp}</p>
          </div>
  
          <div class="tech-row">
          <a class="info-link bb-up-header-${i}" href="https://www.investopedia.com/terms/b/bollingerbands.asp" target="_blank"><h3 class='tech-header'>Bollinger Bands</h3></a>
             <p class="osc-text bbPercent-up-actual-${i} mobile-tap">%B: ${bbPercentUp}</p>
             <div class="averages-row">
-                <p class="osc-text bbUpper-up-actual-${i} sl">Upper: ${bbUpperUp}</p>
-                <p class="osc-text bbLower-up-actual-${i} sl">Lower: ${bbLowerUp}</p>
+                <p class="osc-text bbUpper-up-actual-${i}">Upper: ${bbUpperUp}</p>
+                <p class="osc-text bbLower-up-actual-${i}">Lower: ${bbLowerUp}</p>
             </div>
          
-                <p class="osc-text bbMiddle-up-actual-${i} sl">Middle: ${bbMiddleUp}</p>
+                <p class="osc-text bbMiddle-up-actual-${i}">Middle: ${bbMiddleUp}</p>
    
          </div>
 

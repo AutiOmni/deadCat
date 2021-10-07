@@ -5001,7 +5001,7 @@ if (isNaN(yesterdayVolIncrease))
                 <p class="osc-text macd-search-actual mobile-tap">${macd}</p>
                     <div class="macd-row">
                         <p class="sl">Signal Line: ${macdSignalLine}</p>
-                        <p  class="sl">Histogram: ${macdHistogram}</p>
+                        <p  class="h">Histogram: ${macdHistogram}</p>
                     </div>
             </div>
 
@@ -5030,17 +5030,17 @@ if (isNaN(yesterdayVolIncrease))
                 <p class="osc-text stochasticK-search-actual stochK mobile-tap">%K: ${stochasticK}</p>
                 <p class="osc-text stochasticD-search-actual stochD mobile-tap">%D: ${stochasticD}</p>
             </div>
-                <p class="osc-text sl">Signal Line: ${stochasticSignal}</p>
+                <p class="osc-text">Signal Line: ${stochasticSignal}</p>
             </div>
 
             <div class="tech-row">
             <a class="info-link bb-search-header" href="https://www.investopedia.com/terms/b/bollingerbands.asp" target="_blank"><h3 class='tech-header'>Bollinger Bands</h3></a>
                 <p class="osc-text bbPercent-search-actual mobile-tap">%B: ${bbPercent}</p>
                 <div class="averages-row">
-                    <p class="osc-text sl">Upper: ${bbUpper}</p>
-                    <p class="osc-text sl">Lower: ${bbLower}</p>
+                    <p class="osc-text">Upper: ${bbUpper}</p>
+                    <p class="osc-text">Lower: ${bbLower}</p>
                 </div>
-                    <p class="osc-text sl">Middle: ${bbMiddle}</p>
+                    <p class="osc-text">Middle: ${bbMiddle}</p>
 
             </div>
 

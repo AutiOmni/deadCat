@@ -670,7 +670,7 @@ a:hover {
     width: 100%;
     text-align: center;
     display: flex;
-    font-size: .75em;
+
     justify-content: space-between;
 }
 
@@ -1170,8 +1170,9 @@ a:hover {
                  padding-top: 2.5px;
              }  
              
-             .sl {
-             font-size: .55rem;
+             .sl,
+                .h {
+             font-size: .65rem;
              
          }
          .epo {
@@ -1179,11 +1180,12 @@ a:hover {
         }
   }
 
+
   @media (max-width: 385px) {
-      .symbol-box {
-          font-size: 10px;
-      }
-      #tech-in {
-          font-size: .60rem;
-      }
-  }
+    .symbol-box {
+        font-size: 10px;
+    }
+    #tech-in {
+        font-size: .60rem;
+    }
+}
