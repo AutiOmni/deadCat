@@ -2320,7 +2320,10 @@ try {
          <div class="news-row">
          <a class="tech-header" href="https://www.google.com/search?q=${symbolDown}+stock+news&source=lnms&tbm=nws&sa=X&ved=2ahUKEwj7_6eMpbPyAhXaVs0KHfuADvoQ_AUoAXoECAEQAw&biw=1280&bih=614" target="_blank">News About This Stock</a>
          </div>
-
+         
+         <div class="news-row">
+         <a class="buy-coffee-link" target="_blank" href="https://buymeacoffee.com/omniauti">Buy Me A Coffee <img src="SVGs/bmc-logo.svg"></a>
+         </div>
      </div>
  
          <!----------------------------------- UPPER --------------------------------------------------------->
@@ -2489,6 +2492,9 @@ try {
          <a class="tech-header" href="https://www.google.com/search?q=${symbolUp}+stock+news&source=lnms&tbm=nws&sa=X&ved=2ahUKEwj7_6eMpbPyAhXaVs0KHfuADvoQ_AUoAXoECAEQAw&biw=1280&bih=614" target="_blank">News About This Stock</a>
          </div>
 
+         <div class="news-row">
+         <a class="buy-coffee-link" target="_blank" href="https://buymeacoffee.com/omniauti">Buy Me A Coffee <img src="SVGs/bmc-logo.svg"></a>
+         </div>
      </div> `
 
      rowOne.appendChild(litter)
