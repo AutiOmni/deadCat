@@ -199,9 +199,40 @@ let hour = today.getUTCHours()
     // DATE CHECK VARIBLE FOR DATA PERIOD PULLS AND TO SLICE FROM
     let todayDate = `${year}-${month}-${date}`
     //CHECK FOR HOLIDAYS OR CLOSED MARKET HOLIDAYS ----------------------------- NEED TO UPDATE
-    if (todayDate === '2021-07-05') {
-        todayDate = '2021-07-02'
+    if (todayDate === '2021-11-25') {
+        todayDate = '2021-11-24'
     } 
+    else if (todayDate === '2021-12-24') {
+        todayDate = '2021-12-23'
+    } 
+    else if (todayDate === '2022-01-17') {
+        todayDate = '2022-01-14'
+    } 
+    else if (todayDate === '2022-02-21') {
+        todayDate = '2022-02-18'
+    } 
+    else if (todayDate === '2022-04-15') {
+        todayDate = '2022-04-14'
+    } 
+    else if (todayDate === '2022-05-30') {
+        todayDate = '2022-05-27'
+    } 
+    else if (todayDate === '2022-06-20') {
+        todayDate = '2022-06-17'
+    } 
+    else if (todayDate === '2022-07-04') {
+        todayDate = '2022-07-01'
+    } 
+    else if (todayDate === '2022-09-05') {
+        todayDate = '2022-09-02'
+    } 
+    else if (todayDate === '2022-11-24') {
+        todayDate = '2022-11-23'
+    } 
+    else if (todayDate === '2022-12-26') {
+        todayDate = '2022-12-23'
+    } 
+   
 // THIS IS AN ADJUSTMENT OF DATE FOR MARKET CLOSES EST VS UTC TIME
     let newDateString = todayDate;
     if ((hour + 4) >= 24) 
@@ -258,5 +289,3 @@ let hour = today.getUTCHours()
 
     }
 //---------------------------------------------------------------------------------------------------------------------
-
-console.log(timeNum)
