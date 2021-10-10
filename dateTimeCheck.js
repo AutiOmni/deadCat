@@ -7,7 +7,6 @@ let month = today.getUTCMonth() + 1
 let minutes = today.getUTCMinutes()
 let hour = today.getUTCHours()
  // GET TIME FOR CLOSING AND OPENING MARKET -----------------------------------
-
  //CALC FOR UTC TO EST
     hour = hour - 4;
     // CALC FOR EARLY MORNING HOURS UTC
@@ -22,7 +21,7 @@ let hour = today.getUTCHours()
     const time = `${hour}${minutes}`
     const timeNum = parseInt(time)
     // GET DAY FOR CLOSING AND OPENING MARKET -------------------------------------------
-    const marketDay = today.getUTCDay()
+    const marketDay = today.getDay()
     // CHECK FOR MARKET OPEN - ADJUST DATE SO VWAP STILL PULLS DATA FROM LAST DAY
     if (marketDay == 0) {
         date = date - 2
