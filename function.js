@@ -738,7 +738,7 @@ const symbolBox = $('.symbol-box')
         else
         {
             // VOLUME CHECK
-            if (avgVolumeCheckNum < volumeTodayCheckNum && changePercentageCheckNum > 0)
+            if (avgVolumeCheckNum < volumeTodayCheckNum && changePercentageCheckNum < 0)
             {
                 $(`.volumeToday-down-actual-${i}`).addClass('bearish-stuff-mobile')
             }
@@ -2894,12 +2894,12 @@ const symbolBox = $('.symbol-box')
                 // VOLUME CHECK
                 if (avgVolumeCheckNum < volumeTodayCheckNum && changePercentageCheckNum > 0)
                 {
-                    $('.volumeTodayCheck').addClass('bullish-stuff-mobile')
+                    $('.volumeToday-actual').addClass('bullish-stuff-mobile')
                 }
                 // VOLUME CHECK
                 else if (avgVolumeCheckNum < volumeTodayCheckNum && changePercentageCheckNum < 0)
                 {
-                    $('.volumeTodayCheck').addClass('bearish-stuff-mobile')
+                    $('.volumeToday-actual').addClass('bearish-stuff-mobile')
                 }
                                 // SMA -----------------------
                 if (price > smaFifteenNum)
