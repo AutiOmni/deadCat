@@ -2381,9 +2381,9 @@ const symbolBox = $('.symbol-box')
                stochasticD = parseFloat(stochasticD)
                bbPercent = parseFloat(bbPercent)
 
-               avgVolumeCheck = parseInt(avgVolumeCheck)
-               volumeTodayCheck = parseInt(volumeTodayCheck)
-               changePercentageCheck = parseFloat(changePercentageCheck)
+               avgVolumeCheckNum = parseInt(avgVolumeCheck)
+               volumeTodayCheckNum = parseInt(volumeTodayCheck)
+               changePercentageCheckNum = parseFloat(changePercentageCheck)
 
                smaFifteenNum = parseFloat(smaFifteenNum)            
                smaTwentyNum = parseFloat(smaTwentyNum)         
@@ -2418,14 +2418,14 @@ const symbolBox = $('.symbol-box')
             if ($(window).width() > 700)
             {
                 // VOLUME CHECK
-                if (avgVolumeCheck < volumeTodayCheck && changePercentageCheck > 0)
+                if (avgVolumeCheckNum < volumeTodayCheckNum && changePercentageCheckNum > 0)
                 {
-                    volumeTodayCheck.addClass('bullish-stuff')
+                    $('.volumeTodayCheck').addClass('bullish-stuff')
                 }
                 // VOLUME CHECK
-                else if (avgVolumeCheck < volumeTodayCheck && changePercentageCheck < 0)
+                else if (avgVolumeCheckNum < volumeTodayCheckNum && changePercentageCheckNum < 0)
                 {
-                    volumeTodayCheck.addClass('bearish-stuff')
+                    $('.volumeTodayCheck').addClass('bearish-stuff')
                 }
 
                 // SMA -----------------------
@@ -2892,14 +2892,14 @@ const symbolBox = $('.symbol-box')
             {
 
                 // VOLUME CHECK
-                if (avgVolumeCheck < volumeTodayCheck && changePercentageCheck > 0)
+                if (avgVolumeCheckNum < volumeTodayCheckNum && changePercentageCheckNum > 0)
                 {
-                    volumeTodayCheck.addClass('bullish-stuff-mobile')
+                    $('.volumeTodayCheck').addClass('bullish-stuff-mobile')
                 }
                 // VOLUME CHECK
-                else if (avgVolumeCheck < volumeTodayCheck && changePercentageCheck < 0)
+                else if (avgVolumeCheckNum < volumeTodayCheckNum && changePercentageCheckNum < 0)
                 {
-                    volumeTodayCheck.addClass('bearish-stuff-mobile')
+                    $('.volumeTodayCheck').addClass('bearish-stuff-mobile')
                 }
                                 // SMA -----------------------
                 if (price > smaFifteenNum)
@@ -4951,7 +4951,7 @@ if (isNaN(yesterdayVolIncrease))
             <h2 id="symbol" class="">${symbol}</h2>
             <p class="search-price-text price-search">Price: $${price}</p>
             <div class="search-changes-row">
-            <p class="changePercentageCheck>${changesPercentage}%</p>
+            <p class="changePercentageCheck">${changesPercentage}%</p>
             <div id="search-arrow-${directionArrow}">
             </div>
             <p>$${change}</p>
