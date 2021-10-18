@@ -803,6 +803,22 @@ a:hover {
     color: var(--light-text-color);
 }
 
+.info-link ~ p .bearish-stuff {
+    transition: all ease-in-out 500ms;
+}
+
+.info-link:hover ~ p .bearish-stuff {
+    color: var(--bear-market-color)
+}
+
+.info-link ~ p .bullish-stuff {
+    transition: all ease-in-out 500ms;
+}
+
+.info-link:hover ~ p .bullish-stuff {
+    color: var(--bull-market-color)
+}
+
 @media (max-width: 700px) {
     .tech-row:hover > .cross-display {
         color: var(--light-text-color);
@@ -919,6 +935,7 @@ a:hover {
     justify-content: center;
     border-bottom: 1px solid var(--main-background)
   }
+  
   .buy-coffee-link img {
         height: 20px;
         margin-left: 10px;

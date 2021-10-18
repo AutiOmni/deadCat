@@ -142,6 +142,10 @@ const symbolBox = $('.symbol-box')
             let williamsHeader = $(`.williams-down-header-${i}`)
             let stochasticHeader = $(`.stochastic-down-header-${i}`)
             let bbHeader = $(`.bb-down-header-${i}`)
+            //VOLUME INDICATORS 
+            let avgVolumeCheck = $(`.avgVolume-down-actual-${i}`).text()
+            let volumeTodayCheck = $(`.volumeToday-down-actual-${i}`).text()
+            let changePercentageCheck = $(`.changePercentageDown-${i}`).text()
             // GET ACTUALS FOR NUMBER CALCS AND HOVER COLOR
             let vwap = $(`.vwap-down-actual-${i}`).text()
             let macd = $(`.macd-down-actual-${i}`).text()
@@ -229,6 +233,10 @@ const symbolBox = $('.symbol-box')
             stochasticD = parseFloat(stochasticD)
             bbPercent = parseFloat(bbPercent)
 
+            avgVolumeCheckNum = parseInt(avgVolumeCheck)
+            volumeTodayCheckNum = parseInt(volumeTodayCheck)
+            changePercentageCheckNum = parseFloat(changePercentageCheck)
+
             smaFifteenNum = parseFloat(smaFifteenNum)            
             smaTwentyNum = parseFloat(smaTwentyNum)         
             smaThirtyNum = parseFloat(smaThirtyNum)           
@@ -260,6 +268,11 @@ const symbolBox = $('.symbol-box')
             // IF FOR CLASS ADD
         if ($(window).width() > 700)
         {
+                // VOLUME CHECK
+                if (avgVolumeCheckNum < volumeTodayCheckNum && changePercentageCheckNum < 0)
+                {
+                    $(`.volumeToday-down-actual-${i}`).addClass('bearish-stuff')
+                }
 
                // MA CHECK --------------------
                if (price > smaFifteenNum)
@@ -724,6 +737,11 @@ const symbolBox = $('.symbol-box')
         }
         else
         {
+            // VOLUME CHECK
+            if (avgVolumeCheckNum < volumeTodayCheckNum && changePercentageCheckNum > 0)
+            {
+                $(`.volumeToday-down-actual-${i}`).addClass('bearish-stuff-mobile')
+            }
               // SMA -----------------------
         if (price > smaFifteenNum)
         {
@@ -1190,7 +1208,6 @@ const symbolBox = $('.symbol-box')
     function indicatorColorsUp(i) {
         // ALL MIGHTY PRICE
         let price = $(`.price-up-${i}`).text().slice(8,)
-        console.log(price)
         // GET HEADERS FOR HOVER EFFECT
         let vwapHeader = $(`.vwap-up-header-${i}`)
         let macdHeader = $(`.macd-up-header-${i}`)
@@ -1199,7 +1216,10 @@ const symbolBox = $('.symbol-box')
         let williamsHeader = $(`.williams-up-header-${i}`)
         let stochasticHeader = $(`.stochastic-up-header-${i}`)
         let bbHeader = $(`.bb-up-header-${i}`)
-
+        //VOLUME INDICATORS 
+        let avgVolumeCheck = $(`.avgVolume-up-actual-${i}`).text()
+        let volumeTodayCheck = $(`.volumeToday-up-actual-${i}`).text()
+        let changePercentageCheck = $(`.changePercentageUp-${i}`).text()
         // GET ACTUALS FOR NUMBER CALCS AND HOVER COLOR
         let vwap = $(`.vwap-up-actual-${i}`).text()
         let macd = $(`.macd-up-actual-${i}`).text()
@@ -1287,6 +1307,10 @@ const symbolBox = $('.symbol-box')
         stochasticD = parseFloat(stochasticD)
         bbPercent = parseFloat(bbPercent)
 
+        avgVolumeCheckNum = parseInt(avgVolumeCheck)
+        volumeTodayCheckNum = parseInt(volumeTodayCheck)
+        changePercentageCheckNum = parseFloat(changePercentageCheck)
+
         smaFifteenNum = parseFloat(smaFifteenNum)            
         smaTwentyNum = parseFloat(smaTwentyNum)         
         smaThirtyNum = parseFloat(smaThirtyNum)           
@@ -1318,6 +1342,11 @@ const symbolBox = $('.symbol-box')
         // IF FOR CLASS ADD
         if ($(window).width() > 700)
         {
+                // VOLUME CHECK
+                if (avgVolumeCheckNum < volumeTodayCheckNum && changePercentageCheckNum > 0)
+                {
+                    $(`.volumeToday-up-actual-${i}`).addClass('bullish-stuff')
+                }
 
             // MA CHECK --------------------
             if (price > smaFifteenNum)
@@ -1781,7 +1810,12 @@ const symbolBox = $('.symbol-box')
         }
         else
         {
-                        // SMA -----------------------
+            // VOLUME CHECK
+            if (avgVolumeCheckNum < volumeTodayCheckNum && changePercentageCheckNum > 0)
+            {
+                $(`.volumeToday-up-actual-${i}`).addClass('bullish-stuff-mobile')
+            }
+            // SMA -----------------------
             if (price > smaFifteenNum)
             {
                 smaFifteen.addClass('bullish-stuff-mobile')
@@ -2256,6 +2290,10 @@ const symbolBox = $('.symbol-box')
                let williamsHeader = $('.williams-search-header')
                let stochasticHeader = $('.stochastic-search-header')
                let bbHeader = $('.bb-search-header')
+                //VOLUME INDICATORS 
+                let avgVolumeCheck = $(`.avgVolume-actual`).text()
+                let volumeTodayCheck = $(`.volumeToday-actual`).text()
+                let changePercentageCheck = $(`.changePercentageCheck`).text()
                // GET ACTUALS FOR NUMBER CALCS AND HOVER COLOR
                let vwap = $('.vwap-search-actual').text()
                let macd = $('.macd-search-actual').text()
@@ -2343,6 +2381,10 @@ const symbolBox = $('.symbol-box')
                stochasticD = parseFloat(stochasticD)
                bbPercent = parseFloat(bbPercent)
 
+               avgVolumeCheck = parseInt(avgVolumeCheck)
+               volumeTodayCheck = parseInt(volumeTodayCheck)
+               changePercentageCheck = parseFloat(changePercentageCheck)
+
                smaFifteenNum = parseFloat(smaFifteenNum)            
                smaTwentyNum = parseFloat(smaTwentyNum)         
                smaThirtyNum = parseFloat(smaThirtyNum)           
@@ -2375,6 +2417,17 @@ const symbolBox = $('.symbol-box')
                // IF FOR CLASS ADD
             if ($(window).width() > 700)
             {
+                // VOLUME CHECK
+                if (avgVolumeCheck < volumeTodayCheck && changePercentageCheck > 0)
+                {
+                    volumeTodayCheck.addClass('bullish-stuff')
+                }
+                // VOLUME CHECK
+                else if (avgVolumeCheck < volumeTodayCheck && changePercentageCheck < 0)
+                {
+                    volumeTodayCheck.addClass('bearish-stuff')
+                }
+
                 // SMA -----------------------
                if (price > smaFifteenNum)
                {
@@ -2838,6 +2891,16 @@ const symbolBox = $('.symbol-box')
             else
             {
 
+                // VOLUME CHECK
+                if (avgVolumeCheck < volumeTodayCheck && changePercentageCheck > 0)
+                {
+                    volumeTodayCheck.addClass('bullish-stuff-mobile')
+                }
+                // VOLUME CHECK
+                else if (avgVolumeCheck < volumeTodayCheck && changePercentageCheck < 0)
+                {
+                    volumeTodayCheck.addClass('bearish-stuff-mobile')
+                }
                                 // SMA -----------------------
                 if (price > smaFifteenNum)
                 {
@@ -3302,7 +3365,6 @@ const symbolBox = $('.symbol-box')
         }
         catch(e)
        {
-        console.log(e)
 
        }
        
@@ -4889,7 +4951,7 @@ if (isNaN(yesterdayVolIncrease))
             <h2 id="symbol" class="">${symbol}</h2>
             <p class="search-price-text price-search">Price: $${price}</p>
             <div class="search-changes-row">
-            <p>${changesPercentage}%</p>
+            <p class="changePercentageCheck>${changesPercentage}%</p>
             <div id="search-arrow-${directionArrow}">
             </div>
             <p>$${change}</p>
@@ -4902,8 +4964,8 @@ if (isNaN(yesterdayVolIncrease))
 
             <div class="tech-vol-row">
             <a class="info-link" href="https://www.investopedia.com/articles/technical/02/010702.asp" target="_blank"><h3 class='tech-header'>Volume</h3></a>
-                <p>Average: <span class="tech-to-left">${avgVolume}</span></p> 
-                <p>Current Day: <span class="tech-to-left">${volume}</span></p>
+                <p>Average: <span class="tech-to-left avgVolume-actual">${avgVolume}</span></p> 
+                <p>Current Day: <span class="tech-to-left volumeToday-actual">${volume}</span></p>
                 <p>Change: <span class="tech-to-left"> ${volumeIncrease}%</span></p>
 
                 <p>Day Before: <span class="tech-to-left"> ${yesterdayVolume}</span></p>
