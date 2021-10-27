@@ -819,6 +819,14 @@ a:hover {
     color: var(--bull-market-color)
 }
 
+.bullish-stuff-mobile:hover {
+    color: var(--bull-market-color)
+}
+
+.bearish-stuff-mobile:hover {
+    color: var(--bear-market-color)
+}
+
 @media (max-width: 700px) {
     .tech-row:hover > .cross-display {
         color: var(--light-text-color);
@@ -986,6 +994,7 @@ a:hover {
    top: 50%;
    transform: translateY(-50%);
    padding: 0;
+   transition: all ease-in-out 500ms;
   }
 
   #popup-close:hover {
@@ -1045,6 +1054,13 @@ a:hover {
     color: var(--main-background)
   }
 
+  .search-icon:hover {
+    color: var(--bull-market-color)
+  }
+
+  .active-search .search-icon:hover {
+    color: var(--main-background)
+  }
 
    /* --------------------- DOWNLOAD  ----------------------- */
 
