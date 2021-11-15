@@ -1,14 +1,12 @@
 //SEARCH FUNCTION
-$('.search-icon').click(function() {
+$(".search-icon").click(function () {
+  $(".search-bar").toggleClass("active-search");
 
-    $('.search-bar').toggleClass('active-search');
+  if ($(".search-bar").hasClass("active-search")) {
+    $(".search-bar input[type=text]").focus();
+  }
+});
 
-    if ($('.search-bar').hasClass('active-search'))
-    {
-        $(".search-bar input[type=text]").focus();
-    }
-}) 
-
-$('.search-text').on('keyup', function() {
- $('.search-text').val($('.search-text').val().toUpperCase());
-})
+$(".search-text").on("keyup", function () {
+  $(".search-text").val($(".search-text").val().toUpperCase());
+});
