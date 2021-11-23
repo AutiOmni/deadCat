@@ -5,7 +5,10 @@ const nasdaqMasterKey = [
   "AUR",
   "AFMD",
   "MARA",
+  "WEJO",
   "AVDX",
+  "TNGX",
+  "AUPH",
   "HMTV",
   "SEV",
   "JWEL",
@@ -245,6 +248,7 @@ const nasdaqMasterKey = [
   "CDNS",
   "MDRX",
   "ISBC",
+  "ORMP",
   "NTAP",
   "BBBY",
   "MAR",
@@ -4911,5 +4915,7 @@ const nyseMasterKey = [
   "WBX",
   "ACHR",
   "WOLF",
-  "SMRT"
+  "SMRT",
+  "AVYA"
+
 ];
