@@ -6,6 +6,15 @@ const symbolBox = $(".symbol-box");
 
 // CONFIGURE DOWN BOXES FOR FUNCTION ----------------------------
 
+// TAB TO SELECT AND OPEN APP
+symbolBox.each(function () {
+  $(this).keydown(function (e) {
+    if (e.keyCode == 13) {
+      $(this).click();
+    }
+  });
+});
+
 downer.each(function () {
   $(this).click(function () {
     if ($(this).hasClass("active-down-symbol")) {

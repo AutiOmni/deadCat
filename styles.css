@@ -1005,12 +1005,11 @@ a:hover {
 }
 
 .search-text {
-  width: 0px;
+  width: 80px;
   border: none;
   height: 75%;
   margin-left: 10px;
-  transition: all ease-in-out 500ms;
-  background-color: transparent;
+  background-color: var(--light-text-color);
   padding-left: 5px;
 }
 
@@ -1027,32 +1026,15 @@ input:focus {
 
 .search-icon {
   position: absolute;
-  height: 20px;
-  width: 20px;
+  height: 15px;
+  width: 15px;
   cursor: pointer;
-  left: 10px;
+  left: 70px;
   top: 50%;
   transform: translateY(-50%);
   cursor: pointer;
-  color: var(--light-text-color);
-  transition: all ease-in-out 500ms;
-}
-
-.active-search .search-icon {
-  height: 15px;
-  width: 15px;
-  left: 70px;
   color: var(--main-background);
 }
-
-.search-icon:hover {
-  color: var(--bull-market-color);
-}
-
-.active-search .search-icon:hover {
-  color: var(--main-background);
-}
-
 /* --------------------- DOWNLOAD  ----------------------- */
 
 .download-link {

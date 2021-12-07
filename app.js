@@ -2065,7 +2065,7 @@ function buildIt(arrUp, arrDown) {
  
  
      <!----------------------------------- DOWNER --------------------------------------->
-     <div class="downer symbol-box" data-index="${i}">
+     <div tabindex="0" class="downer symbol-box" data-index="${i}">
          <h2 id="symbol">${symbolDown}</h2>
          <p class="price price-down-${i}">Price: $${priceDown}</p>
          <div class="changes-row">
@@ -2238,7 +2238,7 @@ function buildIt(arrUp, arrDown) {
  
          <!----------------------------------- UPPER --------------------------------------------------------->
 
-     <div class="upper symbol-box" data-index="${i}">
+     <div tabindex="0" role=button class="upper symbol-box" data-index="${i}">
          <h2 id="symbol">${symbolUp}</h2>
          <p class="price price-up-${i}">Price: $${priceUp}</p>
          <div class="changes-row">
