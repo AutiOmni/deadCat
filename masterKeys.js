@@ -2,10 +2,13 @@
 const nasdaqMasterKey = [
   "ADMS",
   "PEAR",
+  "MIGI",
   "NEGG",
   "AUR",
   "SPT",
+  "FCUV",
   "SLDP",
+  "ESSC",
   "AFMD",
   "PNT",
   "VBIV",
@@ -4573,8 +4576,6 @@ const nyseMasterKey = [
   "GFL",
   "ALTG",
   "SCVX",
-  "ESSCR",
-  "ESSCW",
   "RFM",
   "CBO",
   "BIPC",
@@ -4934,5 +4935,6 @@ const nyseMasterKey = [
   "BHIL",
   "AMAM",
   "HGTY",
+  "KIND",
 
 ];
