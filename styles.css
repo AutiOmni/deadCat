@@ -1041,9 +1041,15 @@ input:focus {
   font-size: 2em;
   border-radius: 5px;
   z-index: 99;
+  padding-bottom: 100px;
   white-space: nowrap;
   text-decoration: underline;
-  text-decoration-color: var(--light-text-color);
+  text-decoration-color: var(--main-background);
+  color: var(--main-background)
+}
+
+.download-link:hover {
+  color: var(--main-cat-color)
 }
 
 .download-link:active {
