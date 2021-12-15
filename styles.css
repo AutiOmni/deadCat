@@ -1042,7 +1042,6 @@ input:focus {
   border-radius: 5px;
   z-index: 99;
   white-space: nowrap;
-  margin-bottom: 0;
   text-decoration: underline;
   text-decoration-color: var(--light-text-color);
 }
@@ -1050,6 +1049,10 @@ input:focus {
 .download-link:active {
   transform: scale(0.98);
 }
+
+/* --------------------- Store ----------------------- */
+
+
 
 /* --------------------- @ MEDIA  ----------------------- */
 
@@ -1219,3 +1222,11 @@ input:focus {
     font-size: 0.55rem;
   }
 }
+
+
+.ecwid-btn {
+  background-color: var(--light-text-color) !important;
+  color: var(--main-background) !important;
+}
+
+
