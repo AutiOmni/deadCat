@@ -2,11 +2,18 @@
 const nasdaqMasterKey = [
   "ADMS",
   "PEAR",
+  "BLZE",
+  "HLG",
   "MIGI",
   "NEGG",
   "AUR",
   "SPT",
+  "AUID",
+  "PRPL",
+  "IREN",
+  "ARCT",
   "LIAN",
+  "NEXT",
   "THRX",
   "FCUV",
   "SLDP",
@@ -4940,5 +4947,7 @@ const nyseMasterKey = [
   "HGTY",
   "KIND",
   "BRDS",
+  "DOMA",
+  "BKSY",
 
 ];
