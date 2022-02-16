@@ -6,6 +6,7 @@ const nasdaqMasterKey = [
   "PEAR",
   "SKIN",
   "BLZE",
+  "NN",
   "FRSH",
   "HLG",
   "FATH",
@@ -4513,6 +4514,7 @@ const nyseMasterKey = [
   "SPOT",
   "MSC",
   "STG",
+  "JOBY",
   "NOVA",
   "SUZ",
   "TAK",
@@ -4990,5 +4992,5 @@ const nyseMasterKey = [
   "DOMA",
   "BKSY",
   "CIAN",
-
+  "MDV",
 ];
