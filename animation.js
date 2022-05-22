@@ -119,3 +119,36 @@ $(window).scroll(function () {
     }
   }
 });
+
+// CAROUSEL FUNTIONALITY
+
+function handleCarousel() {
+  var carouselIdx = 0;
+  upCarousel(carouselIdx) // START CAROUSEL
+}
+
+function upCarousel(idx) {
+
+  carouselInterval = setInterval(() => {
+    idx++;
+    if (idx === 5) {
+      clearInterval(carouselInterval)
+      downCarousel(idx)
+    }
+    $('.photo-container').css("transform", `translateX(-${idx * 16.66}%)`)
+  }, 2500)
+
+}
+function downCarousel(idx) {
+
+  carouselInterval = setInterval(() => {
+    idx--;
+    if (idx === 0) {
+      clearInterval(carouselInterval)
+      upCarousel(idx)
+    }
+    $('.photo-container').css("transform", `translateX(-${idx * 16.66}%)`)
+  }, 2500)
+}
+
+handleCarousel()

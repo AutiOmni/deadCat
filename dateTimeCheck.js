@@ -8,7 +8,7 @@ let minutes = today.getUTCMinutes();
 let hour = today.getUTCHours();
 // GET TIME FOR CLOSING AND OPENING MARKET -----------------------------------
 //CALC FOR UTC TO EST
-hour = hour - 4;
+hour = hour - 5;
 // CALC FOR EARLY MORNING HOURS UTC
 if (hour < 0) {
   hour = hour + 24;
